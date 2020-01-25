@@ -1,4 +1,4 @@
-const queries = require('./src/utils/algolia');
+// const queries = require('./src/utils/algolia');
 
 module.exports = {
   siteMetadata: {
@@ -28,6 +28,21 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     'gatsby-plugin-sass',
+    'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'src',
+        path: `${__dirname}/src/`,
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
