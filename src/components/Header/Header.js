@@ -5,7 +5,7 @@ import './Header.scss';
 // import {
 //   InstantSearch, SearchBox, Hits, Configure,
 // } from 'react-instantsearch-dom';
-// import DynamicLink from '../Shared/DynamicLink';
+import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 
 // import { CustomHits } from '../Search/searchPreview';
@@ -52,7 +52,7 @@ class HeaderComponent extends React.Component {
       data: JSON.parse(data),
       isToggledOn: 'unset',
       // hasInput: false,
-      // refresh: false,
+      refresh: false,
     };
   }
 
@@ -89,8 +89,9 @@ class HeaderComponent extends React.Component {
   render() {
     const {
       // isToggledOn, refresh, hasInput, data,
-      isToggledOn, data,
+      isToggledOn, data
     } = this.state;
+    console.log(data)
     return (
       <header className="header text-center navbar navbar-expand-xl navbar-light">
         <div className="navbar-brand header__brand">
@@ -118,11 +119,14 @@ class HeaderComponent extends React.Component {
         >
           {/* Aloglia Widgets */}
          
-          {/* {data.links.map((link) => (
+          {data.links.map((link) => (
+            // <div className="nav-item" key={link.name}>
+            //   {link.cta ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}
+            // </div>
             <div className="nav-item" key={link.name}>
-              {link.cta ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}
+              <DynamicLink className="nav-link" url={link.url} name={link.name} />
             </div>
-          ))} */}
+          ))}
         </div>
       </header>
     );
