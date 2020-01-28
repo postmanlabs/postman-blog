@@ -8,6 +8,7 @@ import '../Shared/Buttons.scss'
 // } from 'react-instantsearch-dom';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
+import "../../utils/typography"
 
 
 // import { CustomHits } from '../Search/searchPreview';
