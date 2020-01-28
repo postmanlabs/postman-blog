@@ -1,12 +1,14 @@
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
 import './Header.scss';
+import '../Shared/Buttons.scss'
 // import algoliasearch from 'algoliasearch/lite';
 // import {
 //   InstantSearch, SearchBox, Hits, Configure,
 // } from 'react-instantsearch-dom';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
+
 
 // import { CustomHits } from '../Search/searchPreview';
 
@@ -30,22 +32,22 @@ import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 // };
 
 // changes button in navbar based on cookie presence
-// const LoginCheck = (props) => {
-//   if (props !== 'getpostmanlogin') {
-//     return (
-//       <a href="https://identity.getpostman.com/login" className="btn btn__primary">Sign In</a>
-//     );
-//   }
-//   return (
-//     <a href="https://app.getpostman.com/" className="btn btn__primary">Dashboard</a>
-//   );
-// };
+const LoginCheck = (props) => {
+  if (props !== 'getpostmanlogin') {
+    return (
+      <a href="https://identity.getpostman.com/login" className="btn btn__primary">Sign In</a>
+    );
+  }
+  return (
+    <a href="https://app.getpostman.com/" className="btn btn__primary">Dashboard</a>
+  );
+};
 
 class HeaderComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.getCookie = this.getCookie.bind(this);
+    this.getCookie = this.getCookie.bind(this);
     const { data } = this.props;
 
     this.state = {
@@ -56,13 +58,13 @@ class HeaderComponent extends React.Component {
     };
   }
 
-  // getCookie = (a) => {
-  //   if (typeof document !== 'undefined') {
-  //     const b = document.cookie.match(`(^|;)\\s*${a}\\s*=\\s*([^;]+)`);
-  //     return b ? b.pop() : '';
-  //   }
-  //   return false;
-  // };
+  getCookie = (a) => {
+    if (typeof document !== 'undefined') {
+      const b = document.cookie.match(`(^|;)\\s*${a}\\s*=\\s*([^;]+)`);
+      return b ? b.pop() : '';
+    }
+    return false;
+  };
 
   // toggles the hamburger menu
   toggleMenu = () => {
@@ -120,11 +122,8 @@ class HeaderComponent extends React.Component {
           {/* Aloglia Widgets */}
          
           {data.links.map((link) => (
-            // <div className="nav-item" key={link.name}>
-            //   {link.cta ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}
-            // </div>
             <div className="nav-item" key={link.name}>
-              <DynamicLink className="nav-link" url={link.url} name={link.name} />
+              {link.cta ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}
             </div>
           ))}
         </div>
