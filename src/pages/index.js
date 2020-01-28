@@ -5,6 +5,8 @@ import Layout from "../components/layout";
 // import Image from "../components/image";
 import SEO from "../components/seo";
 
+import EntryMeta from '../components/Shared/EntryMeta'
+
 export const AllPostQuery = graphql`
   {
     wpgraphql {
@@ -15,12 +17,6 @@ export const AllPostQuery = graphql`
             title
             excerpt
             date
-            author {
-              avatar {
-                url
-              }
-              name
-            }
           }
         }
       }
@@ -31,13 +27,12 @@ const BlogIndex = ({data}) => {
 
   const posts = data.wpgraphql.posts.edges;
 
-
   return (
     <Layout>
       <SEO title="Home" />
+
       {posts.map(post => {
         const postTitle = post.node.title;
-        const authorName = post.node.author.name;
         const postExcerpt = post.node.excerpt
         
         return (
@@ -45,7 +40,7 @@ const BlogIndex = ({data}) => {
             <h1>
               <Link to={postTitle}>{postTitle}</Link>
             </h1>
-            <h3>{authorName}</h3>
+            <EntryMeta />
             <p dangerouslySetInnerHTML={{__html: postExcerpt}} />
           </article>
         )
