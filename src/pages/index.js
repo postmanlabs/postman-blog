@@ -7,22 +7,7 @@ import SEO from "../components/seo";
 
 import EntryMeta from '../components/Shared/EntryMeta'
 
-export const AllPostQuery = graphql`
-  {
-    wpgraphql {
-      posts {
-        edges {
-          node {
-            id
-            title
-            excerpt
-            date
-          }
-        }
-      }
-    }
-  }
-`
+
 const BlogIndex = ({data}) => {
 
   const posts = data.wpgraphql.posts.edges;
@@ -33,13 +18,14 @@ const BlogIndex = ({data}) => {
 
       {posts.map(post => {
         const postTitle = post.node.title;
-        const postExcerpt = post.node.excerpt
-        
+        const postExcerpt = post.node.excerpt;
+        const slug = post.node.slug;
+
         return (
-          <article key={post.node.id}>
-            <h1>
-              <Link to={postTitle}>{postTitle}</Link>
-            </h1>
+          <article key={post.node.id} className={"post"}>
+            <Link to={slug}>
+            <h1 dangerouslySetInnerHTML={{__html: postTitle}} />
+            </Link>
             <EntryMeta />
             <p dangerouslySetInnerHTML={{__html: postExcerpt}} />
           </article>
@@ -48,9 +34,25 @@ const BlogIndex = ({data}) => {
     </Layout>
 
   )
-
-
 }
 
-
 export default BlogIndex;
+
+
+export const AllPostQuery = graphql`
+  {
+    wpgraphql {
+      posts {
+        edges {
+          node {
+            id
+            title
+            excerpt
+            date
+            slug
+          }
+        }
+      }
+    }
+  }
+`
