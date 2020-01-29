@@ -1,6 +1,6 @@
-import React, { Component } from "react"
+import React from "react"
 import { graphql } from "gatsby"
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import Layout from "../components/layout"
 import EntryMeta from '../components/Shared/EntryMeta';
@@ -19,26 +19,28 @@ export const postPageQuery = graphql`
   }
 `
 
-const BlogPostTemplate = ({title, content, id}) => {
+const BlogPostTemplate = ({ data }) => {
   // const { post: post } = data
+  const title = data.wpgraphql.post.title
+  console.log('////////post.js data', data)
+  console.log('////////post.js title', title)
 
-   console.log('////////blog page slug', title);
     return (
       <Layout>
         <SEO />
         <h1>{title}</h1>
-        <h2>{id}</h2>
+        {/* <h2>{id}</h2> */}
         <EntryMeta />
-        <p>{content}</p>
+        {/* <p>{content}</p> */}
       </Layout>
     )
   }
 
-  BlogPostTemplate.propTypes = {
-    id: PropTypes.string.isRequired,
-    content: PropTypes.node.isRequired,
-    title: PropTypes.string,
-  }
+  // BlogPostTemplate.propTypes = {
+  //   id: PropTypes.string.isRequired,
+  //   content: PropTypes.node.isRequired,
+  //   title: PropTypes.string,
+  // }
 
 
 export default BlogPostTemplate;
