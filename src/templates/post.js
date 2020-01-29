@@ -21,17 +21,14 @@ export const postPageQuery = graphql`
 
 const BlogPostTemplate = ({ data }) => {
   // const { post: post } = data
-  const title = data.wpgraphql.post.title
-  console.log('////////post.js data', data)
-  console.log('////////post.js title', title)
-
+  const title = data.wpgraphql.post.title;
+  const content = data.wpgraphql.post.content;
     return (
       <Layout>
-        <SEO />
-        <h1>{title}</h1>
-        {/* <h2>{id}</h2> */}
+        <SEO title="post"/>
+        <h1 dangerouslySetInnerHTML={{ __html: title }} />
+        <p dangerouslySetInnerHTML={{ __html: content}} />
         <EntryMeta />
-        {/* <p>{content}</p> */}
       </Layout>
     )
   }
@@ -44,34 +41,3 @@ const BlogPostTemplate = ({ data }) => {
 
 
 export default BlogPostTemplate;
-
-// class Post extends Component {
-//   render() {
-
-//     return (
-//       <div>
-//         <Layout>
-//         <SEO />
-//         <h1>it is linked up</h1>
-//          <h1 dangerouslySetInnerHTML={{ __html: wpgraphql.post.title }} />
-//          {/* <p dangerouslySetInnerHTML={{ __html: post.content}} /> */}
-//          <EntryMeta />
-//       </Layout>
-//       </div>
-//     )
-//   }
-// }
-
-// export default Post; 
-
-// export const postQuery = graphql`
-//   query GET_POST($id: ID!) {
-//       wpgraphql {
-//         post(id: $id) {
-//           id
-//           title
-//           content
-//         }
-//       }
-//     }
-//   `
