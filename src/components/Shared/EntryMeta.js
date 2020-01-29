@@ -1,46 +1,26 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+// import { useStaticQuery, graphql } from "gatsby"
 // import Image from "gatsby-image"
 
 // receive id as prop? and match the id of the post with the author and print author gravatar, name and published date in this component on index page and the blog page
 
 // useStaticQuery is used in components
 
+import PropTypes from "prop-types"
 
-const EntryMeta = () => {
-  const data = useStaticQuery(graphql`
-    {
-      wpgraphql {
-        posts {
-          edges {
-            node {
-              author {
-                avatar {
-                  url
-                }
-                name
-              }
-              date
-            }
-          }
-        }
-      }
-    }
-  `)
-  const authors = data.wpgraphql.posts.edges;
-  console.log('////////////////data authors', authors)
-   
-    //  <img src={author.node.url} alt={author.node.name} />
-    // {authors.map(author => {
-    //   const authorName = author.node.author.name;
-    //   return (
-    //     <h2>{authorName}</h2>
-    //   )
-    // })}
-
+const EntryMeta = ({ name, avatar, date }) => {   
     return (
-      <div>This is the Entry Meta</div>
+      <div className="row">
+        <img src={avatar} alt={name}/>
+        <p>{name} on {date}</p>
+      </div>
     )
+}
+
+EntryMeta.propTypes = {
+  name: PropTypes.string,
+  avatar: PropTypes.string,
+  date: PropTypes.string
 }
 
 export default EntryMeta;

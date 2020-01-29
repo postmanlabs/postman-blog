@@ -20,13 +20,16 @@ const BlogIndex = ({data}) => {
         const postTitle = post.node.title;
         const postExcerpt = post.node.excerpt;
         const slug = post.node.slug;
+        const date = post.node.date
 
+        const name = post.node.author.name;
+        const avatar = post.node.author.avatar.url
         return (
           <article key={post.node.id} className={"post"}>
             <Link to={slug}>
             <h1 dangerouslySetInnerHTML={{__html: postTitle}} />
             </Link>
-            <EntryMeta />
+            <EntryMeta name={name} avatar={avatar} date={date}/>
             <p dangerouslySetInnerHTML={{__html: postExcerpt}} />
           </article>
         )
@@ -50,6 +53,12 @@ export const AllPostQuery = graphql`
             excerpt
             date
             slug
+            author {
+              name
+              avatar {
+                url
+              }
+            }
           }
         }
       }

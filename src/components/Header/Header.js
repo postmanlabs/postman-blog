@@ -94,7 +94,7 @@ class HeaderComponent extends React.Component {
       // isToggledOn, refresh, hasInput, data,
       isToggledOn, data
     } = this.state;
-    console.log(data)
+
     return (
       <header className="header text-center navbar navbar-expand-xl navbar-light">
         <div className="navbar-brand header__brand">
