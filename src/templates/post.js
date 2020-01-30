@@ -5,12 +5,17 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from "../components/seo";
+import FluidImage from '../components/FluidImage';
 
 
 export const postPageQuery = graphql`
   query GET_POST($id: ID!) {
     wpgraphql {
       post(id: $id) {
+        featuredImage {
+          sourceUrl
+          altText
+        }
         id
         title
         content
@@ -33,9 +38,13 @@ const BlogPostTemplate = ({ data }) => {
   const name = data.wpgraphql.post.author.name;
   const avatar = data.wpgraphql.post.author.avatar.url;
   const date = data.wpgraphql.post.date
+  const featuredImage = data.wpgraphql.post.featuredImage;
+  console.log('///////////constent', data.wpgraphql.post.content)
+
     return (
       <Layout>
         <SEO title="post"/>
+        <FluidImage image={featuredImage} />
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
         <EntryMeta name={name} avatar={avatar} date={date}/>
         <p dangerouslySetInnerHTML={{ __html: content}} />
