@@ -5,7 +5,7 @@ module.exports = {
     title: `Postman Blog`,
     description: '',
     author: `Postman`,
-    siteUrl: 'https://blog.postman.com',
+    siteUrl: 'https://blog.postman.com/',
   },
   plugins: [
     {
@@ -13,10 +13,23 @@ module.exports = {
       options: {
         typeName: "WPGraphQL",
         fieldName: "wpgraphql",
-        url: `https://blog.getpostman.com/graphql`,
+        url: `https://blog.postman.com/`,
         refetchInterval: 60
       },
     },
+    // {
+    //   resolve: 'gatsby-wpgraphql-inline-images',
+    //   options: {
+    //     wordPressUrl: 'https://blog.getpostman.com',
+    //     uploadsUrl: 'https://blog.getpostman.com/wp-content/uploads/',
+    //     processPostTypes: ['Page', 'Post'],
+    //     graphqlTypeName: 'WPGraphQL',
+    //     httpHeaders: {
+    //       Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+    //     },
+    //     debugOutput: true,
+    //   },
+    // },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,

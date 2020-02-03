@@ -26,12 +26,12 @@ const BlogIndex = ({data}) => {
         const avatar = post.node.author.avatar.url;
 
         const featuredImage = post.node.featuredImage;
-
+        
         return (
           <div key={post.node.id} className={"post"}>
             <FluidImage image={featuredImage} />
             <Link to={slug}>
-            <h1 dangerouslySetInnerHTML={{__html: postTitle}} />
+              <h1 dangerouslySetInnerHTML={{__html: postTitle}} />
             </Link>
             <EntryMeta name={name} avatar={avatar} date={date}/>
             <p dangerouslySetInnerHTML={{__html: postExcerpt}} />
@@ -57,6 +57,7 @@ export const AllPostQuery = graphql`
             excerpt
             date
             slug
+            uri
             author {
               name
               avatar {
