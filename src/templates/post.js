@@ -5,15 +5,28 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from "../components/seo";
+import FluidImage from '../components/FluidImage';
+
+// import contentParser from 'gatsby-wpgraphql-inline-images';
+import parse from 'html-react-parser';
+// import parse, { domToReact } from 'html-react-parser';
+
+// import ReactHtmlParser from 'html-react-parser';
+
 
 
 export const postPageQuery = graphql`
   query GET_POST($id: ID!) {
     wpgraphql {
       post(id: $id) {
+        featuredImage {
+          sourceUrl
+          altText
+        }
         id
+        uri
         title
-        content
+        content 
         author {
           avatar {
             url
@@ -33,13 +46,27 @@ const BlogPostTemplate = ({ data }) => {
   const name = data.wpgraphql.post.author.name;
   const avatar = data.wpgraphql.post.author.avatar.url;
   const date = data.wpgraphql.post.date
+  const featuredImage = data.wpgraphql.post.featuredImage;
+
     return (
       <Layout>
         <SEO title="post"/>
+        <FluidImage image={featuredImage} />
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
         <EntryMeta name={name} avatar={avatar} date={date}/>
-        <p dangerouslySetInnerHTML={{ __html: content}} />
-        <EntryMeta />
+        {/* <div dangerouslySetInnerHTML={{ __html: content }} /> */}
+
+        <div>{parse(content, {
+          replace: (domNode) => {
+
+          if (domNode.attribs && domNode.attribs['data-src']) {
+            console.log(domNode);
+            return <img src={domNode.attribs['data-src']} alt={domNode.attribs.alt} />
+           }
+          }
+        })}</div>
+   
+             
       </Layout>
     )
   }
