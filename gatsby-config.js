@@ -13,7 +13,7 @@ module.exports = {
       options: {
         typeName: "WPGraphQL",
         fieldName: "wpgraphql",
-        url: `https://blog.getpostman.com/graphql`,
+        url: `https://blog.postman.com/graphql`,
         refetchInterval: 60
       },
     },
