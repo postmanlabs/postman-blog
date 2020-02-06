@@ -8,11 +8,23 @@ import React from "react"
 
 import PropTypes from "prop-types"
 
-const EntryMeta = ({ name, avatar, date }) => {   
+const EntryMeta = ({ name, avatar, date, tags }) => {
+  let tagsList;
+  // Are there tags?  
+  // If so lets map through them and stash them in this tagsList var
+  if (tags && tags.length > 0) {
+    tagsList = tags.map(tag => {
+      console.log(tag)
+    return <span><a href="">{tag.node.name}</a> </span>
+    })  
+  }
     return (
       <div className="row">
         <img src={avatar} alt={name}/>
         <p>{name} on {date}</p>
+        {tagsList && (
+          <p># {tagsList}</p>
+        )}
       </div>
     )
 }
