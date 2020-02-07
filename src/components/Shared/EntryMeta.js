@@ -14,7 +14,7 @@ const EntryMeta = ({ name, avatar, date, tags }) => {
   // If so lets map through them and stash them in this tagsList var
   if (tags && tags.length > 0) {
     tagsList = tags.map(tag => {
-      console.log(tag)
+      
     return <span><a href="">{tag.node.name}</a> </span>
     })  
   }
