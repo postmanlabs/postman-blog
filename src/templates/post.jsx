@@ -14,7 +14,6 @@ import parse from 'html-react-parser';
 // import ReactHtmlParser from 'html-react-parser';
 
 
-
 export const postPageQuery = graphql`
   query GET_POST($id: ID!) {
     wpgraphql {

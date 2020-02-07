@@ -1,9 +1,8 @@
 const uuidv4 = require('uuid/v4');
+const path = require('path');
+const slash = require('slash');
 const HeaderJson = require('./src/components/Header/Header.data.json');
 const FooterJson = require('./src/components/Footer/Footer.data.json');
-
-const path = require(`path`);
-const slash = require(`slash`)
 
 
 exports.sourceNodes = async ({
@@ -40,11 +39,10 @@ exports.sourceNodes = async ({
 };
 
 
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions; // The “graphql” function allows us to run arbitrary queries against the local Gatsby GraphQL schema. Think of it like the site has a built-in database constructed from the fetched data that you can run queries against
 
-exports.createPages = async({ graphql, actions }) => {
-  const { createPage } = actions // The “graphql” function allows us to run arbitrary queries against the local Gatsby GraphQL schema. Think of it like the site has a built-in database constructed from the fetched data that you can run queries against
-
-  const postTemplate = path.resolve(`./src/templates/post.js`);
+  const postTemplate = path.resolve('./src/templates/post.js');
   const tagsResults = path.resolve('./src/templates/tagResults.js');
 
   const result = await graphql(`
@@ -69,17 +67,17 @@ exports.createPages = async({ graphql, actions }) => {
       }
     }
   }
-  `)
+  `);
 
   if (result.errors) {
-    console.error(result.errors)
+    console.error(result.errors);
   }
-  
+
   // Access query results via object destructuring
-  const wpgraphql = result.data.wpgraphql.posts.edges
+  const wpgraphql = result.data.wpgraphql.posts.edges;
 
   // We want to create a detailed page for each post node. We'll just use the WordPress Slug for the slug. The Post ID is prefixed with 'POST_'
-  wpgraphql.map(edge => {
+  wpgraphql.map((edge) => {
     // Each page is required to have a `path` as well as a template component. The `context` is optional but is often necessary so the template can query data specific to each page.
     createPage({
       path: `/${edge.node.slug}/`,
@@ -87,21 +85,20 @@ exports.createPages = async({ graphql, actions }) => {
       context: {
         id: edge.node.id,
       },
-    })
-  })
+    });
+  });
 
   // Below makes pages to display all posts of a given tag
 
   const tags = result.data.wpgraphql.tags.edges;
 
-  tags.map(tag => { 
+  tags.map((tag) => {
     createPage({
-      path:`tags/${tag.node.slug}`,
+      path: `tags/${tag.node.slug}`,
       component: slash(tagsResults),
       context: {
-        id: tag.node.id
-      }
-    })
-  })
-
-}
+        id: tag.node.id,
+      },
+    });
+  });
+};

@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "algoliasearch": "^3.35.1",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.39",
