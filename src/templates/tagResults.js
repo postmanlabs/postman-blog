@@ -43,6 +43,7 @@ export const tagsPostsQuery = graphql`
                       node {
                         id
                         name
+                        slug
                       }
                     }
                   }

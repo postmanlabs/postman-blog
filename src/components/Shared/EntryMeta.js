@@ -1,5 +1,5 @@
 import React from "react"
-// import { useStaticQuery, graphql } from "gatsby"
+import { Link } from "gatsby"
 // import Image from "gatsby-image"
 
 // receive id as prop? and match the id of the post with the author and print author gravatar, name and published date in this component on index page and the blog page
@@ -10,12 +10,14 @@ import PropTypes from "prop-types"
 
 const EntryMeta = ({ name, avatar, date, tags }) => {
   let tagsList;
+  console.log(tagsList)
   // Are there tags?  
   // If so lets map through them and stash them in this tagsList var
+  
   if (tags && tags.length > 0) {
     tagsList = tags.map(tag => {
-      
-    return <span><a href="">{tag.node.name}</a> </span>
+      console.log(tag)
+    return <Link to={`tags/${tag.node.slug}`}>{tag.node.name}</Link>
     })  
   }
     return (

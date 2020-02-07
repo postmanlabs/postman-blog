@@ -58,13 +58,12 @@ exports.createPages = async({ graphql, actions }) => {
           }
         }
       }
-      tags {
+      tags(first: 500) {
         edges {
           node {
             id
-            slug
             name
-            description
+            slug
           }
         }
       }
@@ -93,9 +92,9 @@ exports.createPages = async({ graphql, actions }) => {
 
   // Below makes pages to display all posts of a given tag
 
-  tags = result.data.wpgraphql.tags.edges;
+  const tags = result.data.wpgraphql.tags.edges;
 
-  tags.map(tag => {
+  tags.map(tag => { 
     createPage({
       path:`tags/${tag.node.slug}`,
       component: slash(tagsResults),

@@ -19,7 +19,7 @@ const BlogIndex = ({data}) => {
         const postTitle = post.node.title;
         const postExcerpt = post.node.excerpt;
         const tags = post.node.tags.edges;
-        
+
         const { slug, date } = post.node;
 
         const name = post.node.author.name;
@@ -73,6 +73,7 @@ export const AllPostQuery = graphql`
                 node {
                   id
                   name
+                  slug
                 }
               }
             }
