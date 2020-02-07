@@ -39,6 +39,7 @@ export const postPageQuery = graphql`
             node {
               id
               name
+              slug
             }
           }
         }
