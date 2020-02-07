@@ -30,6 +30,7 @@
     "react-instantsearch-dom": "^6.2.0",
     "react-onclickout": "^2.0.8",
     "react-typography": "^0.16.19",
+    "s3-deploy": "^1.4.0",
     "typography": "^0.16.19"
   },
   "devDependencies": {
