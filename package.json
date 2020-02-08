@@ -30,6 +30,7 @@
     "react-instantsearch-dom": "^6.2.0",
     "react-onclickout": "^2.0.8",
     "react-typography": "^0.16.19",
+    "s3-deploy": "^1.4.0",
     "typography": "^0.16.19"
   },
   "devDependencies": {
@@ -41,6 +42,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "build:dev": "npm run build",
     "dev": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",

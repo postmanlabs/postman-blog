@@ -1,17 +1,10 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import PropTypes from 'prop-types';
 
 import Layout from "../components/layout"
 import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from "../components/seo";
 import FluidImage from '../components/FluidImage';
-
-import contentParser from 'gatsby-wpgraphql-inline-images';
-import parse from 'html-react-parser';
-
-import ReactHtmlParser from 'html-react-parser';
-
 
 
 export const tagsPostsQuery = graphql`
@@ -93,12 +86,5 @@ const TagsPostsList = ({ data }) => {
       </Layout>
     )
   }
-
-  // TagsListPost.propTypes = {
-  //   id: PropTypes.string.isRequired,
-  //   content: PropTypes.node.isRequired,
-  //   title: PropTypes.string,
-  // }
-
 
 export default TagsPostsList;
