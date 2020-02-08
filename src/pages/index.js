@@ -11,7 +11,6 @@ import EntryMeta from '../components/Shared/EntryMeta'
 const BlogIndex = ({data}) => {
 
   const posts = data.wpgraphql.posts.edges;
-
   return (
     <Layout>
       <SEO title="Home" />
@@ -19,8 +18,9 @@ const BlogIndex = ({data}) => {
       {posts.map(post => {
         const postTitle = post.node.title;
         const postExcerpt = post.node.excerpt;
-        const slug = post.node.slug;
-        const date = post.node.date;
+        const tags = post.node.tags.edges;
+
+        const { slug, date } = post.node;
 
         const name = post.node.author.name;
         const avatar = post.node.author.avatar.url;
@@ -33,7 +33,7 @@ const BlogIndex = ({data}) => {
             <Link to={slug}>
               <h1 dangerouslySetInnerHTML={{__html: postTitle}} />
             </Link>
-            <EntryMeta name={name} avatar={avatar} date={date}/>
+            <EntryMeta name={name} avatar={avatar} date={date} tags={tags}/>
             <p dangerouslySetInnerHTML={{__html: postExcerpt}} />
           </div>
         )
@@ -67,6 +67,15 @@ export const AllPostQuery = graphql`
             featuredImage {
               sourceUrl
               altText
+            }
+            tags {
+              edges {
+                node {
+                  id
+                  name
+                  slug
+                }
+              }
             }
           }
         }

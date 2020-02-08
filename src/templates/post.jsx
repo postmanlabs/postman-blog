@@ -33,13 +33,23 @@ export const postPageQuery = graphql`
           name
         }
         date
+        tags {
+          edges {
+            node {
+              id
+              name
+              slug
+            }
+          }
+        }
       }
     }
   }
 `
 
 const BlogPostTemplate = ({ data }) => {
-  // const { post: post } = data
+  const { post } = data.wpgraphql
+  
   const title = data.wpgraphql.post.title;
   const content = data.wpgraphql.post.content;
   const name = data.wpgraphql.post.author.name;
@@ -47,12 +57,14 @@ const BlogPostTemplate = ({ data }) => {
   const date = data.wpgraphql.post.date
   const featuredImage = data.wpgraphql.post.featuredImage;
 
+  const tags = post.tags.edges
+
     return (
       <Layout>
         <SEO title="post"/>
         <FluidImage image={featuredImage} />
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
-        <EntryMeta name={name} avatar={avatar} date={date}/>
+        <EntryMeta name={name} avatar={avatar} date={date} tags={tags}/>
         {/* <div dangerouslySetInnerHTML={{ __html: content }} /> */}
 
         <div>{parse(content, {
