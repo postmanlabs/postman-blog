@@ -4,6 +4,10 @@ const slash = require('slash');
 const HeaderJson = require('./src/components/Header/Header.data.json');
 const FooterJson = require('./src/components/Footer/Footer.data.json');
 
+// const { fetchAllItems } = require('./src/helpers/fetchAllItems');
+// Can't import this correctly from a helper folder because of build time issues?
+// Defining this funciton in this file for now.
+
 
 exports.sourceNodes = async ({
   actions,
@@ -41,7 +45,6 @@ exports.sourceNodes = async ({
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions; // The “graphql” function allows us to run arbitrary queries against the local Gatsby GraphQL schema. Think of it like the site has a built-in database constructed from the fetched data that you can run queries against
-
   const postTemplate = path.resolve('./src/templates/post.jsx');
 
   const result = await graphql(`
@@ -109,41 +112,11 @@ exports.createPages = async ({ graphql, actions }) => {
   }`);
   const tags = getTagsResults.data.wpgraphql.tags.edges;
   const tagsPageInfo = getTagsResults.data.wpgraphql.tags.pageInfo;
-  let resultsArr = [...tags];
 
-  const tagsConsolidator = async (paginationInfo, edgesArray) => {
-    resultsArr = [...resultsArr, ...edgesArray];
-    console.log(paginationInfo.hasNextPage);
-    if (paginationInfo.hasNextPage) {
-      const nextCall = await graphql(`
-      {
-        wpgraphql {
-          tags(first: 100 after: "${paginationInfo.endCursor}") {
-            edges {
-              node {
-                id
-                name
-                slug
-              }
-            }
-            pageInfo {
-              endCursor
-              startCursor
-              hasNextPage
-              hasPreviousPage
-            }
-          }
-        }
-      }`);
-      const edgeArr = nextCall.data.wpgraphql.tags.edges;
-      const { pageInfo } = nextCall.data.wpgraphql.tags;
-      await tagsConsolidator(pageInfo, edgeArr);
-    }
-  };
 
-  await tagsConsolidator(tagsPageInfo, tags);
-  console.log('resultsArr.length:', resultsArr.length);
-  resultsArr.map((tag) => {
+  const allTagsArray = await fetchAllItems(tagsPageInfo, tags, 'tags');
+
+  allTagsArray.map((tag) => {
     createPage({
       path: `tags/${tag.node.slug}`,
       component: slash(tagsResults),
@@ -152,4 +125,46 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+
+
+  // Helper functions
+  async function fetchAllItems(initialCallPageInfo, initialCallData, itemName) {
+    let resultsArr = [];
+
+    const recurssiveFetcher = async (pageInfo, edgesArray) => {
+      resultsArr = [...resultsArr, ...edgesArray];
+      console.log('pageInfo.hasNextPage', pageInfo.hasNextPage);
+      if (pageInfo.hasNextPage) {
+        const nextCall = await graphql(`
+            {
+              wpgraphql {
+                ${itemName}(first: 100 after: "${pageInfo.endCursor}") {
+                  edges {
+                    node {
+                      id
+                      name
+                      slug
+                    }
+                  }
+                  pageInfo {
+                    endCursor
+                    startCursor
+                    hasNextPage
+                    hasPreviousPage
+                  }
+                }
+              }
+            }`);
+
+        const edgeArr = nextCall.data.wpgraphql[itemName].edges;
+        const nextPageInfo = nextCall.data.wpgraphql[itemName].pageInfo;
+        console.log(nextPageInfo);
+        await recurssiveFetcher(nextPageInfo, edgeArr);
+      }
+    };
+
+    await recurssiveFetcher(initialCallPageInfo, initialCallData);
+    console.log('resultsArr.length', resultsArr.length);
+    return resultsArr;
+  }
 };
