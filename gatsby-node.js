@@ -43,7 +43,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions; // The “graphql” function allows us to run arbitrary queries against the local Gatsby GraphQL schema. Think of it like the site has a built-in database constructed from the fetched data that you can run queries against
 
   const postTemplate = path.resolve('./src/templates/post.jsx');
-  const tagsResults = path.resolve('./src/templates/tagResults.js');
 
   const result = await graphql(`
   {
@@ -53,15 +52,6 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             slug
             id
-          }
-        }
-      }
-      tags(first: 500) {
-        edges {
-          node {
-            id
-            name
-            slug
           }
         }
       }
@@ -88,11 +78,72 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+  const tagsResults = path.resolve('./src/templates/tagResults.jsx');
   // Below makes pages to display all posts of a given tag
 
-  const tags = result.data.wpgraphql.tags.edges;
+  // For some reason, only the first 100 tags are being returned from query?
+  // Answer: The max you can get is 100 per query - https://github.com/wp-graphql/wp-graphql/issues/261
+  // Of coure we can't get all the tags at once...
+  // We have more than 100 tags.. We need to make multiple graphQL calls, 100 tags at a time, to get them all.
+  // We make our initial call to get the first 100 tags
+  const getTagsResults = await graphql(`
+  {
+    wpgraphql {
+      tags(first: 100) {
+        edges {
+          node {
+            id
+            name
+            slug
+          }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
+          hasPreviousPage
+        }
+      }
+    }
+  }`);
+  const tags = getTagsResults.data.wpgraphql.tags.edges;
+  const tagsPageInfo = getTagsResults.data.wpgraphql.tags.pageInfo;
+  let resultsArr = [...tags];
 
-  tags.map((tag) => {
+  const tagsConsolidator = async (paginationInfo, edgesArray) => {
+    resultsArr = [...resultsArr, ...edgesArray];
+    console.log(paginationInfo.hasNextPage);
+    if (paginationInfo.hasNextPage) {
+      const nextCall = await graphql(`
+      {
+        wpgraphql {
+          tags(first: 100 after: "${paginationInfo.endCursor}") {
+            edges {
+              node {
+                id
+                name
+                slug
+              }
+            }
+            pageInfo {
+              endCursor
+              startCursor
+              hasNextPage
+              hasPreviousPage
+            }
+          }
+        }
+      }`);
+      const edgeArr = nextCall.data.wpgraphql.tags.edges;
+      const { pageInfo } = nextCall.data.wpgraphql.tags;
+      await tagsConsolidator(pageInfo, edgeArr);
+    }
+  };
+
+  await tagsConsolidator(tagsPageInfo, tags);
+  console.log('resultsArr.length:', resultsArr.length);
+  resultsArr.map((tag) => {
     createPage({
       path: `tags/${tag.node.slug}`,
       component: slash(tagsResults),
