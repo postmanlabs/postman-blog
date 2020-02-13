@@ -40,6 +40,15 @@ export const tagsPostsQuery = graphql`
                       }
                     }
                   }
+                  categories {
+                    edges {
+                      node {
+                        id
+                        name
+                        slug
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -50,7 +59,6 @@ export const tagsPostsQuery = graphql`
 // { data }
 const TagsPostsList = ({ data }) => {
 //   const { post } = data.wpgraphql
-  console.log(data.wpgraphql.tag);
   const { tag } = data.wpgraphql;
   const title = tag.name;
   const posts = tag.posts.edges;
@@ -67,13 +75,13 @@ const TagsPostsList = ({ data }) => {
         const postTitle = post.node.title;
         const postExcerpt = post.node.excerpt;
         const tags = post.node.tags.edges;
-
+        const category = post.node.categories;
         const { slug, date } = post.node;
 
         const { name } = post.node.author;
         const avatar = post.node.author.avatar.url;
-
         const { featuredImage } = post.node;
+        console.log('post.node', post.node);
 
         return (
           <div key={post.node.id} className="post">
@@ -81,7 +89,7 @@ const TagsPostsList = ({ data }) => {
             <Link to={slug}>
               <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
             </Link>
-            <EntryMeta name={name} avatar={avatar} date={date} tags={tags} />
+            <EntryMeta name={name} avatar={avatar} date={date} tags={tags} categories={category} />
             <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
           </div>
         );
