@@ -48,9 +48,9 @@ export default BlogIndex;
 
 
 export const AllPostQuery = graphql`
-  {
+  query GET_NEXT_POSTS($startCursor: String!){
     wpgraphql {
-      posts {
+      posts(first: 10, after: $startCursor) {
         edges {
           node {
             id
