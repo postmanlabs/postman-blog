@@ -5,7 +5,7 @@ import DynamicLink from './DynamicLink';
 describe('DynamicLink', () => {
   it('should have a class of dynamic-link__external for external links', () => {
     const tree = renderer
-      .create(<DynamicLink url="https://duckduckgo.com" name="ddg" />)
+      .create(<DynamicLink url="https://foo.com" name="ddg" />)
       .toJSON();
     expect(tree.props.className).toBe('dynamic-link__external');
   });
