@@ -147,8 +147,55 @@ exports.createPages = async ({ graphql, actions }) => {
   console.log(`Tag pages created: ${allTagsArray.length}`);
 
   // ////////////////////
+  // Creating Categories pages
+  // ////////////////////
+
+  const categoriesResults = path.resolve('./src/templates/categoriesResults.jsx');
+
+  const getCategoriesResults = await graphql(`
+  {
+    wpgraphql {
+      categories(first:100) {
+        edges {
+          node {
+            id
+            name
+            slug
+          }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
+          hasPreviousPage
+        }
+      }
+    }
+  }`);
+
+  const categories = getCategoriesResults.data.wpgraphql.categories.edges;
+  const categoriesPageInfo = getCategoriesResults.data.wpgraphql.categories.pageInfo;
+
+
+  const allCategoriesArray = await fetchAllItems(categoriesPageInfo, categories, 'categories', 'id name slug');
+
+  allCategoriesArray.map((cat) => {
+    createPage({
+      path: `category/${cat.node.slug}`,
+      component: slash(categoriesResults),
+      context: {
+        id: cat.node.id,
+      },
+    });
+  });
+
+  console.log(`Categories pages created: ${allCategoriesArray.length}`);
+
+  // ////////////////////
   // Helper functions
   // ////////////////////
+
   async function fetchAllItems(initialCallPageInfo, initialCallData, itemName, queryFields) {
     let resultsArr = [];
 
