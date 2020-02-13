@@ -45,32 +45,45 @@ exports.sourceNodes = async ({
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions; // The “graphql” function allows us to run arbitrary queries against the local Gatsby GraphQL schema. Think of it like the site has a built-in database constructed from the fetched data that you can run queries against
+
+  // ////////////////////
+  // Creating Blog Post pages
+  // ////////////////////
   const postTemplate = path.resolve('./src/templates/post.jsx');
 
-  const result = await graphql(`
+  const postsResults = await graphql(`
   {
     wpgraphql {
-      posts {
+      posts(first: 1000) {
         edges {
           node {
             slug
             id
           }
         }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
+          hasPreviousPage
+        }
       }
     }
   }
   `);
 
-  if (result.errors) {
-    console.error(result.errors);
+  if (postsResults.errors) {
+    console.error(postsResults.errors);
   }
 
   // Access query results via object destructuring
-  const wpgraphql = result.data.wpgraphql.posts.edges;
+  const posts = postsResults.data.wpgraphql.posts.edges;
+  const postsPageInfo = postsResults.data.wpgraphql.posts.pageInfo;
+
+  const allPostsArray = await fetchAllItems(postsPageInfo, posts, 'posts', 'id slug');
 
   // We want to create a detailed page for each post node. We'll just use the WordPress Slug for the slug. The Post ID is prefixed with 'POST_'
-  wpgraphql.map((edge) => {
+  allPostsArray.map((edge) => {
     // Each page is required to have a `path` as well as a template component. The `context` is optional but is often necessary so the template can query data specific to each page.
     createPage({
       path: `/${edge.node.slug}/`,
@@ -80,6 +93,11 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+  console.log(`Blog post pages created: ${allPostsArray.length}`);
+
+  // ////////////////////
+  // Creating TAGS pages
+  // ////////////////////
 
   const tagsResults = path.resolve('./src/templates/tagResults.jsx');
   // Below makes pages to display all posts of a given tag
@@ -114,7 +132,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagsPageInfo = getTagsResults.data.wpgraphql.tags.pageInfo;
 
 
-  const allTagsArray = await fetchAllItems(tagsPageInfo, tags, 'tags');
+  const allTagsArray = await fetchAllItems(tagsPageInfo, tags, 'tags', 'id name slug');
 
   allTagsArray.map((tag) => {
     createPage({
@@ -126,14 +144,16 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+  console.log(`Tag pages created: ${allTagsArray.length}`);
 
+  // ////////////////////
   // Helper functions
-  async function fetchAllItems(initialCallPageInfo, initialCallData, itemName) {
+  // ////////////////////
+  async function fetchAllItems(initialCallPageInfo, initialCallData, itemName, queryFields) {
     let resultsArr = [];
 
     const recurssiveFetcher = async (pageInfo, edgesArray) => {
       resultsArr = [...resultsArr, ...edgesArray];
-      console.log('pageInfo.hasNextPage', pageInfo.hasNextPage);
       if (pageInfo.hasNextPage) {
         const nextCall = await graphql(`
             {
@@ -141,9 +161,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 ${itemName}(first: 100 after: "${pageInfo.endCursor}") {
                   edges {
                     node {
-                      id
-                      name
-                      slug
+                      ${queryFields}
                     }
                   }
                   pageInfo {
@@ -158,13 +176,12 @@ exports.createPages = async ({ graphql, actions }) => {
 
         const edgeArr = nextCall.data.wpgraphql[itemName].edges;
         const nextPageInfo = nextCall.data.wpgraphql[itemName].pageInfo;
-        console.log(nextPageInfo);
+
         await recurssiveFetcher(nextPageInfo, edgeArr);
       }
     };
 
     await recurssiveFetcher(initialCallPageInfo, initialCallData);
-    console.log('resultsArr.length', resultsArr.length);
     return resultsArr;
   }
 };
