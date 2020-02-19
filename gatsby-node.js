@@ -99,27 +99,22 @@ exports.createPages = async ({ graphql, actions }) => {
   // /////////////////////
   // Pagination for blog index
   // ////////////////////
-  const paginationTemplate = path.resolve('./src/pages/index.jsx');
+  const PostsIndex = path.resolve('./src/templates/PostsIndex.jsx');
   const postsPerPage = 10;
   let pageNum = 1;
 
-  console.log('allPostsArray.length / 10', allPostsArray.length / 10);
-
   for (let i = 0; i < allPostsArray.length; i += postsPerPage) {
-    console.log(i);
-    console.log(allPostsArray[i].cursor);
-    console.log(typeof allPostsArray[i].cursor);
+    console.log('in For loop, article as starting point', allPostsArray[i]);
     createPage({
       path: `page/${pageNum}`,
-      component: slash(paginationTemplate),
+      component: slash(PostsIndex),
       context: {
         startCursor: allPostsArray[i].cursor,
+        pageNum,
       },
     });
     pageNum += 1;
   }
-
-  console.log('pageNum should be 27?', pageNum);
 
   // ////////////////////
   // Creating TAGS pages

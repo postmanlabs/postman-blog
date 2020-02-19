@@ -6,9 +6,11 @@ import SEO from '../components/seo';
 
 import FluidImage from '../components/FluidImage';
 import EntryMeta from '../components/Shared/EntryMeta';
+import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
 
 
-const BlogIndex = ({ data }) => {
+const PostsIndex = ({ data, pageContext }) => {
+  const currentPage = pageContext.pageNum;
   const posts = data.wpgraphql.posts.edges;
   return (
     <Layout>
@@ -20,7 +22,7 @@ const BlogIndex = ({ data }) => {
         const tags = post.node.tags.edges;
 
         const categories = post.node.categories.edges[0].node;
-
+        console.log('CATEGORIES :::::::::::::', categories);
         const { slug, date } = post.node;
 
         const { name } = post.node.author;
@@ -39,18 +41,19 @@ const BlogIndex = ({ data }) => {
           </div>
         );
       })}
+      <PageSelectionButtons currentPage={currentPage} />
     </Layout>
 
   );
 };
 
-export default BlogIndex;
+export default PostsIndex;
 
 
-export const First10Posts = graphql`
-  query GET_FIRST_10_POSTS{
+export const getNextPosts = graphql`
+  query GET_NEXT_POSTS($startCursor: String!){
     wpgraphql {
-      posts(first: 10) {
+      posts(first: 10, after: $startCursor) {
         edges {
           node {
             id
