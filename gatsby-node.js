@@ -102,9 +102,17 @@ exports.createPages = async ({ graphql, actions }) => {
   const PostsIndex = path.resolve('./src/templates/PostsIndex.jsx');
   const postsPerPage = 10;
   let pageNum = 1;
+  const maxPages = Math.ceil(allPostsArray.length / postsPerPage);
+  // Am I right in thinking the total number of blog index pages is the total number of articles, divided by the postsPerPage, rounded up?
+
+  console.log('total number of index pages, allPostsArray.length / postsPerPage');
+  console.log(allPostsArray.length / postsPerPage);
+  console.log('current blog has 28 pages');
+  console.log('Math.ceil(allPostsArray.length / postsPerPage)');
+  console.log(maxPages);
 
   for (let i = 0; i < allPostsArray.length; i += postsPerPage) {
-    console.log('in For loop, article as starting point', allPostsArray[i]);
+    // console.log('in For loop, article as starting point', allPostsArray[i]);
     createPage({
       path: `page/${pageNum}`,
       component: slash(PostsIndex),

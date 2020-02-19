@@ -4,12 +4,16 @@ import { Link } from 'gatsby';
 const PageSelectionButtons = ({ currentPage }) => {
   console.log('HELLO current page', currentPage);
   const numOfPages = 5;
-  let nextPageButtons;
+  const nextPageButtons = [];
   for (let i = currentPage; i < currentPage + numOfPages; i++) {
-    nextPageButtons += <Link to={`/page/${i}`} className="btn" key={currentPage}>{i}</Link>;
+    nextPageButtons.push(<Link to={`/page/${i}`} className="btn" key={currentPage}>{i}</Link>);
   }
+  console.log(nextPageButtons);
   return (
-    <Link to={`/page/${currentPage + 1}`} className="btn">Next Page</Link>
+    <div>
+      {nextPageButtons.map((button) => button)}
+    </div>
+
   );
 };
 
