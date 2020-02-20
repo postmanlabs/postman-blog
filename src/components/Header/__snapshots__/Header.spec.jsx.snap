@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly 1`] = `
+<header
+  className="header text-center navbar navbar-expand-xl navbar-light"
+>
+  <div
+    className="navbar-brand header__brand"
+  >
+    <a
+      className="header__homelink"
+      href="/"
+    >
+      <img
+        alt="postman logo"
+        className="header__logo"
+        src="test-file-stub"
+      />
+      <span
+        className="header__title"
+      >
+        Learning Center
+      </span>
+    </a>
+  </div>
+  <button
+    className="navbar-toggler"
+    onClick={[Function]}
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
+  </button>
+  <div
+    className="header__right-links justify-content-end navbar-nav mr-auto navbar-collapse collapse show
+            
+            
+            closed
+            "
+    id="navbarSupportedContent"
+  >
+    <div
+      className="nav-item"
+    >
+      <a
+        className="dynamic-link__internal nav-link"
+        href="/getting-started/"
+      >
+        Getting Started
+      </a>
+    </div>
+    <div
+      className="nav-item"
+    >
+      <a
+        className="dynamic-link__internal nav-link"
+        href="/concepts/"
+      >
+        Concepts
+      </a>
+    </div>
+    <div
+      className="nav-item"
+    >
+      <a
+        className="dynamic-link__internal nav-link"
+        href="/reference/"
+      >
+        Reference
+      </a>
+    </div>
+    <div
+      className="nav-item"
+    >
+      <a
+        className="dynamic-link__internal nav-link"
+        href="/docs/"
+      >
+        Docs
+      </a>
+    </div>
+    <div
+      className="nav-item"
+    >
+      <a
+        className="btn btn__primary"
+        href="https://identity.getpostman.com/login"
+      >
+        Sign In
+      </a>
+    </div>
+  </div>
+</header>
+`;

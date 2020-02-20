@@ -12,6 +12,7 @@ import FluidImage from '../components/FluidImage';
 // import parse, { domToReact } from 'html-react-parser';
 
 // import ReactHtmlParser from 'html-react-parser';
+import PostForm from '../components/Shared/PostForm';
 
 
 export const postPageQuery = graphql`
@@ -85,10 +86,8 @@ const BlogPostTemplate = ({ data }) => {
             }
           },
         })}
-
       </div>
-
-
+      <PostForm />
     </Layout>
   );
 };
