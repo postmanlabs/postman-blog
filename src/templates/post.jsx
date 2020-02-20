@@ -1,7 +1,7 @@
-import React from "react"
-import { graphql } from "gatsby"
-import '../components/_layout.scss'
-import './_post.scss'
+import React from 'react';
+import { graphql } from 'gatsby';
+import '../components/_layout.scss';
+import './_post.scss';
 
 import parse from 'html-react-parser';
 import Layout from '../components/layout';
@@ -9,8 +9,7 @@ import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from '../components/seo';
 import FluidImage from '../components/FluidImage';
 
-import parse from 'html-react-parser';
-import PostForm from '../components/Shared/PostForm'
+import PostForm from '../components/Shared/PostForm';
 
 
 export const postPageQuery = graphql`
@@ -67,28 +66,30 @@ const BlogPostTemplate = ({ data }) => {
 
   const tags = post.tags.edges;
 
-    return (
-      <Layout>
-        <SEO title="post"/>
-        <div className="indexPost">
-          <FluidImage image={featuredImage} />
-          <h1 dangerouslySetInnerHTML={{ __html: title }} />
-          <EntryMeta name={name} avatar={avatar} date={date} tags={tags}/>
+  return (
+    <Layout>
+      <SEO title="post" />
+      <div className="indexPost">
+        <FluidImage image={featuredImage} />
+        <h1 dangerouslySetInnerHTML={{ __html: title }} />
+        <EntryMeta name={name} avatar={avatar} date={date} tags={tags} />
 
-          <div>{parse(content, {
+        <div>
+          {parse(content, {
             replace: (domNode) => {
+              if (domNode.attribs && domNode.attribs['data-src']) {
+                console.log(domNode);
+                return <img src={domNode.attribs['data-src']} alt={domNode.attribs.alt} />;
+              }
+            },
+          })}
 
-            if (domNode.attribs && domNode.attribs['data-src']) {
-              console.log(domNode);
-              return <img src={domNode.attribs['data-src']} alt={domNode.attribs.alt} />
-            }
-            }
-          })}</div>
-    
-          <PostForm />  
-        </div>   
-      </Layout>
-    )
-  }
+        </div>
+
+        <PostForm />
+      </div>
+    </Layout>
+  );
+};
 
 export default BlogPostTemplate;
