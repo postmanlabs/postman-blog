@@ -77,11 +77,26 @@ exports.createPages = async ({ graphql, actions }) => {
     console.error(postsResults.errors);
   }
 
+  const PostsIndex = path.resolve('./src/templates/PostsIndex.jsx');
+
+  // Am I right in thinking the total number of blog index pages is the total number of articles, divided by the postsPerPage, rounded down?
+  // For example, if it's 27.1, we only need 27 pages?
+
   // Access query results via object destructuring
   const posts = postsResults.data.wpgraphql.posts.edges;
   const postsPageInfo = postsResults.data.wpgraphql.posts.pageInfo;
 
   const allPostsArray = await fetchAllItems(postsPageInfo, posts, 'posts', 'id slug');
+
+  const postsPerPage = 10;
+  let pageNum = 1;
+  const totalPages = Math.floor((allPostsArray.length / postsPerPage));
+
+  console.log('total number of index pages, allPostsArray.length / postsPerPage');
+  console.log(allPostsArray.length / postsPerPage);
+  console.log('current blog has 28 pages');
+  console.log(Math.floor(allPostsArray.length / postsPerPage));
+  console.log(totalPages);
 
   // We want to create a detailed page for each post node. We'll just use the WordPress Slug for the slug. The Post ID is prefixed with 'POST_'
   allPostsArray.map((edge) => {
@@ -99,17 +114,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // /////////////////////
   // Pagination for blog index
   // ////////////////////
-  const PostsIndex = path.resolve('./src/templates/PostsIndex.jsx');
-  const postsPerPage = 10;
-  let pageNum = 1;
-  const maxPages = Math.ceil(allPostsArray.length / postsPerPage);
-  // Am I right in thinking the total number of blog index pages is the total number of articles, divided by the postsPerPage, rounded up?
 
-  console.log('total number of index pages, allPostsArray.length / postsPerPage');
-  console.log(allPostsArray.length / postsPerPage);
-  console.log('current blog has 28 pages');
-  console.log('Math.ceil(allPostsArray.length / postsPerPage)');
-  console.log(maxPages);
 
   for (let i = 0; i < allPostsArray.length; i += postsPerPage) {
     // console.log('in For loop, article as starting point', allPostsArray[i]);
@@ -119,6 +124,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         startCursor: allPostsArray[i].cursor,
         pageNum,
+        totalPages,
       },
     });
     pageNum += 1;

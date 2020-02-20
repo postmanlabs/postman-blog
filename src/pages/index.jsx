@@ -6,10 +6,14 @@ import SEO from '../components/seo';
 
 import FluidImage from '../components/FluidImage';
 import EntryMeta from '../components/Shared/EntryMeta';
+import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
 
 
-const BlogIndex = ({ data }) => {
+const BlogIndex = ({ data, pageContext }) => {
+  const currentPage = 1;
+  const { totalPages } = 28;
   const posts = data.wpgraphql.posts.edges;
+  console.log(pageContext);
   return (
     <Layout>
       <SEO title="Home" />
@@ -39,6 +43,7 @@ const BlogIndex = ({ data }) => {
           </div>
         );
       })}
+      <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
     </Layout>
 
   );

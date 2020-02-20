@@ -11,6 +11,7 @@ import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
 
 const PostsIndex = ({ data, pageContext }) => {
   const currentPage = pageContext.pageNum;
+  const { totalPages } = pageContext;
   const posts = data.wpgraphql.posts.edges;
   return (
     <Layout>
@@ -22,7 +23,6 @@ const PostsIndex = ({ data, pageContext }) => {
         const tags = post.node.tags.edges;
 
         const categories = post.node.categories.edges[0].node;
-        console.log('CATEGORIES :::::::::::::', categories);
         const { slug, date } = post.node;
 
         const { name } = post.node.author;
@@ -41,7 +41,7 @@ const PostsIndex = ({ data, pageContext }) => {
           </div>
         );
       })}
-      <PageSelectionButtons currentPage={currentPage} />
+      <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
     </Layout>
 
   );
