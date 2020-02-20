@@ -7,6 +7,8 @@ import SEO from "../components/seo";
 import FluidImage from "../components/FluidImage";
 import EntryMeta from '../components/Shared/EntryMeta'
 
+import '../components/Shared/_link.scss'
+import '../components/Shared/_buttons.scss'
 
 const BlogIndex = ({data}) => {
 
@@ -30,11 +32,11 @@ const BlogIndex = ({data}) => {
         return (
           <div key={post.node.id} className={"post"}>
             <FluidImage image={featuredImage} />
-            <Link to={slug}>
+            <Link className="link" to={slug}>
               <h1 dangerouslySetInnerHTML={{__html: postTitle}} />
             </Link>
             <EntryMeta name={name} avatar={avatar} date={date} tags={tags}/>
-            <p dangerouslySetInnerHTML={{__html: postExcerpt}} />
+            <p className="link" dangerouslySetInnerHTML={{__html: postExcerpt}} />
           </div>
         )
       })}
