@@ -1,17 +1,14 @@
 import React from "react"
 import { graphql } from "gatsby"
-// import PropTypes from 'prop-types';
+import '../components/_layout.scss'
+import './_post.scss'
 
 import Layout from "../components/layout"
 import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from "../components/seo";
 import FluidImage from '../components/FluidImage';
 
-// import contentParser from 'gatsby-wpgraphql-inline-images';
 import parse from 'html-react-parser';
-// import parse, { domToReact } from 'html-react-parser';
-
-// import ReactHtmlParser from 'html-react-parser';
 import PostForm from '../components/Shared/PostForm'
 
 
@@ -63,31 +60,25 @@ const BlogPostTemplate = ({ data }) => {
     return (
       <Layout>
         <SEO title="post"/>
-        <FluidImage image={featuredImage} />
-        <h1 dangerouslySetInnerHTML={{ __html: title }} />
-        <EntryMeta name={name} avatar={avatar} date={date} tags={tags}/>
-        {/* <div dangerouslySetInnerHTML={{ __html: content }} /> */}
+        <div className="indexPost">
+          <FluidImage image={featuredImage} />
+          <h1 dangerouslySetInnerHTML={{ __html: title }} />
+          <EntryMeta name={name} avatar={avatar} date={date} tags={tags}/>
 
-        <div>{parse(content, {
-          replace: (domNode) => {
+          <div>{parse(content, {
+            replace: (domNode) => {
 
-          if (domNode.attribs && domNode.attribs['data-src']) {
-            console.log(domNode);
-            return <img src={domNode.attribs['data-src']} alt={domNode.attribs.alt} />
-           }
-          }
-        })}</div>
-   
-      <PostForm />     
+            if (domNode.attribs && domNode.attribs['data-src']) {
+              console.log(domNode);
+              return <img src={domNode.attribs['data-src']} alt={domNode.attribs.alt} />
+            }
+            }
+          })}</div>
+    
+          <PostForm />  
+        </div>   
       </Layout>
     )
   }
-
-  // BlogPostTemplate.propTypes = {
-  //   id: PropTypes.string.isRequired,
-  //   content: PropTypes.node.isRequired,
-  //   title: PropTypes.string,
-  // }
-
 
 export default BlogPostTemplate;

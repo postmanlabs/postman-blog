@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-// import Image from "gatsby-image"
+import '../Shared/_entry-meta.scss'
 
 // receive id as prop? and match the id of the post with the author and print author gravatar, name and published date in this component on index page and the blog page
 
@@ -23,7 +23,7 @@ const EntryMeta = ({ name, avatar, date, tags }) => {
     return (
       <div className="row">
         <img src={avatar} alt={name}/>
-        <p>{name} on {date}</p>
+        <p className="entry-meta-data"><span className="author">Author: </span>{name} on {date}</p>
         {tagsList && (
           <p># {tagsList}</p>
         )}

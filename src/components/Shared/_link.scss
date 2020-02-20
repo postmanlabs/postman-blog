@@ -1,0 +1,55 @@
+@import './_variables.scss';
+
+a {
+  &.link {
+    height: 24px; // allows the shadow line to shrink to the designed location
+    color: $gray_3;
+    font-size: 16px;
+    font-weight: 700;
+    background-image: linear-gradient(180deg, transparent 50%, $bright-orange 0);
+    padding-right: 4px;
+    padding-bottom: 2px;
+    background-position-y: 2px;
+    background-position-x: 4px;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    transition: .15s ease;
+
+    &:hover {
+      // height: 1px;
+      color: $gray_3;
+      background-position: top 8px right -4px;
+      padding-right: 4px;
+      padding-bottom: 2px;
+      background-image: linear-gradient(180deg, transparent 60%, rgba(249, 157, 120, 1) 0);
+    }
+
+    &.alternative {
+      color: $white;
+    }
+
+    &.alternative:hover {
+      color: $white;
+    }
+  }
+}
+.highlight-text {
+  color: pink;
+  padding: 8px 0;
+}
+
+// for footer. Need to refactor naming convention to not be confusing.
+// a {
+//   &.link-alternative {
+//     color: $white;
+//     text-decoration: none;
+    
+//     &:hover>.link__hover,
+//     &:hover>.link__hover>.highlight-text {
+//       color: $light_orange;
+//       padding-bottom: 2px;
+//       border-bottom: 1px solid;
+//       text-decoration: none;
+//   } 
+//  }
+// }
