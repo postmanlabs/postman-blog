@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-import React from 'react';
-import { graphql } from 'gatsby';
-// import PropTypes from 'prop-types';
-=======
 import React from "react"
 import { graphql } from "gatsby"
 import '../components/_layout.scss'
 import './_post.scss'
->>>>>>> develop
 
 import parse from 'html-react-parser';
 import Layout from '../components/layout';
@@ -15,16 +9,10 @@ import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from '../components/seo';
 import FluidImage from '../components/FluidImage';
 
-<<<<<<< HEAD
-// import contentParser from 'gatsby-wpgraphql-inline-images';
-// import parse, { domToReact } from 'html-react-parser';
+// import parse from 'html-react-parser';
+// import PostForm from '../components/Shared/PostForm';
 
-// import ReactHtmlParser from 'html-react-parser';
-import PostForm from '../components/Shared/PostForm';
-=======
-import parse from 'html-react-parser';
-import PostForm from '../components/Shared/PostForm'
->>>>>>> develop
+import JustComments from 'gatsby-plugin-just-comments';
 
 
 export const postPageQuery = graphql`
@@ -84,6 +72,11 @@ const BlogPostTemplate = ({ data }) => {
     return (
       <Layout>
         <SEO title="post"/>
+        <JustComments
+              className="just-comments myTheme"
+              data-recaptcha="true"
+              apikey="1836ae93-bc53-4655-a563-21a17d7e691c"
+            />
         <div className="indexPost">
           <FluidImage image={featuredImage} />
           <h1 dangerouslySetInnerHTML={{ __html: title }} />
@@ -98,8 +91,10 @@ const BlogPostTemplate = ({ data }) => {
             }
             }
           })}</div>
+
+          
     
-          <PostForm />  
+          {/* <PostForm />   */}
         </div>   
       </Layout>
     )
