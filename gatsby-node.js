@@ -60,6 +60,7 @@ exports.createPages = async ({ graphql, actions }) => {
             slug
             id
           }
+          cursor
         }
         pageInfo {
           endCursor
@@ -76,11 +77,26 @@ exports.createPages = async ({ graphql, actions }) => {
     console.error(postsResults.errors);
   }
 
+  const PostsIndex = path.resolve('./src/templates/PostsIndex.jsx');
+
+  // Am I right in thinking the total number of blog index pages is the total number of articles, divided by the postsPerPage, rounded down?
+  // For example, if it's 27.1, we only need 27 pages?
+
   // Access query results via object destructuring
   const posts = postsResults.data.wpgraphql.posts.edges;
   const postsPageInfo = postsResults.data.wpgraphql.posts.pageInfo;
 
   const allPostsArray = await fetchAllItems(postsPageInfo, posts, 'posts', 'id slug');
+
+  const postsPerPage = 10;
+  let pageNum = 1;
+  const totalPages = Math.floor((allPostsArray.length / postsPerPage));
+
+  console.log('total number of index pages, allPostsArray.length / postsPerPage');
+  console.log(allPostsArray.length / postsPerPage);
+  console.log('current blog has 28 pages');
+  console.log(Math.floor(allPostsArray.length / postsPerPage));
+  console.log(totalPages);
 
   // We want to create a detailed page for each post node. We'll just use the WordPress Slug for the slug. The Post ID is prefixed with 'POST_'
   allPostsArray.map((edge) => {
@@ -94,6 +110,25 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
   console.log(`Blog post pages created: ${allPostsArray.length}`);
+
+  // /////////////////////
+  // Pagination for blog index
+  // ////////////////////
+
+
+  for (let i = 0; i < allPostsArray.length; i += postsPerPage) {
+    // console.log('in For loop, article as starting point', allPostsArray[i]);
+    createPage({
+      path: `page/${pageNum}`,
+      component: slash(PostsIndex),
+      context: {
+        startCursor: allPostsArray[i].cursor,
+        pageNum,
+        totalPages,
+      },
+    });
+    pageNum += 1;
+  }
 
   // ////////////////////
   // Creating TAGS pages
@@ -147,8 +182,55 @@ exports.createPages = async ({ graphql, actions }) => {
   console.log(`Tag pages created: ${allTagsArray.length}`);
 
   // ////////////////////
+  // Creating Categories pages
+  // ////////////////////
+
+  const categoriesResults = path.resolve('./src/templates/categoriesResults.jsx');
+
+  const getCategoriesResults = await graphql(`
+  {
+    wpgraphql {
+      categories(first:100) {
+        edges {
+          node {
+            id
+            name
+            slug
+          }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
+          hasPreviousPage
+        }
+      }
+    }
+  }`);
+
+  const categories = getCategoriesResults.data.wpgraphql.categories.edges;
+  const categoriesPageInfo = getCategoriesResults.data.wpgraphql.categories.pageInfo;
+
+
+  const allCategoriesArray = await fetchAllItems(categoriesPageInfo, categories, 'categories', 'id name slug');
+
+  allCategoriesArray.map((cat) => {
+    createPage({
+      path: `category/${cat.node.slug}`,
+      component: slash(categoriesResults),
+      context: {
+        id: cat.node.id,
+      },
+    });
+  });
+
+  console.log(`Categories pages created: ${allCategoriesArray.length}`);
+
+  // ////////////////////
   // Helper functions
   // ////////////////////
+
   async function fetchAllItems(initialCallPageInfo, initialCallData, itemName, queryFields) {
     let resultsArr = [];
 
@@ -163,6 +245,7 @@ exports.createPages = async ({ graphql, actions }) => {
                     node {
                       ${queryFields}
                     }
+                    cursor
                   }
                   pageInfo {
                     endCursor

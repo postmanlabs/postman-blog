@@ -1,15 +1,30 @@
+<<<<<<< HEAD
+import React from 'react';
+import { graphql } from 'gatsby';
+// import PropTypes from 'prop-types';
+=======
 import React from "react"
 import { graphql } from "gatsby"
 import '../components/_layout.scss'
 import './_post.scss'
-
-import Layout from "../components/layout"
-import EntryMeta from '../components/Shared/EntryMeta';
-import SEO from "../components/seo";
-import FluidImage from '../components/FluidImage';
+>>>>>>> develop
 
 import parse from 'html-react-parser';
+import Layout from '../components/layout';
+import EntryMeta from '../components/Shared/EntryMeta';
+import SEO from '../components/seo';
+import FluidImage from '../components/FluidImage';
+
+<<<<<<< HEAD
+// import contentParser from 'gatsby-wpgraphql-inline-images';
+// import parse, { domToReact } from 'html-react-parser';
+
+// import ReactHtmlParser from 'html-react-parser';
+import PostForm from '../components/Shared/PostForm';
+=======
+import parse from 'html-react-parser';
 import PostForm from '../components/Shared/PostForm'
+>>>>>>> develop
 
 
 export const postPageQuery = graphql`
@@ -40,22 +55,31 @@ export const postPageQuery = graphql`
             }
           }
         }
+        categories {
+          edges {
+            node {
+              id
+              name
+              slug
+            }
+          }
+        }
       }
     }
   }
-`
+`;
 
 const BlogPostTemplate = ({ data }) => {
-  const { post } = data.wpgraphql
-  
-  const title = data.wpgraphql.post.title;
-  const content = data.wpgraphql.post.content;
-  const name = data.wpgraphql.post.author.name;
-  const avatar = data.wpgraphql.post.author.avatar.url;
-  const date = data.wpgraphql.post.date
-  const featuredImage = data.wpgraphql.post.featuredImage;
+  const { post } = data.wpgraphql;
 
-  const tags = post.tags.edges
+  const { title } = data.wpgraphql.post;
+  const { content } = data.wpgraphql.post;
+  const { name } = data.wpgraphql.post.author;
+  const avatar = data.wpgraphql.post.author.avatar.url;
+  const { date } = data.wpgraphql.post;
+  const { featuredImage } = data.wpgraphql.post;
+
+  const tags = post.tags.edges;
 
     return (
       <Layout>
