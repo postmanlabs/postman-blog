@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 import React from 'react';
 import { graphql } from 'gatsby';
 // import PropTypes from 'prop-types';
+=======
+import React from "react"
+import { graphql } from "gatsby"
+import '../components/_layout.scss'
+import './_post.scss'
+>>>>>>> develop
 
 import parse from 'html-react-parser';
 import Layout from '../components/layout';
@@ -8,11 +15,16 @@ import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from '../components/seo';
 import FluidImage from '../components/FluidImage';
 
+<<<<<<< HEAD
 // import contentParser from 'gatsby-wpgraphql-inline-images';
 // import parse, { domToReact } from 'html-react-parser';
 
 // import ReactHtmlParser from 'html-react-parser';
 import PostForm from '../components/Shared/PostForm';
+=======
+import parse from 'html-react-parser';
+import PostForm from '../components/Shared/PostForm'
+>>>>>>> develop
 
 
 export const postPageQuery = graphql`
@@ -69,34 +81,28 @@ const BlogPostTemplate = ({ data }) => {
 
   const tags = post.tags.edges;
 
-  return (
-    <Layout>
-      <SEO title="post" />
-      <FluidImage image={featuredImage} />
-      <h1 dangerouslySetInnerHTML={{ __html: title }} />
-      <EntryMeta name={name} avatar={avatar} date={date} tags={tags} />
-      {/* <div dangerouslySetInnerHTML={{ __html: content }} /> */}
+    return (
+      <Layout>
+        <SEO title="post"/>
+        <div className="indexPost">
+          <FluidImage image={featuredImage} />
+          <h1 dangerouslySetInnerHTML={{ __html: title }} />
+          <EntryMeta name={name} avatar={avatar} date={date} tags={tags}/>
 
-      <div>
-        {parse(content, {
-          replace: (domNode) => {
+          <div>{parse(content, {
+            replace: (domNode) => {
+
             if (domNode.attribs && domNode.attribs['data-src']) {
               console.log(domNode);
-              return <img src={domNode.attribs['data-src']} alt={domNode.attribs.alt} />;
+              return <img src={domNode.attribs['data-src']} alt={domNode.attribs.alt} />
             }
-          },
-        })}
-      </div>
-      <PostForm />
-    </Layout>
-  );
-};
-
-// BlogPostTemplate.propTypes = {
-//   id: PropTypes.string.isRequired,
-//   content: PropTypes.node.isRequired,
-//   title: PropTypes.string,
-// }
-
+            }
+          })}</div>
+    
+          <PostForm />  
+        </div>   
+      </Layout>
+    )
+  }
 
 export default BlogPostTemplate;
