@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-import React from 'react';
-import { graphql } from 'gatsby';
-// import PropTypes from 'prop-types';
-=======
 import React from "react"
 import { graphql } from "gatsby"
 import '../components/_layout.scss'
 import './_post.scss'
->>>>>>> develop
 
 import parse from 'html-react-parser';
 import Layout from '../components/layout';
@@ -15,16 +9,8 @@ import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from '../components/seo';
 import FluidImage from '../components/FluidImage';
 
-<<<<<<< HEAD
-// import contentParser from 'gatsby-wpgraphql-inline-images';
-// import parse, { domToReact } from 'html-react-parser';
-
-// import ReactHtmlParser from 'html-react-parser';
-import PostForm from '../components/Shared/PostForm';
-=======
 import parse from 'html-react-parser';
 import PostForm from '../components/Shared/PostForm'
->>>>>>> develop
 
 
 export const postPageQuery = graphql`
