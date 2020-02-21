@@ -8,21 +8,22 @@ import React from 'react';
 //     message:""
 //   }
 const Postform = ({ name, email, message }) => {
+  console.log(name, email, message);
   // render() {
   return (
     <form method="POST" action="https://dev.staticman.net/v2/entry/github/postmanlabs/postman-blog">
       <input name="options[redirect]" type="hidden" value="https://my-site.com" />
       {/* <input name="options[slug]" type="hidden" value="{{ page.slug }}"></input> */}
       <label>
-          Name
+        Name
         <input name="fields[name]" type="text">{name}</input>
       </label>
       <label>
-          Email
+        Email
         <input name="fields[email]" type="text">{email}</input>
       </label>
       <label>
-          Message
+        Message
         <input name="fields[message]" type="text">{message}</input>
       </label>
 
