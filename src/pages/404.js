@@ -1,7 +1,7 @@
-import React from "react"
+import React from 'react';
 import errordog from '../images/error-dog.svg';
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 import './_404.scss';
 
 const NotFoundPage = () => (
@@ -23,6 +23,6 @@ const NotFoundPage = () => (
       </div>
     </div>
   </Layout>
-)
+);
 
-export default NotFoundPage
+export default NotFoundPage;
