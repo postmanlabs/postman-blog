@@ -1,14 +1,14 @@
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
 import './Header.scss';
-import '../Shared/_buttons.scss'
+import '../Shared/_buttons.scss';
 // import algoliasearch from 'algoliasearch/lite';
 // import {
 //   InstantSearch, SearchBox, Hits, Configure,
 // } from 'react-instantsearch-dom';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
-import "../../utils/typography"
+import '../../utils/typography';
 
 
 // import { CustomHits } from '../Search/searchPreview';
@@ -92,7 +92,7 @@ class HeaderComponent extends React.Component {
   render() {
     const {
       // isToggledOn, refresh, hasInput, data,
-      isToggledOn, data
+      isToggledOn, data,
     } = this.state;
 
     return (
@@ -121,7 +121,7 @@ class HeaderComponent extends React.Component {
           id="navbarSupportedContent"
         >
           {/* Aloglia Widgets */}
-         
+
           {data.links.map((link) => (
             <div className="nav-item" key={link.name}>
               {link.cta ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}

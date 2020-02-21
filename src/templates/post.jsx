@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import '../components/_layout.scss'
 import './_post.scss'
 
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 import Layout from '../components/layout';
 import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from '../components/seo';
@@ -12,7 +12,7 @@ import FluidImage from '../components/FluidImage';
 // import parse from 'html-react-parser';
 // import PostForm from '../components/Shared/PostForm';
 
-import JustComments from 'gatsby-plugin-just-comments';
+import JustComments from "gatsby-plugin-just-comments";
 
 
 export const postPageQuery = graphql`
@@ -87,6 +87,11 @@ const BlogPostTemplate = ({ data }) => {
             }
           })}</div>
 
+          <JustComments
+            className="just-comments myTheme"
+            data-recaptcha="true"
+            apikey="process.env.JUST_COMMENTS_API"
+          />
           
     
           {/* <PostForm />   */}
