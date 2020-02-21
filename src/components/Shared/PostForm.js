@@ -15,15 +15,15 @@ const Postform = ({ name, email, message }) => {
       <input name="options[redirect]" type="hidden" value="https://my-site.com" />
       {/* <input name="options[slug]" type="hidden" value="{{ page.slug }}"></input> */}
       <label>
-          Name
+        Name
         <input name="fields[name]" type="text">{name}</input>
       </label>
       <label>
-          Email
+        Email
         <input name="fields[email]" type="text">{email}</input>
       </label>
       <label>
-          Message
+        Message
         <input name="fields[message]" type="text">{message}</input>
       </label>
 

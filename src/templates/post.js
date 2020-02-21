@@ -8,8 +8,6 @@ import Layout from '../components/layout';
 import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from '../components/seo';
 import FluidImage from '../components/FluidImage';
-
-// import parse from 'html-react-parser';
 // import PostForm from '../components/Shared/PostForm';
 
 import JustComments from "gatsby-plugin-just-comments";

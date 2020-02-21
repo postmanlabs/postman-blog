@@ -28,13 +28,13 @@ const EntryMeta = ({
         <span className="author">Author: </span>
         {name}
         {' '}
-on
+        on
         {' '}
         {date}
       </p>
       {category && (
         <p>
-        category:
+          category:
           {' '}
           <Link to={`category/${category.slug}`}>{category.name}</Link>
           {' '}
@@ -42,7 +42,7 @@ on
       )}
       {tagsList && (
       <p>
-#
+        #
         {' '}
         {tagsList}
       </p>
