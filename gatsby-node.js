@@ -122,8 +122,6 @@ exports.createPages = async ({ graphql, actions }) => {
   // /////////////////////
   // Pagination for blog index
   // ////////////////////
-
-
   for (let i = 0; i < allPostsArray.length; i += postsPerPage) {
     createPage({
       path: `page/${pageNum}`,
@@ -161,6 +159,14 @@ exports.createPages = async ({ graphql, actions }) => {
             id
             name
             slug
+            posts {
+              edges {
+                node {
+                  id
+                }
+                cursor
+              }
+            }
           }
           cursor
         }
@@ -177,18 +183,51 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagsPageInfo = getTagsResults.data.wpgraphql.tags.pageInfo;
 
 
-  const allTagsArray = await fetchAllItems(tagsPageInfo, tags, 'tags', 'id name slug');
+  const allTagsArray = await fetchAllItems(tagsPageInfo, tags, 'tags', 'id name slug posts(first: 100) { edges { node { title id } cursor } }');
 
+  const TagsIndex = path.resolve('./src/templates/TagsIndex.jsx');
+  const tagsPostsPerPage = 10;
+  let tagsPageNum = 1;
+  // const totalTagsPages = Math.floor((allTagsArray.length / tagsPostsPerPage));
+  // We make a page for each tag
+  // But we need to paginate each tag's posts based on how many posts each tag has.
   allTagsArray.map((tag) => {
-    createPage({
-      path: `tags/${tag.node.slug}`,
-      component: slash(tagsResults),
-      context: {
-        id: tag.node.id,
-      },
-    });
+    const totalTagsPages = Math.ceil((tag.node.posts.edges.length / tagsPostsPerPage));
+    // Loop through each tag
+    // Check it's posts array.  Does it have any posts associated with it?  Some tags have 0 posts, if so skip this
+    if (tag.node.posts.edges.length !== 0) {
+      // If more than 10, create additional tag pages and paginate the posts.
+      // Set the first cursor to empty string, so graphql QL query includes that item. first: 10, after: 'cursor' excludes that first item
+      //  further queries will grab the 10th items cursor, meaning it'll start with the 11th on the page.
+      tag.node.posts.edges[0].cursor = '';
+      if (tag.node.posts.edges.length <= tagsPostsPerPage) {
+        createPage({
+          path: `tags/${tag.node.slug}/page/${tagsPageNum}`,
+          component: slash(TagsIndex),
+          context: {
+            id: tag.node.id,
+            startCursor: tag.node.posts.edges[0].cursor,
+            tagsPageNum,
+            totalTagsPages,
+          },
+        });
+      } else {
+        for (let i = 0; i < tag.node.posts.edges.length; i += tagsPostsPerPage) {
+          createPage({
+            path: `tags/${tag.node.slug}/page/${tagsPageNum}`,
+            component: slash(TagsIndex),
+            context: {
+              id: tag.node.id,
+              startCursor: tag.node.posts.edges[i].cursor,
+              tagsPageNum,
+              totalTagsPages,
+            },
+          });
+          tagsPageNum += 1;
+        }
+      }
+    }
   });
-
 
   // ////////////////////
   // Creating Categories pages
@@ -233,7 +272,6 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
-
 
   // ////////////////////
   // Helper functions
