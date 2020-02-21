@@ -20,16 +20,20 @@ const EntryMeta = ({
   if (tags && tags.length > 0) {
     tagsList = tags.map((tag) => <Link to={`tags/${tag.node.slug}`}>{tag.node.name}</Link>);
   }
+
+  console.log(date);
+   date = Date(date).toLocaleString('en-US', {hour12: false})
+   console.log(date);
   return (
     <div className="row">
-      <img src={avatar} alt={name} />
+      <img className="entry-meta-img" src={avatar} alt={name} />
       <p className="entry-meta-data">
         <span className="author">Author: </span>
         {name}
         {' '}
         on
         {' '}
-        {date}
+        { date }
       </p>
       {category && (
         <p>
