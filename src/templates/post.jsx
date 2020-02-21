@@ -72,11 +72,6 @@ const BlogPostTemplate = ({ data }) => {
     return (
       <Layout>
         <SEO title="post"/>
-        <JustComments
-              className="just-comments myTheme"
-              data-recaptcha="true"
-              apikey="1836ae93-bc53-4655-a563-21a17d7e691c"
-            />
         <div className="indexPost">
           <FluidImage image={featuredImage} />
           <h1 dangerouslySetInnerHTML={{ __html: title }} />
