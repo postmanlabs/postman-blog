@@ -80,7 +80,6 @@ const TagsPostsList = ({ data }) => {
         const { name } = post.node.author;
         const avatar = post.node.author.avatar.url;
         const { featuredImage } = post.node;
-        console.log('post.node', post.node);
 
         return (
           <div key={post.node.id} className="post">

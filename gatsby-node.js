@@ -184,12 +184,7 @@ exports.createPages = async ({ graphql, actions }) => {
           },
         });
       } else {
-        console.log('TAGS OVER 10, PAGINATION REQUIRED FOR');
-        console.log(totalTagsPages, ' pages needed.');
-        console.log(tag.node.name, tag.node.id);
-        console.log('======== END ========');
         for (let i = 0; i < tag.node.posts.edges.length; i += tagsPostsPerPage) {
-          console.log(`tags/${tag.node.slug}/page/${tagsPageNum}`);
           createPage({
             path: `tags/${tag.node.slug}/page/${tagsPageNum}`,
             component: slash(TagsIndex),
@@ -249,8 +244,6 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
-
-  console.log(`Categories pages created: ${allCategoriesArray.length}`);
 
   // ////////////////////
   // Helper functions

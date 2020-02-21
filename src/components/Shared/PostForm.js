@@ -8,7 +8,6 @@ import React from 'react';
 //     message:""
 //   }
 const Postform = ({ name, email, message }) => {
-  console.log(name, email, message);
   // render() {
   return (
     <form method="POST" action="https://dev.staticman.net/v2/entry/github/postmanlabs/postman-blog">
