@@ -79,7 +79,6 @@ const BlogPostTemplate = ({ data }) => {
           {parse(content, {
             replace: (domNode) => {
               if (domNode.attribs && domNode.attribs['data-src']) {
-                console.log(domNode);
                 return <img src={domNode.attribs['data-src']} alt={domNode.attribs.alt} />;
               }
             },

@@ -67,7 +67,7 @@ const TagsPostsList = ({ data }) => {
     <Layout>
       <SEO title="post" />
       <h1>
-#
+        #
         {title}
       </h1>
       {posts.map((post) => {
