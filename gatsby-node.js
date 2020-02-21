@@ -154,7 +154,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagsPageInfo = getTagsResults.data.wpgraphql.tags.pageInfo;
 
 
-  const allTagsArray = await fetchAllItems(tagsPageInfo, tags, 'tags', 'id name slug posts(first: 100) { edges { node { title id } } }');
+  const allTagsArray = await fetchAllItems(tagsPageInfo, tags, 'tags', 'id name slug posts(first: 100) { edges { node { title id } cursor } }');
 
   const TagsIndex = path.resolve('./src/templates/TagsIndex.jsx');
   const tagsPostsPerPage = 10;
@@ -163,36 +163,41 @@ exports.createPages = async ({ graphql, actions }) => {
   // We make a page for each tag
   // But we need to paginate each tag's page based on how many posts each tag has.
   allTagsArray.map((tag) => {
-    // Loop through each tag,
-    // Check it's posts array.  If more than 10, create additional tag pages and paginate the posts.
+    // Loop through each tag
+    // Check it's posts array.  Does it have any posts associated with it?  Some tags have 0 posts, no need to render
     console.log(tag.node.posts.edges.length);
-    if (tag.node.posts.edges.length <= 10) {
-      createPage({
-        path: `tags/${tag.node.slug}/page/${tagsPageNum}`,
-        component: slash(tagsResults),
-        context: {
-          id: tag.node.id,
-        },
-      });
-    } else {
-      console.log('TAGS OVER 10, PAGINATION REQUIRED FOR');
-      console.log(tag.node.name, tag.node.id);
+    if (tag.node.posts.edges.length !== 0) {
+      // If more than 10, create additional tag pages and paginate the posts.
       console.log(tag.node.posts.edges.length);
-      console.log(tag.node.slug);
-      console.log('======== END ========');
-      for (let i = 0; i < tag.node.posts.edges.length; i += tagsPostsPerPage) {
-        console.log(`tags/${tag.node.slug}/page/${tagsPageNum}`);
+      if (tag.node.posts.edges.length <= 10) {
         createPage({
           path: `tags/${tag.node.slug}/page/${tagsPageNum}`,
-          component: slash(TagsIndex),
+          component: slash(tagsResults),
           context: {
             id: tag.node.id,
-            startCursor: tag.node.posts.edges[i].cursor,
+            startCursor: tag.node.posts.edges.cursor,
             tagsPageNum,
             totalTagsPages,
           },
         });
-        tagsPageNum += 1;
+      } else {
+        console.log('TAGS OVER 10, PAGINATION REQUIRED FOR');
+        console.log(tag.node.name, tag.node.id);
+        console.log('======== END ========');
+        for (let i = 0; i < tag.node.posts.edges.length; i += tagsPostsPerPage) {
+          console.log(`tags/${tag.node.slug}/page/${tagsPageNum}`);
+          createPage({
+            path: `tags/${tag.node.slug}/page/${tagsPageNum}`,
+            component: slash(TagsIndex),
+            context: {
+              id: tag.node.id,
+              startCursor: tag.node.posts.edges[i].cursor,
+              tagsPageNum,
+              totalTagsPages,
+            },
+          });
+          tagsPageNum += 1;
+        }
       }
     }
   });
