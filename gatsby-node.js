@@ -78,11 +78,6 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   const PostsIndex = path.resolve('./src/templates/PostsIndex.jsx');
-
-  // Am I right in thinking the total number of blog index pages is the total number of articles, divided by the postsPerPage, rounded down?
-  // For example, if it's 27.1, we only need 27 pages?
-
-  // Access query results via object destructuring
   const posts = postsResults.data.wpgraphql.posts.edges;
   const postsPageInfo = postsResults.data.wpgraphql.posts.pageInfo;
 
@@ -91,12 +86,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const postsPerPage = 10;
   let pageNum = 1;
   const totalPages = Math.floor((allPostsArray.length / postsPerPage));
-
-  console.log('total number of index pages, allPostsArray.length / postsPerPage');
-  console.log(allPostsArray.length / postsPerPage);
-  console.log('current blog has 28 pages');
-  console.log(Math.floor(allPostsArray.length / postsPerPage));
-  console.log(totalPages);
 
   // We want to create a detailed page for each post node. We'll just use the WordPress Slug for the slug. The Post ID is prefixed with 'POST_'
   allPostsArray.map((edge) => {
@@ -109,15 +98,11 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
-  console.log(`Blog post pages created: ${allPostsArray.length}`);
 
   // /////////////////////
   // Pagination for blog index
   // ////////////////////
-
-
   for (let i = 0; i < allPostsArray.length; i += postsPerPage) {
-    // console.log('in For loop, article as starting point', allPostsArray[i]);
     createPage({
       path: `page/${pageNum}`,
       component: slash(PostsIndex),
@@ -135,11 +120,6 @@ exports.createPages = async ({ graphql, actions }) => {
   // ////////////////////
 
   const tagsResults = path.resolve('./src/templates/tagResults.jsx');
-  // Below makes pages to display all posts of a given tag
-
-  // For some reason, only the first 100 tags are being returned from query?
-  // Answer: The max you can get is 100 per query - https://github.com/wp-graphql/wp-graphql/issues/261
-  // Of coure we can't get all the tags at once...
   // We have more than 100 tags.. We need to make multiple graphQL calls, 100 tags at a time, to get them all.
   // We make our initial call to get the first 100 tags
   const getTagsResults = await graphql(`
@@ -151,6 +131,13 @@ exports.createPages = async ({ graphql, actions }) => {
             id
             name
             slug
+            posts {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
           }
           cursor
         }
@@ -167,19 +154,63 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagsPageInfo = getTagsResults.data.wpgraphql.tags.pageInfo;
 
 
-  const allTagsArray = await fetchAllItems(tagsPageInfo, tags, 'tags', 'id name slug');
+  const allTagsArray = await fetchAllItems(tagsPageInfo, tags, 'tags', 'id name slug posts(first: 100) { edges { node { title id } } }');
 
+  const TagsIndex = path.resolve('./src/templates/TagsIndex.jsx');
+  const tagsPostsPerPage = 10;
+  let tagsPageNum = 1;
+  const totalTagsPages = Math.floor((allTagsArray.length / postsPerPage));
+  // We make a page for each tag
+  // But we need to paginate each tag's page based on how many posts each tag has.
   allTagsArray.map((tag) => {
-    createPage({
-      path: `tags/${tag.node.slug}`,
-      component: slash(tagsResults),
-      context: {
-        id: tag.node.id,
-      },
-    });
+    // Loop through each tag,
+    // Check it's posts array.  If more than 10, create additional tag pages and paginate the posts.
+    console.log(tag.node.posts.edges.length);
+    if (tag.node.posts.edges.length <= 10) {
+      createPage({
+        path: `tags/${tag.node.slug}/page/${tagsPageNum}`,
+        component: slash(tagsResults),
+        context: {
+          id: tag.node.id,
+        },
+      });
+    } else {
+      console.log('TAGS OVER 10, PAGINATION REQUIRED FOR');
+      console.log(tag.node.name, tag.node.id);
+      console.log(tag.node.posts.edges.length);
+      console.log(tag.node.slug);
+      console.log('======== END ========');
+      for (let i = 0; i < tag.node.posts.edges.length; i += tagsPostsPerPage) {
+        console.log(`tags/${tag.node.slug}/page/${tagsPageNum}`);
+        createPage({
+          path: `tags/${tag.node.slug}/page/${tagsPageNum}`,
+          component: slash(TagsIndex),
+          context: {
+            id: tag.node.id,
+            startCursor: tag.node.posts.edges[i].cursor,
+            tagsPageNum,
+            totalTagsPages,
+          },
+        });
+        tagsPageNum += 1;
+      }
+    }
   });
 
-  console.log(`Tag pages created: ${allTagsArray.length}`);
+  // for (let i = 0; i < allTagsArray.length; i += tagsPostsPerPage) {
+  //   console.log(`tags/${allTagsArray[i].node.slug}/page/${tagsPageNum}`);
+  //   createPage({
+  //     path: `tags/${allTagsArray[i].node.slug}/page/${tagsPageNum}`,
+  //     component: slash(TagsIndex),
+  //     context: {
+  //       id: allTagsArray[i].node.id,
+  //       startCursor: allTagsArray[i].cursor,
+  //       tagsPageNum,
+  //       totalTagsPages,
+  //     },
+  //   });
+  //   tagsPageNum += 1;
+  // }
 
   // ////////////////////
   // Creating Categories pages

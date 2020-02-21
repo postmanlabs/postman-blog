@@ -8,11 +8,11 @@ import FluidImage from '../components/FluidImage';
 
 
 export const tagsPostsQuery = graphql`
-  query GET_POSTS_OF_TAG ($id: ID!) {
+  query GET_PAGE_POSTS_OF_TAG($id: ID!, $startCursor: String!) {
     wpgraphql {
         tag(id: $id){
             name
-            posts {
+            posts (first: 10, after: $startCursor) {
               edges {
                 node {
                   id
