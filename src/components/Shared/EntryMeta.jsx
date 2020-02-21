@@ -14,7 +14,6 @@ const EntryMeta = ({
   let tagsList;
 
   const category = categories;
-  console.log('from entry', categories);
   // Are there tags?
   // If so lets map through them and stash them in this tagsList var
 

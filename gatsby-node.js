@@ -44,7 +44,12 @@ exports.sourceNodes = async ({
 
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions; // The “graphql” function allows us to run arbitrary queries against the local Gatsby GraphQL schema. Think of it like the site has a built-in database constructed from the fetched data that you can run queries against
+  const { createPage } = actions;
+  // The “graphql” function allows us to run arbitrary
+  // queries against the local Gatsby GraphQL schema.
+  // Think of it like the site has a built-in database
+  // constructed from the fetched data that you can run
+  // queries against
 
   // ////////////////////
   // Creating Blog Post pages
@@ -79,8 +84,12 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const PostsIndex = path.resolve('./src/templates/PostsIndex.jsx');
 
-  // Am I right in thinking the total number of blog index pages is the total number of articles, divided by the postsPerPage, rounded down?
-  // For example, if it's 27.1, we only need 27 pages?
+  // Am I right in thinking the total number
+  // of blog index pages is the total number
+  // of articles, divided by the postsPerPage,
+  // rounded down?
+  // For example, if it's 27.1,
+  // we only need 27 pages?
 
   // Access query results via object destructuring
   const posts = postsResults.data.wpgraphql.posts.edges;
@@ -92,15 +101,15 @@ exports.createPages = async ({ graphql, actions }) => {
   let pageNum = 1;
   const totalPages = Math.floor((allPostsArray.length / postsPerPage));
 
-  console.log('total number of index pages, allPostsArray.length / postsPerPage');
-  console.log(allPostsArray.length / postsPerPage);
-  console.log('current blog has 28 pages');
-  console.log(Math.floor(allPostsArray.length / postsPerPage));
-  console.log(totalPages);
-
-  // We want to create a detailed page for each post node. We'll just use the WordPress Slug for the slug. The Post ID is prefixed with 'POST_'
+  // We want to create a detailed page for each post node.
+  // We'll just use the WordPress Slug for the slug.
+  // The Post ID is prefixed with 'POST_'
   allPostsArray.map((edge) => {
-    // Each page is required to have a `path` as well as a template component. The `context` is optional but is often necessary so the template can query data specific to each page.
+    // Each page is required to have a `path`
+    // as well as a template component.
+    // The`context` is optional but is often
+    // necessary so the template can query
+    // data specific to each page.
     createPage({
       path: `/${edge.node.slug}/`,
       component: slash(postTemplate),
@@ -109,7 +118,6 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
-  console.log(`Blog post pages created: ${allPostsArray.length}`);
 
   // /////////////////////
   // Pagination for blog index
@@ -117,7 +125,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
 
   for (let i = 0; i < allPostsArray.length; i += postsPerPage) {
-    // console.log('in For loop, article as starting point', allPostsArray[i]);
     createPage({
       path: `page/${pageNum}`,
       component: slash(PostsIndex),
@@ -138,9 +145,12 @@ exports.createPages = async ({ graphql, actions }) => {
   // Below makes pages to display all posts of a given tag
 
   // For some reason, only the first 100 tags are being returned from query?
-  // Answer: The max you can get is 100 per query - https://github.com/wp-graphql/wp-graphql/issues/261
+  // Answer: The max you can get is 100 per query -
+  // https://github.com/wp-graphql/wp-graphql/issues/261
   // Of coure we can't get all the tags at once...
-  // We have more than 100 tags.. We need to make multiple graphQL calls, 100 tags at a time, to get them all.
+  // We have more than 100 tags..
+  // We need to make multiple graphQL calls,
+  // 100 tags at a time, to get them all.
   // We make our initial call to get the first 100 tags
   const getTagsResults = await graphql(`
   {
@@ -179,7 +189,6 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  console.log(`Tag pages created: ${allTagsArray.length}`);
 
   // ////////////////////
   // Creating Categories pages
@@ -225,7 +234,6 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  console.log(`Categories pages created: ${allCategoriesArray.length}`);
 
   // ////////////////////
   // Helper functions

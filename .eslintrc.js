@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    jest: true,
   },
   extends: [
     'airbnb',
@@ -10,6 +11,7 @@ module.exports = {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
+  parser: "babel-eslint",
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -21,5 +23,8 @@ module.exports = {
     'react',
   ],
   rules: {
+    "react/prop-types": "off",
+    "jsx-a11y/media-has-caption": "off",
+    "no-underscore-dangle": "off",
   },
 };
