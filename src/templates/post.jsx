@@ -83,13 +83,6 @@ const BlogPostTemplate = ({ data }) => {
                 return <img src={domNode.attribs['data-src']} alt={domNode.attribs.alt} />;
               }
             },
-          })}
-
-            if (domNode.attribs && domNode.attribs['data-src']) {
-              console.log(domNode);
-              return <img src={domNode.attribs['data-src']} alt={domNode.attribs.alt} />
-            }
-            }
           })}</div>
 
           <JustComments
