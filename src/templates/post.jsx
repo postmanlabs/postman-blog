@@ -90,8 +90,7 @@ const BlogPostTemplate = ({ data }) => {
             data-recaptcha="true"
             apikey="process.env.JUST_COMMENTS_API"
           />
-          
-    
+
           {/* <PostForm />   */}
         </div>   
       </Layout>
