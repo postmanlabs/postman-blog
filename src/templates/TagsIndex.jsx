@@ -13,6 +13,7 @@ export const tagsPostsQuery = graphql`
     wpgraphql {
         tag(id: $id){
             name
+            slug
             posts (first: 10, after: $startCursor) {
               edges {
                 node {
@@ -63,8 +64,8 @@ const TagsPostsList = ({ data, pageContext }) => {
   const { tag } = data.wpgraphql;
   const title = tag.name;
   const posts = tag.posts.edges;
+  const {totalTagsPages, tagsPageNum, } = pageContext;
 
-  console.log(pageContext);
 
   return (
     <Layout>
@@ -96,7 +97,10 @@ const TagsPostsList = ({ data, pageContext }) => {
           </div>
         );
       })}
-      {/* <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} /> */}
+      {totalTagsPages > 1 && (
+        <PageSelectionButtons currentPage={tagsPageNum} totalPages={totalTagsPages} prefix={`/tags/${tag.slug}`} />
+      )}
+      
     </Layout>
   );
 };

@@ -160,20 +160,19 @@ exports.createPages = async ({ graphql, actions }) => {
   const TagsIndex = path.resolve('./src/templates/TagsIndex.jsx');
   const tagsPostsPerPage = 10;
   let tagsPageNum = 1;
-  const totalTagsPages = Math.floor((allTagsArray.length / postsPerPage));
+  // const totalTagsPages = Math.floor((allTagsArray.length / tagsPostsPerPage));
   // We make a page for each tag
-  // But we need to paginate each tag's page based on how many posts each tag has.
+  // But we need to paginate each tag's posts based on how many posts each tag has.
   allTagsArray.map((tag) => {
+    const totalTagsPages = Math.ceil((tag.node.posts.edges.length / tagsPostsPerPage));
     // Loop through each tag
-    // Check it's posts array.  Does it have any posts associated with it?  Some tags have 0 posts, no need to render
+    // Check it's posts array.  Does it have any posts associated with it?  Some tags have 0 posts, if so skip this
     if (tag.node.posts.edges.length !== 0) {
       // If more than 10, create additional tag pages and paginate the posts.
-      console.log(tag.node.posts.edges.length);
       // Set the first cursor to empty string, so graphql QL query includes that item. first: 10, after: 'cursor' excludes that first item
       //  further queries will grab the 10th items cursor, meaning it'll start with the 11th on the page.
       tag.node.posts.edges[0].cursor = '';
-      if (tag.node.posts.edges.length <= 10) {
-        console.log(tag.node.posts.edges[0].cursor);
+      if (tag.node.posts.edges.length <= tagsPostsPerPage) {
         createPage({
           path: `tags/${tag.node.slug}/page/${tagsPageNum}`,
           component: slash(TagsIndex),
@@ -186,6 +185,7 @@ exports.createPages = async ({ graphql, actions }) => {
         });
       } else {
         console.log('TAGS OVER 10, PAGINATION REQUIRED FOR');
+        console.log(totalTagsPages, ' pages needed.');
         console.log(tag.node.name, tag.node.id);
         console.log('======== END ========');
         for (let i = 0; i < tag.node.posts.edges.length; i += tagsPostsPerPage) {
@@ -205,21 +205,6 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   });
-
-  // for (let i = 0; i < allTagsArray.length; i += tagsPostsPerPage) {
-  //   console.log(`tags/${allTagsArray[i].node.slug}/page/${tagsPageNum}`);
-  //   createPage({
-  //     path: `tags/${allTagsArray[i].node.slug}/page/${tagsPageNum}`,
-  //     component: slash(TagsIndex),
-  //     context: {
-  //       id: allTagsArray[i].node.id,
-  //       startCursor: allTagsArray[i].cursor,
-  //       tagsPageNum,
-  //       totalTagsPages,
-  //     },
-  //   });
-  //   tagsPageNum += 1;
-  // }
 
   // ////////////////////
   // Creating Categories pages
