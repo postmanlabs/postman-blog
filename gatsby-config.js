@@ -17,7 +17,7 @@ module.exports = {
         refetchInterval: 240,
       },
     },
-    
+
     // {
     //   resolve: 'gatsby-wpgraphql-inline-images',
     //   options: {
