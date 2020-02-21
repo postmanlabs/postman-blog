@@ -14,12 +14,11 @@ const EntryMeta = ({
   let tagsList;
 
   const category = categories;
-  console.log('from entry', categories);
   // Are there tags?
   // If so lets map through them and stash them in this tagsList var
 
   if (tags && tags.length > 0) {
-    tagsList = tags.map((tag) => <Link to={`tags/${tag.node.slug}`}>{tag.node.name}</Link>);
+    tagsList = tags.map((tag) => <Link to={`tags/${tag.node.slug}/page/1`}>{tag.node.name}</Link>);
   }
   return (
     <div className="row">

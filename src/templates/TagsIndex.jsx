@@ -3,6 +3,7 @@ import { Link, graphql } from 'gatsby';
 
 import Layout from '../components/layout';
 import EntryMeta from '../components/Shared/EntryMeta';
+import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
 import SEO from '../components/seo';
 import FluidImage from '../components/FluidImage';
 
@@ -57,11 +58,13 @@ export const tagsPostsQuery = graphql`
   }
 `;
 // { data }
-const TagsPostsList = ({ data }) => {
+const TagsPostsList = ({ data, pageContext }) => {
 //   const { post } = data.wpgraphql
   const { tag } = data.wpgraphql;
   const title = tag.name;
   const posts = tag.posts.edges;
+
+  console.log(pageContext);
 
   return (
     <Layout>
@@ -93,6 +96,7 @@ const TagsPostsList = ({ data }) => {
           </div>
         );
       })}
+      {/* <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} /> */}
     </Layout>
   );
 };

@@ -136,6 +136,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 node {
                   id
                 }
+                cursor
               }
             }
           }
@@ -165,17 +166,20 @@ exports.createPages = async ({ graphql, actions }) => {
   allTagsArray.map((tag) => {
     // Loop through each tag
     // Check it's posts array.  Does it have any posts associated with it?  Some tags have 0 posts, no need to render
-    console.log(tag.node.posts.edges.length);
     if (tag.node.posts.edges.length !== 0) {
       // If more than 10, create additional tag pages and paginate the posts.
       console.log(tag.node.posts.edges.length);
+      // Set the first cursor to empty string, so graphql QL query includes that item. first: 10, after: 'cursor' excludes that first item
+      //  further queries will grab the 10th items cursor, meaning it'll start with the 11th on the page.
+      tag.node.posts.edges[0].cursor = '';
       if (tag.node.posts.edges.length <= 10) {
+        console.log(tag.node.posts.edges[0].cursor);
         createPage({
           path: `tags/${tag.node.slug}/page/${tagsPageNum}`,
-          component: slash(tagsResults),
+          component: slash(TagsIndex),
           context: {
             id: tag.node.id,
-            startCursor: tag.node.posts.edges.cursor,
+            startCursor: tag.node.posts.edges[0].cursor,
             tagsPageNum,
             totalTagsPages,
           },
