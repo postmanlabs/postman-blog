@@ -18,7 +18,6 @@ const PostsIndex = ({ data, pageContext }) => {
       <SEO title="Home" />
 
       {posts.map((post) => {
-        console.log(post)
         const postTitle = post.node.title;
         const postExcerpt = post.node.excerpt;
         const tags = post.node.tags.edges;

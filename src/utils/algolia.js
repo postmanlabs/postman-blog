@@ -62,7 +62,5 @@ const queries = [
     settings,
   },
 ]
-
-console.log('QUERIES', queries)
  
 module.exports = queries

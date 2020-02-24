@@ -56,9 +56,6 @@ export const postPageQuery = graphql`
 `;
 
 const BlogPostTemplate = ({ data }) => {
-  console.log('==============================')
-  console.log('AUTHOR DATA COMING INTO POST.JSX', data.wpgraphql.post.author)
-  console.log('==============================')
 
   const { post } = data.wpgraphql;
 
