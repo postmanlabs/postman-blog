@@ -56,12 +56,21 @@ export const postPageQuery = graphql`
 `;
 
 const BlogPostTemplate = ({ data }) => {
+
   const { post } = data.wpgraphql;
 
   const { title } = data.wpgraphql.post;
   const { content } = data.wpgraphql.post;
-  const { name } = data.wpgraphql.post.author;
-  const avatar = data.wpgraphql.post.author.avatar.url;
+  let name;
+  let avatar;
+  if ( data.wpgraphql.post.author) {
+    name = data.wpgraphql.post.author.name;
+    avatar = data.wpgraphql.post.author.avatar.url;
+  } else {
+    name = 'Christina'
+    avatar = ''
+  }
+
   const { date } = data.wpgraphql.post;
   const { featuredImage } = data.wpgraphql.post;
 

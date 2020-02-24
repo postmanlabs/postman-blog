@@ -25,8 +25,18 @@ const PostsIndex = ({ data, pageContext }) => {
         const categories = post.node.categories.edges[0].node;
         const { slug, date } = post.node;
 
-        const { name } = post.node.author;
-        const avatar = post.node.author.avatar.url;
+        let name;
+        let avatar;
+        if (data.wpgraphql.post && data.wpgraphql.post.author) {
+          name = data.wpgraphql.post.author.name;
+          avatar = data.wpgraphql.post.author.avatar.url;
+        } else {
+          name = 'Christina'
+          avatar = ''
+        }
+
+        // const { name } = post.node.author;
+        // const avatar = post.node.author.avatar.url;
 
         const { featuredImage } = post.node;
 
