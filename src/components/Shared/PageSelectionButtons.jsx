@@ -22,15 +22,15 @@ const PageSelectionButtons = ({ currentPage, totalPages, prefix }) => {
   }
   for (let i = 0; i < numOfButtons; i++) {
     if (currentIndex === totalPages) {
-      nextPageButtons.push(<li className="page-item"><Link to={`${root}/page/${currentIndex}`} className="page-link" key={currentIndex}>{currentIndex}</Link></li>);
+      nextPageButtons.push(<li key={currentIndex} className="page-item"><Link to={`${root}/page/${currentIndex}`} className="page-link" key={currentIndex}>{currentIndex}</Link></li>);
       break;
     }
-    nextPageButtons.push(<li className="page-item"><Link to={`${root}/page/${currentIndex}`} className="page-link" key={currentIndex}>{currentIndex}</Link></li>);
+    nextPageButtons.push(<li key={currentIndex} className="page-item"><Link to={`${root}/page/${currentIndex}`} className="page-link" key={currentIndex}>{currentIndex}</Link></li>);
     currentIndex++;
   }
 
   if (!(currentPage === totalPages)) {
-    nextPageButtons.push(<li className="page-item"><Link to={`${root}/page/${currentPage + 1}`} className="page-link" key={currentPage + 1}>Next</Link></li>);
+    nextPageButtons.push(<li key={currentIndex} className="page-item"><Link to={`${root}/page/${currentPage + 1}`} className="page-link" key={currentPage + 1}>Next</Link></li>);
   }
   return (
     <nav aria-label="Page navigation example">
