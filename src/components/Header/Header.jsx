@@ -1,36 +1,36 @@
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
-import './Header.scss';
+import './_header.scss';
 import '../Shared/_buttons.scss';
-// import algoliasearch from 'algoliasearch/lite';
-// import {
-//   InstantSearch, SearchBox, Hits, Configure,
-// } from 'react-instantsearch-dom';
+import algoliasearch from 'algoliasearch/lite';
+import {
+  InstantSearch, SearchBox, Hits, Configure,
+} from 'react-instantsearch-dom';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 import '../../utils/typography';
 
 
-// import { CustomHits } from '../Search/searchPreview';
+import { CustomHits } from '../Search/searchPreview';
 
 
-// const ClickOutHandler = require('react-onclickout');
+const ClickOutHandler = require('react-onclickout');
 
-// const algoliaClient = algoliasearch('4A5N71XYH0', 'bf5cf4783437b12c2dca33724c9c04b0');
+const algoliaClient = algoliasearch('4A5N71XYH0', 'f2417f2277d49686d11c909fe9e7a896');
 
 // removes empty query searches from analytics
-// const searchClient = {
-//   search(requests) {
-//     const newRequests = requests.map((request) => {
-//       // test for empty string and change request parameter: analytics
-//       if (!request.params.query || request.params.query.length === 0) {
-//         request.params.analytics = false;
-//       }
-//       return request;
-//     });
-//     return algoliaClient.search(newRequests);
-//   },
-// };
+const searchClient = {
+  search(requests) {
+    const newRequests = requests.map((request) => {
+      // test for empty string and change request parameter: analytics
+      if (!request.params.query || request.params.query.length === 0) {
+        request.params.analytics = false;
+      }
+      return request;
+    });
+    return algoliaClient.search(newRequests);
+  },
+};
 
 // changes button in navbar based on cookie presence
 const LoginCheck = (props) => {
@@ -82,17 +82,17 @@ class HeaderComponent extends React.Component {
   }
 
   // click out search results box
-  // onClickOut = () => {
-  //   document.getElementsByClassName('ais-SearchBox-input')[0].value = '';
-  //   this.setState(() => ({
-  //     hasInput: false,
-  //   }));
-  // }
+  onClickOut = () => {
+    document.getElementsByClassName('ais-SearchBox-input')[0].value = '';
+    this.setState(() => ({
+      hasInput: false,
+    }));
+  }
 
   render() {
     const {
-      // isToggledOn, refresh, hasInput, data,
-      isToggledOn, data,
+      isToggledOn, refresh, hasInput, data,
+      // isToggledOn, data,
     } = this.state;
 
     return (
@@ -121,7 +121,35 @@ class HeaderComponent extends React.Component {
           id="navbarSupportedContent"
         >
           {/* Aloglia Widgets */}
-
+          <div className="form-inline header__search">
+            <ClickOutHandler onClickOut={this.onClickOut}>
+              <InstantSearch
+                searchClient={searchClient}
+                indexName="blog"
+                refresh={refresh}
+              >
+                <Configure hitsPerPage={5} />
+                {/* forcefeed className because component does not accept natively as prop */}
+                <SearchBox
+                  className="searchbox"
+                  class="ais-SearchBox-input"
+                  submit={<></>}
+                  reset={<></>}
+                  translations={{
+                    placeholder: 'Search Postman Blog',
+                  }}
+                  onKeyUp={(event) => {
+                    this.setState({
+                      hasInput: event.currentTarget.value !== '',
+                    });
+                  }}
+                />
+                <div className={!hasInput ? 'input-empty' : 'input-value'}>
+                  <CustomHits hitComponent={Hits} />
+                </div>
+              </InstantSearch>
+            </ClickOutHandler>
+          </div>
           {data.links.map((link) => (
             <div className="nav-item" key={link.name}>
               {link.cta ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}

@@ -25,8 +25,9 @@ const Hits = ({ hits }) => (
   <ul className="style">
     {hits.length < 1 ? <li>No search results found</li> : ''}
     {hits.map((hit) => (
+      // console.log(hit);
       <li key={hit.title}>
-        <a href={hit.fields.slug}>
+        <a href={hit.slug}>
           <span className="search-title" dangerouslySetInnerHTML={{ __html: hit._highlightResult.title.value }} />
           <p dangerouslySetInnerHTML={{ __html: hit._snippetResult.excerpt.value }} />
         </a>
