@@ -12,12 +12,15 @@ import '../../utils/typography';
 
 
 import { CustomHits } from '../Search/searchPreview';
+import { NextHits } from '../Search/searchPreview';
 
 
 const ClickOutHandler = require('react-onclickout');
 
-// add in API Keys from Learning Center to activate multiple index search
+
 // const algoliaClient = algoliasearch('4A5N71XYH0', 'f2417f2277d49686d11c909fe9e7a896');
+
+// add in API Keys from Learning Center to activate multiple index search
 const algoliaClient = algoliasearch('4A5N71XYH0', 'bf5cf4783437b12c2dca33724c9c04b0');
 
 // removes empty query searches from analytics
@@ -161,7 +164,7 @@ class HeaderComponent extends React.Component {
                 <Index indexName="docs">
                   <div className={!hasInput ? 'input-empty' : 'input-value'} style={{ top: '350px' }}>
                     <h2>Learning Center </h2>
-                    <CustomHits hitComponent={Hits} />
+                    <NextHits hitComponent={Hits} />
                     <Configure hitsPerPage={2} />
                   </div>
                 </Index>
@@ -170,7 +173,7 @@ class HeaderComponent extends React.Component {
             </ClickOutHandler>
           </div>
           {data.links.map((link) => (
-            <div className="nav-foo" key={link.name}>
+            <div className="nav-item" key={link.name}>
               {link.cta ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}
             </div>
           ))}

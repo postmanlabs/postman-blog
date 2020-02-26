@@ -24,7 +24,6 @@ const Hits = ({ hits }) => (
   <ul className="style">
     {hits.length < 1 ? <li>No search results found</li> : ''}
     {hits.map((hit) => (
-      // console.log(hit);
       <li key={hit.title}>
         <a href={hit.slug}>
           <span className="search-title" dangerouslySetInnerHTML={{ __html: hit._highlightResult.title.value }} />
@@ -36,3 +35,21 @@ const Hits = ({ hits }) => (
 );
 
 export const CustomHits = connectHits(Hits);
+
+// on page load do not display
+const Hits2 = ({ hits }) => (
+  // if parent component set is type, render, otherwise hide
+  <ul className="style">
+    {hits.length < 1 ? <li>No search results found</li> : ''}
+    {hits.map((hit) => (
+      <li key={hit.title}>
+        <a href={hit.fields.slug}>
+          <span className="search-title" dangerouslySetInnerHTML={{ __html: hit._highlightResult.title.value }} />
+          <p dangerouslySetInnerHTML={{ __html: hit._snippetResult.excerpt.value }} />
+        </a>
+      </li>
+    ))}
+  </ul>
+);
+
+export const NextHits = connectHits(Hits2);
