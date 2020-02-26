@@ -4,7 +4,7 @@
  
 const pageQuery = `{
   wpgraphql {
-    posts {
+    posts (first: 100) {
       edges {
         node {
           id
