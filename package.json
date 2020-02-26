@@ -69,7 +69,9 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "jest",
-    "test:update": "jest -u"
+    "test:update": "jest -u",
+    "test:lint": "node_modules/eslint/bin/eslint.js -c .eslintrc.js --ext .jsx --ext .js src/",
+    "test:lint-fix": "node_modules/eslint/bin/eslint.js -c .eslintrc.js --ext .jsx --ext .js src/ --fix"
   },
   "repository": {
     "type": "git",

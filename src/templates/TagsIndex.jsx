@@ -64,14 +64,14 @@ const TagsPostsList = ({ data, pageContext }) => {
   const { tag } = data.wpgraphql;
   const title = tag.name;
   const posts = tag.posts.edges;
-  const {totalTagsPages, tagsPageNum, } = pageContext;
+  const { totalTagsPages, tagsPageNum } = pageContext;
 
 
   return (
     <Layout>
       <SEO title="post" />
       <h1>
-#
+        #
         {title}
       </h1>
       {posts.map((post) => {
@@ -99,7 +99,7 @@ const TagsPostsList = ({ data, pageContext }) => {
       {totalTagsPages > 1 && (
         <PageSelectionButtons currentPage={tagsPageNum} totalPages={totalTagsPages} prefix={`/tags/${tag.slug}`} />
       )}
-      
+
     </Layout>
   );
 };

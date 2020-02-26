@@ -31,8 +31,8 @@ const PostsIndex = ({ data, pageContext }) => {
           name = post.node.author.name;
           avatar = post.node.author.avatar.url;
         } else {
-          name = 'Christina'
-          avatar = ''
+          name = 'Christina';
+          avatar = '';
         }
 
         // const { name } = post.node.author;
@@ -46,7 +46,13 @@ const PostsIndex = ({ data, pageContext }) => {
             <Link to={slug}>
               <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
             </Link>
-            <EntryMeta name={name} avatar={avatar} date={date} tags={tags} categories={categories} />
+            <EntryMeta
+              name={name}
+              avatar={avatar}
+              date={date}
+              tags={tags}
+              categories={categories}
+            />
             <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
           </div>
         );
