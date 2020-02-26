@@ -97,6 +97,7 @@ const BlogPostTemplate = ({ data }) => {
             className="just-comments myTheme"
             data-recaptcha="true"
             apikey="process.env.JUST_COMMENTS_API"
+            hideattribution="true"
           />
 
           {/* <PostForm />   */}
