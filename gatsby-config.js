@@ -8,8 +8,6 @@ require('dotenv').config({
 //   path: `.env.${process.env.NODE_ENV}`,
 // });
 
-
-
 module.exports = {
   siteMetadata: {
     title: 'Postman Blog',
@@ -27,20 +25,23 @@ module.exports = {
         refetchInterval: 240,
       },
     },
-
-    // {
-    //   resolve: 'gatsby-wpgraphql-inline-images',
-    //   options: {
-    //     wordPressUrl: 'https://blog.getpostman.com',
-    //     uploadsUrl: 'https://blog.getpostman.com/wp-content/uploads/',
-    //     processPostTypes: ['Page', 'Post'],
-    //     graphqlTypeName: 'WPGraphQL',
-    //     httpHeaders: {
-    //       Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-    //     },
-    //     debugOutput: true,
-    //   },
-    // },
+    'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: '',
+        sitemap: '',
+        resolveEnv: () => process.env.GATSBY_ACTIVE_ENV,
+        env: {
+          development: {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+          },
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }],
+          },
+        },
+      },
+    },
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',
