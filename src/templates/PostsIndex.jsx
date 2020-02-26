@@ -27,9 +27,9 @@ const PostsIndex = ({ data, pageContext }) => {
 
         let name;
         let avatar;
-        if (data.wpgraphql.post && data.wpgraphql.post.author) {
-          name = data.wpgraphql.post.author.name;
-          avatar = data.wpgraphql.post.author.avatar.url;
+        if (post.node && post.node.author) {
+          name = post.node.author.name;
+          avatar = post.node.author.avatar.url;
         } else {
           name = 'Christina'
           avatar = ''
