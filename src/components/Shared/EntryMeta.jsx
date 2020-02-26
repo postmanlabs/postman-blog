@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+// import { Link } from 'gatsby';
 import './_entry-meta.scss';
 
 // receive id as prop? and match the id of the post with the author and print author gravatar, name and published date in this component on index page and the blog page
@@ -18,7 +18,7 @@ const EntryMeta = ({
   // If so lets map through them and stash them in this tagsList var
 
   if (tags && tags.length > 0) {
-    tagsList = tags.map((tag) => <Link to={`tags/${tag.node.slug}/page/1`}>{tag.node.name}</Link>);
+    tagsList = tags.map((tag) => <a key={tag.node.id} src={`tags/${tag.node.slug}/page/1`}>{tag.node.name}</a>);
   }
   
   return (
@@ -37,7 +37,7 @@ const EntryMeta = ({
         <p>
           category:
           {' '}
-          <Link to={`category/${category.slug}`}>{category.name}</Link>
+          <a src={`category/${category.slug}`}>{category.name}</a>
           {' '}
         </p>
       )}
