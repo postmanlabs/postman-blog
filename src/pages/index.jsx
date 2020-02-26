@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -34,9 +34,9 @@ const BlogIndex = ({ data }) => {
         return (
           <div key={post.node.id} className="post">
             <FluidImage image={featuredImage} />
-            <a src={slug}>
+            <Link to={slug}>
               <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
-            </a>
+            </Link>
             <EntryMeta
               name={name}
               avatar={avatar}
