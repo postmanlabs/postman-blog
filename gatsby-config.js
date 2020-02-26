@@ -29,8 +29,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://blog.postman.com',
-        sitemap: 'https://blog.postman.com/sitemap.xml',
+        host: '',
+        sitemap: '',
         resolveEnv: () => process.env.GATSBY_ACTIVE_ENV,
         env: {
           development: {
