@@ -5,7 +5,7 @@ const PageSelectionButtons = ({ currentPage, totalPages, prefix }) => {
   const numOfPages = 5; // # of next page options to display
   const nextPageButtons = [];
 
-  let root = prefix ? prefix : ''; 
+  const root = prefix || '';
 
   // If the current page we're on + the number of page options we want to display
   // Is greater than all of pages total (ex. we are on page 26 + the next 5 > then 28)

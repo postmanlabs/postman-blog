@@ -7,9 +7,9 @@ import React from 'react';
 //     email: "",
 //     message:""
 //   }
-const Postform = ({ name, email, message }) => {
+const Postform = ({ name, email, message }) =>
   // render() {
-  return (
+  (
     <form method="POST" action="https://dev.staticman.net/v2/entry/github/postmanlabs/postman-blog">
       <input name="options[redirect]" type="hidden" value="https://my-site.com" />
       {/* <input name="options[slug]" type="hidden" value="{{ page.slug }}"></input> */}
@@ -28,8 +28,8 @@ const Postform = ({ name, email, message }) => {
 
       <button type="submit">Go!</button>
     </form>
-  );
-};
+  )
+;
 // }
 
 export default Postform;

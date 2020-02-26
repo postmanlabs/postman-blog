@@ -4,7 +4,7 @@ import './_header.scss';
 import '../Shared/_buttons.scss';
 import algoliasearch from 'algoliasearch/lite';
 import {
-  InstantSearch, SearchBox, Hits, Configure,
+  InstantSearch, SearchBox, Hits, Configure, Index,
 } from 'react-instantsearch-dom';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
@@ -16,7 +16,9 @@ import { CustomHits } from '../Search/searchPreview';
 
 const ClickOutHandler = require('react-onclickout');
 
-const algoliaClient = algoliasearch('4A5N71XYH0', 'f2417f2277d49686d11c909fe9e7a896');
+// add in API Keys from Learning Center to activate multiple index search
+// const algoliaClient = algoliasearch('4A5N71XYH0', 'f2417f2277d49686d11c909fe9e7a896');
+const algoliaClient = algoliasearch('4A5N71XYH0', 'bf5cf4783437b12c2dca33724c9c04b0');
 
 // removes empty query searches from analytics
 const searchClient = {
@@ -128,7 +130,7 @@ class HeaderComponent extends React.Component {
                 indexName="blog"
                 refresh={refresh}
               >
-                <Configure hitsPerPage={5} />
+                {/* <Configure hitsPerPage={2} /> */}
                 {/* forcefeed className because component does not accept natively as prop */}
                 <SearchBox
                   className="searchbox"
@@ -144,14 +146,31 @@ class HeaderComponent extends React.Component {
                     });
                   }}
                 />
-                <div className={!hasInput ? 'input-empty' : 'input-value'}>
+                {/* <div className={!hasInput ? 'input-empty' : 'input-value'}>
                   <CustomHits hitComponent={Hits} />
-                </div>
+                </div> */}
+
+                <Index indexName="blog">
+                  <div className={!hasInput ? 'input-empty' : 'input-value'}>
+                    <h2>Blog</h2>
+                    <CustomHits hitComponent={Hits} />
+                    <Configure hitsPerPage={2} />
+                  </div>
+                </Index>
+
+                <Index indexName="docs">
+                  <div className={!hasInput ? 'input-empty' : 'input-value'} style={{ top: '350px' }}>
+                    <h2>Learning Center </h2>
+                    <CustomHits hitComponent={Hits} />
+                    <Configure hitsPerPage={2} />
+                  </div>
+                </Index>
+
               </InstantSearch>
             </ClickOutHandler>
           </div>
           {data.links.map((link) => (
-            <div className="nav-item" key={link.name}>
+            <div className="nav-foo" key={link.name}>
               {link.cta ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}
             </div>
           ))}

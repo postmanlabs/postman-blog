@@ -9,7 +9,7 @@ import EntryMeta from '../components/Shared/EntryMeta';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
 
 
-const BlogIndex = ({ data, pageContext }) => {
+const BlogIndex = ({ data }) => {
   const currentPage = 1;
   const { totalPages } = 28;
   const posts = data.wpgraphql.posts.edges;
@@ -37,7 +37,13 @@ const BlogIndex = ({ data, pageContext }) => {
             <a src={slug}>
               <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
             </a>
-            <EntryMeta name={name} avatar={avatar} date={date} tags={tags} categories={categories} />
+            <EntryMeta
+              name={name}
+              avatar={avatar}
+              date={date}
+              tags={tags}
+              categories={categories}
+            />
             <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
           </div>
         );

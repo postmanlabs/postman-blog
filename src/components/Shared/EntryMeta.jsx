@@ -20,7 +20,7 @@ const EntryMeta = ({
   if (tags && tags.length > 0) {
     tagsList = tags.map((tag) => <a key={tag.node.id} src={`tags/${tag.node.slug}/page/1`}>{tag.node.name}</a>);
   }
-  
+
   return (
     <div className="row">
       <img className="entry-meta-img" src={avatar} alt={name} />
@@ -31,7 +31,7 @@ const EntryMeta = ({
         on
         {' '}
         { date }
-        ' ' 
+        ' '
       </p>
       {category && (
         <p>

@@ -51,7 +51,7 @@ export const categoriesPostQuery = graphql`
 // { data }
 const categoriesPostsList = ({ data }) => {
   const { category } = data.wpgraphql;
- 
+
   const title = category.name;
   const posts = category.posts.edges;
 
