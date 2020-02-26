@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connectSearchBox, connectHits } from 'react-instantsearch-dom';
 
 import './_search.scss';
