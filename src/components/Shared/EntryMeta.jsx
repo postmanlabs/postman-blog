@@ -2,7 +2,9 @@ import React from 'react';
 // import { Link } from 'gatsby';
 import './_entry-meta.scss';
 
-// receive id as prop? and match the id of the post with the author and print author gravatar, name and published date in this component on index page and the blog page
+// receive id as prop? and match the id of the post with the author
+// and print author gravatar, name and published date in this component
+// on index page and the blog page
 
 // useStaticQuery is used in components
 
@@ -31,13 +33,12 @@ const EntryMeta = ({
         on
         {' '}
         { date }
-        ' '
       </p>
       {category && (
         <p>
           category:
           {' '}
-          <a src={`category/${category.slug}`}>{category.name}</a>
+          <a href={`category/${category.slug}`}>{category.name}</a>
           {' '}
         </p>
       )}
@@ -52,10 +53,10 @@ const EntryMeta = ({
   );
 };
 
-EntryMeta.propTypes = {
-  name: PropTypes.string,
-  avatar: PropTypes.string,
-  date: PropTypes.string,
-};
+// EntryMeta.propTypes = {
+//   name: PropTypes.string,
+//   avatar: PropTypes.string,
+//   date: PropTypes.string,
+// };
 
 export default EntryMeta;
