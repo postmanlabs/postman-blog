@@ -21,14 +21,11 @@ export const CustomSearchBox = connectSearchBox(SearchBox);
 // on page load do not display
 const Hits = ({ hits }) => (
   // if parent component set is type, render, otherwise hide
-
   <ul className="style">
-      {console.log('hits: ',hits)}
     {hits.length < 1 ? <li>No search results found</li> : ''}
     {hits.map((hit) => (
       <li key={hit.title}>
         <a href={`/${hit.slug}`}>
-        {console.log('hit slug //////////////',hit.slug)}
           <span className="search-title" dangerouslySetInnerHTML={{ __html: hit._highlightResult.title.value }} />
           <p dangerouslySetInnerHTML={{ __html: hit._snippetResult.excerpt.value }} />
         </a>
