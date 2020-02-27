@@ -59,7 +59,6 @@ class HeaderComponent extends React.Component {
     this.state = {
       data: JSON.parse(data),
       isToggledOn: 'unset',
-      // hasInput: false,
       refresh: false,
     };
   }
@@ -145,7 +144,7 @@ class HeaderComponent extends React.Component {
                   }}
                   onKeyUp={(event) => {
                     this.setState({
-                      hasInput: event.currentTarget.value !== '',
+                      hasInput: event.currentTarget.value.length > 2,
                     });
                   }}
                 />
