@@ -187,11 +187,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const TagsIndex = path.resolve('./src/templates/TagsIndex.jsx');
   const tagsPostsPerPage = 10;
-  let tagsPageNum = 1;
   // const totalTagsPages = Math.floor((allTagsArray.length / tagsPostsPerPage));
   // We make a page for each tag
   // But we need to paginate each tag's posts based on how many posts each tag has.
   allTagsArray.map((tag) => {
+    let tagsPageNum = 1;
     const totalTagsPages = Math.ceil((tag.node.posts.edges.length / tagsPostsPerPage));
     // Loop through each tag
     // Check it's posts array.  Does it have any posts associated with it?  Some tags have 0 posts, if so skip this
@@ -272,26 +272,52 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const allCategoriesArray = await fetchAllItems(categoriesPageInfo, categories, 'categories', 'id name slug posts(first: 100) { edges { node { title id } cursor } }');
 
-  const CatsIndex = path.resolve('./src/templates/TagsIndex.jsx');
+  const CatsIndex = path.resolve('./src/templates/CategoryIndex.jsx');
   const catPostsPerPage = 10;
-  let catsPageNum = 1;
+  
 
   allCategoriesArray.map((cat) => {
+    let catsPageNum = 1;
     console.log('cat', cat)
     const totalCatsPages = Math.ceil((cat.node.posts.edges.length / catPostsPerPage));
     console.log('cat.node.posts', cat.node.posts)
     console.log('cat.node.count', cat.node.count)
     console.log('totalCatsPages', totalCatsPages)
     
-    // if pages is over 100, may want to get count variable, if count var is OVER 100, gonna need to recurs again
+    // if count is over 100 (number of pages are over 100)
+    //call recurssion on this post
+    // ill have to make a new graphql
 
-    createPage({
-      path: `category/${cat.node.slug}`,
-      component: slash(categoriesResults),
-      context: {
-        id: cat.node.id,
-      },
-    });
+    if (cat.node.posts.edges.length !== 0) {
+      cat.node.posts.edges[0].cursor = '';
+      if (cat.node.posts.edges.length <= catPostsPerPage) {
+        createPage({
+          path: `categories/${cat.node.slug}/page/${catsPageNum}`,
+          component: slash(CatsIndex),
+          context: {
+            id: cat.node.id,
+            startCursor: cat.node.posts.edges[0].cursor,
+            catsPageNum,
+            totalCatsPages,
+          },
+        });
+      } else {
+        for (let i = 0; i < cat.node.posts.edges.length; i += catPostsPerPage) {
+          console.log(`categories/${cat.node.slug}/page/${catsPageNum}`)
+          createPage({
+            path: `categories/${cat.node.slug}/page/${catsPageNum}`,
+            component: slash(CatsIndex),
+            context: {
+              id: cat.node.id,
+              startCursor: cat.node.posts.edges[i].cursor,
+              catsPageNum,
+              totalCatsPages,
+            },
+          });
+          catsPageNum += 1;
+        }
+      }
+    }
   });
 
 
