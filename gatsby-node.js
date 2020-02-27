@@ -244,6 +244,15 @@ exports.createPages = async ({ graphql, actions }) => {
             id
             name
             slug
+            count
+            posts(first: 100) {
+              edges {
+                node {
+                  id
+                }
+                cursor
+              }
+            }
           }
           cursor
         }
@@ -261,9 +270,21 @@ exports.createPages = async ({ graphql, actions }) => {
   const categoriesPageInfo = getCategoriesResults.data.wpgraphql.categories.pageInfo;
 
 
-  const allCategoriesArray = await fetchAllItems(categoriesPageInfo, categories, 'categories', 'id name slug');
+  const allCategoriesArray = await fetchAllItems(categoriesPageInfo, categories, 'categories', 'id name slug posts(first: 100) { edges { node { title id } cursor } }');
+
+  const CatsIndex = path.resolve('./src/templates/TagsIndex.jsx');
+  const catPostsPerPage = 10;
+  let catsPageNum = 1;
 
   allCategoriesArray.map((cat) => {
+    console.log('cat', cat)
+    const totalCatsPages = Math.ceil((cat.node.posts.edges.length / catPostsPerPage));
+    console.log('cat.node.posts', cat.node.posts)
+    console.log('cat.node.count', cat.node.count)
+    console.log('totalCatsPages', totalCatsPages)
+    
+    // if pages is over 100, may want to get count variable, if count var is OVER 100, gonna need to recurs again
+
     createPage({
       path: `category/${cat.node.slug}`,
       component: slash(categoriesResults),
@@ -272,6 +293,8 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+
+
 
   // ////////////////////
   // Helper functions
