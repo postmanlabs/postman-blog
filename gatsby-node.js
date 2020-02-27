@@ -278,15 +278,10 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allCategoriesArray.map((cat) => {
     let catsPageNum = 1;
-    console.log('cat', cat)
     const totalCatsPages = Math.ceil((cat.node.posts.edges.length / catPostsPerPage));
-    console.log('cat.node.posts', cat.node.posts)
-    console.log('cat.node.count', cat.node.count)
-    console.log('totalCatsPages', totalCatsPages)
-    
-    // if count is over 100 (number of pages are over 100)
-    //call recurssion on this post
-    // ill have to make a new graphql
+
+    // Currently only paginations over first 100 posts within category.
+    // Would need to make multiple graphql calls to get all posts if more than 100
 
     if (cat.node.posts.edges.length !== 0) {
       cat.node.posts.edges[0].cursor = '';
@@ -319,8 +314,6 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   });
-
-
 
   // ////////////////////
   // Helper functions
