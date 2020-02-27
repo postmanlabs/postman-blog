@@ -11,8 +11,7 @@ import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 import '../../utils/typography';
 
 
-import { CustomHits } from '../Search/searchPreview';
-import { NextHits } from '../Search/searchPreview';
+import { CustomHits, NextHits } from '../Search/searchPreview';
 
 
 const ClickOutHandler = require('react-onclickout');
@@ -39,13 +38,14 @@ const searchClient = {
 
 // changes button in navbar based on cookie presence
 const LoginCheck = (props) => {
-  if (props !== 'getpostmanlogin') {
+  const { cookie } = props;
+  if (cookie !== 'yes') {
     return (
       <a href="https://identity.getpostman.com/login" className="btn btn__primary">Sign In</a>
     );
   }
   return (
-    <a href="https://app.getpostman.com/" className="btn btn__primary">Dashboard</a>
+    <a href="https://app.getpostman.com" className="btn btn__primary">Dashboard</a>
   );
 };
 
@@ -59,7 +59,6 @@ class HeaderComponent extends React.Component {
     this.state = {
       data: JSON.parse(data),
       isToggledOn: 'unset',
-      // hasInput: false,
       refresh: false,
     };
   }
@@ -145,7 +144,7 @@ class HeaderComponent extends React.Component {
                   }}
                   onKeyUp={(event) => {
                     this.setState({
-                      hasInput: event.currentTarget.value !== '',
+                      hasInput: event.currentTarget.value.length > 2,
                     });
                   }}
                 />
