@@ -11,8 +11,7 @@ import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 import '../../utils/typography';
 
 
-import { CustomHits } from '../Search/searchPreview';
-import { NextHits } from '../Search/searchPreview';
+import { CustomHits, NextHits } from '../Search/searchPreview';
 
 
 const ClickOutHandler = require('react-onclickout');

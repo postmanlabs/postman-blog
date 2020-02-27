@@ -71,7 +71,7 @@ const BlogPostTemplate = ({ data }) => {
 
   const { date } = data.wpgraphql.post;
   const { featuredImage } = data.wpgraphql.post;
-  const { slug } = data.wpgraphql.post
+  const { slug } = data.wpgraphql.post;
 
   const tags = post.tags.edges;
 
@@ -80,7 +80,9 @@ const BlogPostTemplate = ({ data }) => {
       <SEO title="post" />
       <div className="indexPost">
         <FluidImage image={featuredImage} />
-        <a href={slug}><h1 dangerouslySetInnerHTML={{ __html: title }} /></a>
+        <a href={slug}>
+          <h1 dangerouslySetInnerHTML={{ __html: title }} />
+        </a>
         <EntryMeta name={name} avatar={avatar} date={date} tags={tags} />
 
         <div>

@@ -4,9 +4,12 @@ import { useStaticQuery, graphql } from 'gatsby';
 // import PropTypes from "prop-types"
 
 const Pagination = ({ name, avatar, date }) => {
-// cursor is a property pointer to where in query the item exists. Its not a property of the node itself but a property of node in relation to a query that it is coming from. We can ask for relevant information
+// cursor is a property pointer to where in query the item exists.
+// Its not a property of the node itself but a property of node in
+// relation to a query that it is coming from. We can ask for relevant information
 
-  // The limit is called first, meaning you’re grabbing the first x elements after a provided start index.
+  // The limit is called first, meaning you’re grabbing
+  // the first x elements after a provided start index.
 
   const data = useStaticQuery(graphql`
   query Pagination {

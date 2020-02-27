@@ -34,7 +34,9 @@ import GatsbyImage from 'gatsby-image';
 
 // taken from https://dev.to/nevernull/how-to-handle-images-and-make-use-of-gatsby-image-guide-to-gatsby-wordpress-starter-advanced-with-previews-i18n-and-more-g9b
 
-// If we do have an image and it has the imageFile field, we know it has been processed by our resolver and therfore we can use GatsbyImage to handle it
+// If we do have an image and it has the imageFile field,
+// we know it has been processed by our resolver and
+// therfore we can use GatsbyImage to handle it
 
 const FluidImage = ({ image, withFallback = false, ...props }) => {
   const data = useStaticQuery(graphql`
