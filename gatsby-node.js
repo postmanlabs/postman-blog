@@ -187,11 +187,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const TagsIndex = path.resolve('./src/templates/TagsIndex.jsx');
   const tagsPostsPerPage = 10;
-  let tagsPageNum = 1;
   // const totalTagsPages = Math.floor((allTagsArray.length / tagsPostsPerPage));
   // We make a page for each tag
   // But we need to paginate each tag's posts based on how many posts each tag has.
   allTagsArray.map((tag) => {
+    let tagsPageNum = 1;
     const totalTagsPages = Math.ceil((tag.node.posts.edges.length / tagsPostsPerPage));
     // Loop through each tag
     // Check it's posts array.  Does it have any posts associated with it?  Some tags have 0 posts, if so skip this
@@ -244,6 +244,15 @@ exports.createPages = async ({ graphql, actions }) => {
             id
             name
             slug
+            count
+            posts(first: 100) {
+              edges {
+                node {
+                  id
+                }
+                cursor
+              }
+            }
           }
           cursor
         }
@@ -261,16 +270,48 @@ exports.createPages = async ({ graphql, actions }) => {
   const categoriesPageInfo = getCategoriesResults.data.wpgraphql.categories.pageInfo;
 
 
-  const allCategoriesArray = await fetchAllItems(categoriesPageInfo, categories, 'categories', 'id name slug');
+  const allCategoriesArray = await fetchAllItems(categoriesPageInfo, categories, 'categories', 'id name slug posts(first: 100) { edges { node { title id } cursor } }');
+
+  const CatsIndex = path.resolve('./src/templates/CategoryIndex.jsx');
+  const catPostsPerPage = 10;
+  
 
   allCategoriesArray.map((cat) => {
-    createPage({
-      path: `category/${cat.node.slug}`,
-      component: slash(categoriesResults),
-      context: {
-        id: cat.node.id,
-      },
-    });
+    let catsPageNum = 1;
+    const totalCatsPages = Math.ceil((cat.node.posts.edges.length / catPostsPerPage));
+
+    // Currently only paginations over first 100 posts within category.
+    // Would need to make multiple graphql calls to get all posts if more than 100
+
+    if (cat.node.posts.edges.length !== 0) {
+      cat.node.posts.edges[0].cursor = '';
+      if (cat.node.posts.edges.length <= catPostsPerPage) {
+        createPage({
+          path: `categories/${cat.node.slug}/page/${catsPageNum}`,
+          component: slash(CatsIndex),
+          context: {
+            id: cat.node.id,
+            startCursor: cat.node.posts.edges[0].cursor,
+            catsPageNum,
+            totalCatsPages,
+          },
+        });
+      } else {
+        for (let i = 0; i < cat.node.posts.edges.length; i += catPostsPerPage) {
+          createPage({
+            path: `categories/${cat.node.slug}/page/${catsPageNum}`,
+            component: slash(CatsIndex),
+            context: {
+              id: cat.node.id,
+              startCursor: cat.node.posts.edges[i].cursor,
+              catsPageNum,
+              totalCatsPages,
+            },
+          });
+          catsPageNum += 1;
+        }
+      }
+    }
   });
 
   // ////////////////////
