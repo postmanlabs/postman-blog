@@ -26,25 +26,31 @@ module.exports = {
   ),
   StaticQuery: jest.fn(),
   useStaticQuery: jest.fn().mockImplementation(() => ({
-    // allMarkdownRemark: {
-    //   nodes: [
-    //     {
-    //       fields: { slug: '/docs/foo/slug/' },
-    //       frontmatter: { title: 'slug' },
-    //       id: 'jfkdlsajfkldsa',
-    //     },
-    //     {
-    //       fields: { slug: '/tags/foo/nested/nestedslug/' },
-    //       frontmatter: { title: 'nested slug' },
-    //       id: 'jfkdlsajfkldsfa',
-    //     },
-    //     {
-    //       fields: { slug: '/categories/bar/otherslug/' },
-    //       frontmatter: { title: 'otherslug' },
-    //       id: 'jfkdlsajfkldsfa',
-    //     },
-    //   ],
-    // },
+    site: {
+      siteMetadata: {
+       
+      }
+    },
+    wpgraphql: {
+      posts: [
+        {
+        edges: {
+          node: {
+            id: 'cG9zdDo2NzI1',
+          tags: [
+            {
+            edges: {
+              node: {
+                id: "cG9zdF90YWc6MTUw"
+              }
+            }
+          },
+        ]
+          },
+        }
+      },
+      ], // posts
+    }, // wpgraphql
     headerLinks: {
       value: '{"links":[{"name":"Getting Started","url":"/getting-started/"},{"name":"Concepts","url":"/concepts/"},{"name":"Reference","url":"/reference/"},{"name":"Docs","url":"/docs/"},{"name":"Dashboard","url":"https://app.getpostman.com/","cta":true}],"title":"Learning Center"}',
     },
