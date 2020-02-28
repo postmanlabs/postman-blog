@@ -1,0 +1,43 @@
+@import '../Shared/_variables.scss';
+
+.page-item {
+ 
+  a {
+    background-color: $gray-1;
+    color: $postman-orange;
+   
+   &:hover {
+    background-color: $white;
+    color: $gray-3;
+   }
+  }
+}
+
+
+.page-item-prev {
+  .page-link {
+    border-radius: 3px 1px 1px 3px;
+  }
+  a {
+    color: $gray-2;
+    background-color: $gray-1;
+    &:hover {
+      background-color: $white;
+      color: $postman-orange;
+    }
+  }
+}
+
+.page-item-next {
+  .page-link {
+    border-radius: 1px 3px 3px 1px;
+  }
+  a {
+    color: $gray-2;
+    background-color: $gray-1;
+    &:hover {
+      background-color: $white;
+      color: $postman-orange;
+    }
+  }
+}
