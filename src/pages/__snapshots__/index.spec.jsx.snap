@@ -183,7 +183,13 @@ Array [
       <div
         className="post"
       >
-        <a>
+        <a
+          style={
+            Object {
+              "color": "#282828",
+            }
+          }
+        >
           <h1
             dangerouslySetInnerHTML={
               Object {
@@ -215,7 +221,7 @@ Array [
             category:
              
             <a
-              href="category/undefined"
+              href="categories/undefined/page/1"
             />
              
           </p>
