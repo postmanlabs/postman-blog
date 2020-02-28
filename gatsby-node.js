@@ -298,7 +298,6 @@ exports.createPages = async ({ graphql, actions }) => {
         });
       } else {
         for (let i = 0; i < cat.node.posts.edges.length; i += catPostsPerPage) {
-          console.log(`categories/${cat.node.slug}/page/${catsPageNum}`)
           createPage({
             path: `categories/${cat.node.slug}/page/${catsPageNum}`,
             component: slash(CatsIndex),
