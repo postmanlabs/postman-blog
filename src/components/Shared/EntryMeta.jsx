@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Link } from 'gatsby';
 import './_entry-meta.scss';
-import moment from "moment/moment";
+import moment from 'moment/moment';
 
 // receive id as prop? and match the id of the post with the author
 // and print author gravatar, name and published date in this component
@@ -33,7 +33,7 @@ const EntryMeta = ({
         {' '}
         on
         {' '}
-        { moment(date).format(`MMM D, YYYY`) }
+        { moment(date).format('MMM D, YYYY') }
       </p>
       {category && (
         <p>

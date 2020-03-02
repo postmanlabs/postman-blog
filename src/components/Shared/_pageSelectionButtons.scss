@@ -1,7 +1,6 @@
 @import '../Shared/_variables.scss';
 
 .page-item {
- 
   a {
     background-color: $gray-1;
     color: $postman-orange;
@@ -13,6 +12,9 @@
   }
 }
 
+.pagination {
+  margin-left: 8px;
+}
 
 .page-item-prev {
   .page-link {
