@@ -107,7 +107,7 @@ class HeaderComponent extends React.Component {
             to="/"
           >
             <img className="header__logo" src={postmanLogo} alt="postman logo" />
-            <span className="header__title">Blog</span>
+            <span className="header__title">{data.title}</span>
           </Link>
         </div>
 
