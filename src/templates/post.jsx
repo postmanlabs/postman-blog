@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import '../components/_layout.scss';
 import './_post.scss';
 
+
 import parse from 'html-react-parser';
 import JustComments from 'gatsby-plugin-just-comments';
 import Layout from '../components/layout';
@@ -61,6 +62,7 @@ const BlogPostTemplate = ({ data }) => {
   const { content } = data.wpgraphql.post;
   let name;
   let avatar;
+
   if (data.wpgraphql.post.author) {
     name = data.wpgraphql.post.author.name;
     avatar = data.wpgraphql.post.author.avatar.url;
@@ -74,16 +76,22 @@ const BlogPostTemplate = ({ data }) => {
   const { slug } = data.wpgraphql.post;
 
   const tags = post.tags.edges;
-
+  const categories = data.wpgraphql.post.categories.edges[0].node;
   return (
     <Layout>
       <SEO title="post" />
       <div className="indexPost">
         <FluidImage image={featuredImage} />
         <a href={slug}>
-          <h1 dangerouslySetInnerHTML={{ __html: title }} />
+          <h1 className="h2" dangerouslySetInnerHTML={{ __html: title }} />
         </a>
-        <EntryMeta name={name} avatar={avatar} date={date} tags={tags} />
+        <EntryMeta 
+          name={name}
+          avatar={avatar}
+          date={date}
+          tags={tags}
+          categories={categories}
+        />
 
         <div>
           {parse(content, {

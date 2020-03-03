@@ -33,30 +33,32 @@ export const tagsPostsQuery = graphql`
                 sourceUrl
                 altText
               }
-              tags {
-                edges {
-                  node {
-                    id
-                    name
-                    slug
-                  }
-                }
-              }
-              categories {
-                edges {
-                  node {
-                    id
-                    name
-                    slug
-                  }
-                }
-              }
+              
             }
           }
         }
       }
     } 
   }`;
+
+  // tags {
+  //   edges {
+  //     node {
+  //       id
+  //       name
+  //       slug
+  //     }
+  //   }
+  // }
+  // categories {
+  //   edges {
+  //     node {
+  //       id
+  //       name
+  //       slug
+  //     }
+  //   }
+  // }
 const TagsPostsList = ({ data, pageContext }) => {
   const { tag } = data.wpgraphql;
   const title = tag.name;
@@ -74,13 +76,23 @@ const TagsPostsList = ({ data, pageContext }) => {
       {posts.map((post) => {
         const postTitle = post.node.title;
         const postExcerpt = post.node.excerpt;
-        const tags = post.node.tags.edges;
-        const category = post.node.categories;
+        // const tags = post.node.tags.edges;
+        // const category = post.node.categories;
         const { slug, date } = post.node;
 
-        const { name } = post.node.author;
-        const avatar = post.node.author.avatar.url;
+        // const { name } = post.node.author;
+        // const avatar = post.node.author.avatar.url;
         const { featuredImage } = post.node;
+
+        let name;
+        let avatar;
+        if (post.node.author) {
+          name = post.node.author.name;
+          avatar = post.node.author.avatar.url;
+        } else {
+          name = 'Christina';
+          avatar = '';
+        }
 
         return (
           <div key={post.node.id} className="post">
@@ -88,7 +100,8 @@ const TagsPostsList = ({ data, pageContext }) => {
             <Link to={slug}>
               <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
             </Link>
-            <EntryMeta name={name} avatar={avatar} date={date} tags={tags} categories={category} />
+            {/* <EntryMeta name={name} avatar={avatar} date={date} tags={tags} categories={category} /> */}
+            <EntryMeta name={name} avatar={avatar} date={date}/>
             <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
           </div>
         );

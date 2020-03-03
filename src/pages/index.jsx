@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+// import '../components/_layout.scss'
 
 import FluidImage from '../components/FluidImage';
 import EntryMeta from '../components/Shared/EntryMeta';
@@ -13,6 +14,7 @@ const BlogIndex = ({ data }) => {
   const currentPage = 1;
   const { totalPages } = 28;
   const posts = data.wpgraphql.posts.edges;
+  
   return (
     <Layout>
       <SEO title="Home" />
@@ -20,29 +22,33 @@ const BlogIndex = ({ data }) => {
       {posts.map((post) => {
         const postTitle = post.node.title;
         const postExcerpt = post.node.excerpt;
-        const tags = post.node.tags.edges;
-
-        const categories = post.node.categories.edges[0].node;
-
+      
         const { slug, date } = post.node;
 
-        const { name } = post.node.author;
-        const avatar = post.node.author.avatar.url;
 
         const { featuredImage } = post.node;
+
+        let name;
+        let avatar;
+        if (post.node.author) {
+          name = post.node.author.name;
+          avatar = post.node.author.avatar.url;
+        } else {
+          name = 'Christina';
+          avatar = '';
+        }
+        
 
         return (
           <div key={post.node.id} className="post">
             <FluidImage image={featuredImage} />
-            <a href={slug} style={{ color: '#282828' }}>
-              <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
+            <a href={slug} style={{"color": "#282828"}}>
+              <h1 className="h2" dangerouslySetInnerHTML={{ __html: postTitle }} />
             </a>
             <EntryMeta
               name={name}
               avatar={avatar}
               date={date}
-              tags={tags}
-              categories={categories}
             />
             <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
           </div>

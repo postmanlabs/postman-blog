@@ -8,6 +8,12 @@
     height: 50px;
   }
 
+  .header__homelink {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   .header__title {
     vertical-align: middle;
     margin-left: 20px;
@@ -63,6 +69,13 @@
   100% {max-height: 0px;}
 }
 
+div.navbar-brand.header__brand {
+  margin-right: 0px;
+}
+
+// div.form-inline.header__search {
+//   padding: 0px;
+// }
 
 .searchbox {
   width: 100%;
