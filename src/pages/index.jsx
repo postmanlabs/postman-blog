@@ -34,12 +34,12 @@ const BlogIndex = ({ data }) => {
         let avatar;
         if (post.node.author) {
           name = post.node.author.name;
-          avatar = post.author.node.avatar.url;
+          avatar = post.node.author.avatar.url;
         } else {
           name = 'Christina';
           avatar = '';
         }
-       
+        
 
         return (
           <div key={post.node.id} className="post">

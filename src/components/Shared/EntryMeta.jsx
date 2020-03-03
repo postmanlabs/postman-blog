@@ -9,7 +9,7 @@ import moment from 'moment/moment';
 
 // useStaticQuery is used in components
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const EntryMeta = ({
   name, avatar, date, tags, categories,
