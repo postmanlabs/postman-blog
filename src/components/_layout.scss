@@ -10,20 +10,33 @@
   overflow-x: hidden;
 }
 
+.h1,
 h1 {
-  font-size: 48px !important;
-  line-height: 1.2083333333 !important;
+  font-size: 48px;
+  line-height: 1.1666666667; /* 56 px */
+  margin: 0 0 32px 0;
   color: $gray-3;
 }
 
+.h2, 
 h2 {
-  font-size: 38px !important;
-  line-height: 1.2631578947 !important;
+  font-size: 36px;
+  line-height: 1.2222222222; /* 44px */
+  margin: 0 0 24px 0;
 }
 
+.h3,
 h3 {
-  font-size: 30px !important;
-  line-height: 1.2666666667 !important;
+  font-size: 36px!important;
+  line-height: 1.2222222222; /* 44px */
+  margin: 0 0 16px 0;
+}
+
+.h4,
+h4 {
+  font-size: 24px;
+  line-height: 1.1666666667; /* 28px */
+  margin: 0 0 8px 0;
 }
 
 p {
@@ -71,4 +84,16 @@ p {
 
 div.col-sm-7.doc-page {
   padding: 64px 72px;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  // font-family: 'Roboto', 'Franklin Gothic Medium', Tahoma, sans-serif;
+  font-weight: 500; /* explicit for Roboto's medium */
 }

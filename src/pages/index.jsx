@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+// import '../components/_layout.scss'
 
 import FluidImage from '../components/FluidImage';
 import EntryMeta from '../components/Shared/EntryMeta';
@@ -21,10 +22,7 @@ const BlogIndex = ({ data }) => {
       {posts.map((post) => {
         const postTitle = post.node.title;
         const postExcerpt = post.node.excerpt;
-        const tags = post.node.tags.edges;
-
-        const categories = post.node.categories.edges[0].node;
-
+      
         const { slug, date } = post.node;
 
 
@@ -44,15 +42,13 @@ const BlogIndex = ({ data }) => {
         return (
           <div key={post.node.id} className="post">
             <FluidImage image={featuredImage} />
-            <a href={slug} style={{ color: '#282828' }}>
-              <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
+            <a href={slug} style={{"color": "#282828"}}>
+              <h1 className="h2" dangerouslySetInnerHTML={{ __html: postTitle }} />
             </a>
             <EntryMeta
               name={name}
               avatar={avatar}
               date={date}
-              tags={tags}
-              categories={categories}
             />
             <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
           </div>
