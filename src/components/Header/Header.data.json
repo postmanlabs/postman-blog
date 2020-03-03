@@ -1,14 +1,17 @@
 {
   "links": [
     {
-      "name": "Home", 
-      "url": "/"
+      "name": "Updates",
+      "url": "https://blog.postman.com/updates/"
     },{
-      "name": "Documentation",
-      "url": "https://learning.postman.com"
+      "name": "Tutorials",
+      "url": "https://blog.postman.com/tutorials/"
     },{
-      "name": "Jobs",
-      "url": "https://www.postman.com/jobs"
+      "name": "Case Studies",
+      "url": "https://blog.postman.com/casestudies/"
+    },{
+      "name": "News",
+      "url": "https://blog.postman.com/news/"
     },{
       "name": "Dashboard",
       "url": "https://app.getpostman.com/",
