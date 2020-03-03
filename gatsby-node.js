@@ -287,7 +287,7 @@ exports.createPages = async ({ graphql, actions }) => {
       cat.node.posts.edges[0].cursor = '';
       if (cat.node.posts.edges.length <= catPostsPerPage) {
         createPage({
-          path: `categories/${cat.node.slug}/page/${catsPageNum}`,
+          path: `${cat.node.slug}/page/${catsPageNum}`,
           component: slash(CatsIndex),
           context: {
             id: cat.node.id,
@@ -299,7 +299,7 @@ exports.createPages = async ({ graphql, actions }) => {
       } else {
         for (let i = 0; i < cat.node.posts.edges.length; i += catPostsPerPage) {
           createPage({
-            path: `categories/${cat.node.slug}/page/${catsPageNum}`,
+            path: `${cat.node.slug}/page/${catsPageNum}`,
             component: slash(CatsIndex),
             context: {
               id: cat.node.id,

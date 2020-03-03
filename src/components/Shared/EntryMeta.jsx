@@ -39,7 +39,7 @@ const EntryMeta = ({
         <p>
           category:
           {' '}
-          <a href={`categories/${category.slug}/page/1`}>{category.name}</a>
+          <a href={`${category.slug}/page/1`}>{category.name}</a>
           {' '}
         </p>
       )}

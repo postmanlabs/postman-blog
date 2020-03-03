@@ -98,7 +98,7 @@ const CatsPostsList = ({ data, pageContext }) => {
         );
       })}
       {totalCatsPages > 1 && (
-        <PageSelectionButtons currentPage={catsPageNum} totalPages={totalCatsPages} prefix={`/categories/${category.slug}`} />
+        <PageSelectionButtons currentPage={catsPageNum} totalPages={totalCatsPages} prefix={`${category.slug}`} />
       )}
 
     </Layout>
