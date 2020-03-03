@@ -11,56 +11,53 @@ import FluidImage from '../components/FluidImage';
 export const tagsPostsQuery = graphql`
   query GET_PAGE_POSTS_OF_TAG($id: ID!, $startCursor: String!) {
     wpgraphql {
-        tag(id: $id){
-            name
-            slug
-            posts (first: 10, after: $startCursor) {
-              edges {
-                node {
-                  id
-                  title
-                  excerpt
-                  date
-                  slug
-                  uri
-                  author {
+      tag(id: $id) {
+        name
+        slug
+        posts(first: 10, after: $startCursor) {
+          edges {
+            node {
+              id
+              title
+              excerpt
+              date
+              slug
+              uri
+              author {
+                name
+                avatar {
+                  url
+                }
+              }
+              featuredImage {
+                sourceUrl
+                altText
+              }
+              tags {
+                edges {
+                  node {
+                    id
                     name
-                    avatar {
-                      url
-                    }
+                    slug
                   }
-                  featuredImage {
-                    sourceUrl
-                    altText
-                  }
-                  tags {
-                    edges {
-                      node {
-                        id
-                        name
-                        slug
-                      }
-                    }
-                  }
-                  categories {
-                    edges {
-                      node {
-                        id
-                        name
-                        slug
-                      }
-                    }
+                }
+              }
+              categories {
+                edges {
+                  node {
+                    id
+                    name
+                    slug
                   }
                 }
               }
             }
           }
         }
-  }
-`;
-// { data }
+      }
+    } 
+  }`;
 const TagsPostsList = ({ data, pageContext }) => {
-//   const { post } = data.wpgraphql
   const { tag } = data.wpgraphql;
   const title = tag.name;
   const posts = tag.posts.edges;

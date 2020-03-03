@@ -138,8 +138,6 @@ exports.createPages = async ({ graphql, actions }) => {
   // ////////////////////
   // Creating TAGS pages
   // ////////////////////
-
-  const tagsResults = path.resolve('./src/templates/tagResults.jsx');
   // Below makes pages to display all posts of a given tag
 
   // For some reason, only the first 100 tags are being returned from query?
@@ -232,9 +230,6 @@ exports.createPages = async ({ graphql, actions }) => {
   // ////////////////////
   // Creating Categories pages
   // ////////////////////
-
-  const categoriesResults = path.resolve('./src/templates/categoriesResults.jsx');
-
   const getCategoriesResults = await graphql(`
   {
     wpgraphql {

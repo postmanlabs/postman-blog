@@ -56,11 +56,9 @@ export const catsPostsQuery = graphql`
             }
           }
         }
-  }
-`;
-// { data }
+      }`;
+
 const CatsPostsList = ({ data, pageContext }) => {
-//   const { post } = data.wpgraphql
   const { category } = data.wpgraphql;
   const title = category.name;
   const posts = category.posts.edges;
