@@ -73,6 +73,17 @@ const categoriesPostsList = ({ data }) => {
 
         const { featuredImage } = post.node;
 
+        // let name;
+        // let avatar;
+        // if (post.node.author) {
+        //   name = post.node.author.name;
+        //   avatar = post.node.author.avatar.url;
+        // } else {
+        //   name = 'Christina';
+        //   avatar = '';
+        // }
+        
+
         return (
           <div key={post.node.id} className="post">
             <FluidImage image={featuredImage} />
