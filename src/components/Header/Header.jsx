@@ -162,7 +162,7 @@ class HeaderComponent extends React.Component {
 
                 <Index indexName="docs">
                   <div className={!hasInput ? 'input-empty' : 'input-value'} style={{ top: '350px' }}>
-                    <h2>Learning Center </h2>
+                    <h2>Learning Center</h2>
                     <NextHits hitComponent={Hits} />
                     <Configure hitsPerPage={2} />
                   </div>
