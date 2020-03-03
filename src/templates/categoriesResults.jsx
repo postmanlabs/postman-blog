@@ -87,9 +87,6 @@ const categoriesPostsList = ({ data }) => {
         return (
           <div key={post.node.id} className="post">
             <FluidImage image={featuredImage} />
-            {console.log('name', name)}
-            { console.log('ava', avatar)}
-            { console.log('data', data)}
             <Link to={slug}>
               <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
             </Link>

@@ -66,8 +66,6 @@ const CatsPostsList = ({ data, pageContext }) => {
   const posts = category.posts.edges;
   const { totalCatsPages, catsPageNum } = pageContext;
 
-  // console.log(data);
-
   return (
     <Layout>
       <SEO title="post" />
