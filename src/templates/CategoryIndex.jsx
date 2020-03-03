@@ -76,7 +76,6 @@ const CatsPostsList = ({ data, pageContext }) => {
         {title}
       </h1>
       {posts.map((post) => {
-  
         const postTitle = post.node.title;
         const postExcerpt = post.node.excerpt;
         const tags = post.node.tags.edges;

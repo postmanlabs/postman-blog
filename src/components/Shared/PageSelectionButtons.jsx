@@ -34,11 +34,13 @@ const PageSelectionButtons = ({ currentPage, totalPages, prefix }) => {
     nextPageButtons.push(<li key={currentIndex} className="page-item-next"><Link to={`${root}/page/${currentPage + 1}`} className="page-link" key={currentPage + 1}>Next</Link></li>);
   }
   return (
-    <nav aria-label="Page navigation example">
-      <ul className="pagination">
-        {nextPageButtons.map((button) => button)}
-      </ul>
-    </nav>
+    <div className="row">
+      <nav aria-label="Page navigation example">
+        <ul className="pagination">
+          {nextPageButtons.map((button) => button)}
+        </ul>
+      </nav>
+    </div>
   );
 };
 
