@@ -66,8 +66,6 @@ const CatsPostsList = ({ data, pageContext }) => {
   const posts = category.posts.edges;
   const { totalCatsPages, catsPageNum } = pageContext;
 
-  console.log(data);
-
   return (
     <Layout>
       <SEO title="post" />
@@ -82,9 +80,20 @@ const CatsPostsList = ({ data, pageContext }) => {
         const category = post.node.categories;
         const { slug, date } = post.node;
 
-        const { name } = post.node.author;
-        const avatar = post.node.author.avatar.url;
+        // const { name } = post.node.author;
+        // const avatar = post.node.author.avatar.url;
         const { featuredImage } = post.node;
+
+
+        let name;
+        let avatar;
+        if (post.node.author) {
+          name = post.node.author.name;
+          avatar = post.node.author.avatar.url;
+        } else {
+          name = 'Christina';
+          avatar = '';
+        }
 
         return (
           <div key={post.node.id} className="post">

@@ -14,6 +14,7 @@ const BlogIndex = ({ data }) => {
   const currentPage = 1;
   const { totalPages } = 28;
   const posts = data.wpgraphql.posts.edges;
+  
   return (
     <Layout>
       <SEO title="Home" />
@@ -23,9 +24,20 @@ const BlogIndex = ({ data }) => {
         const postExcerpt = post.node.excerpt;
       
         const { slug, date } = post.node;
-        const { name } = post.node.author;
-        const avatar = post.node.author.avatar.url;
+
+
         const { featuredImage } = post.node;
+
+        let name;
+        let avatar;
+        if (post.node.author) {
+          name = post.node.author.name;
+          avatar = post.node.author.avatar.url;
+        } else {
+          name = 'Christina';
+          avatar = '';
+        }
+        
 
         return (
           <div key={post.node.id} className="post">
