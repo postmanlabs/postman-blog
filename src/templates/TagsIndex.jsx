@@ -17,6 +17,14 @@ export const tagsPostsQuery = graphql`
         posts(first: 10, after: $startCursor) {
           edges {
             node {
+              tags {
+                edges {
+                  node {
+                    id
+                    
+                  }
+                }
+              }
               id
               title
               excerpt
@@ -68,6 +76,7 @@ const TagsPostsList = ({ data, pageContext }) => {
 
   return (
     <Layout>
+      {console.log('Tag on TagsIndex',tag)}
       <SEO title="post" />
       <h1>
         #

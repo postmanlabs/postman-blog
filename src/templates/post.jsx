@@ -79,6 +79,7 @@ const BlogPostTemplate = ({ data }) => {
   const categories = data.wpgraphql.post.categories.edges[0].node;
   return (
     <Layout>
+      
       <SEO title="post" />
       <div className="indexPost">
         <FluidImage image={featuredImage} />
@@ -92,7 +93,7 @@ const BlogPostTemplate = ({ data }) => {
           tags={tags}
           categories={categories}
         />
-
+{console.log('Tags on post.jsx',tags)}
         <div>
           {parse(content, {
             replace: (domNode) => {
