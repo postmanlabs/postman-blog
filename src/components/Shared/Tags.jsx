@@ -9,7 +9,7 @@ const TagsMeta = ({
   const category = categories;
 
   if (tags && tags.length > 0) {
-    tagsList = tags.map((tag) => <a key={tag.node.id} src={`tags/${tag.node.slug}/page/1`}>{tag.node.name}</a>);
+    tagsList = tags.map((tag) => <a key={tag.node.id} src={`/tags/${tag.node.slug}/page/1`}>{tag.node.name}</a>);
   }
   return (
     <div className="col-12">
@@ -19,7 +19,7 @@ const TagsMeta = ({
             <p className="categories"> 
               Categories:
               {' '}
-              <a href={`categories/${category.slug}/page/1`}>{category.name}</a>
+              <a href={`/${category.slug}/page/1`}>{category.name}</a>
             </p>
           )}
         </div>

@@ -6,6 +6,7 @@ import EntryMeta from '../components/Shared/EntryMeta';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
 import SEO from '../components/seo';
 import FluidImage from '../components/FluidImage';
+import HeroResults from '../components/Shared/HeroResults';
 
 
 export const tagsPostsQuery = graphql`
@@ -69,10 +70,7 @@ const TagsPostsList = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="post" />
-      <h1>
-        #
-        {title}
-      </h1>
+      <HeroResults title={tag} totalPosts={303} color={"orange"} />
       {posts.map((post) => {
         const postTitle = post.node.title;
         const postExcerpt = post.node.excerpt;
