@@ -5,16 +5,16 @@ import PropTypes from 'prop-types';
 import './_heroResults.scss';
 
 const HeroResults = ({
-  title, totalPosts, color
+  title, totalPosts
 }) => {
-  const height = 100;
-  
+  // For now, it'll randomly select a background color.
+  // We can set up a switch statement to change color based on category later on
+  let colorsArray = ["#6d7f91", "#fbe9f2", "#f4815b", "#f5f8fb", "#7d728e", "#f4f4f4"];
+  const color = colorsArray[Math.floor(Math.random() * colorsArray.length)];
   return (
-      <div className="row">
+      <div className="row hero-results__container" style={{backgroundColor: color}}>
         <div className="col-12">
-          <div className="d-flex justify-content-center align-items-center hero-results" style={{backgroundColor: color, height: height}}>
-            <h2>{`Now viewing ${totalPosts} posts for ${title.name[0].toUpperCase()}${title.name.slice(1)}`}</h2>
-          </div>
+          <h2>{`Now viewing ${totalPosts} posts for ${title[0].toUpperCase()}${title.slice(1)}`}</h2>
         </div>
       </div>
   );
