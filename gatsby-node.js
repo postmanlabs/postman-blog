@@ -138,8 +138,6 @@ exports.createPages = async ({ graphql, actions }) => {
   // ////////////////////
   // Creating TAGS pages
   // ////////////////////
-
-  const tagsResults = path.resolve('./src/templates/tagResults.jsx');
   // Below makes pages to display all posts of a given tag
 
   // For some reason, only the first 100 tags are being returned from query?
@@ -232,9 +230,6 @@ exports.createPages = async ({ graphql, actions }) => {
   // ////////////////////
   // Creating Categories pages
   // ////////////////////
-
-  const categoriesResults = path.resolve('./src/templates/categoriesResults.jsx');
-
   const getCategoriesResults = await graphql(`
   {
     wpgraphql {
@@ -287,7 +282,7 @@ exports.createPages = async ({ graphql, actions }) => {
       cat.node.posts.edges[0].cursor = '';
       if (cat.node.posts.edges.length <= catPostsPerPage) {
         createPage({
-          path: `categories/${cat.node.slug}/page/${catsPageNum}`,
+          path: `${cat.node.slug}/page/${catsPageNum}`,
           component: slash(CatsIndex),
           context: {
             id: cat.node.id,
@@ -299,7 +294,7 @@ exports.createPages = async ({ graphql, actions }) => {
       } else {
         for (let i = 0; i < cat.node.posts.edges.length; i += catPostsPerPage) {
           createPage({
-            path: `categories/${cat.node.slug}/page/${catsPageNum}`,
+            path: `${cat.node.slug}/page/${catsPageNum}`,
             component: slash(CatsIndex),
             context: {
               id: cat.node.id,

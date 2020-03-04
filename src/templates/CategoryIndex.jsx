@@ -33,34 +33,34 @@ export const catsPostsQuery = graphql`
                     sourceUrl
                     altText
                   }
-                  tags {
-                    edges {
-                      node {
-                        id
-                        name
-                        slug
-                      }
-                    }
-                  }
-                  categories {
-                    edges {
-                      node {
-                        id
-                        name
-                        slug
-                      }
-                    }
-                  }
+                  
                 }
               }
             }
           }
         }
-  }
-`;
-// { data }
+      }`;
+
+      // tags {
+      //   edges {
+      //     node {
+      //       id
+      //       name
+      //       slug
+      //     }
+      //   }
+      // }
+      // categories {
+      //   edges {
+      //     node {
+      //       id
+      //       name
+      //       slug
+      //     }
+      //   }
+      // }
+
 const CatsPostsList = ({ data, pageContext }) => {
-//   const { post } = data.wpgraphql
   const { category } = data.wpgraphql;
   const title = category.name;
   const posts = category.posts.edges;
@@ -76,8 +76,8 @@ const CatsPostsList = ({ data, pageContext }) => {
       {posts.map((post) => {
         const postTitle = post.node.title;
         const postExcerpt = post.node.excerpt;
-        const tags = post.node.tags.edges;
-        const category = post.node.categories;
+        // const tags = post.node.tags.edges;
+        // const category = post.node.categories;
         const { slug, date } = post.node;
 
         // const { name } = post.node.author;
@@ -101,13 +101,14 @@ const CatsPostsList = ({ data, pageContext }) => {
             <Link to={slug}>
               <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
             </Link>
-            <EntryMeta name={name} avatar={avatar} date={date} tags={tags} categories={category} />
+            {/* <EntryMeta name={name} avatar={avatar} date={date} tags={tags} categories={category} /> */}
+            <EntryMeta name={name} avatar={avatar} date={date}/>
             <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
           </div>
         );
       })}
       {totalCatsPages > 1 && (
-        <PageSelectionButtons currentPage={catsPageNum} totalPages={totalCatsPages} prefix={`/categories/${category.slug}`} />
+        <PageSelectionButtons currentPage={catsPageNum} totalPages={totalCatsPages} prefix={`${category.slug}`} />
       )}
 
     </Layout>
