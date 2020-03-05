@@ -2,16 +2,16 @@
   "links": [
     {
       "name": "Updates",
-      "url": "https://blog.postman.com/updates/"
+      "url": "/updates/page/1/"
     },{
       "name": "Tutorials",
-      "url": "https://blog.postman.com/tutorials/"
+      "url": "/tutorials/page/1/"
     },{
       "name": "Case Studies",
-      "url": "https://blog.postman.com/casestudies/"
+      "url": "/case-studies/page/1/"
     },{
       "name": "News",
-      "url": "https://blog.postman.com/news/"
+      "url": "/news/page/1/"
     },{
       "name": "Dashboard",
       "url": "https://app.getpostman.com/",
