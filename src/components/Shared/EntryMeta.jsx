@@ -21,7 +21,6 @@ const EntryMeta = ({
           </div>
         </div>
       </div>
- 
       <TagsMeta tags={tags} categories={categories} />
     </div>
   );

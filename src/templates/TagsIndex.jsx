@@ -18,6 +18,14 @@ export const tagsPostsQuery = graphql`
         posts(first: 10, after: $startCursor) {
           edges {
             node {
+              tags {
+                edges {
+                  node {
+                    id
+                    
+                  }
+                }
+              }
               id
               title
               excerpt

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './_tags.scss';
+import { Link } from 'gatsby'
 
 const TagsMeta = ({
   tags, categories
@@ -9,7 +10,7 @@ const TagsMeta = ({
   const category = categories;
 
   if (tags && tags.length > 0) {
-    tagsList = tags.map((tag) => <a key={tag.node.id} src={`/tags/${tag.node.slug}/page/1`}>{tag.node.name}</a>);
+    tagsList = tags.map((tag) => <Link key={tag.node.id} to={`/tags/${tag.node.slug}/page/1`}>{tag.node.name}</Link>);
   }
   return (
     <div className="col-12">
@@ -23,6 +24,7 @@ const TagsMeta = ({
             </p>
           )}
         </div>
+       
         <div className="col-sm-8">
           {tagsList && (
             <p className="tags">
