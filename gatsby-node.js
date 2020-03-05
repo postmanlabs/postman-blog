@@ -281,6 +281,7 @@ exports.createPages = async ({ graphql, actions }) => {
     // Would need to make multiple graphql calls to get all posts if more than 100
 
     if (cat.node.posts.edges.length !== 0) {
+      console.log("==============", cat.node.posts.edges.length)
       cat.node.posts.edges[0].cursor = '';
       if (cat.node.posts.edges.length <= catPostsPerPage) {
         createPage({
@@ -291,6 +292,7 @@ exports.createPages = async ({ graphql, actions }) => {
             startCursor: cat.node.posts.edges[0].cursor,
             catsPageNum,
             totalCatsPages,
+            totalNumberOfPosts: cat.node.posts.edges.length
           },
         });
       } else {
@@ -303,6 +305,7 @@ exports.createPages = async ({ graphql, actions }) => {
               startCursor: cat.node.posts.edges[i].cursor,
               catsPageNum,
               totalCatsPages,
+              totalNumberOfPosts: cat.node.posts.edges.length
             },
           });
           catsPageNum += 1;
