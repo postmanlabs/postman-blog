@@ -281,7 +281,6 @@ exports.createPages = async ({ graphql, actions }) => {
     // Would need to make multiple graphql calls to get all posts if more than 100
 
     if (cat.node.posts.edges.length !== 0) {
-      console.log("==============", cat.node.posts.edges.length)
       cat.node.posts.edges[0].cursor = '';
       if (cat.node.posts.edges.length <= catPostsPerPage) {
         createPage({
