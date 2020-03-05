@@ -20,7 +20,7 @@ const TagsMeta = ({
             <p className="categories"> 
               Categories:
               {' '}
-              <a href={`/categories/${category.slug}/page/1`}>{category.name}</a>
+              <a href={`/${category.slug}/page/1`}>{category.name}</a>
             </p>
           )}
         </div>
