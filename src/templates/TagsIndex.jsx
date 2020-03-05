@@ -87,10 +87,8 @@ const TagsPostsList = ({ data, pageContext }) => {
         const postExcerpt = post.node.excerpt;
         // const tags = post.node.tags.edges;
         // const category = post.node.categories;
+        
         const { slug, date } = post.node;
-
-        // const { name } = post.node.author;
-        // const avatar = post.node.author.avatar.url;
         const { featuredImage } = post.node;
 
         let name;
