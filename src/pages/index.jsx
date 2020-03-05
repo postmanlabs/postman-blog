@@ -18,7 +18,7 @@ const BlogIndex = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" />
-
+      <div className="container">
       {posts.map((post) => {
         const postTitle = post.node.title;
         const postExcerpt = post.node.excerpt;
@@ -55,6 +55,7 @@ const BlogIndex = ({ data }) => {
         );
       })}
       <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
+      </div>
     </Layout>
 
   );
