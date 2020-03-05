@@ -17,6 +17,14 @@ export const tagsPostsQuery = graphql`
         posts(first: 10, after: $startCursor) {
           edges {
             node {
+              tags {
+                edges {
+                  node {
+                    id
+                    
+                  }
+                }
+              }
               id
               title
               excerpt
@@ -78,10 +86,8 @@ const TagsPostsList = ({ data, pageContext }) => {
         const postExcerpt = post.node.excerpt;
         // const tags = post.node.tags.edges;
         // const category = post.node.categories;
-        const { slug, date } = post.node;
 
-        // const { name } = post.node.author;
-        // const avatar = post.node.author.avatar.url;
+        const { slug, date } = post.node;
         const { featuredImage } = post.node;
 
         let name;
