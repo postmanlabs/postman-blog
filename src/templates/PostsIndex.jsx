@@ -16,48 +16,49 @@ const PostsIndex = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="Home" />
+      <div className="container">
+        {posts.map((post) => {
+          const postTitle = post.node.title;
+          const postExcerpt = post.node.excerpt;
+          const tags = post.node.tags.edges;
 
-      {posts.map((post) => {
-        const postTitle = post.node.title;
-        const postExcerpt = post.node.excerpt;
-        const tags = post.node.tags.edges;
+          const categories = post.node.categories.edges[0].node;
+          const { slug, date } = post.node;
 
-        const categories = post.node.categories.edges[0].node;
-        const { slug, date } = post.node;
+          let name;
+          let avatar;
+          if (post.node && post.node.author) {
+            name = post.node.author.name;
+            avatar = post.node.author.avatar.url;
+          } else {
+            name = 'Christina';
+            avatar = '';
+          }
 
-        let name;
-        let avatar;
-        if (post.node && post.node.author) {
-          name = post.node.author.name;
-          avatar = post.node.author.avatar.url;
-        } else {
-          name = 'Christina';
-          avatar = '';
-        }
+          // const { name } = post.node.author;
+          // const avatar = post.node.author.avatar.url;
 
-        // const { name } = post.node.author;
-        // const avatar = post.node.author.avatar.url;
+          const { featuredImage } = post.node;
 
-        const { featuredImage } = post.node;
-
-        return (
-          <div key={post.node.id} className="post">
-            <FluidImage image={featuredImage} />
-            <a href={slug}>
-              <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
-            </a>
-            <EntryMeta
-              name={name}
-              avatar={avatar}
-              date={date}
-              tags={tags}
-              categories={categories}
-            />
-            <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
-          </div>
-        );
-      })}
-      <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
+          return (
+            <div key={post.node.id} className="post">
+              <FluidImage image={featuredImage} />
+              <a href={slug}>
+                <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
+              </a>
+              <EntryMeta
+                name={name}
+                avatar={avatar}
+                date={date}
+                tags={tags}
+                categories={categories}
+              />
+              <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+            </div>
+          );
+        })}
+        <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
+      </div>
     </Layout>
 
   );

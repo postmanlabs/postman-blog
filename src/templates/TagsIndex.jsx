@@ -6,6 +6,7 @@ import EntryMeta from '../components/Shared/EntryMeta';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
 import SEO from '../components/seo';
 import FluidImage from '../components/FluidImage';
+import HeroResults from '../components/Shared/HeroResults';
 
 
 export const tagsPostsQuery = graphql`
@@ -71,51 +72,49 @@ const TagsPostsList = ({ data, pageContext }) => {
   const { tag } = data.wpgraphql;
   const title = tag.name;
   const posts = tag.posts.edges;
-  const { totalTagsPages, tagsPageNum } = pageContext;
-
+  const { totalTagsPages, tagsPageNum, totalNumberOfPosts } = pageContext;
 
   return (
     <Layout>
-      <SEO title="post" />
-      <h1>
-        #
-        {title}
-      </h1>
-      {posts.map((post) => {
-        const postTitle = post.node.title;
-        const postExcerpt = post.node.excerpt;
-        // const tags = post.node.tags.edges;
-        // const category = post.node.categories;
-
-        const { slug, date } = post.node;
-        const { featuredImage } = post.node;
-
-        let name;
-        let avatar;
-        if (post.node.author) {
-          name = post.node.author.name;
-          avatar = post.node.author.avatar.url;
-        } else {
-          name = 'Christina';
-          avatar = '';
-        }
-
-        return (
-          <div key={post.node.id} className="post">
-            <FluidImage image={featuredImage} />
-            <Link to={slug}>
-              <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
-            </Link>
-            {/* <EntryMeta name={name} avatar={avatar} date={date} tags={tags} categories={category} /> */}
-            <EntryMeta name={name} avatar={avatar} date={date}/>
-            <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
-          </div>
-        );
-      })}
-      {totalTagsPages > 1 && (
-        <PageSelectionButtons currentPage={tagsPageNum} totalPages={totalTagsPages} prefix={`/tags/${tag.slug}`} />
-      )}
-
+      <SEO title={title} />
+      <HeroResults title={title} totalPosts={totalNumberOfPosts}/>
+      <div className="container">
+        <div className="row">
+          {posts.map((post) => {
+            const postTitle = post.node.title;
+            const postExcerpt = post.node.excerpt;
+            // const tags = post.node.tags.edges;
+            // const category = post.node.categories;
+            const { slug, date } = post.node;
+            // const { name } = post.node.author;
+            // const avatar = post.node.author.avatar.url;
+            const { featuredImage } = post.node;
+            let name;
+            let avatar;
+            if (post.node.author) {
+              name = post.node.author.name;
+              avatar = post.node.author.avatar.url;
+            } else {
+              name = 'Christina';
+              avatar = '';
+            }
+            return (
+              <div key={post.node.id} className="post">
+                <FluidImage image={featuredImage} />
+                <Link to={slug}>
+                  <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
+                </Link>
+                {/* <EntryMeta name={name} avatar={avatar} date={date} tags={tags} categories={category} /> */}
+                <EntryMeta name={name} avatar={avatar} date={date}/>
+                <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+              </div>
+            );
+          })}
+        </div>
+        {totalTagsPages > 1 && (
+          <PageSelectionButtons currentPage={tagsPageNum} totalPages={totalTagsPages} prefix={`/tags/${tag.slug}`} />
+        )}
+      </div>
     </Layout>
   );
 };

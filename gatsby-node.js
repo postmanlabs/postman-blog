@@ -180,11 +180,11 @@ exports.createPages = async ({ graphql, actions }) => {
   const tags = getTagsResults.data.wpgraphql.tags.edges;
   const tagsPageInfo = getTagsResults.data.wpgraphql.tags.pageInfo;
 
-
   const allTagsArray = await fetchAllItems(tagsPageInfo, tags, 'tags', 'id name slug posts(first: 100) { edges { node { title id } cursor } }');
 
   const TagsIndex = path.resolve('./src/templates/TagsIndex.jsx');
   const tagsPostsPerPage = 10;
+  
   // const totalTagsPages = Math.floor((allTagsArray.length / tagsPostsPerPage));
   // We make a page for each tag
   // But we need to paginate each tag's posts based on how many posts each tag has.
@@ -207,6 +207,7 @@ exports.createPages = async ({ graphql, actions }) => {
             startCursor: tag.node.posts.edges[0].cursor,
             tagsPageNum,
             totalTagsPages,
+            totalNumberOfPosts: tag.node.posts.edges.length
           },
         });
       } else {
@@ -219,6 +220,7 @@ exports.createPages = async ({ graphql, actions }) => {
               startCursor: tag.node.posts.edges[i].cursor,
               tagsPageNum,
               totalTagsPages,
+              totalNumberOfPosts: tag.node.posts.edges.length
             },
           });
           tagsPageNum += 1;
@@ -289,6 +291,7 @@ exports.createPages = async ({ graphql, actions }) => {
             startCursor: cat.node.posts.edges[0].cursor,
             catsPageNum,
             totalCatsPages,
+            totalNumberOfPosts: cat.node.posts.edges.length
           },
         });
       } else {
@@ -301,6 +304,7 @@ exports.createPages = async ({ graphql, actions }) => {
               startCursor: cat.node.posts.edges[i].cursor,
               catsPageNum,
               totalCatsPages,
+              totalNumberOfPosts: cat.node.posts.edges.length
             },
           });
           catsPageNum += 1;
