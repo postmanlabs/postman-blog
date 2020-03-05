@@ -76,7 +76,6 @@ const TagsPostsList = ({ data, pageContext }) => {
 
   return (
     <Layout>
-      {console.log('Tag on TagsIndex',tag)}
       <SEO title="post" />
       <h1>
         #
@@ -87,7 +86,7 @@ const TagsPostsList = ({ data, pageContext }) => {
         const postExcerpt = post.node.excerpt;
         // const tags = post.node.tags.edges;
         // const category = post.node.categories;
-        
+
         const { slug, date } = post.node;
         const { featuredImage } = post.node;
 

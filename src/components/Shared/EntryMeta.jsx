@@ -21,7 +21,6 @@ const EntryMeta = ({
           </div>
         </div>
       </div>
-      {console.log('Tag on EntryMeta.jsx',tags)}
       <TagsMeta tags={tags} categories={categories} />
     </div>
   );

@@ -93,7 +93,6 @@ const BlogPostTemplate = ({ data }) => {
           tags={tags}
           categories={categories}
         />
-{console.log('Tags on post.jsx',tags)}
         <div>
           {parse(content, {
             replace: (domNode) => {
