@@ -3,8 +3,6 @@ import { graphql } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-// import '../components/_layout.scss'
-
 import FluidImage from '../components/FluidImage';
 import EntryMeta from '../components/Shared/EntryMeta';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
@@ -22,11 +20,8 @@ const BlogIndex = ({ data }) => {
       {posts.map((post) => {
         const postTitle = post.node.title;
         const postExcerpt = post.node.excerpt;
-      
-        const { slug, date } = post.node;
-
-
-        const { featuredImage } = post.node;
+        const authorSlug = post.node.author.slug;
+        const { slug, date, featuredImage } = post.node;
 
         let name;
         let avatar;
@@ -37,15 +32,15 @@ const BlogIndex = ({ data }) => {
           name = 'Christina';
           avatar = '';
         }
-        
 
         return (
           <div key={post.node.id} className="post">
             <FluidImage image={featuredImage} />
             <a href={slug} style={{"color": "#282828"}}>
-              <h1 className="h2" dangerouslySetInnerHTML={{ __html: postTitle }} />
+              <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
             </a>
             <EntryMeta
+              authorSlug={authorSlug}
               name={name}
               avatar={avatar}
               date={date}
@@ -57,7 +52,6 @@ const BlogIndex = ({ data }) => {
       <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
       </div>
     </Layout>
-
   );
 };
 
@@ -78,6 +72,7 @@ export const First10Posts = graphql`
             uri
             author {
               name
+              slug
               avatar {
                 url
               }

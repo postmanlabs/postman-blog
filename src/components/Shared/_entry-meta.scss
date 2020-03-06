@@ -6,6 +6,12 @@
 
 .entry-meta-data {
   margin-left: -24px;
+  a {
+    color: $gray-2;
+    &:hover {
+      color: $postman-orange;
+    }
+  }
 }
 
 
