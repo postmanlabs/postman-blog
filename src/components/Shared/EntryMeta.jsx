@@ -1,11 +1,11 @@
 import React from 'react';
-// import { Link } from 'gatsby';
+import { Link } from 'gatsby';
 import './_entry-meta.scss';
 import moment from "moment/moment";
 import TagsMeta from '../Shared/Tags';
 
 const EntryMeta = ({
-  name, avatar, date, tags, categories,
+  name, avatar, authorSlug, date, tags, categories,
 }) => {
   return (
     <div className="row">
@@ -15,7 +15,7 @@ const EntryMeta = ({
             <img className="entry-meta-img" src={avatar} alt={name} />
           </div>
           <div className="col-11 entry-meta-data">
-            {name}
+            <Link to={`/${authorSlug}/page/1`}>{name}</Link>
             {' '}
             <span style={{"marginLeft": "16px"}}>{ moment(date).format(`MMM D, YYYY`) }</span>
           </div>
