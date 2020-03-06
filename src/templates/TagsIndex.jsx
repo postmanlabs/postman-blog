@@ -102,7 +102,7 @@ const TagsPostsList = ({ data, pageContext }) => {
               <div key={post.node.id} className="post">
                 <FluidImage image={featuredImage} />
                 <Link to={slug}>
-                  <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
+                  <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
                 </Link>
                 {/* <EntryMeta name={name} avatar={avatar} date={date} tags={tags} categories={category} /> */}
                 <EntryMeta name={name} avatar={avatar} date={date}/>
