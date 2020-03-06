@@ -81,7 +81,7 @@ const BlogPostTemplate = ({ data }) => {
     <Layout>
       
       <SEO title="post" />
-      <div className="indexPost">
+      <div className="indexPost container">
         <FluidImage image={featuredImage} />
         <a href={slug}>
           <h1 className="h2" dangerouslySetInnerHTML={{ __html: title }} />
