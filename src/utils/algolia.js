@@ -33,6 +33,8 @@ const pageQuery = `{
             edges {
               node {
                 id
+                name
+                slug
               }
             }
           }
