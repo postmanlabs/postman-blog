@@ -43,7 +43,7 @@ const BlogIndex = ({ data }) => {
           <div key={post.node.id} className="post">
             <FluidImage image={featuredImage} />
             <a href={slug} style={{"color": "#282828"}}>
-              <h1 className="h2" dangerouslySetInnerHTML={{ __html: postTitle }} />
+              <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
             </a>
             <EntryMeta
               name={name}

@@ -44,7 +44,7 @@ const PostsIndex = ({ data, pageContext }) => {
             <div key={post.node.id} className="post">
               <FluidImage image={featuredImage} />
               <a href={slug}>
-                <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
+                <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
               </a>
               <EntryMeta
                 name={name}
