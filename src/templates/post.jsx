@@ -30,6 +30,7 @@ export const postPageQuery = graphql`
             url
           }
           name
+          slug
         }
         date
         tags {
@@ -60,6 +61,9 @@ const BlogPostTemplate = ({ data }) => {
 
   const { title } = data.wpgraphql.post;
   const { content } = data.wpgraphql.post;
+  const authorSlug = data.wpgraphql.post.author.slug;
+  console.log('post.jsx authorSlug', data)
+  
   let name;
   let avatar;
 
@@ -88,6 +92,7 @@ const BlogPostTemplate = ({ data }) => {
         </a>
         <EntryMeta 
           name={name}
+          authorSlug={authorSlug}
           avatar={avatar}
           date={date}
           tags={tags}
