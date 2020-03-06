@@ -51,9 +51,14 @@ const authorPostsList = ({ data, pageContext }) => {
 
   let title = user.firstName || 'The Postman Team'
 
+  console.log(user)
+
+  let fullName;
+  fullName = user.firstName && user.lastName ? `${user.firstName} ${user.lastName}` : title;
+
   return (
     <Layout>
-      <SEO title="author" />
+      <SEO title={fullName} />
       <HeroResults title={title} totalPosts={totalNumberOfPosts}/>
       <div className="container">
         {posts.map((post) => {
