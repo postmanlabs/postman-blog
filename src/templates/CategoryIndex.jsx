@@ -34,24 +34,7 @@ export const catsPostsQuery = graphql`
                     sourceUrl
                     altText
                   }
-                  tags {
-                    edges {
-                      node {
-                        id
-                        name
-                        slug
-                      }
-                    }
-                  }
-                  categories {
-                    edges {
-                      node {
-                        id
-                        name
-                        slug
-                      }
-                    }
-                  }
+                  
                 }
               }
             }
