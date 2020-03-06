@@ -24,6 +24,7 @@ export const authorPostsQuery = graphql`
               id
               excerpt
               title
+              slug
               author {
                 name
                 avatar {
@@ -43,14 +44,12 @@ export const authorPostsQuery = graphql`
 
 const authorPostsList = ({ data, pageContext }) => {
   const { user } = data.wpgraphql;
-  let title;
-  if (user.firstName) {
-    title = user.firstname
-  } else {
-    title = 'The Postman Team'
-  }
+  
   const { totalAuthorPages, authorPageNum, totalNumberOfPosts } = pageContext;
   const posts = data.wpgraphql.user.posts.edges;
+  const authorSlug =  data.wpgraphql.user.slug;
+
+  let title = user.firstName || 'The Postman Team'
 
   return (
     <Layout>
@@ -77,13 +76,18 @@ const authorPostsList = ({ data, pageContext }) => {
               <Link to={slug}>
                 <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
               </Link>
-              <EntryMeta name={name} avatar={avatar} date={date}/>
+              <EntryMeta 
+                authorSlug={authorSlug} 
+                name={name} 
+                avatar={avatar} 
+                date={date}
+              />
               <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
             </div>
           )
         })}
         {totalAuthorPages > 1 && (
-          <PageSelectionButtons currentPage={authorPageNum} totalPages={totalAuthorPages} prefix={`${category.slug}`} />
+          <PageSelectionButtons currentPage={authorPageNum} totalPages={totalAuthorPages} prefix={`${user.slug}`} />
         )}
       </div>
     </Layout>

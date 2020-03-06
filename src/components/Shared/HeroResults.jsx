@@ -11,6 +11,7 @@ const HeroResults = ({
   // We can set up a switch statement to change color based on category later on
   let colorsArray = ["#6d7f91", "#fbe9f2", "#f4815b", "#f5f8fb", "#7d728e", "#f4f4f4"];
   const color = colorsArray[Math.floor(Math.random() * colorsArray.length)];
+
   return (
       <div className="row hero-results__container" style={{backgroundColor: color}}>
         <div className="col-12">
