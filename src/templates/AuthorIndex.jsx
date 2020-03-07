@@ -55,7 +55,7 @@ const authorPostsList = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title={fullName} />
-      <HeroResults title={title} totalPosts={totalNumberOfPosts}/>
+      <HeroResults title={title} totalPosts={totalNumberOfPosts} />
       <div className="container">
         {posts.map((post) => {
           const postTitle = post.node.title;

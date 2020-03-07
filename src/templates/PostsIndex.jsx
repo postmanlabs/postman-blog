@@ -14,7 +14,7 @@ const PostsIndex = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <div className="container" style={{marginTop: "120px"}}>
+      <div className="container" style={{ marginTop: '120px' }}>
         {posts.map((post) => {
           const postTitle = post.node.title;
           const postExcerpt = post.node.excerpt;

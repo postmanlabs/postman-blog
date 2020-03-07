@@ -15,7 +15,7 @@ const BlogIndex = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <div className="container" style={{paddingTop: "120px"}}>
+      <div className="container" style={{ paddingTop: '120px' }}>
         {posts.map((post) => {
           const postTitle = post.node.title;
           const postExcerpt = post.node.excerpt;
