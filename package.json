@@ -15,6 +15,7 @@
     "gatsby-image": "^2.2.39",
     "gatsby-link": "^2.2.28",
     "gatsby-plugin-algolia": "^0.5.0",
+    "gatsby-plugin-extract-schema": "0.0.5",
     "gatsby-plugin-just-comments": "^0.2.4",
     "gatsby-plugin-manifest": "^2.2.31",
     "gatsby-plugin-offline": "^3.0.27",

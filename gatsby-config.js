@@ -94,6 +94,12 @@ module.exports = {
         queries,
         chunkSize: 10000, // default: 1000
       }
+    },
+    {
+      resolve: "gatsby-plugin-extract-schema",
+      options: {
+        dest: `${__dirname}/schema/blog_schema.json`,
+      },
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
