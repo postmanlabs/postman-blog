@@ -49,10 +49,13 @@ const authorPostsList = ({ data, pageContext }) => {
   const authorSlug = data.wpgraphql.user.slug;
   const title = user.firstName || 'The Postman Team';
 
+  let fullName;
+  fullName = user.firstName && user.lastName ? `${user.firstName} ${user.lastName}` : title;
+
   return (
     <Layout>
-      <SEO title="author" />
-      <HeroResults title={title} totalPosts={totalNumberOfPosts} />
+      <SEO title={fullName} />
+      <HeroResults title={title} totalPosts={totalNumberOfPosts}/>
       <div className="container">
         {posts.map((post) => {
           const postTitle = post.node.title;
