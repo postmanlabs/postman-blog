@@ -16,7 +16,7 @@ const PostsIndex = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <div className="container">
+      <div className="container" style={{marginTop: "120px"}}>
         {posts.map((post) => {
           const postTitle = post.node.title;
           const postExcerpt = post.node.excerpt;
@@ -43,8 +43,8 @@ const PostsIndex = ({ data, pageContext }) => {
           return (
             <div key={post.node.id} className="post">
               <FluidImage image={featuredImage} />
-              <a href={slug}>
-                <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
+              <a href={`/${slug}`}>
+                <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
               </a>
               <EntryMeta
                 name={name}
