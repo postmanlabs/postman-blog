@@ -69,7 +69,7 @@ const CatsPostsList = ({ data, pageContext }) => {
 
   return (
     <Layout>
-      <SEO title="post" />
+      <SEO title={title} />
       <HeroResults title={title} totalPosts={totalNumberOfPosts}/>
       <div className="container">
         {posts.map((post) => {

@@ -83,8 +83,7 @@ const BlogPostTemplate = ({ data }) => {
   const categories = data.wpgraphql.post.categories.edges[0].node;
   return (
     <Layout>
-      
-      <SEO title="post" />
+      <SEO title={title} />
       <div className="indexPost container post-body-container">
         <FluidImage image={featuredImage} />
         <a href={slug}>
