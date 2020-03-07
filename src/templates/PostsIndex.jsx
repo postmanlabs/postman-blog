@@ -1,9 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-
 import FluidImage from '../components/FluidImage';
 import EntryMeta from '../components/Shared/EntryMeta';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
@@ -16,29 +14,16 @@ const PostsIndex = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <div className="container" style={{marginTop: "120px"}}>
+      <div className="container" style={{ marginTop: '120px' }}>
         {posts.map((post) => {
           const postTitle = post.node.title;
           const postExcerpt = post.node.excerpt;
           const tags = post.node.tags.edges;
-
           const categories = post.node.categories.edges[0].node;
-          const { slug, date } = post.node;
+          const { slug, date, featuredImage } = post.node;
 
-          let name;
-          let avatar;
-          if (post.node && post.node.author) {
-            name = post.node.author.name;
-            avatar = post.node.author.avatar.url;
-          } else {
-            name = 'Christina';
-            avatar = '';
-          }
-
-          // const { name } = post.node.author;
-          // const avatar = post.node.author.avatar.url;
-
-          const { featuredImage } = post.node;
+          const name = post.node.author.name || 'The Postman Team';
+          const avatar = post.node.author.avatar.url || '';
 
           return (
             <div key={post.node.id} className="post">

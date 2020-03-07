@@ -1,6 +1,5 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import FluidImage from '../components/FluidImage';
@@ -12,44 +11,37 @@ const BlogIndex = ({ data }) => {
   const currentPage = 1;
   const { totalPages } = 28;
   const posts = data.wpgraphql.posts.edges;
-  
+
   return (
     <Layout>
       <SEO title="Home" />
-      <div className="container" style={{paddingTop: "120px"}}>
-      {posts.map((post) => {
-        const postTitle = post.node.title;
-        const postExcerpt = post.node.excerpt;
-        const authorSlug = post.node.author.slug;
-        const { slug, date, featuredImage } = post.node;
+      <div className="container" style={{ paddingTop: '120px' }}>
+        {posts.map((post) => {
+          const postTitle = post.node.title;
+          const postExcerpt = post.node.excerpt;
+          const authorSlug = post.node.author.slug;
+          const { slug, date, featuredImage } = post.node;
 
-        let name;
-        let avatar;
-        if (post.node.author) {
-          name = post.node.author.name;
-          avatar = post.node.author.avatar.url;
-        } else {
-          name = 'Christina';
-          avatar = '';
-        }
+          const name = post.node.author.name || 'The Postman Team';
+          const avatar = post.node.author.avatar.url || '';
 
-        return (
-          <div key={post.node.id} className="post">
-            <FluidImage image={featuredImage} />
-            <a href={slug} style={{"color": "#282828"}}>
-              <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
-            </a>
-            <EntryMeta
-              authorSlug={authorSlug}
-              name={name}
-              avatar={avatar}
-              date={date}
-            />
-            <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
-          </div>
-        );
-      })}
-      <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
+          return (
+            <div key={post.node.id} className="post">
+              <FluidImage image={featuredImage} />
+              <a href={slug} style={{ color: '#282828' }}>
+                <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
+              </a>
+              <EntryMeta
+                authorSlug={authorSlug}
+                name={name}
+                avatar={avatar}
+                date={date}
+              />
+              <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+            </div>
+          );
+        })}
+        <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
       </div>
     </Layout>
   );
