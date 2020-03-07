@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './_tags.scss';
-import { Link } from 'gatsby'
+import { Link } from 'gatsby';
 
 const TagsMeta = ({
-  tags, categories
+  tags, categories,
 }) => {
-  let tagsList; 
+  let tagsList;
   const category = categories;
 
   if (tags && tags.length > 0) {
@@ -17,14 +16,14 @@ const TagsMeta = ({
       <div className="row">
         <div className="col-sm-4">
           {category && (
-            <p className="categories"> 
+            <p className="categories">
               Categories:
               {' '}
               <a href={`/${category.slug}/page/1`}>{category.name}</a>
             </p>
           )}
         </div>
-       
+
         <div className="col-sm-8">
           {tagsList && (
             <p className="tags">
@@ -35,13 +34,7 @@ const TagsMeta = ({
         </div>
       </div>
     </div>
-  )
-}
-
-
-TagsMeta.propTypes = {
-  date: PropTypes.string,
-  categories: PropTypes.object,
+  );
 };
 
 export default TagsMeta;

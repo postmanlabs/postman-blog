@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-
 import Layout from '../components/layout';
 import EntryMeta from '../components/Shared/EntryMeta';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
@@ -50,24 +49,24 @@ export const tagsPostsQuery = graphql`
     } 
   }`;
 
-  // tags {
-  //   edges {
-  //     node {
-  //       id
-  //       name
-  //       slug
-  //     }
-  //   }
-  // }
-  // categories {
-  //   edges {
-  //     node {
-  //       id
-  //       name
-  //       slug
-  //     }
-  //   }
-  // }
+// tags {
+//   edges {
+//     node {
+//       id
+//       name
+//       slug
+//     }
+//   }
+// }
+// categories {
+//   edges {
+//     node {
+//       id
+//       name
+//       slug
+//     }
+//   }
+// }
 const TagsPostsList = ({ data, pageContext }) => {
   const { tag } = data.wpgraphql;
   const title = tag.name;
@@ -77,7 +76,7 @@ const TagsPostsList = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title={title} />
-      <HeroResults title={title} totalPosts={totalNumberOfPosts}/>
+      <HeroResults title={title} totalPosts={totalNumberOfPosts} />
       <div className="container">
         <div className="row">
           {posts.map((post) => {
@@ -85,27 +84,17 @@ const TagsPostsList = ({ data, pageContext }) => {
             const postExcerpt = post.node.excerpt;
             // const tags = post.node.tags.edges;
             // const category = post.node.categories;
-            const { slug, date } = post.node;
-            // const { name } = post.node.author;
-            // const avatar = post.node.author.avatar.url;
-            const { featuredImage } = post.node;
-            let name;
-            let avatar;
-            if (post.node.author) {
-              name = post.node.author.name;
-              avatar = post.node.author.avatar.url;
-            } else {
-              name = 'Christina';
-              avatar = '';
-            }
+            const { slug, date, featuredImage } = post.node;
+            const name = post.node.author.name || 'The Postman Team';
+            const avatar = post.node.author.avatar.url || '';
+
             return (
               <div key={post.node.id} className="post">
                 <FluidImage image={featuredImage} />
                 <Link to={slug}>
                   <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
                 </Link>
-                {/* <EntryMeta name={name} avatar={avatar} date={date} tags={tags} categories={category} /> */}
-                <EntryMeta name={name} avatar={avatar} date={date}/>
+                <EntryMeta name={name} avatar={avatar} date={date} />
                 <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
               </div>
             );

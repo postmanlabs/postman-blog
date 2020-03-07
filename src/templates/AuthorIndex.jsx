@@ -44,54 +44,45 @@ export const authorPostsQuery = graphql`
 
 const authorPostsList = ({ data, pageContext }) => {
   const { user } = data.wpgraphql;
-  
   const { totalAuthorPages, authorPageNum, totalNumberOfPosts } = pageContext;
   const posts = data.wpgraphql.user.posts.edges;
-  const authorSlug =  data.wpgraphql.user.slug;
-
-  let title = user.firstName || 'The Postman Team'
+  const authorSlug = data.wpgraphql.user.slug;
+  const title = user.firstName || 'The Postman Team';
 
   return (
     <Layout>
       <SEO title="author" />
-      <HeroResults title={title} totalPosts={totalNumberOfPosts}/>
+      <HeroResults title={title} totalPosts={totalNumberOfPosts} />
       <div className="container">
         {posts.map((post) => {
           const postTitle = post.node.title;
           const postExcerpt = post.node.excerpt;
           const { featuredImage, slug, date } = post.node;
+          const name = post.node.author.name || 'The Postman Team';
+          const avatar = post.node.author.avatar.url || '';
 
-          let name;
-          let avatar;
-          if (post.node.author) {
-            name = post.node.author.name;
-            avatar = post.node.author.avatar.url;
-          } else {
-            name = 'The Postman Team';
-            avatar = '';
-          }
           return (
             <div key={post.node.id} className="post">
               <FluidImage image={featuredImage} />
               <Link to={slug}>
                 <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
               </Link>
-              <EntryMeta 
-                authorSlug={authorSlug} 
-                name={name} 
-                avatar={avatar} 
+              <EntryMeta
+                authorSlug={authorSlug}
+                name={name}
+                avatar={avatar}
                 date={date}
               />
               <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
             </div>
-          )
+          );
         })}
         {totalAuthorPages > 1 && (
           <PageSelectionButtons currentPage={authorPageNum} totalPages={totalAuthorPages} prefix={`${user.slug}`} />
         )}
       </div>
     </Layout>
-  )
-}
+  );
+};
 
 export default authorPostsList;
