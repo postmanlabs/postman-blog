@@ -86,11 +86,12 @@ const BlogPostTemplate = ({ data }) => {
           {parse(content, {
             replace: (domNode) => {
               if (domNode.attribs && domNode.attribs['data-src']) {
-                // '?format=pjpg&quality=60&auto=webp' is appended to img src for Fastly image optimization
+                // '?format=pjpg&quality=60&auto=webp' is
+                // appended to img src for Fastly image optimization
                 return (
-                  <img 
-                    src={`${domNode.attribs['data-src']}?format=pjpg&quality=60&auto=webp`} 
-                    alt={domNode.attribs.alt} 
+                  <img
+                    src={`${domNode.attribs['data-src']}?format=pjpg&quality=60&auto=webp`}
+                    alt={domNode.attribs.alt}
                   />
                 );
               }
