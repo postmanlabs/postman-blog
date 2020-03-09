@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import './_entry-meta.scss';
+// import './_entry-meta.scss';
 import moment from 'moment/moment';
 import TagsMeta from './Tags';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import './_pageSelectionButtons.scss';
+// import './_pageSelectionButtons.scss';
 
 const PageSelectionButtons = ({ currentPage, totalPages, prefix }) => {
   const numOfPages = 5; // # of next page options to display

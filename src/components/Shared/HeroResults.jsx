@@ -1,5 +1,5 @@
 import React from 'react';
-import './_heroResults.scss';
+// import './_heroResults.scss';
 
 const HeroResults = ({
   title, totalPosts,

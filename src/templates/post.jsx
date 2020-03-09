@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import '../components/_layout.scss';
-import './_post.scss';
+// import '../components/_layout.scss';
+// import './_post.scss';
 import parse from 'html-react-parser';
 import JustComments from 'gatsby-plugin-just-comments';
 import Layout from '../components/layout';
