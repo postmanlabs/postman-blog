@@ -4,11 +4,16 @@
 * {
   font-family: 'Roboto';
 }
-
-.layout-wrapper {
-  padding: 0px;
-  overflow-x: hidden;
+@media (min-width: 992px) {
+  div.container {
+    padding: 0px 200px;
+  }
 }
+
+// .layout-wrapper {
+//   padding: 0px;
+//   overflow-x: hidden;
+// }
 
 .h1,
 h1 {
@@ -39,7 +44,7 @@ h4 {
   margin: 0 0 8px 0;
 }
 
-p {
+.v5-link {
   a {
       height: 24px; // allows the shadow line to shrink to the designed location   
       font-size: 16px;
@@ -75,8 +80,42 @@ p {
 };
 
 // .screen-reader-text {
-//   display: none;
+  // display: none;
 // }
+.more-link-wrap {
+  a {
+    height: 24px; // allows the shadow line to shrink to the designed location   
+    font-size: 16px;
+    font-weight: 700;
+    background-image: linear-gradient(180deg, transparent 50%, $bright-orange 0);
+    padding-right: 4px;
+    padding-bottom: 2px;
+    background-position-y: 2px;
+    background-position-x: 4px;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    transition: .15s ease;
+    color: $gray-3;
+
+    &:hover {
+      // height: 1px;
+      color: $gray_3;
+      background-position: top 8px right -4px;
+      padding-right: 4px;
+      padding-bottom: 2px;
+      background-image: linear-gradient(180deg, transparent 60%, rgba(249, 157, 120, 1) 0);
+      text-decoration: none;
+    }
+
+    &.alternative {
+      color: $white;
+    }
+
+    &.alternative:hover {
+      color: $white;
+    }
+ }
+}
 
 .post {
   margin: 0 0 120px 0px;

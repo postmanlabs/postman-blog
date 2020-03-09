@@ -82,7 +82,7 @@ const BlogPostTemplate = ({ data }) => {
           tags={tags}
           categories={categories}
         />
-        <div>
+        <div className="post-content">
           {parse(content, {
             replace: (domNode) => {
               if (domNode.attribs && domNode.attribs['data-src']) {

@@ -4,6 +4,7 @@
   margin: 120px 0;
 }
 
+// comments form styling
 .just-comments.myTheme {
   --primary-button-bg-color: #FF6C37;
   --primary-color: #FF6C37;
@@ -26,6 +27,21 @@
     font-size: 36px!important;
     line-height: 1.2222222222; /* 44px */
     margin: 0 0 16px 0;
+    }
+  }
+}
+
+// adjust link in post content
+.post-content {
+  a {
+    color: $postman-orange;
+    &:hover {
+      color: $postman-orange;
+    }
+  }
+  li {
+    a {
+      color: $postman-orange;
     }
   }
 }
