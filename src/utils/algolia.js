@@ -29,24 +29,6 @@ const pageQuery = `{
             sourceUrl
             altText
           }
-          tags {
-            edges {
-              node {
-                id
-                name
-                slug
-              }
-            }
-          }
-          categories {
-            edges {
-              node {
-                id
-                name
-                slug
-              }
-            }
-          }
         }
       }
     }
