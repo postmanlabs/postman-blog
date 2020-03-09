@@ -1,7 +1,7 @@
 import { useStaticQuery, graphql } from 'gatsby';
 import React from 'react';
 import DynamicLink from '../Shared/DynamicLink';
-import './Footer.scss';
+// import './Footer.scss';
 
 const FooterColumn = () => {
   const data = useStaticQuery(graphql`

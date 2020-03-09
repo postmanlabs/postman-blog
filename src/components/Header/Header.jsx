@@ -1,7 +1,7 @@
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
-import './_header.scss';
-import '../Shared/_buttons.scss';
+// import './_header.scss';
+// import '../Shared/_buttons.scss';
 import algoliasearch from 'algoliasearch/lite';
 import {
   InstantSearch, SearchBox, Hits, Configure, Index,
