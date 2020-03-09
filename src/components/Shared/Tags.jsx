@@ -14,7 +14,7 @@ const TagsMeta = ({
   return (
     <div className="col-12">
       <div className="row">
-        <div className="col-sm-4">
+        <div className="col-sm-4 v5-link">
           {category && (
             <p className="categories">
               Categories:
