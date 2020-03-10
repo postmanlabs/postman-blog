@@ -11,7 +11,6 @@ import FluidImage from '../components/FluidImage';
 
 
 const BlogPostTemplate = ({ data }) => {
-  console.log('///////////blog post data', data)
   const { post } = data.wpgraphql;
   const {
     title, content, date, featuredImage, slug,
