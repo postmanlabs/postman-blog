@@ -34,7 +34,7 @@ const TagsPostsList = ({ data, pageContext }) => {
                   <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
                 </Link>
                 <EntryMeta name={name} avatar={avatar} date={date} />
-                <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+                <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
               </div>
             );
           })}
@@ -93,65 +93,3 @@ export const tagsPostsQuery = graphql`
     } 
   }`;
 
-// tags {
-//   edges {
-//     node {
-//       id
-//       name
-//       slug
-//     }
-//   }
-// }
-// categories {
-//   edges {
-//     node {
-//       id
-//       name
-//       slug
-//     }
-//   }
-// }
-
-const TagsPostsList = ({ data, pageContext }) => {
-  const { tag } = data.wpgraphql;
-  const title = tag.name;
-  const posts = tag.posts.edges;
-  const { totalTagsPages, tagsPageNum, totalNumberOfPosts } = pageContext;
-
-  return (
-    <Layout>
-      <SEO title={title} />
-      <HeroResults title={title} totalPosts={totalNumberOfPosts} />
-      <div className="container">
-        <div className="row">
-          {posts.map((post) => {
-            const postTitle = post.node.title;
-            const postExcerpt = post.node.excerpt;
-            // const tags = post.node.tags.edges;
-            // const category = post.node.categories;
-            const { slug, date, featuredImage } = post.node;
-            const authorSlug = post.node.author.slug || 'thepostmanteam';
-            const name = post.node.author.name || 'The Postman Team';
-            const avatar = post.node.author.avatar.url || '';
-
-            return (
-              <div key={post.node.id} className="post">
-                <FluidImage image={featuredImage} />
-                <Link to={slug}>
-                  <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
-                </Link>
-                <EntryMeta name={name} avatar={avatar} date={date} authorSlug={authorSlug}/>
-                <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
-              </div>
-            );
-          })}
-        </div>
-        {totalTagsPages > 1 && (
-          <PageSelectionButtons currentPage={tagsPageNum} totalPages={totalTagsPages} prefix={`/tags/${tag.slug}`} />
-        )}
-      </div>
-    </Layout>
-  );
-};
-
-export default TagsPostsList;

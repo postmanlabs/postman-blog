@@ -90,7 +90,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const wpgraphql = postsResults.data.wpgraphql.posts.edges
 
   // We want to create a detailed page for each post node. We'll just use the WordPress Slug for the slug. The Post ID is prefixed with 'POST_'
-  wpgraphql.map(edge => {
+  wpgraphql.forEach(edge => {
     // Each page is required to have a `path` as well as a template component. The `context` is optional but is often necessary so the template can query data specific to each page.
     createPage({
       path: `/${edge.node.slug}/`,

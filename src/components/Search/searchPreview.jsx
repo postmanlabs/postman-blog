@@ -27,7 +27,7 @@ const Hits = ({ hits }) => (
       <li key={hit.title}>
         <a href={`/${hit.slug}`}>
           <span className="search-title" dangerouslySetInnerHTML={{ __html: hit._highlightResult.title.value }} />
-          <p dangerouslySetInnerHTML={{ __html: hit._snippetResult.excerpt.value }} />
+          <div dangerouslySetInnerHTML={{ __html: hit._snippetResult.excerpt.value }} />
         </a>
       </li>
     ))}
@@ -45,7 +45,7 @@ const Hits2 = ({ hits }) => (
       <li key={hit.title}>
         <a href={`https://learning.postman.com${hit.fields.slug}`}>
           <span className="search-title" dangerouslySetInnerHTML={{ __html: hit._highlightResult.title.value }} />
-          <p dangerouslySetInnerHTML={{ __html: hit._snippetResult.excerpt.value }} />
+          <div dangerouslySetInnerHTML={{ __html: hit._snippetResult.excerpt.value }} />
         </a>
       </li>
     ))}

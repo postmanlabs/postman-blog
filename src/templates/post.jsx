@@ -1,7 +1,5 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-// import '../components/_layout.scss';
-// import './_post.scss';
 import parse from 'html-react-parser';
 import JustComments from 'gatsby-plugin-just-comments';
 import Layout from '../components/layout';
@@ -11,50 +9,9 @@ import FluidImage from '../components/FluidImage';
 // import PostForm from '../components/Shared/PostForm';
 
 
-export const postPageQuery = graphql`
-  query GET_POST($id: ID!) {
-    wpgraphql {
-      post(id: $id) {
-        featuredImage {
-          sourceUrl
-          altText
-        }
-        id
-        uri
-        title
-        content 
-        author {
-          avatar {
-            url
-          }
-          name
-          slug
-        }
-        date
-        tags {
-          edges {
-            node {
-              id
-              name
-              slug
-            }
-          }
-        }
-        categories {
-          edges {
-            node {
-              id
-              name
-              slug
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 const BlogPostTemplate = ({ data }) => {
+  console.log('///////////blog post data', data)
   const { post } = data.wpgraphql;
   const {
     title, content, date, featuredImage, slug,
@@ -111,3 +68,46 @@ const BlogPostTemplate = ({ data }) => {
 };
 
 export default BlogPostTemplate;
+
+export const postPageQuery = graphql`
+  query GET_POST($id: ID!) {
+    wpgraphql {
+      post(id: $id) {
+        featuredImage {
+          sourceUrl
+          altText
+        }
+        id
+        uri
+        title
+        content 
+        author {
+          avatar {
+            url
+          }
+          name
+          slug
+        }
+        date
+        tags {
+          edges {
+            node {
+              id
+              name
+              slug
+            }
+          }
+        }
+        categories {
+          edges {
+            node {
+              id
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+`;
