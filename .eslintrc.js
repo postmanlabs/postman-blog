@@ -27,5 +27,4 @@ module.exports = {
     "jsx-a11y/media-has-caption": "off",
     "no-underscore-dangle": "off",
   },
-
- };
+};

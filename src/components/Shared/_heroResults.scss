@@ -1,0 +1,12 @@
+@import './_variables.scss';
+
+.hero-results__container {
+  height: 225px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 120px 0;
+  h1 {
+    text-align: center;
+  }
+}

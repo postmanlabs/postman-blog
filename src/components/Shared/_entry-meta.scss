@@ -1,0 +1,27 @@
+@import './_variables.scss';
+
+.entry-meta {
+  color: $gray-2;
+}
+
+.entry-meta-data {
+  margin-left: -24px;
+  a {
+    color: $gray-2;
+    &:hover {
+      color: $postman-orange;
+    }
+  }
+}
+
+
+.entry-meta-col {
+  padding-right: 0px;
+}
+
+.entry-meta-img {
+  border-radius: 50%;
+  width: 32px;
+  height: auto;
+  // padding-left: 5px
+}

@@ -1,6 +1,6 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import GatsbyImage from "gatsby-image"
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import GatsbyImage from 'gatsby-image';
 
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
@@ -34,7 +34,9 @@ import GatsbyImage from "gatsby-image"
 
 // taken from https://dev.to/nevernull/how-to-handle-images-and-make-use-of-gatsby-image-guide-to-gatsby-wordpress-starter-advanced-with-previews-i18n-and-more-g9b
 
-// If we do have an image and it has the imageFile field, we know it has been processed by our resolver and therfore we can use GatsbyImage to handle it
+// If we do have an image and it has the imageFile field,
+// we know it has been processed by our resolver and
+// therfore we can use GatsbyImage to handle it
 
 const FluidImage = ({ image, withFallback = false, ...props }) => {
   const data = useStaticQuery(graphql`
@@ -43,20 +45,20 @@ const FluidImage = ({ image, withFallback = false, ...props }) => {
               publicURL
           }
       }
-  `)
+  `);
 
   /**
    * Return fallback Image, if no Image is given.
    */
   if (!image) {
-    return withFallback ? <img src={data.fallBackImage.publicURL} alt={"Fallback"} {...props}/> : null
+    return withFallback ? <img src={data.fallBackImage.publicURL} alt="Fallback" {...props} /> : null;
   }
 
   if (image && image.imageFile) {
-    return <GatsbyImage fluid={image.imageFile.childImageSharp.fluid} alt={image.altText} {...props}/>
+    return <GatsbyImage fluid={image.imageFile.childImageSharp.fluid} alt={image.altText} {...props} />;
   }
 
-  return <img src={image.sourceUrl} alt={image.altText} {...props}/>
-}
+  return <img src={image.sourceUrl} alt={image.altText} {...props} />;
+};
 
-export default FluidImage
+export default FluidImage;

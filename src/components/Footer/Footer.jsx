@@ -1,7 +1,7 @@
 import { useStaticQuery, graphql } from 'gatsby';
 import React from 'react';
 import DynamicLink from '../Shared/DynamicLink';
-import './Footer.scss';
+// import './Footer.scss';
 
 const FooterColumn = () => {
   const data = useStaticQuery(graphql`
@@ -153,7 +153,7 @@ const Footer = () => (
                 {' '}
                 <span id="current-year" />
                 {' '}
-Postman, Inc. All rights
+                Postman, Inc. All rights
                 reserved
               </li>
               <li className="list-inline-item">

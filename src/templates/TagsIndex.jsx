@@ -1,0 +1,95 @@
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+import Layout from '../components/layout';
+import EntryMeta from '../components/Shared/EntryMeta';
+import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
+import SEO from '../components/seo';
+import FluidImage from '../components/FluidImage';
+import HeroResults from '../components/Shared/HeroResults';
+
+
+const TagsPostsList = ({ data, pageContext }) => {
+  const { tag } = data.wpgraphql;
+  const title = tag.name;
+  const posts = tag.posts.edges;
+  const { totalTagsPages, tagsPageNum, totalNumberOfPosts } = pageContext;
+
+  return (
+    <Layout>
+      <SEO title={title} />
+      <HeroResults title={title} totalPosts={totalNumberOfPosts} />
+      <div className="container">
+        <div className="row">
+          {posts.map((post) => {
+            const postTitle = post.node.title;
+            const postExcerpt = post.node.excerpt;
+            const { slug, date, featuredImage } = post.node;
+            const name = post.node.author.name || 'The Postman Team';
+            const avatar = post.node.author.avatar.url || '';
+
+            return (
+              <div key={post.node.id} className="post">
+                <FluidImage image={featuredImage} />
+                <Link to={slug}>
+                  <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
+                </Link>
+                <EntryMeta name={name} avatar={avatar} date={date} />
+                <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+              </div>
+            );
+          })}
+        </div>
+        {totalTagsPages > 1 && (
+          <PageSelectionButtons currentPage={tagsPageNum} totalPages={totalTagsPages} prefix={`/tags/${tag.slug}`} />
+        )}
+      </div>
+    </Layout>
+  );
+};
+
+export default TagsPostsList;
+
+
+
+export const tagsPostsQuery = graphql`
+  query GET_PAGE_POSTS_OF_TAG($id: ID!, $startCursor: String!) {
+    wpgraphql {
+      tag(id: $id) {
+        name
+        slug
+        posts(first: 10, after: $startCursor) {
+          edges {
+            node {
+              tags {
+                edges {
+                  node {
+                    id
+                    
+                  }
+                }
+              }
+              id
+              title
+              excerpt
+              date
+              slug
+              uri
+              author {
+                name
+                slug
+                avatar {
+                  url
+                }
+              }
+              featuredImage {
+                sourceUrl
+                altText
+              }
+              
+            }
+          }
+        }
+      }
+    } 
+  }`;
+

@@ -1,8 +1,7 @@
 import React from 'react';
 import { connectSearchBox, connectHits } from 'react-instantsearch-dom';
 
-import './_search.scss';
-
+// import './_search.scss';
 
 const SearchBox = ({ currentRefinement, refine }) => (
   <div className="ais-SearchBox">
@@ -26,9 +25,9 @@ const Hits = ({ hits }) => (
     {hits.length < 1 ? <li>No search results found</li> : ''}
     {hits.map((hit) => (
       <li key={hit.title}>
-        <a href={hit.fields.slug}>
+        <a href={`/${hit.slug}`}>
           <span className="search-title" dangerouslySetInnerHTML={{ __html: hit._highlightResult.title.value }} />
-          <p dangerouslySetInnerHTML={{ __html: hit._snippetResult.excerpt.value }} />
+          <div dangerouslySetInnerHTML={{ __html: hit._snippetResult.excerpt.value }} />
         </a>
       </li>
     ))}
@@ -36,3 +35,21 @@ const Hits = ({ hits }) => (
 );
 
 export const CustomHits = connectHits(Hits);
+
+// on page load do not display
+const Hits2 = ({ hits }) => (
+  // if parent component set is type, render, otherwise hide
+  <ul className="style">
+    {hits.length < 1 ? <li>No search results found</li> : ''}
+    {hits.map((hit) => (
+      <li key={hit.title}>
+        <a href={`https://learning.postman.com${hit.fields.slug}`}>
+          <span className="search-title" dangerouslySetInnerHTML={{ __html: hit._highlightResult.title.value }} />
+          <div dangerouslySetInnerHTML={{ __html: hit._snippetResult.excerpt.value }} />
+        </a>
+      </li>
+    ))}
+  </ul>
+);
+
+export const NextHits = connectHits(Hits2);

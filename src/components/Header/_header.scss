@@ -3,9 +3,16 @@
 .header {
   box-shadow: 0 5px 16px 0 rgba(0,0,0,.11);
   z-index: 1;
+  // margin: 0 0 120px 0;
   .header__logo {
     margin: auto;
     height: 50px;
+  }
+
+  .header__homelink {
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   .header__title {
@@ -63,8 +70,16 @@
   100% {max-height: 0px;}
 }
 
+div.navbar-brand.header__brand {
+  margin-right: 0px;
+}
+
+// div.form-inline.header__search {
+//   padding: 0px;
+// }
 
 .searchbox {
+  width: 100%;
   input {
     background-color:#f5f5f5;
     border: 0;
