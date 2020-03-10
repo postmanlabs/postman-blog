@@ -42,6 +42,8 @@ exports.sourceNodes = async ({
   createNode(prepareNode(FooterJson, 'FooterLinks'));
 };
 
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -59,11 +61,13 @@ exports.createPages = async ({ graphql, actions }) => {
   const postsResults = await graphql(`
   {
     wpgraphql {
-      posts(first: 1000) {
+      posts(first: 100) {
         edges {
           node {
             slug
             id
+            title
+            excerpt
           }
           cursor
         }
@@ -82,7 +86,51 @@ exports.createPages = async ({ graphql, actions }) => {
     console.error(postsResults.errors);
   }
 
+  // Access query results via object destructuring
+  const wpgraphql = postsResults.data.wpgraphql.posts.edges
+
+  // We want to create a detailed page for each post node. We'll just use the WordPress Slug for the slug. The Post ID is prefixed with 'POST_'
+  wpgraphql.map(edge => {
+    // Each page is required to have a `path` as well as a template component. The `context` is optional but is often necessary so the template can query data specific to each page.
+    createPage({
+      path: `/${edge.node.slug}/`,
+      component: slash(postTemplate),
+      context: {
+        id: edge.node.id,
+      },
+    })
+  })
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
   const PostsIndex = path.resolve('./src/templates/PostsIndex.jsx');
+  const postsIndexResults = await graphql(`
+  {
+    wpgraphql {
+      posts(first: 100) {
+        edges {
+          node {
+            slug
+            id
+            title
+            excerpt
+          }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
+          hasPreviousPage
+        }
+      }
+    }
+  }
+  `);
+  if (postsResults.errors) {
+    console.error(postsResults.errors);
+  }
 
   // Am I right in thinking the total number
   // of blog index pages is the total number
@@ -92,8 +140,8 @@ exports.createPages = async ({ graphql, actions }) => {
   // we only need 27 pages?
 
   // Access query results via object destructuring
-  const posts = postsResults.data.wpgraphql.posts.edges;
-  const postsPageInfo = postsResults.data.wpgraphql.posts.pageInfo;
+  const posts = postsIndexResults.data.wpgraphql.posts.edges;
+  const postsPageInfo = postsIndexResults.data.wpgraphql.posts.pageInfo;
 
   const allPostsArray = await fetchAllItems(postsPageInfo, posts, 'posts', 'id slug');
 
@@ -119,10 +167,11 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  // /////////////////////
-  // Pagination for blog index
-  // ////////////////////
+  // ///////////////////////////////
+  // Makes Pagination for blog index
+  // ////////////////////////////////
   for (let i = 0; i < allPostsArray.length; i += postsPerPage) {
+    // console.log(allPostsArray[i].cursor)
     createPage({
       path: `page/${pageNum}`,
       component: slash(PostsIndex),
