@@ -25,6 +25,7 @@ export const catsPostsQuery = graphql`
                   uri
                   author {
                     name
+                    slug
                     avatar {
                       url
                     }
@@ -77,6 +78,7 @@ const CatsPostsList = ({ data, pageContext }) => {
           // const tags = post.node.tags.edges;
           // const category = post.node.categories;
           const { slug, date, featuredImage } = post.node;
+          const authorSlug = post.node.author.slug || 'thepostmanteam';
           const name = post.node.author.name || 'The Postman Team';
           const avatar = post.node.author.avatar.url || '';
 
@@ -86,7 +88,7 @@ const CatsPostsList = ({ data, pageContext }) => {
               <Link to={slug}>
                 <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
               </Link>
-              <EntryMeta name={name} avatar={avatar} date={date} />
+              <EntryMeta name={name} avatar={avatar} date={date} authorSlug={authorSlug} />
               <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
             </div>
           );

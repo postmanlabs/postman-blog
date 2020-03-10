@@ -27,6 +27,7 @@ export const authorPostsQuery = graphql`
               slug
               author {
                 name
+                slug
                 avatar {
                   url
                 }
@@ -61,6 +62,7 @@ const authorPostsList = ({ data, pageContext }) => {
           const postTitle = post.node.title;
           const postExcerpt = post.node.excerpt;
           const { featuredImage, slug, date } = post.node;
+          const authorSlug = post.node.author.slug || 'thepostmanteam';
           const name = post.node.author.name || 'The Postman Team';
           const avatar = post.node.author.avatar.url || '';
 
