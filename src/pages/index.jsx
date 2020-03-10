@@ -37,7 +37,7 @@ const BlogIndex = ({ data }) => {
                 avatar={avatar}
                 date={date}
               />
-              <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+              <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
             </div>
           );
         })}

@@ -78,7 +78,7 @@ const authorPostsList = ({ data, pageContext }) => {
                 avatar={avatar}
                 date={date}
               />
-              <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+              <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
             </div>
           );
         })}

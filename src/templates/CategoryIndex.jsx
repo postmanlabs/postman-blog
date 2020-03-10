@@ -89,7 +89,7 @@ const CatsPostsList = ({ data, pageContext }) => {
                 <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
               </Link>
               <EntryMeta name={name} avatar={avatar} date={date} authorSlug={authorSlug} />
-              <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+              <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
             </div>
           );
         })}

@@ -38,7 +38,7 @@ const PostsIndex = ({ data, pageContext }) => {
                 tags={tags}
                 categories={categories}
               />
-              <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+              <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
             </div>
           );
         })}
