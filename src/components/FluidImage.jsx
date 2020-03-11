@@ -55,7 +55,13 @@ const FluidImage = ({ image, withFallback = false, ...props }) => {
   }
 
   if (image && image.imageFile) {
-    return <GatsbyImage fluid={image.imageFile.childImageSharp.fluid} alt={image.altText} {...props} />;
+    return (
+      <GatsbyImage
+        fluid={image.imageFile.childImageSharp.fluid}
+        alt={image.altText}
+        {...props}
+      />
+    );
   }
 
   return <img src={image.sourceUrl} alt={image.altText} {...props} />;

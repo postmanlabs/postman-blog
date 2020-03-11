@@ -12,7 +12,7 @@ const HeroResults = ({
   return (
     <div className="row hero-results__container" style={{ backgroundColor: color }}>
       <div className="col-12">
-        <h1 class="h2">{`Now viewing ${totalPosts} posts for ${title[0].toUpperCase()}${title.slice(1)}`}</h1>
+        <h1 className="h2">{`Now viewing ${totalPosts} posts for ${title[0].toUpperCase()}${title.slice(1)}`}</h1>
       </div>
     </div>
   );
