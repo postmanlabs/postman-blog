@@ -44,10 +44,13 @@ const BlogPostTemplate = ({ data }) => {
               if (domNode.attribs && domNode.attribs['data-src']) {
                 // '?format=pjpg&quality=60&auto=webp' is
                 // appended to img src for Fastly image optimization
+                // 'loading="lazy" is
+                // appended to img src to defer offscreen images in modern browsers
                 return (
                   <img
                     src={`${domNode.attribs['data-src']}?format=pjpg&quality=60&auto=webp`}
                     alt={domNode.attribs.alt}
+                    loading='lazy'
                   />
                 );
               }
