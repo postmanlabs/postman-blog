@@ -11,7 +11,6 @@ const BlogIndex = ({ data }) => {
   const currentPage = 1;
   const { totalPages } = 28;
   const posts = data.wpgraphql.posts.edges;
-
   return (
     <Layout>
       <SEO title="Home" />

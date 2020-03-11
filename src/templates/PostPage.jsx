@@ -10,7 +10,6 @@ import Bio from '../components/Shared/Bio';
 // import PostForm from '../components/Shared/PostForm';
 
 
-
 const BlogPostTemplate = ({ data }) => {
   const { post } = data.wpgraphql;
   const {
