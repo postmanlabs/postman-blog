@@ -47,9 +47,9 @@ module.exports = async ({ actions, graphql }) => {
         id: edge.node.id,
       },
     });
-    console.log('CREATED PAGE:::::: ', edge.node.slug);
   });
   console.log(`Created ${allPostsArray.length} pages for each blog post`);
+  
   const postsPerPage = 10;
   let pageNum = 1;
 

@@ -22,7 +22,7 @@ module.exports = {
         typeName: 'WPGraphQL',
         fieldName: 'wpgraphql',
         url: 'https://blog.postman.com/graphql',
-        refetchInterval: 240,
+        refetchInterval: 600,
       },
     },
     'gatsby-plugin-sitemap',

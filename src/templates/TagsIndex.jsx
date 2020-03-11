@@ -9,7 +9,9 @@ import HeroResults from '../components/Shared/HeroResults';
 
 
 const TagsPostsList = ({ data, pageContext }) => {
+  console.log(pageContext)
   const { tag } = data.wpgraphql;
+  console.log(tag)
   const title = tag.name;
   const posts = tag.posts.edges;
   const { totalTagsPages, tagsPageNum, totalNumberOfPosts } = pageContext;
