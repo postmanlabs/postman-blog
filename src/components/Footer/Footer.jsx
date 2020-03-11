@@ -45,7 +45,6 @@ const Footer = () => (
           <section id="footer__social" className="column__horizontal">
             <ul
               className="column__links list-inline"
-              aria-labelledby="social-list"
             >
               <li className="list-inline-item">
                 <a
@@ -146,7 +145,6 @@ const Footer = () => (
           >
             <ul
               className="column__links list-inline"
-              aria-labelledby="company-list"
             >
               <li className="copyright-notice list-inline-item">
                 &copy;
