@@ -50,7 +50,6 @@ const TagsPostsList = ({ data, pageContext }) => {
 export default TagsPostsList;
 
 
-
 export const tagsPostsQuery = graphql`
   query GET_PAGE_POSTS_OF_TAG($id: ID!, $startCursor: String!) {
     wpgraphql {
@@ -92,4 +91,3 @@ export const tagsPostsQuery = graphql`
       }
     } 
   }`;
-

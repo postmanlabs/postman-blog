@@ -47,11 +47,9 @@ const authorPostsList = ({ data, pageContext }) => {
   const { user } = data.wpgraphql;
   const { totalAuthorPages, authorPageNum, totalNumberOfPosts } = pageContext;
   const posts = data.wpgraphql.user.posts.edges;
-  const authorSlug = data.wpgraphql.user.slug;
   const title = user.firstName || 'The Postman Team';
 
-  let fullName;
-  fullName = user.firstName && user.lastName ? `${user.firstName} ${user.lastName}` : title;
+  const fullName = user.firstName && user.lastName ? `${user.firstName} ${user.lastName}` : title;
 
   return (
     <Layout>

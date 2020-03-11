@@ -9,7 +9,6 @@ import FluidImage from '../components/FluidImage';
 // import PostForm from '../components/Shared/PostForm';
 
 
-
 const BlogPostTemplate = ({ data }) => {
   const { post } = data.wpgraphql;
   const {
