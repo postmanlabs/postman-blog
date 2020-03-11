@@ -8,6 +8,9 @@ const FooterJson = require('./src/components/Footer/Footer.data.json');
 // Can't import this correctly from a helper folder because of build time issues?
 // Defining this funciton in this file for now.
 
+// "Gatsby" files
+const createPosts = require('./gatsby/createPosts');
+
 
 exports.sourceNodes = async ({
   actions,
@@ -53,84 +56,86 @@ exports.createPages = async ({ graphql, actions }) => {
   // constructed from the fetched data that you can run
   // queries against
 
+  await createPosts({graphql, actions});
+
   // ////////////////////
   // Creating Blog Post pages
   // ////////////////////
-  const postTemplate = path.resolve('./src/templates/PostPage.jsx');
+  // const postTemplate = path.resolve('./src/templates/PostPage.jsx');
 
-  const postsResults = await graphql(`
-  {
-    wpgraphql {
-      posts(first: 100) {
-        edges {
-          node {
-            slug
-            id
-            title
-            excerpt
-          }
-          cursor
-        }
-        pageInfo {
-          endCursor
-          startCursor
-          hasNextPage
-          hasPreviousPage
-        }
-      }
-    }
-  }
-  `);
+  // const postsResults = await graphql(`
+  // {
+  //   wpgraphql {
+  //     posts(first: 100) {
+  //       edges {
+  //         node {
+  //           slug
+  //           id
+  //           title
+  //           excerpt
+  //         }
+  //         cursor
+  //       }
+  //       pageInfo {
+  //         endCursor
+  //         startCursor
+  //         hasNextPage
+  //         hasPreviousPage
+  //       }
+  //     }
+  //   }
+  // }
+  // `);
 
-  if (postsResults.errors) {
-    console.error(postsResults.errors);
-  }
+  // if (postsResults.errors) {
+  //   console.error(postsResults.errors);
+  // }
 
   // Access query results via object destructuring
-  const wpgraphql = postsResults.data.wpgraphql.posts.edges
+  // const wpgraphql = postsResults.data.wpgraphql.posts.edges
 
   // We want to create a detailed page for each post node. We'll just use the WordPress Slug for the slug. The Post ID is prefixed with 'POST_'
-  wpgraphql.forEach(edge => {
+  // wpgraphql.forEach(edge => {
     // Each page is required to have a `path` as well as a template component. The `context` is optional but is often necessary so the template can query data specific to each page.
-    createPage({
-      path: `/${edge.node.slug}/`,
-      component: slash(postTemplate),
-      context: {
-        id: edge.node.id,
-      },
-    })
-  })
+  //   createPage({
+  //     path: `/${edge.node.slug}/`,
+  //     component: slash(postTemplate),
+  //     context: {
+  //       id: edge.node.id,
+  //     },
+  //   })
+  // })
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-  const PostsIndex = path.resolve('./src/templates/PostsIndex.jsx');
-  const postsIndexResults = await graphql(`
-  {
-    wpgraphql {
-      posts(first: 100) {
-        edges {
-          node {
-            slug
-            id
-            title
-            excerpt
-          }
-          cursor
-        }
-        pageInfo {
-          endCursor
-          startCursor
-          hasNextPage
-          hasPreviousPage
-        }
-      }
-    }
-  }
-  `);
-  if (postsResults.errors) {
-    console.error(postsResults.errors);
-  }
+  // const PostsIndex = path.resolve('./src/templates/PostsIndex.jsx');
+  // const postsIndexResults = await graphql(`
+  // {
+  //   wpgraphql {
+  //     posts(first: 100) {
+  //       edges {
+  //         node {
+  //           slug
+  //           id
+  //           title
+  //           excerpt
+  //         }
+  //         cursor
+  //       }
+  //       pageInfo {
+  //         endCursor
+  //         startCursor
+  //         hasNextPage
+  //         hasPreviousPage
+  //       }
+  //     }
+  //   }
+  // }
+  // `);
+  // if (postsResults.errors) {
+  //   console.error(postsResults.errors);
+  // }
 
   // Am I right in thinking the total number
   // of blog index pages is the total number
@@ -139,50 +144,46 @@ exports.createPages = async ({ graphql, actions }) => {
   // For example, if it's 27.1,
   // we only need 27 pages?
 
-  // Access query results via object destructuring
-  const posts = postsIndexResults.data.wpgraphql.posts.edges;
-  const postsPageInfo = postsIndexResults.data.wpgraphql.posts.pageInfo;
+  // const posts = postsIndexResults.data.wpgraphql.posts.edges;
+  // const postsPageInfo = postsIndexResults.data.wpgraphql.posts.pageInfo;
 
-  const allPostsArray = await fetchAllItems(postsPageInfo, posts, 'posts', 'id slug');
+  // const allPostsArray = await fetchAllItems(postsPageInfo, posts, 'posts', 'id slug');
 
-  const postsPerPage = 10;
-  let pageNum = 1;
-  const totalPages = Math.floor((allPostsArray.length / postsPerPage));
+  // const postsPerPage = 10;
+  // let pageNum = 1;
+  // const totalPages = Math.floor((allPostsArray.length / postsPerPage));
 
-  // We want to create a detailed page for each post node.
-  // We'll just use the WordPress Slug for the slug.
-  // The Post ID is prefixed with 'POST_'
-  allPostsArray.map((edge) => {
-    // Each page is required to have a `path`
-    // as well as a template component.
-    // The`context` is optional but is often
-    // necessary so the template can query
-    // data specific to each page.
-    createPage({
-      path: `/${edge.node.slug}/`,
-      component: slash(postTemplate),
-      context: {
-        id: edge.node.id,
-      },
-    });
-  });
+  // allPostsArray.map((edge) => {
+  //   // Each page is required to have a `path`
+  //   // as well as a template component.
+  //   // The`context` is optional but is often
+  //   // necessary so the template can query
+  //   // data specific to each page.
+  //   createPage({
+  //     path: `/${edge.node.slug}/`,
+  //     component: slash(postTemplate),
+  //     context: {
+  //       id: edge.node.id,
+  //     },
+  //   });
+  // });
 
   // ///////////////////////////////
   // Makes Pagination for blog index
   // ////////////////////////////////
-  for (let i = 0; i < allPostsArray.length; i += postsPerPage) {
-    // console.log(allPostsArray[i].cursor)
-    createPage({
-      path: `page/${pageNum}`,
-      component: slash(PostsIndex),
-      context: {
-        startCursor: allPostsArray[i].cursor,
-        pageNum,
-        totalPages,
-      },
-    });
-    pageNum += 1;
-  }
+  // for (let i = 0; i < allPostsArray.length; i += postsPerPage) {
+  //   // console.log(allPostsArray[i].cursor)
+  //   createPage({
+  //     path: `page/${pageNum}`,
+  //     component: slash(PostsIndex),
+  //     context: {
+  //       startCursor: allPostsArray[i].cursor,
+  //       pageNum,
+  //       totalPages,
+  //     },
+  //   });
+  //   pageNum += 1;
+  // }
 
   // ////////////////////
   // Creating TAGS pages
