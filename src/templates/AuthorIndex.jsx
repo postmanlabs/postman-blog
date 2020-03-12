@@ -25,6 +25,7 @@ export const authorPostsQuery = graphql`
               excerpt
               title
               slug
+              date
               author {
                 name
                 slug
@@ -63,9 +64,11 @@ const authorPostsList = ({ data, pageContext }) => {
           const authorSlug = post.node.author.slug || 'thepostmanteam';
           const name = post.node.author.name || 'The Postman Team';
           const avatar = post.node.author.avatar.url || '';
-
+          
           return (
+       
             <div key={post.node.id} className="post">
+              {     console.log('joyce date', date)}
               <FluidImage image={featuredImage} />
               <Link to={slug}>
                 <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
