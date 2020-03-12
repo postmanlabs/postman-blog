@@ -1,6 +1,5 @@
 module.exports = async function(graphql, initialCallPageInfo, initialCallData, itemName, queryFields) {
   let resultsArr = [];
-  console.log('Hello from fetchAllItems');
 
   const recurssiveFetcher = async (pageInfo, edgesArray) => {
     resultsArr = [...resultsArr, ...edgesArray];

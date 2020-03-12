@@ -77,9 +77,9 @@ module.exports = async ({ actions, graphql }) => {
           });
           catsPageNum += 1;
         }
-        console.log(`Categories page for ${cat.node.name} has pagination.`)
+        console.log(`Categories page for ${cat.node.name} has pagination.`);
       }
     }
   });
-  console.log(`Created ${allCategoriesArray.length} category pages`)
+  console.log(`Created ${allCategoriesArray.length} category pages`);
 }
