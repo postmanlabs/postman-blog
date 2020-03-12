@@ -2,7 +2,6 @@ const fetchAllItems = require('../helpers/fetchAllItems');
 const path = require('path')
 
 module.exports = async ({ actions, graphql }) => {
-  console.log('Hello from createTags')
   const allTagsResults = await graphql(`
   {
     wpgraphql {
@@ -43,10 +42,10 @@ module.exports = async ({ actions, graphql }) => {
   const {createPage} = actions;
 
   const TagsIndex = path.resolve('./src/templates/TagsIndex.jsx');
-
+  const tagsPostsPerPage = 10;
+  
   allTagsArray.map((tag) => {
     let tagsPageNum = 1;
-    const tagsPostsPerPage = 10;
     const totalTagsPages = Math.ceil((tag.node.posts.edges.length / tagsPostsPerPage));
     // Loop through array of tags, check to make sure it actually has posts
     if (tag.node.posts.edges.length !== 0) {

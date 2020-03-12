@@ -6,6 +6,7 @@ const FooterJson = require('./src/components/Footer/Footer.data.json');
 
 const createPosts = require('./gatsby/createPosts');
 const createTags = require('./gatsby/createTags');
+const createCategories = require('./gatsby/createCategories');
 
 
 exports.sourceNodes = async ({
@@ -51,91 +52,93 @@ exports.createPages = async ({ graphql, actions }) => {
 
   await createPosts({actions, graphql});
   await createTags({actions, graphql});
+  await createCategories({actions, graphql});
+
 
   // ////////////////////
   // Creating Categories pages
   // ////////////////////
 
-  const getCategoriesResults = await graphql(`
-  {
-    wpgraphql {
-      categories(first:100) {
-        edges {
-          node {
-            id
-            name
-            slug
-            count
-            posts(first: 100) {
-              edges {
-                node {
-                  id
-                }
-                cursor
-              }
-            }
-          }
-          cursor
-        }
-        pageInfo {
-          endCursor
-          startCursor
-          hasNextPage
-          hasPreviousPage
-        }
-      }
-    }
-  }`);
+  // const getCategoriesResults = await graphql(`
+  // {
+  //   wpgraphql {
+  //     categories(first:100) {
+  //       edges {
+  //         node {
+  //           id
+  //           name
+  //           slug
+  //           count
+  //           posts(first: 100) {
+  //             edges {
+  //               node {
+  //                 id
+  //               }
+  //               cursor
+  //             }
+  //           }
+  //         }
+  //         cursor
+  //       }
+  //       pageInfo {
+  //         endCursor
+  //         startCursor
+  //         hasNextPage
+  //         hasPreviousPage
+  //       }
+  //     }
+  //   }
+  // }`);
 
-  const categories = getCategoriesResults.data.wpgraphql.categories.edges;
-  const categoriesPageInfo = getCategoriesResults.data.wpgraphql.categories.pageInfo;
+  // const categories = getCategoriesResults.data.wpgraphql.categories.edges;
+  // const categoriesPageInfo = getCategoriesResults.data.wpgraphql.categories.pageInfo;
 
 
-  const allCategoriesArray = await fetchAllItems(categoriesPageInfo, categories, 'categories', 'id name slug posts(first: 100) { edges { node { title id } cursor } }');
+  // const allCategoriesArray = await fetchAllItems(categoriesPageInfo, categories, 'categories', 'id name slug posts(first: 100) { edges { node { title id } cursor } }');
 
-  const CatsIndex = path.resolve('./src/templates/CategoryIndex.jsx');
-  const catPostsPerPage = 10;
+  // const CatsIndex = path.resolve('./src/templates/CategoryIndex.jsx');
+  // const catPostsPerPage = 10;
   
 
-  allCategoriesArray.map((cat) => {
-    let catsPageNum = 1;
-    const totalCatsPages = Math.ceil((cat.node.posts.edges.length / catPostsPerPage));
+  // allCategoriesArray.map((cat) => {
+  //   let catsPageNum = 1;
+  //   const totalCatsPages = Math.ceil((cat.node.posts.edges.length / catPostsPerPage));
 
-    // Currently only paginations over first 100 posts within category.
-    // Would need to make multiple graphql calls to get all posts if more than 100
+  //   // Currently only paginations over first 100 posts within category.
+  //   // Would need to make multiple graphql calls to get all posts if more than 100
 
-    if (cat.node.posts.edges.length !== 0) {
-      cat.node.posts.edges[0].cursor = '';
-      if (cat.node.posts.edges.length <= catPostsPerPage) {
-        createPage({
-          path: `${cat.node.slug}/page/${catsPageNum}`,
-          component: slash(CatsIndex),
-          context: {
-            id: cat.node.id,
-            startCursor: cat.node.posts.edges[0].cursor,
-            catsPageNum,
-            totalCatsPages,
-            totalNumberOfPosts: cat.node.posts.edges.length
-          },
-        });
-      } else {
-        for (let i = 0; i < cat.node.posts.edges.length; i += catPostsPerPage) {
-          createPage({
-            path: `${cat.node.slug}/page/${catsPageNum}`,
-            component: slash(CatsIndex),
-            context: {
-              id: cat.node.id,
-              startCursor: cat.node.posts.edges[i].cursor,
-              catsPageNum,
-              totalCatsPages,
-              totalNumberOfPosts: cat.node.posts.edges.length
-            },
-          });
-          catsPageNum += 1;
-        }
-      }
-    }
-  });
+  //   if (cat.node.posts.edges.length !== 0) {
+  //     cat.node.posts.edges[0].cursor = '';
+  //     if (cat.node.posts.edges.length <= catPostsPerPage) {
+  //       createPage({
+  //         path: `${cat.node.slug}/page/${catsPageNum}`,
+  //         component: slash(CatsIndex),
+  //         context: {
+  //           id: cat.node.id,
+  //           startCursor: cat.node.posts.edges[0].cursor,
+  //           catsPageNum,
+  //           totalCatsPages,
+  //           totalNumberOfPosts: cat.node.posts.edges.length
+  //         },
+  //       });
+  //     } else {
+  //       for (let i = 0; i < cat.node.posts.edges.length; i += catPostsPerPage) {
+  //         createPage({
+  //           path: `${cat.node.slug}/page/${catsPageNum}`,
+  //           component: slash(CatsIndex),
+  //           context: {
+  //             id: cat.node.id,
+  //             startCursor: cat.node.posts.edges[i].cursor,
+  //             catsPageNum,
+  //             totalCatsPages,
+  //             totalNumberOfPosts: cat.node.posts.edges.length
+  //           },
+  //         });
+  //         catsPageNum += 1;
+  //       }
+  //     }
+  //   }
+  // });
 
   // /////////////////////
   // Author Page 
