@@ -20,8 +20,8 @@ const authorPostsList = ({ data, pageContext }) => {
     <Layout>
       <SEO title={fullName} />
       <HeroResults title={title} totalPosts={totalNumberOfPosts} />
-        <div className="container">
-          <div className="list-wrapper">
+      <div className="container">
+        <div className="list-wrapper">
           {posts.map((post) => {
             const postTitle = post.node.title;
             const postExcerpt = post.node.excerpt;
@@ -29,9 +29,7 @@ const authorPostsList = ({ data, pageContext }) => {
             const authorSlug = post.node.author.slug || 'thepostmanteam';
             const name = post.node.author.name || 'The Postman Team';
             const avatar = post.node.author.avatar.url || '';
-
             return (
-
               <div key={post.node.id} className="post">
                 <FluidImage image={featuredImage} />
                 <Link to={slug}>
