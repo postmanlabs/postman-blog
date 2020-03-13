@@ -7,42 +7,6 @@ import SEO from '../components/seo';
 import FluidImage from '../components/FluidImage';
 import HeroResults from '../components/Shared/HeroResults';
 
-export const authorPostsQuery = graphql`
-  query GET_PAGE_POSTS_OF_AUTHOR($id: ID!,  $startCursor: String!) {
-    wpgraphql {
-      user(id: $id){
-        avatar {
-          url
-        }
-        firstName
-        lastName
-        username
-        slug
-        posts (first: 10, after: $startCursor) {
-          edges {
-            node {
-              id
-              excerpt
-              title
-              slug
-              date
-              author {
-                name
-                slug
-                avatar {
-                  url
-                }
-              }
-              featuredImage {
-                sourceUrl
-                altText
-              }
-            }
-          }
-        }
-      }
-    }
-}`;
 
 const authorPostsList = ({ data, pageContext }) => {
   const { user } = data.wpgraphql;
@@ -91,3 +55,40 @@ const authorPostsList = ({ data, pageContext }) => {
 };
 
 export default authorPostsList;
+
+export const authorPostsQuery = graphql`
+  query GET_PAGE_POSTS_OF_AUTHOR($id: ID!,  $startCursor: String!) {
+    wpgraphql {
+      user(id: $id){
+        avatar {
+          url
+        }
+        firstName
+        lastName
+        username
+        slug
+        posts (first: 10, after: $startCursor) {
+          edges {
+            node {
+              id
+              excerpt
+              title
+              slug
+              date
+              author {
+                name
+                slug
+                avatar {
+                  url
+                }
+              }
+              featuredImage {
+                sourceUrl
+                altText
+              }
+            }
+          }
+        }
+      }
+    }
+}`;
