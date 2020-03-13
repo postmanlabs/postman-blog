@@ -21,34 +21,34 @@ const authorPostsList = ({ data, pageContext }) => {
       <SEO title={fullName} />
       <HeroResults title={title} totalPosts={totalNumberOfPosts} />
       <div className="container">
-        {posts.map((post) => {
-          const postTitle = post.node.title;
-          const postExcerpt = post.node.excerpt;
-          const { featuredImage, slug, date } = post.node;
-          const authorSlug = post.node.author.slug || 'thepostmanteam';
-          const name = post.node.author.name || 'The Postman Team';
-          const avatar = post.node.author.avatar.url || '';
-
-          return (
-
-            <div key={post.node.id} className="post">
-              <FluidImage image={featuredImage} />
-              <Link to={slug}>
-                <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
-              </Link>
-              <EntryMeta
-                authorSlug={authorSlug}
-                name={name}
-                avatar={avatar}
-                date={date}
-              />
-              <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
-            </div>
-          );
-        })}
-        {totalAuthorPages > 1 && (
-          <PageSelectionButtons currentPage={authorPageNum} totalPages={totalAuthorPages} prefix={`${user.slug}`} />
-        )}
+        <div className="list-wrapper">
+          {posts.map((post) => {
+            const postTitle = post.node.title;
+            const postExcerpt = post.node.excerpt;
+            const { featuredImage, slug, date } = post.node;
+            const authorSlug = post.node.author.slug || 'thepostmanteam';
+            const name = post.node.author.name || 'The Postman Team';
+            const avatar = post.node.author.avatar.url || '';
+            return (
+              <div key={post.node.id} className="post">
+                <FluidImage image={featuredImage} />
+                <Link to={slug}>
+                  <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
+                </Link>
+                <EntryMeta
+                  authorSlug={authorSlug}
+                  name={name}
+                  avatar={avatar}
+                  date={date}
+                />
+                <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+              </div>
+            );
+          })}
+          {totalAuthorPages > 1 && (
+            <PageSelectionButtons currentPage={authorPageNum} totalPages={totalAuthorPages} prefix={`${user.slug}`} />
+          )}
+        </div>
       </div>
     </Layout>
   );
