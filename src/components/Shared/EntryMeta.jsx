@@ -16,8 +16,7 @@ const EntryMeta = ({
         <div className="col-11 entry-meta-data">
           <Link to={`/${authorSlug}/page/1`}>{name}</Link>
           {' '}
-          {/* <span style={{ marginLeft: '16px' }}>{ moment(date).format('MMM D, YYYY') }</span> */}
-          <ReturnDateString data={date}/>
+          <ReturnDateString data={date} />
         </div>
       </div>
     </div>
