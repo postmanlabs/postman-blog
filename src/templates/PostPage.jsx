@@ -55,7 +55,7 @@ const BlogPostTemplate = ({ data }) => {
             },
           })}
         </div>
-        <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug}/>
+        <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
         <JustComments
           className="just-comments myTheme"
           data-recaptcha="true"
