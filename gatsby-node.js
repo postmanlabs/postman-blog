@@ -1,6 +1,6 @@
 const uuidv4 = require('uuid/v4');
-const path = require('path');
-const slash = require('slash');
+// const path = require('path');
+// const slash = require('slash');
 const HeaderJson = require('./src/components/Header/Header.data.json');
 const FooterJson = require('./src/components/Footer/Footer.data.json');
 
