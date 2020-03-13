@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import moment from 'moment/moment';
 import TagsMeta from './Tags';
+
+import ReturnDateString from './ReturnDateString';
 
 const EntryMeta = ({
   name, avatar, authorSlug, date, tags, categories,
@@ -15,7 +16,7 @@ const EntryMeta = ({
         <div className="col-11 entry-meta-data">
           <Link to={`/${authorSlug}/page/1`}>{name}</Link>
           {' '}
-          <span style={{ marginLeft: '16px' }}>{ moment(date).format('MMM D, YYYY') }</span>
+          <ReturnDateString data={date} />
         </div>
       </div>
     </div>

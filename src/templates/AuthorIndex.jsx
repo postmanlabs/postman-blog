@@ -30,6 +30,7 @@ const authorPostsList = ({ data, pageContext }) => {
           const avatar = post.node.author.avatar.url || '';
 
           return (
+
             <div key={post.node.id} className="post">
               <FluidImage image={featuredImage} />
               <Link to={slug}>
@@ -73,6 +74,7 @@ export const authorPostsQuery = graphql`
               excerpt
               title
               slug
+              date
               author {
                 name
                 slug
