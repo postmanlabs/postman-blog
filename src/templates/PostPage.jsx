@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from '../components/seo';
 import FluidImage from '../components/FluidImage';
+import Bio from '../components/Shared/Bio';
 // import PostForm from '../components/Shared/PostForm';
 
 
@@ -15,6 +16,7 @@ const BlogPostTemplate = ({ data }) => {
     title, content, date, featuredImage, slug,
   } = data.wpgraphql.post;
   const authorSlug = data.wpgraphql.post.author.slug;
+  const authorBio = data.wpgraphql.post.author.description || '';
 
   const name = data.wpgraphql.post.author.name || 'The Postman Team';
   const avatar = data.wpgraphql.post.author.avatar.url || '';
@@ -53,6 +55,7 @@ const BlogPostTemplate = ({ data }) => {
             },
           })}
         </div>
+        <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
         <JustComments
           className="just-comments myTheme"
           data-recaptcha="true"
@@ -84,6 +87,7 @@ export const postPageQuery = graphql`
             url
           }
           name
+          description
           slug
         }
         date
