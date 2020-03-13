@@ -15,6 +15,7 @@ const PostsIndex = ({ data, pageContext }) => {
     <Layout>
       <SEO title="Home" />
       <div className="container" style={{ marginTop: '120px' }}>
+        <div className="list-wrapper">
         {posts.map((post) => {
           const postTitle = post.node.title;
           const postExcerpt = post.node.excerpt;
@@ -43,9 +44,9 @@ const PostsIndex = ({ data, pageContext }) => {
           );
         })}
         <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
+        </div>
       </div>
     </Layout>
-
   );
 };
 
