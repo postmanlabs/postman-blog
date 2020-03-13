@@ -16,34 +16,34 @@ const PostsIndex = ({ data, pageContext }) => {
       <SEO title="Home" />
       <div className="container" style={{ marginTop: '120px' }}>
         <div className="list-wrapper">
-        {posts.map((post) => {
-          const postTitle = post.node.title;
-          const postExcerpt = post.node.excerpt;
-          const tags = post.node.tags.edges;
-          const categories = post.node.categories.edges[0].node;
-          const { slug, date, featuredImage } = post.node;
+          {posts.map((post) => {
+            const postTitle = post.node.title;
+            const postExcerpt = post.node.excerpt;
+            const tags = post.node.tags.edges;
+            const categories = post.node.categories.edges[0].node;
+            const { slug, date, featuredImage } = post.node;
 
-          const name = post.node.author.name || 'The Postman Team';
-          const avatar = post.node.author.avatar.url || '';
+            const name = post.node.author.name || 'The Postman Team';
+            const avatar = post.node.author.avatar.url || '';
 
-          return (
-            <div key={post.node.id} className="post">
-              <FluidImage image={featuredImage} />
-              <a href={`/${slug}`}>
-                <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
-              </a>
-              <EntryMeta
-                name={name}
-                avatar={avatar}
-                date={date}
-                tags={tags}
-                categories={categories}
-              />
-              <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
-            </div>
-          );
-        })}
-        <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
+            return (
+              <div key={post.node.id} className="post">
+                <FluidImage image={featuredImage} />
+                <a href={`/${slug}`}>
+                  <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
+                </a>
+                <EntryMeta
+                  name={name}
+                  avatar={avatar}
+                  date={date}
+                  tags={tags}
+                  categories={categories}
+                />
+                <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+              </div>
+            );
+          })}
+          <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
         </div>
       </div>
     </Layout>
