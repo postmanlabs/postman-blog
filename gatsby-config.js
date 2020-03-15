@@ -1,12 +1,12 @@
 const queries = require('./src/utils/algolia');
 
-require('dotenv').config({
-  path: `.env.${process.env.GATSBY_ACTIVE_ENV}`,
-});
-
 // require('dotenv').config({
-//   path: `.env.${process.env.NODE_ENV}`,
+//   path: `.env.${process.env.GATSBY_ACTIVE_ENV}`,
 // });
+
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 
 module.exports = {
   siteMetadata: {
@@ -92,6 +92,13 @@ module.exports = {
         apiKey: process.env.ALGOLIA_ADMIN_KEY,
         queries,
         chunkSize: 10000, // default: 1000
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-sri',
+      options: {
+        hash: 'sha512', // 'sha256', 'sha384' or 'sha512' ('sha512' = default)
+        crossorigin: false // Optional
       }
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality
