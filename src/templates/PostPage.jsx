@@ -26,43 +26,48 @@ const BlogPostTemplate = ({ data }) => {
   return (
     <Layout>
       <SEO title={title} />
-      <div className="indexPost container post-body-container">
-        <FluidImage image={featuredImage} />
-        <a href={slug}>
-          <h1 className="h2" dangerouslySetInnerHTML={{ __html: title }} />
-        </a>
-        <EntryMeta
-          name={name}
-          authorSlug={authorSlug}
-          avatar={avatar}
-          date={date}
-          tags={tags}
-          categories={categories}
-        />
-        <div className="post-content">
-          {parse(content, {
-            replace: (domNode) => {
-              if (domNode.attribs && domNode.attribs['data-src']) {
-                // '?format=pjpg&quality=60&auto=webp' is
-                // appended to img src for Fastly image optimization
-                return (
-                  <img
-                    src={`${domNode.attribs['data-src']}?format=pjpg&quality=60&auto=webp`}
-                    alt={domNode.attribs.alt}
-                  />
-                );
-              }
-            },
-          })}
+      {/* New header component will go above here */}
+      <div className="container">
+        <div className="post-body-container">
+          {/* Below will be moved to comment above */}
+          <FluidImage image={featuredImage} />
+          <a href={slug}>
+            <h1 className="h2" dangerouslySetInnerHTML={{ __html: title }} />
+          </a>
+          <EntryMeta
+            name={name}
+            authorSlug={authorSlug}
+            avatar={avatar}
+            date={date}
+            tags={tags}
+            categories={categories}
+          />
+          {/* Above will be moved */}
+          <div className="post-content">
+            {parse(content, {
+              replace: (domNode) => {
+                if (domNode.attribs && domNode.attribs['data-src']) {
+                  // '?format=pjpg&quality=60&auto=webp' is
+                  // appended to img src for Fastly image optimization
+                  return (
+                    <img
+                      src={`${domNode.attribs['data-src']}?format=pjpg&quality=60&auto=webp`}
+                      alt={domNode.attribs.alt}
+                    />
+                  );
+                }
+              },
+            })}
+          </div>
+          <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
+          <JustComments
+            className="just-comments myTheme"
+            data-recaptcha="true"
+            apikey="process.env.JUST_COMMENTS_API"
+            hideattribution="true"
+          />
+          {/* <PostForm />   */}
         </div>
-        <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
-        <JustComments
-          className="just-comments myTheme"
-          data-recaptcha="true"
-          apikey="process.env.JUST_COMMENTS_API"
-          hideattribution="true"
-        />
-        {/* <PostForm />   */}
       </div>
     </Layout>
   );
