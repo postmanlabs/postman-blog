@@ -9,25 +9,25 @@ const TagsMeta = ({
   const category = categories;
 
   if (tags && tags.length > 0) {
-    tagsList = tags.map((tag) => <Link key={tag.node.id} to={`/tags/${tag.node.slug}/page/1`}>{tag.node.name}</Link>);
+    tagsList = tags.map((tag) => <Link className="tags" key={tag.node.id} to={`/tags/${tag.node.slug}/page/1`}>{tag.node.name}</Link>);
   }
   return (
     <div className="col-12">
       <div className="row">
-        <div className="col-sm-4 v5-link">
+        <div className="col-sm-4">
           {category && (
-            <p className="categories">
-              Categories:
+            <p className="tags-wrapper">
+              Category:
               {' '}
-              <a href={`/${category.slug}/page/1`}>{category.name}</a>
+              <a className="tags" href={`/${category.slug}/page/1`}>{category.name}</a>
             </p>
           )}
         </div>
 
         <div className="col-sm-8">
           {tagsList && (
-            <p className="tags">
-              Tags: #
+            <p className="tags-wrapper">
+              Tags:
               {tagsList}
             </p>
           )}
