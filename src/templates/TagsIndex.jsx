@@ -18,8 +18,8 @@ const TagsPostsList = ({ data, pageContext }) => {
     <Layout>
       <SEO title={title} />
       <HeroResults title={title} totalPosts={totalNumberOfPosts} />
-      <div className="container">
-        <div className="list-wrapper">
+      <div className="list-wrapper">
+        <div className="container">
           <div className="row">
             {posts.map((post) => {
               const postTitle = post.node.title;
