@@ -1,12 +1,12 @@
 const queries = require('./src/utils/algolia');
 
-require('dotenv').config({
-  path: `.env.${process.env.GATSBY_ACTIVE_ENV}`,
-});
-
 // require('dotenv').config({
-//   path: `.env.${process.env.NODE_ENV}`,
+//   path: `.env.${process.env.GATSBY_ACTIVE_ENV}`,
 // });
+
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 
 module.exports = {
   siteMetadata: {
