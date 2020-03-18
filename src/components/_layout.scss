@@ -113,6 +113,11 @@ h4 {
 
 .post {
   margin: 0 0 120px 0px;
+  a {
+    &:hover {
+      color: $gray-3;
+    }
+  }
 }
 
 div.col-sm-7.doc-page {

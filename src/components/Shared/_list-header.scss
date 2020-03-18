@@ -2,4 +2,18 @@
 
 .header-line {
   border-bottom: 2px solid $gray-1;
+  padding-bottom: 8px;
+  margin-top: 8px;
+}
+
+.feature-image {
+  img {
+    padding-top: 32px;
+    
+    @media (min-width: 1199px) {
+    width: 250px;
+    height: auto;
+    padding-top: 16px;
+    }
+  }
 }

@@ -9,7 +9,7 @@ const ListHeader = ({
   featuredImage, slug, name, avatar, date, postTitle, authorSlug, postExcerpt, tags, categories
 }) => (
   <div className="row header-line">
-    <div className="col-8">
+    <div className="col-xl-8">
       {/* entry meta */}
       <EntryMeta
         authorSlug={authorSlug}
@@ -28,11 +28,10 @@ const ListHeader = ({
         {/* excerpt */}
         <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
     </div>
-    <div className="col-4">
+    <div className="col-xl-4 feature-image">
       <FluidImage image={featuredImage} />
-    </div>    
-        
-  </div> // end of row
+    </div>        
+  </div> 
 )
 
 export default ListHeader;
