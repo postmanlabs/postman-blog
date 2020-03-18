@@ -71,8 +71,8 @@ const CatsPostsList = ({ data, pageContext }) => {
     <Layout>
       <SEO title={title} />
       <HeroResults title={title} totalPosts={totalNumberOfPosts} />
-      <div className="container">
-        <div className="list-wrapper">
+      <div className="list-wrapper">
+        <div className="container">
           {posts.map((post) => {
             const postTitle = post.node.title;
             const postExcerpt = post.node.excerpt;
