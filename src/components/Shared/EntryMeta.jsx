@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import TagsMeta from './Tags';
-
 import ReturnDateString from './ReturnDateString';
 
 const EntryMeta = ({
-  name, avatar, authorSlug, date, tags, categories,
+  name, avatar, authorSlug, date
 }) => (
   <div className="row">
     <div className="col-12">
@@ -20,7 +18,6 @@ const EntryMeta = ({
         </div>
       </div>
     </div>
-    <TagsMeta tags={tags} categories={categories} />
   </div>
 );
 
