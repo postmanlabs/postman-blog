@@ -8,7 +8,7 @@ import TagsMeta from '../Shared/Tags';
 const ListHeader = ({
   featuredImage, slug, name, avatar, date, postTitle, authorSlug, postExcerpt, tags, categories
 }) => (
-  <div className="row header-line">
+  <div className="row header-wrapper">
     <div className="col-xl-8">
       {/* entry meta */}
       <EntryMeta
