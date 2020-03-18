@@ -1,4 +1,4 @@
-// this is the index blog list view 
+// this is the index blog list view
 
 import React from 'react';
 import { graphql } from 'gatsby';
@@ -10,11 +10,10 @@ import ListHeader from '../components/Shared/ListHeader';
 
 
 const BlogIndex = ({ data }) => {
-
   const currentPage = 1;
   const { totalPages } = 28;
   const posts = data.wpgraphql.posts.edges;
- 
+
   return (
     <Layout>
       <SEO title="Home" />
@@ -26,14 +25,14 @@ const BlogIndex = ({ data }) => {
             const { slug, date, featuredImage } = post.node;
             const tags = post.node.tags.edges;
             const categories = post.node.categories.edges[0].node;
-            
+
             const name = post.node.author.name || 'The Postman Team';
             const avatar = post.node.author.avatar.url || '';
             const authorSlug = post.node.author.slug;
 
             return (
               <div key={post.node.id} className="post">
-                <ListHeader 
+                <ListHeader
                   authorSlug={authorSlug}
                   name={name}
                   avatar={avatar}

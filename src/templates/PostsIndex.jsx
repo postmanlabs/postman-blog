@@ -21,15 +21,15 @@ const PostsIndex = ({ data, pageContext }) => {
             const tags = post.node.tags.edges;
             const categories = post.node.categories.edges[0].node;
             const { slug, date, featuredImage } = post.node;
-            
+
 
             const name = post.node.author.name || 'The Postman Team';
             const avatar = post.node.author.avatar.url || '';
             const authorSlug = post.node.author.slug;
-            
+
             return (
               <div key={post.node.id} className="post">
-                <ListHeader 
+                <ListHeader
                   authorSlug={authorSlug}
                   name={name}
                   avatar={avatar}

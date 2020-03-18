@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import ReturnDateString from './ReturnDateString';
 
 const EntryMeta = ({
-  name, avatar, authorSlug, date
+  name, avatar, authorSlug, date,
 }) => (
   <div className="row">
     <div className="col-12">
