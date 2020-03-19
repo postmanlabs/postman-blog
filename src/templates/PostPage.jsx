@@ -27,7 +27,7 @@ const BlogPostTemplate = ({ data }) => {
   return (
     <Layout>
       <SEO title={title} />
-      {/* New header component will go above here */}
+
       <BlogHeader
         name={name}
         authorSlug={authorSlug}
@@ -42,20 +42,6 @@ const BlogPostTemplate = ({ data }) => {
 
       <div className="container">
         <div className="post-body-container">
-          {/* Below will be moved to comment above */}
-          {/* <FluidImage image={featuredImage} />
-          <a href={slug}>
-            <h1 className="h2" dangerouslySetInnerHTML={{ __html: title }} />
-          </a>
-          <EntryMeta
-            name={name}
-            authorSlug={authorSlug}
-            avatar={avatar}
-            date={date}
-            tags={tags}
-            categories={categories}
-          /> */}
-          {/* Above will be moved */}
           <div className="post-content">
             {parse(content, {
               replace: (domNode) => {

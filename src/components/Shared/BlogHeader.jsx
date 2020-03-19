@@ -6,7 +6,7 @@ import TagsMeta from './Tags';
 
 
 const BlogHeader = ({
-  featuredImage, slug, name, avatar, date, postTitle, authorSlug, tags, categories,
+  featuredImage, name, avatar, date, postTitle, authorSlug, tags, categories,
 }) => (
   <div className="container blog-header-wrapper">
     <div className="row">
