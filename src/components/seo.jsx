@@ -11,7 +11,7 @@ import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
 function SEO({
-  description, lang, meta, title, image
+  description, lang, meta, title, image,
 }) {
   const { site } = useStaticQuery(
     graphql`
@@ -28,9 +28,8 @@ function SEO({
   );
 
   const metaDescription = description || site.siteMetadata.description;
-  const siteName = "Postman Blog"
-  const previewImage = image ? image.sourceUrl : 'https://blog.postman.com/postman-cooper-fallback.jpg'
-  console.log(previewImage)
+  const siteName = 'Postman Blog';
+  const previewImage = image ? image.sourceUrl : 'https://blog.postman.com/postman-cooper-fallback.jpg';
   return (
     <Helmet
       htmlAttributes={{
@@ -61,7 +60,7 @@ function SEO({
         },
         {
           property: 'og:image',
-          content: previewImage
+          content: previewImage,
         },
         {
           name: 'twitter:card',
@@ -81,8 +80,8 @@ function SEO({
         },
         {
           name: 'twitter:image',
-          content: previewImage
-        }
+          content: previewImage,
+        },
       ].concat(meta)}
     >
       {/* fonts */}
