@@ -13,7 +13,7 @@ import Bio from '../components/Shared/Bio';
 const BlogPostTemplate = ({ data }) => {
   const { post } = data.wpgraphql;
   const {
-    title, content, date, featuredImage, slug,
+    title, content, date, featuredImage, slug, excerpt
   } = data.wpgraphql.post;
   const authorSlug = data.wpgraphql.post.author.slug;
   const authorBio = data.wpgraphql.post.author.description || '';
@@ -23,9 +23,15 @@ const BlogPostTemplate = ({ data }) => {
   const tags = post.tags.edges;
   const categories = data.wpgraphql.post.categories.edges[0].node;
 
+  const excerptText = excerpt.replace(/<(.|\n)*?>/g, '');
+  //  Below creates a string from the 'sanitized' excerpt string.  
+  //  Grabs everything before the index of '. ' (end of sentence) after 100th char, adds one to include the '. '
+  const excerptTrimmed = excerptText.slice(0, (excerptText.indexOf('. ', 100) + 1));
+  
+  
   return (
     <Layout>
-      <SEO title={title} />
+      <SEO title={title} description={excerptTrimmed}/>
       {/* New header component will go above here */}
       <div className="container">
         <div className="post-body-container">
@@ -86,7 +92,8 @@ export const postPageQuery = graphql`
         id
         uri
         title
-        content 
+        content
+        excerpt
         author {
           avatar {
             url

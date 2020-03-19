@@ -45,11 +45,6 @@ exports.sourceNodes = async ({
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  // The “graphql” function allows us to run arbitrary
-  // queries against the local Gatsby GraphQL schema.
-  // Think of it like the site has a built-in database
-  // constructed from the fetched data that you can run
-  // queries against
 
   await createPosts({actions, graphql});
   await createTags({actions, graphql});

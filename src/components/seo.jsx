@@ -28,7 +28,7 @@ function SEO({
   );
 
   const metaDescription = description || site.siteMetadata.description;
-
+  console.log()
   return (
     <Helmet
       htmlAttributes={{
