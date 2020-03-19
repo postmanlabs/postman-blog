@@ -7,6 +7,7 @@ import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from '../components/seo';
 import FluidImage from '../components/FluidImage';
 import Bio from '../components/Shared/Bio';
+import Breadcrumbs from '../components/Shared/Breadcrumbs';
 // import PostForm from '../components/Shared/PostForm';
 
 
@@ -22,7 +23,7 @@ const BlogPostTemplate = ({ data }) => {
   const avatar = data.wpgraphql.post.author.avatar.url || '';
   const tags = post.tags.edges;
   const categories = data.wpgraphql.post.categories.edges[0].node;
-
+  console.log('SLUG', slug);
   return (
     <Layout>
       <SEO title={title} />
@@ -31,6 +32,7 @@ const BlogPostTemplate = ({ data }) => {
         <div className="post-body-container">
           {/* Below will be moved to comment above */}
           <FluidImage image={featuredImage} />
+          <Breadcrumbs category={false} title={title} slug={slug} />
           <a href={slug}>
             <h1 className="h2" dangerouslySetInnerHTML={{ __html: title }} />
           </a>
@@ -86,6 +88,7 @@ export const postPageQuery = graphql`
         id
         uri
         title
+        slug
         content 
         author {
           avatar {
