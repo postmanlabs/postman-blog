@@ -13,12 +13,13 @@ const Bio = ({
         <div className="col-12 bio-author">
           {name}
         </div>
-        <div className="col-12 v5-link">
+        <div className="col-12 more-link-wrap">
           <p>
             {authorBio}
             <Link to={`/${authorSlug}/page/1`}>
               {' '}
               See more posts of
+              {' '}
               {name}
             </Link>
           </p>

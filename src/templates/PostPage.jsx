@@ -1,14 +1,15 @@
+// Template for the Blog Post
 import React from 'react';
 import { graphql } from 'gatsby';
 import parse from 'html-react-parser';
 import JustComments from 'gatsby-plugin-just-comments';
 import Layout from '../components/layout';
-import EntryMeta from '../components/Shared/EntryMeta';
 import SEO from '../components/seo';
-import FluidImage from '../components/FluidImage';
 import Bio from '../components/Shared/Bio';
-import Breadcrumbs from '../components/Shared/Breadcrumbs';
+// import Breadcrumbs from '../components/Shared/Breadcrumbs';
 // import PostForm from '../components/Shared/PostForm';
+
+import BlogHeader from '../components/Shared/BlogHeader';
 
 
 const BlogPostTemplate = ({ data }) => {
@@ -23,11 +24,23 @@ const BlogPostTemplate = ({ data }) => {
   const avatar = data.wpgraphql.post.author.avatar.url || '';
   const tags = post.tags.edges;
   const categories = data.wpgraphql.post.categories.edges[0].node;
-  console.log('SLUG', slug);
+
   return (
     <Layout>
       <SEO title={title} />
-      {/* New header component will go above here */}
+
+      <BlogHeader
+        name={name}
+        authorSlug={authorSlug}
+        avatar={avatar}
+        date={date}
+        tags={tags}
+        categories={categories}
+        slug={slug}
+        featuredImage={featuredImage}
+        postTitle={title}
+      />
+
       <div className="container">
         <div className="post-body-container">
           {/* Below will be moved to comment above */}
