@@ -6,10 +6,13 @@ import JustComments from 'gatsby-plugin-just-comments';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
-// import Breadcrumbs from '../components/Shared/Breadcrumbs';
+import Breadcrumbs from '../components/Shared/Breadcrumbs';
+import FluidImage from '../components/FluidImage';
+
 // import PostForm from '../components/Shared/PostForm';
 
 import BlogHeader from '../components/Shared/BlogHeader';
+import EntryMeta from '../components/Shared/EntryMeta';
 
 
 const BlogPostTemplate = ({ data }) => {
@@ -28,7 +31,6 @@ const BlogPostTemplate = ({ data }) => {
   return (
     <Layout>
       <SEO title={title} />
-
       <BlogHeader
         name={name}
         authorSlug={authorSlug}
@@ -40,24 +42,8 @@ const BlogPostTemplate = ({ data }) => {
         featuredImage={featuredImage}
         postTitle={title}
       />
-
       <div className="container">
         <div className="post-body-container">
-          {/* Below will be moved to comment above */}
-          <FluidImage image={featuredImage} />
-          <Breadcrumbs category={categories} title={title} slug={slug} />
-          <a href={slug}>
-            <h1 className="h2" dangerouslySetInnerHTML={{ __html: title }} />
-          </a>
-          <EntryMeta
-            name={name}
-            authorSlug={authorSlug}
-            avatar={avatar}
-            date={date}
-            tags={tags}
-            categories={categories}
-          />
-          {/* Above will be moved */}
           <div className="post-content">
             {parse(content, {
               replace: (domNode) => {
