@@ -33,13 +33,7 @@ const BlogPostTemplate = ({ data }) => {
 
   return (
     <Layout>
-<<<<<<< HEAD
-
       <SEO title={title} description={excerptTrimmed} image={featuredImage} />
-=======
-      <SEO title={title} />
->>>>>>> 4990cadf031c4ebb5ba6d8c9efd6d209a10030be
-
       <BlogHeader
         name={name}
         authorSlug={authorSlug}
