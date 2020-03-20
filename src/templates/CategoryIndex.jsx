@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import EntryMeta from '../components/Shared/EntryMeta';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
 import SEO from '../components/seo';
-import FluidImage from '../components/FluidImage';
 import HeroResults from '../components/Shared/HeroResults';
-
+import ListHeader from '../components/Shared/ListHeader';
 
 export const catsPostsQuery = graphql`
   query GET_PAGE_POSTS_OF_CATEGORY($id: ID!, $startCursor: String!) {
@@ -85,12 +83,16 @@ const CatsPostsList = ({ data, pageContext }) => {
 
             return (
               <div key={post.node.id} className="post">
-                <FluidImage image={featuredImage} />
-                <Link to={slug}>
-                  <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
-                </Link>
-                <EntryMeta name={name} avatar={avatar} date={date} authorSlug={authorSlug} />
-                <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+                <ListHeader
+                  authorSlug={authorSlug}
+                  name={name}
+                  avatar={avatar}
+                  date={date}
+                  slug={slug}
+                  featureImage={featuredImage}
+                  postTitle={postTitle}
+                  postExcerpt={postExcerpt}
+                />
               </div>
             );
           })}
