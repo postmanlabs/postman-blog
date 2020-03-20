@@ -6,7 +6,7 @@ import JustComments from 'gatsby-plugin-just-comments';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
-import Breadcrumbs from '../components/Shared/Breadcrumbs';
+// import Breadcrumbs from '../components/Shared/Breadcrumbs';
 // import PostForm from '../components/Shared/PostForm';
 
 import BlogHeader from '../components/Shared/BlogHeader';
