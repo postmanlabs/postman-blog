@@ -32,7 +32,7 @@ const BlogPostTemplate = ({ data }) => {
         <div className="post-body-container">
           {/* Below will be moved to comment above */}
           <FluidImage image={featuredImage} />
-          <Breadcrumbs category={false} title={title} slug={slug} />
+          <Breadcrumbs category={categories} title={title} slug={slug} />
           <a href={slug}>
             <h1 className="h2" dangerouslySetInnerHTML={{ __html: title }} />
           </a>
