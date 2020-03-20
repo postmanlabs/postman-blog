@@ -11,8 +11,7 @@ module.exports = async ({ actions, graphql }) => {
           node {
             slug
             id
-            title
-            excerpt
+            date
           }
           cursor
         }
@@ -33,13 +32,21 @@ module.exports = async ({ actions, graphql }) => {
   const posts = allPostsResults.data.wpgraphql.posts.edges;
   const postsPageInfo = allPostsResults.data.wpgraphql.posts.pageInfo;
   // Puts initial call into array, makes as many additional GraphQL calls as needed to get the rest
-  const allPostsArray = await fetchAllItems(graphql, postsPageInfo, posts, 'posts', 'id slug');
+  const allPostsArray = await fetchAllItems(graphql, postsPageInfo, posts, 'posts', 'id slug date');
   // Grab createPage function from Gatsby's actions object.
-  const {createPage} = actions;
+  const {createPage, createRedirect} = actions;
 
   const postTemplate = path.resolve('./src/templates/PostPage.jsx');  
 
   allPostsArray.map((edge) => {
+    const splitDate = edge.node.date.split('-')
+    const datedSlug = `/${splitDate[0]}/${splitDate[1]}/${splitDate[2].split('T')[0]}/${edge.node.slug}/`;
+    createRedirect({
+      fromPath: datedSlug,
+      isPermanent: true,
+      redirectInBrowser: true,
+      toPath: `/${edge.node.slug}/`,
+    });
     createPage({
       path: `/${edge.node.slug}/`,
       component: postTemplate,
