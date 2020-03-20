@@ -4,11 +4,11 @@ import EntryMeta from './EntryMeta';
 import FluidImage from '../FluidImage';
 import TagsMeta from './Tags';
 
-import BreadCrumbs from '../Shared/Breadcrumbs'
+import BreadCrumbs from './Breadcrumbs';
 
 
 const BlogHeader = ({
-  featuredImage, name, avatar, date, postTitle, authorSlug, tags, categories, slug
+  featuredImage, name, avatar, date, postTitle, authorSlug, tags, categories, slug,
 }) => (
   <div className="container blog-header-wrapper">
     <BreadCrumbs category={categories} title={postTitle} slug={slug} />

@@ -6,13 +6,10 @@ import JustComments from 'gatsby-plugin-just-comments';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
-import Breadcrumbs from '../components/Shared/Breadcrumbs';
-import FluidImage from '../components/FluidImage';
 
 // import PostForm from '../components/Shared/PostForm';
 
 import BlogHeader from '../components/Shared/BlogHeader';
-import EntryMeta from '../components/Shared/EntryMeta';
 
 
 const BlogPostTemplate = ({ data }) => {
