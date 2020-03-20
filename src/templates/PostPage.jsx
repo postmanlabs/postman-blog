@@ -24,7 +24,7 @@ const BlogPostTemplate = ({ data }) => {
   const avatar = data.wpgraphql.post.author.avatar.url || '';
   const tags = post.tags.edges;
   const categories = data.wpgraphql.post.categories.edges[0].node;
-  console.log('SLUG', slug);
+
   return (
     <Layout>
       <SEO title={title} />
