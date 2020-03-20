@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import EntryMeta from '../components/Shared/EntryMeta';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
 import SEO from '../components/seo';
-import FluidImage from '../components/FluidImage';
 import HeroResults from '../components/Shared/HeroResults';
+import ListHeader from '../components/Shared/ListHeader';
 
 
 const authorPostsList = ({ data, pageContext }) => {
@@ -31,17 +30,16 @@ const authorPostsList = ({ data, pageContext }) => {
             const avatar = post.node.author.avatar.url || '';
             return (
               <div key={post.node.id} className="post">
-                <FluidImage image={featuredImage} />
-                <Link to={slug}>
-                  <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
-                </Link>
-                <EntryMeta
+                <ListHeader
                   authorSlug={authorSlug}
                   name={name}
                   avatar={avatar}
                   date={date}
+                  slug={slug}
+                  featureImage={featuredImage}
+                  postTitle={postTitle}
+                  postExcerpt={postExcerpt}
                 />
-                <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
               </div>
             );
           })}

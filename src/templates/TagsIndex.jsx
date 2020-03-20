@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import EntryMeta from '../components/Shared/EntryMeta';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
 import SEO from '../components/seo';
-import FluidImage from '../components/FluidImage';
 import HeroResults from '../components/Shared/HeroResults';
+import ListHeader from '../components/Shared/ListHeader';
 
 
 const TagsPostsList = ({ data, pageContext }) => {
@@ -27,15 +26,20 @@ const TagsPostsList = ({ data, pageContext }) => {
               const { slug, date, featuredImage } = post.node;
               const name = post.node.author.name || 'The Postman Team';
               const avatar = post.node.author.avatar.url || '';
+              const authorSlug = post.node.author.slug;
 
               return (
                 <div key={post.node.id} className="post">
-                  <FluidImage image={featuredImage} />
-                  <Link to={slug}>
-                    <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
-                  </Link>
-                  <EntryMeta name={name} avatar={avatar} date={date} />
-                  <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+                  <ListHeader
+                    authorSlug={authorSlug}
+                    name={name}
+                    avatar={avatar}
+                    date={date}
+                    slug={slug}
+                    featureImage={featuredImage}
+                    postTitle={postTitle}
+                    postExcerpt={postExcerpt}
+                  />
                 </div>
               );
             })}

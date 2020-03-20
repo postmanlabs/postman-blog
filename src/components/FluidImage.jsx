@@ -1,3 +1,5 @@
+
+// used in index and blog list view
 import React from 'react';
 import cooper from '../assets/postman-cooper-fallback.jpg';
 
