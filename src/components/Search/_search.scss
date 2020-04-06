@@ -80,6 +80,10 @@ ais-highlight-0000000000 {
 
 .header__brand {
   min-width: 330px;
+
+  @media (max-width: 411px) {
+    min-width: 0px;
+  }
 }
 
 .header__search {
