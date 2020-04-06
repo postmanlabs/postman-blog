@@ -6,6 +6,7 @@ import JustComments from 'gatsby-plugin-just-comments';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
+
 // import PostForm from '../components/Shared/PostForm';
 
 import BlogHeader from '../components/Shared/BlogHeader';
@@ -45,7 +46,6 @@ const BlogPostTemplate = ({ data }) => {
         featuredImage={featuredImage}
         postTitle={title}
       />
-
       <div className="container">
         <div className="post-body-container">
           <div className="post-content">
@@ -91,7 +91,8 @@ export const postPageQuery = graphql`
         id
         uri
         title
-        content
+        slug
+        content 
         excerpt
         author {
           avatar {
