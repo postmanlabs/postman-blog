@@ -12,11 +12,13 @@ const Breadcrumbs = ({ category, title, slug }) => (
               <span>
                 {' '}
                 /
+                {' '}
                 <Link to={`/${category.slug}/page/1/`}>{category.name}</Link>
               </span>
             )}
             {' '}
             /
+            {' '}
             <Link to={`${slug}/`}>{title}</Link>
           </p>
         </div>
