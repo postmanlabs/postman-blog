@@ -34,11 +34,7 @@ const BlogPostTemplate = ({ data }) => {
 
   return (
     <Layout>
-<<<<<<< HEAD
-      <SEO title={title} />
-=======
       <SEO title={title} description={excerptTrimmed} image={featuredImage} />
->>>>>>> 21550ab6191b42aa3de1736a44098d7ea56569f7
       <BlogHeader
         name={name}
         authorSlug={authorSlug}
@@ -95,13 +91,9 @@ export const postPageQuery = graphql`
         id
         uri
         title
-<<<<<<< HEAD
         slug
         content 
-=======
-        content
         excerpt
->>>>>>> 21550ab6191b42aa3de1736a44098d7ea56569f7
         author {
           avatar {
             url
