@@ -90,7 +90,7 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/favicon.png', // This path is relative to the root of the site.
+        //icon: 'src/images/favicon.png', // This path is relative to the root of the site.
       },
     },
     {
@@ -108,9 +108,9 @@ module.exports = {
         hash: 'sha512', // 'sha256', 'sha384' or 'sha512' ('sha512' = default)
         crossorigin: false // Optional
       }
-    }
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 };
