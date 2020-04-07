@@ -1,5 +1,9 @@
 @import './_variables.scss';
 
+div.col-sm-4.tags-row, div.col-sm-8.tags-row{
+  padding-left: 0px;
+}
+
 .tags-wrapper {
   color: $gray-2;
   a {
@@ -11,15 +15,13 @@
   border-radius: 20px;
   display: inline-block;
   padding: 8px;
-  margin: 0px 4px;
+  margin: 2px 4px;
   border: 1px solid $gray-2;
 
   font-size: 12px;
-  
     &:hover {
     color: $white;
     background-color: $gray-2;
     text-decoration: none;
   }
-
 }
