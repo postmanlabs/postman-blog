@@ -11,14 +11,17 @@
       color: $postman-orange;
     }
   }
-  @media(min-width:1200px) {
-    padding-left: 0px !important;
-  }
   @media (max-width: 411px){
-    padding-left: 32px !important;
+    padding-right: 8px !important;
   }
 }
 
+div.col-sm-1.entry-meta-col {
+  @media (max-width: 411px){
+    // width: auto !important;
+    padding-right: 0px !important;
+  }
+}
 .entry-meta-col {
   padding-right: 0px;
 }
