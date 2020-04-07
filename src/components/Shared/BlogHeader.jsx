@@ -2,7 +2,6 @@
 import React from 'react';
 import EntryMeta from './EntryMeta';
 import FluidImage from '../FluidImage';
-import TagsMeta from './Tags';
 
 import BreadCrumbs from './Breadcrumbs';
 import TagsMetaHeader from './TagsMetaHeader';

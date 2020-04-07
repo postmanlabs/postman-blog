@@ -14,12 +14,12 @@ const TagsMetaHeader = ({
   return (
     <div className="col-12">
       <div className="row">
-      <div className="col-sm-8 text-md-left text-lg-right">
+        <div className="col-sm-8 text-md-left text-lg-right">
           {tagsList && (
-            <div className="tags-wrapper">
-              Tags:
+          <div className="tags-wrapper">
+            Tags:
               {tagsList}
-            </div>
+          </div>
           )}
         </div>
 
