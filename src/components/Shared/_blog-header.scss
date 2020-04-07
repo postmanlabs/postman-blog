@@ -38,3 +38,7 @@
   justify-content: flex-end;
   
 }
+
+div.col-sm-4.text-right, div.col-lg-4.text-right, div.col-lg-7 {
+  padding-right: 0px !important;
+}

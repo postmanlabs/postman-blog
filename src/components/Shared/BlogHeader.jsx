@@ -2,10 +2,9 @@
 import React from 'react';
 import EntryMeta from './EntryMeta';
 import FluidImage from '../FluidImage';
-import TagsMeta from './Tags';
 
 import BreadCrumbs from './Breadcrumbs';
-
+import TagsMetaHeader from './TagsMetaHeader';
 
 const BlogHeader = ({
   featuredImage, name, avatar, date, postTitle, authorSlug, tags, categories, slug,
@@ -20,13 +19,13 @@ const BlogHeader = ({
             {/* title */}
             <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
           </div>
-          <div className="col-lg-4">
+          <div className="col-lg-4 text-lg-right">
             <FluidImage image={featuredImage} />
           </div>
         </div>
 
         <div className="row">
-          <div className="col-lg-5 blog-header-entry">
+          <div className="col-sm-12 col-lg-5 blog-header-entry">
             <EntryMeta
               authorSlug={authorSlug}
               name={name}
@@ -36,9 +35,9 @@ const BlogHeader = ({
               categories={categories}
             />
           </div>
-          <div className="col-lg-7 blog-tags">
+          <div className="col-sm-12 col-lg-7 blog-tags">
             {/* tags */}
-            <TagsMeta tags={tags} categories={categories} />
+            <TagsMetaHeader tags={tags} categories={categories} />
           </div>
         </div>
       </div>
