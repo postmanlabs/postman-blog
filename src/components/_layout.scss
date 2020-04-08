@@ -4,11 +4,12 @@
 * {
   font-family: 'Roboto';
 }
-
-.layout-wrapper {
-  padding: 0px;
-  overflow-x: hidden;
+@media (min-width: 992px) {
+  div.list-wrapper {
+    margin: 40px 160px;
+  }
 }
+
 
 .h1,
 h1 {
@@ -39,7 +40,7 @@ h4 {
   margin: 0 0 8px 0;
 }
 
-p {
+.v5-link {
   a {
       height: 24px; // allows the shadow line to shrink to the designed location   
       font-size: 16px;
@@ -55,12 +56,11 @@ p {
       color: $gray-3;
   
       &:hover {
-        // height: 1px;
         color: $gray_3;
         background-position: top 8px right -4px;
         padding-right: 4px;
         padding-bottom: 2px;
-        background-image: linear-gradient(180deg, transparent 60%, rgba(249, 157, 120, 1) 0);
+        background-image: linear-gradient(180deg, transparent 60%, rgba(249, 157, 120, 0.5) 0);
         text-decoration: none;
       }
   
@@ -75,11 +75,49 @@ p {
 };
 
 // .screen-reader-text {
-//   display: none;
+  // display: none;
 // }
+.more-link-wrap {
+  a {
+    height: 24px; // allows the shadow line to shrink to the designed location   
+    font-size: 16px;
+    font-weight: 700;
+    background-image: linear-gradient(180deg, transparent 50%, $blog-orange 0);
+    padding-right: 4px;
+    padding-bottom: 2px;
+    background-position-y: 2px;
+    background-position-x: 4px;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    transition: .15s ease;
+    color: $gray-3;
+
+    &:hover {
+      color: $gray_3;
+      background-position: top 8px right -4px;
+      padding-right: 4px;
+      padding-bottom: 2px;
+      background-image: linear-gradient(180deg, transparent 60%, $blog-orange 0);
+      text-decoration: none;
+    }
+
+    &.alternative {
+      color: $white;
+    }
+
+    &.alternative:hover {
+      color: $white;
+    }
+  }
+}
 
 .post {
-  margin: 120px 0px;
+  margin: 0 0 40px 0px;
+  a {
+    &:hover {
+      color: $gray-3;
+    }
+  }
 }
 
 div.col-sm-7.doc-page {
@@ -96,4 +134,8 @@ h4,
 .h4 {
   // font-family: 'Roboto', 'Franklin Gothic Medium', Tahoma, sans-serif;
   font-weight: 500; /* explicit for Roboto's medium */
+}
+
+p {
+  margin-bottom: 16px;
 }

@@ -2,11 +2,10 @@ import React from 'react';
 import errordog from '../images/error-dog.svg';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import './_404.scss';
+// import './_404.scss';
 
 const NotFoundPage = () => (
   <Layout>
-    {/* <SEO title="404: Not found" /> */}
     <SEO title="404: Not found" slug="/404/" />
     <div className="container">
       <div className="row error-row">

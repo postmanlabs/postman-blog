@@ -1,8 +1,16 @@
 const queries = require('./src/utils/algolia');
 
+////////////////////////////////////////////////
+// production build
+////////////////////////////////////////////////
+
 require('dotenv').config({
   path: `.env.${process.env.GATSBY_ACTIVE_ENV}`,
 });
+
+///////////////////////////////////////////////
+// local build
+//////////////////////////////////////////////
 
 // require('dotenv').config({
 //   path: `.env.${process.env.NODE_ENV}`,
@@ -22,7 +30,6 @@ module.exports = {
         typeName: 'WPGraphQL',
         fieldName: 'wpgraphql',
         url: 'https://blog.postman.com/graphql',
-        refetchInterval: 240,
       },
     },
     'gatsby-plugin-sitemap',
@@ -83,7 +90,7 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/favicon.png', // This path is relative to the root of the site.
+        //icon: 'src/images/favicon.png', // This path is relative to the root of the site.
       },
     },
     {
@@ -94,9 +101,16 @@ module.exports = {
         queries,
         chunkSize: 10000, // default: 1000
       }
-    }
+    },
+    {
+      resolve: 'gatsby-plugin-sri',
+      options: {
+        hash: 'sha512', // 'sha256', 'sha384' or 'sha512' ('sha512' = default)
+        crossorigin: false // Optional
+      }
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 };

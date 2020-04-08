@@ -5,17 +5,29 @@
 }
 
 .entry-meta-data {
-  margin-left: -24px;
+  a {
+    color: $gray-2;
+    &:hover {
+      color: $postman-orange;
+    }
+  }
+  @media (max-width: 411px){
+    padding-right: 8px !important;
+  }
 }
 
-
+div.col-sm-1.entry-meta-col {
+  @media (max-width: 411px){
+    // width: auto !important;
+    padding-right: 0px !important;
+  }
+}
 .entry-meta-col {
   padding-right: 0px;
 }
 
 .entry-meta-img {
   border-radius: 50%;
-  width: 32px;
+  max-width: 32px;
   height: auto;
-  // padding-left: 5px
 }

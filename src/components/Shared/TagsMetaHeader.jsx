@@ -2,7 +2,7 @@ import React from 'react';
 // import './_tags.scss';
 import { Link } from 'gatsby';
 
-const TagsMeta = ({
+const TagsMetaHeader = ({
   tags, categories,
 }) => {
   let tagsList;
@@ -14,7 +14,16 @@ const TagsMeta = ({
   return (
     <div className="col-12">
       <div className="row">
-        <div className="col-sm-4">
+        <div className="col-sm-8 text-md-left text-lg-right">
+          {tagsList && (
+          <div className="tags-wrapper">
+            Tags:
+              {tagsList}
+          </div>
+          )}
+        </div>
+
+        <div className="col-sm-4 text-md-left text-lg-right">
           {category && (
             <p className="tags-wrapper">
               Category:
@@ -23,18 +32,9 @@ const TagsMeta = ({
             </p>
           )}
         </div>
-
-        <div className="col-sm-8">
-          {tagsList && (
-            <p className="tags-wrapper">
-              Tags:
-              {tagsList}
-            </p>
-          )}
-        </div>
       </div>
     </div>
   );
 };
 
-export default TagsMeta;
+export default TagsMetaHeader;

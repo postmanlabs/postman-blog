@@ -1,16 +1,27 @@
 @import './_variables.scss';
 
-.tags {
+div.col-sm-4.tags-row, div.col-sm-8.tags-row{
+  padding-left: 0px;
+}
+
+.tags-wrapper {
   color: $gray-2;
   a {
     color: $gray-2;
   }
 }
 
-.categories {
-  color: $gray-2;
-  // margin-right: 24px;
-  a {
-    color: $gray-2;
+.tags {
+  border-radius: 20px;
+  display: inline-block;
+  padding: 8px;
+  margin: 2px 4px;
+  border: 1px solid $gray-2;
+
+  font-size: 12px;
+    &:hover {
+    color: $white !important;
+    background-color: $gray-2;
+    text-decoration: none;
   }
 }

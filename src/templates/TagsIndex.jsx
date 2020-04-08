@@ -1,11 +1,59 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
-
+import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import EntryMeta from '../components/Shared/EntryMeta';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
 import SEO from '../components/seo';
-import FluidImage from '../components/FluidImage';
+import HeroResults from '../components/Shared/HeroResults';
+import ListHeader from '../components/Shared/ListHeader';
+
+
+const TagsPostsList = ({ data, pageContext }) => {
+  const { tag } = data.wpgraphql;
+  const title = tag.name;
+  const posts = tag.posts.edges;
+  const { totalTagsPages, tagsPageNum, totalNumberOfPosts } = pageContext;
+
+  return (
+    <Layout>
+      <SEO title={title} />
+      <HeroResults title={title} totalPosts={totalNumberOfPosts} />
+      <div className="list-wrapper">
+        <div className="container">
+          <div className="row">
+            {posts.map((post) => {
+              const postTitle = post.node.title;
+              const postExcerpt = post.node.excerpt;
+              const { slug, date, featuredImage } = post.node;
+              const name = post.node.author.name || 'The Postman Team';
+              const avatar = post.node.author.avatar.url || '';
+              const authorSlug = post.node.author.slug;
+
+              return (
+                <div key={post.node.id} className="post">
+                  <ListHeader
+                    authorSlug={authorSlug}
+                    name={name}
+                    avatar={avatar}
+                    date={date}
+                    slug={slug}
+                    featureImage={featuredImage}
+                    postTitle={postTitle}
+                    postExcerpt={postExcerpt}
+                  />
+                </div>
+              );
+            })}
+          </div>
+          {totalTagsPages > 1 && (
+            <PageSelectionButtons currentPage={tagsPageNum} totalPages={totalTagsPages} prefix={`/tags/${tag.slug}`} />
+          )}
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+export default TagsPostsList;
 
 
 export const tagsPostsQuery = graphql`
@@ -17,6 +65,14 @@ export const tagsPostsQuery = graphql`
         posts(first: 10, after: $startCursor) {
           edges {
             node {
+              tags {
+                edges {
+                  node {
+                    id
+                    
+                  }
+                }
+              }
               id
               title
               excerpt
@@ -25,6 +81,7 @@ export const tagsPostsQuery = graphql`
               uri
               author {
                 name
+                slug
                 avatar {
                   url
                 }
@@ -40,78 +97,3 @@ export const tagsPostsQuery = graphql`
       }
     } 
   }`;
-
-  // tags {
-  //   edges {
-  //     node {
-  //       id
-  //       name
-  //       slug
-  //     }
-  //   }
-  // }
-  // categories {
-  //   edges {
-  //     node {
-  //       id
-  //       name
-  //       slug
-  //     }
-  //   }
-  // }
-const TagsPostsList = ({ data, pageContext }) => {
-  const { tag } = data.wpgraphql;
-  const title = tag.name;
-  const posts = tag.posts.edges;
-  const { totalTagsPages, tagsPageNum } = pageContext;
-
-
-  return (
-    <Layout>
-      <SEO title="post" />
-      <h1>
-        #
-        {title}
-      </h1>
-      {posts.map((post) => {
-        const postTitle = post.node.title;
-        const postExcerpt = post.node.excerpt;
-        // const tags = post.node.tags.edges;
-        // const category = post.node.categories;
-        const { slug, date } = post.node;
-
-        // const { name } = post.node.author;
-        // const avatar = post.node.author.avatar.url;
-        const { featuredImage } = post.node;
-
-        let name;
-        let avatar;
-        if (post.node.author) {
-          name = post.node.author.name;
-          avatar = post.node.author.avatar.url;
-        } else {
-          name = 'Christina';
-          avatar = '';
-        }
-
-        return (
-          <div key={post.node.id} className="post">
-            <FluidImage image={featuredImage} />
-            <Link to={slug}>
-              <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
-            </Link>
-            {/* <EntryMeta name={name} avatar={avatar} date={date} tags={tags} categories={category} /> */}
-            <EntryMeta name={name} avatar={avatar} date={date}/>
-            <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
-          </div>
-        );
-      })}
-      {totalTagsPages > 1 && (
-        <PageSelectionButtons currentPage={tagsPageNum} totalPages={totalTagsPages} prefix={`/tags/${tag.slug}`} />
-      )}
-
-    </Layout>
-  );
-};
-
-export default TagsPostsList;

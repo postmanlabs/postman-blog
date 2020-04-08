@@ -1,62 +1,56 @@
+// this is the index blog list view
+
 import React from 'react';
 import { graphql } from 'gatsby';
-
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-// import '../components/_layout.scss'
 
-import FluidImage from '../components/FluidImage';
-import EntryMeta from '../components/Shared/EntryMeta';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
+import ListHeader from '../components/Shared/ListHeader';
 
 
 const BlogIndex = ({ data }) => {
   const currentPage = 1;
   const { totalPages } = 28;
   const posts = data.wpgraphql.posts.edges;
-  
+
   return (
     <Layout>
       <SEO title="Home" />
+      <div className="list-wrapper">
+        <div className="container">
+          {posts.map((post) => {
+            const postTitle = post.node.title;
+            const postExcerpt = post.node.excerpt;
+            const { slug, date, featuredImage } = post.node;
+            const tags = post.node.tags.edges;
+            const categories = post.node.categories.edges[0].node;
 
-      {posts.map((post) => {
-        const postTitle = post.node.title;
-        const postExcerpt = post.node.excerpt;
-      
-        const { slug, date } = post.node;
+            const name = post.node.author.name || 'The Postman Team';
+            const avatar = post.node.author.avatar.url || '';
+            const authorSlug = post.node.author.slug;
 
-
-        const { featuredImage } = post.node;
-
-        let name;
-        let avatar;
-        if (post.node.author) {
-          name = post.node.author.name;
-          avatar = post.node.author.avatar.url;
-        } else {
-          name = 'Christina';
-          avatar = '';
-        }
-        
-
-        return (
-          <div key={post.node.id} className="post">
-            <FluidImage image={featuredImage} />
-            <a href={slug} style={{"color": "#282828"}}>
-              <h1 className="h2" dangerouslySetInnerHTML={{ __html: postTitle }} />
-            </a>
-            <EntryMeta
-              name={name}
-              avatar={avatar}
-              date={date}
-            />
-            <p dangerouslySetInnerHTML={{ __html: postExcerpt }} />
-          </div>
-        );
-      })}
-      <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
+            return (
+              <div key={post.node.id} className="post">
+                <ListHeader
+                  authorSlug={authorSlug}
+                  name={name}
+                  avatar={avatar}
+                  date={date}
+                  slug={slug}
+                  featureImage={featuredImage}
+                  postTitle={postTitle}
+                  postExcerpt={postExcerpt}
+                  tags={tags}
+                  categories={categories}
+                />
+              </div>
+            );
+          })}
+          <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
+        </div>
+      </div>
     </Layout>
-
   );
 };
 
@@ -77,6 +71,7 @@ export const First10Posts = graphql`
             uri
             author {
               name
+              slug
               avatar {
                 url
               }

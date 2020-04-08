@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import './_pageSelectionButtons.scss';
+// import './_pageSelectionButtons.scss';
 
 const PageSelectionButtons = ({ currentPage, totalPages, prefix }) => {
   const numOfPages = 5; // # of next page options to display
@@ -19,7 +19,7 @@ const PageSelectionButtons = ({ currentPage, totalPages, prefix }) => {
   let currentIndex = currentPage;
   // If we're not on the first page, add a previous button
   if (currentIndex !== 1) {
-    nextPageButtons.push(<li className="page-item-prev"><Link to={`${root}/page/${currentIndex - 1}`} className="page-link" key={currentIndex}>Prev</Link></li>);
+    nextPageButtons.push(<li key={Math.floor(Math.random())} className="page-item-prev"><Link to={`${root}/page/${currentIndex - 1}`} className="page-link" key={currentIndex}>Prev</Link></li>);
   }
   for (let i = 0; i < numOfButtons; i++) {
     if (currentIndex === totalPages) {
