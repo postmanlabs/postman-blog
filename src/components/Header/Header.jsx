@@ -1,17 +1,17 @@
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
-// import './_header.scss';
-// import '../Shared/_buttons.scss';
 import algoliasearch from 'algoliasearch/lite';
+
+// import 'Index' for federated search in 'react-instantsearch-dom'
 import {
-  InstantSearch, SearchBox, Hits, Configure, Index,
+  InstantSearch, SearchBox, Hits, Configure,
 } from 'react-instantsearch-dom';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 import '../../utils/typography';
 
-
-import { CustomHits, NextHits } from '../Search/searchPreview';
+// needed for federated search: import 'NextHits' in '../Search/searchPreview'
+import { CustomHits } from '../Search/searchPreview';
 
 
 const ClickOutHandler = require('react-onclickout');
@@ -161,7 +161,10 @@ class HeaderComponent extends React.Component {
                 </Index> */}
 
                 {/* <Index indexName="docs">
-                  <div className={!hasInput ? 'input-empty' : 'input-value'} style={{ top: '350px' }}>
+                  <div className={!hasInput
+                    ? 'input-empty'
+                    : 'input-value'}
+                    style={{ top: '350px' }}>
                     <h2>Learning Center</h2>
                     <NextHits hitComponent={Hits} />
                     <Configure hitsPerPage={2} />
