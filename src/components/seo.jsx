@@ -9,7 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
-import { render } from 'react-dom';
+// import { render } from 'react-dom';
 
 function SEO({
   description, lang, meta, title, image,
@@ -52,9 +52,14 @@ function SEO({
     `,
   );
 
+  // const yoast = wpgraphql.posts.edges.node.forEach((foo) => let yoastMetaDesc = foo.seo.metaDesc),
+  // console.log('seo yoast', wpgraphql.posts.edges);
+
+  
   const metaDescription = description || site.siteMetadata.description;
   const siteName = 'Postman Blog';
   const previewImage = image ? image.sourceUrl : 'https://blog.postman.com/postman-cooper-fallback.jpg';
+  
   return (
     <Helmet
       htmlAttributes={{

@@ -10,6 +10,8 @@ const createCategories = require('./gatsby/createCategories');
 const createAuthors = require('./gatsby/createAuthors');
 
 
+/* Create Header and Footer
+/****************************** */
 exports.sourceNodes = async ({
   actions,
   createNodeId,
@@ -42,6 +44,10 @@ exports.sourceNodes = async ({
   createNode(prepareNode(HeaderJson, 'headerLinks'));
   createNode(prepareNode(FooterJson, 'FooterLinks'));
 };
+
+
+/* Create Pages for Posts, Author, Categories, Tags 
+*********************************************************/
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;

@@ -15,7 +15,7 @@ import BlogHeader from '../components/Shared/BlogHeader';
 const BlogPostTemplate = ({ data }) => {
   const { post } = data.wpgraphql;
   const {
-    title, content, date, featuredImage, slug, excerpt,
+    title, content, date, featuredImage, slug, excerpt, seo
   } = data.wpgraphql.post;
   const authorSlug = data.wpgraphql.post.author.slug;
   const authorBio = data.wpgraphql.post.author.description || '';
@@ -31,10 +31,13 @@ const BlogPostTemplate = ({ data }) => {
   //  Adds one to include the '. '
   const excerptTrimmed = excerptText.slice(0, (excerptText.indexOf('. ', 100) + 1));
 
-
+  // data from yoast is coming from 'seo' field that is called in the context of createPage. Yoast plugin for WPGraphQL
+  const seoTitle = seo.title || title;
+  const seoDescription = seo.metaDesc || excerptTrimmed;
+  const seoImage = seo.opengraphImage.mediaItemUrl || featuredImage;
   return (
     <Layout>
-      <SEO title={title} description={excerptTrimmed} image={featuredImage} />
+      <SEO title={seoTitle} description={seoDescription} image={seoImage} />
       <BlogHeader
         name={name}
         authorSlug={authorSlug}
@@ -84,6 +87,19 @@ export const postPageQuery = graphql`
   query GET_POST($id: ID!) {
     wpgraphql {
       post(id: $id) {
+        seo {
+          metaDesc
+          title
+          opengraphImage {
+            mediaItemUrl
+          }
+          twitterDescription
+          twitterTitle
+          twitterImage {
+            mediaItemUrl
+          }
+          opengraphTitle
+        }
         featuredImage {
           sourceUrl
           altText
