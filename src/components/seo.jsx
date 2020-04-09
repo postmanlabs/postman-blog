@@ -14,7 +14,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 function SEO({
   description, lang, meta, title, image,
 }) {
-  const { site, wpgraphql } = useStaticQuery(
+  const { site } = useStaticQuery(
     graphql`
       query {
         site {
@@ -24,42 +24,14 @@ function SEO({
             author
           }
         }
-        wpgraphql {
-          posts {
-            edges {
-              node {
-                seo {
-                  metaDesc
-                  opengraphDescription
-                  opengraphTitle
-                  title
-                  twitterDescription
-                  twitterTitle
-                  opengraphImage {
-                    altText
-                    mediaItemUrl
-                  }
-                  twitterImage {
-                    altText
-                    mediaItemUrl
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     `,
   );
 
-  // const yoast = wpgraphql.posts.edges.node.forEach((foo) => let yoastMetaDesc = foo.seo.metaDesc),
-  // console.log('seo yoast', wpgraphql.posts.edges);
-
-  
   const metaDescription = description || site.siteMetadata.description;
   const siteName = 'Postman Blog';
   const previewImage = image ? image.sourceUrl : 'https://blog.postman.com/postman-cooper-fallback.jpg';
-  
+
   return (
     <Helmet
       htmlAttributes={{
