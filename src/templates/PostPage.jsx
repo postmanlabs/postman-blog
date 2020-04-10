@@ -6,16 +6,13 @@ import JustComments from 'gatsby-plugin-just-comments';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
-
-// import PostForm from '../components/Shared/PostForm';
-
 import BlogHeader from '../components/Shared/BlogHeader';
-
+// import PostForm from '../components/Shared/PostForm';
 
 const BlogPostTemplate = ({ data }) => {
   const { post } = data.wpgraphql;
   const {
-    title, content, date, featuredImage, slug, excerpt,
+    title, content, date, featuredImage, slug, excerpt, seo,
   } = data.wpgraphql.post;
   const authorSlug = data.wpgraphql.post.author.slug;
   const authorBio = data.wpgraphql.post.author.description || '';
@@ -26,15 +23,23 @@ const BlogPostTemplate = ({ data }) => {
   const categories = data.wpgraphql.post.categories.edges[0].node;
 
   const excerptText = excerpt.replace(/<(.|\n)*?>/g, '');
-  //  Below creates a string from the 'sanitized' excerpt string.
-  //  Grabs everything before the index of '. ' (end of sentence) after 100th char
-  //  Adds one to include the '. '
+  /*  Below creates a string from the 'sanitized' excerpt string.
+    Grabs everything before the index of '. '
+    (end of sentence) after 100th char.
+    Adds one to include the '. ' */
   const excerptTrimmed = excerptText.slice(0, (excerptText.indexOf('. ', 100) + 1));
 
+  /* data from yoast is coming from 'seo' field that is called
+     in the context of createPage. Yoast plugin for WPGraphQL */
+  const seoTitle = seo.title || title;
+  const seoDescription = seo.metaDesc || excerptTrimmed;
+  const seoImage = (seo.opengraphImage && seo.opengraphImage.mediaItemUrl)
+    ? seo.opengraphImage.mediaItemUrl
+    : featuredImage;
 
   return (
     <Layout>
-      <SEO title={title} description={excerptTrimmed} image={featuredImage} />
+      <SEO title={seoTitle} description={seoDescription} image={seoImage} />
       <BlogHeader
         name={name}
         authorSlug={authorSlug}
@@ -84,6 +89,19 @@ export const postPageQuery = graphql`
   query GET_POST($id: ID!) {
     wpgraphql {
       post(id: $id) {
+        seo {
+          metaDesc
+          title
+          opengraphImage {
+            mediaItemUrl
+          }
+          twitterDescription
+          twitterTitle
+          twitterImage {
+            mediaItemUrl
+          }
+          opengraphTitle
+        }
         featuredImage {
           sourceUrl
           altText

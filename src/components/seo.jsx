@@ -9,6 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
+// import { render } from 'react-dom';
 
 function SEO({
   description, lang, meta, title, image,
@@ -30,6 +31,7 @@ function SEO({
   const metaDescription = description || site.siteMetadata.description;
   const siteName = 'Postman Blog';
   const previewImage = image ? image.sourceUrl : 'https://blog.postman.com/postman-cooper-fallback.jpg';
+
   return (
     <Helmet
       htmlAttributes={{

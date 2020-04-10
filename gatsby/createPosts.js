@@ -9,21 +9,40 @@ module.exports = async ({ actions, graphql }) => {
       posts(first: 100) {
         edges {
           node {
-            slug
             id
+            slug
             date
+            seo {
+              focuskw
+              metaDesc
+              metaKeywords
+              metaRobotsNofollow
+              metaRobotsNoindex
+              opengraphDescription
+              opengraphTitle
+              title
+              twitterDescription
+              twitterTitle
+              opengraphImage {
+                mediaItemUrl
+              }
+              twitterImage {
+                mediaItemUrl
+              }
+            }
           }
           cursor
         }
         pageInfo {
           endCursor
-          startCursor
           hasNextPage
           hasPreviousPage
+          startCursor
         }
       }
     }
   }
+  
   `);
 
   if (allPostsResults.errors) {
@@ -35,6 +54,9 @@ module.exports = async ({ actions, graphql }) => {
   const allPostsArray = await fetchAllItems(graphql, postsPageInfo, posts, 'posts', 'id slug date');
   // Grab createPage function from Gatsby's actions object.
   const {createPage, createRedirect} = actions;
+
+   /* Create a Blog Post Page
+  ****************************************************************************************************************** */
 
   const postTemplate = path.resolve('./src/templates/PostPage.jsx');  
 
@@ -52,11 +74,17 @@ module.exports = async ({ actions, graphql }) => {
       component: postTemplate,
       context: {
         id: edge.node.id,
+        seo: edge.node.seo
       },
     });
   });
   console.log(`Created ${allPostsArray.length} pages for each blog post`);
   
+
+
+  /* Create Post list and pagination 
+  ************************************************************************************************* */
+
   const postsPerPage = 10;
   let pageNum = 1;
 
