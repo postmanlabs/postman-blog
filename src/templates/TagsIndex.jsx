@@ -8,7 +8,7 @@ import ListHeader from '../components/Shared/ListHeader';
 
 
 const TagsPostsList = ({ data, pageContext }) => {
-  const { tag } = data.wpgraphql;
+  const { tag } = data.wpgraphql; // post is missing in wpgraphql call
   const title = tag.name;
   const posts = tag.posts.edges;
   const { totalTagsPages, tagsPageNum, totalNumberOfPosts } = pageContext;
@@ -20,7 +20,8 @@ const TagsPostsList = ({ data, pageContext }) => {
       <div className="list-wrapper">
         <div className="container">
           <div className="row">
-            {posts.map((post) => {
+
+            {posts && posts.map((post) => {
               const postTitle = post.node.title;
               const postExcerpt = post.node.excerpt;
               const { slug, date, featuredImage } = post.node;
@@ -62,7 +63,7 @@ export const tagsPostsQuery = graphql`
       tag(id: $id) {
         name
         slug
-        posts(first: 10, after: $startCursor) {
+        posts(first: 10, before: $startCursor) {
           edges {
             node {
               tags {

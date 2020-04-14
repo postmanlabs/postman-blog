@@ -8,9 +8,18 @@
 // transforms it into the array of objects that will become
 // your Algolia index records.
 
-const pageQuery = `{
+console.log('Algolia page')
+
+
+const algoliaQuery = `{
   wpgraphql {
     posts (first: 100) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        endCursor
+        startCursor
+      }
       edges {
         node {
           id
@@ -34,6 +43,33 @@ const pageQuery = `{
     }
   }
 }`;
+if (algoliaQuery.errors) {
+  console.error(algoliaQuery.errors);
+}
+
+// When using the gatsby-plugin-algolia, you pass your query through the plugin options
+// I ended up with a custom gatsby-node.js where I run almost the same code as  gatsby-plugin-algolia/gatsby-node.js but I replace:
+// const result = await graphql(query)
+// const objects = await transformer(result)
+// by sth like that:
+
+// let go = true;
+// while (go) {
+//   const result = await graphql(query, variables)
+//   const objects = await transformer(result)
+
+//   allObjects = allObjects.concat(objects.nodes)
+
+//   if (objects.pageInfo && objects.pageInfo.hasNextPage) {
+//     variables.after = objects.pageInfo.endCursor
+//   } else {
+//     go = false
+//   }
+
+// }
+
+// console.log('algoliaquery.................', algoliaQuery)
+// /////////////////////////////////////////////////////////////////
 
 const flatten = (arr) => arr.map(({ node: { ...rest } }) => ({
   ...rest,
@@ -43,11 +79,10 @@ const settings = { attributesToSnippet: ['excerpt:20'] };
 
 const queries = [
   {
-    query: pageQuery,
+    query: algoliaQuery,
     transformer: ({ data }) => flatten(data.wpgraphql.posts.edges),
     indexName: 'blog',
     settings,
   },
 ];
 
-module.exports = queries;

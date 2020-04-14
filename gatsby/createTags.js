@@ -68,6 +68,11 @@ module.exports = async ({ actions, graphql }) => {
         // Else, there we will need multiple pagination pages
         // Loop over tags 10 at a time, 1 page for each 10 posts
         for (let i = 0; i < tag.node.posts.edges.length; i += tagsPostsPerPage) {
+          
+          if (tag.node.posts.edges[i].cursor === null) {
+            tag.node.posts.edges[i].cursor = ''
+          };
+
           createPage({
             path: `tags/${tag.node.slug}/page/${tagsPageNum}`,
             component: TagsIndex,

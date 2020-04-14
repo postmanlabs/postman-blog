@@ -71,7 +71,7 @@ const CatsPostsList = ({ data, pageContext }) => {
       <HeroResults title={title} totalPosts={totalNumberOfPosts} />
       <div className="list-wrapper">
         <div className="container">
-          {posts.map((post) => {
+          {posts && posts.map((post) => {
             const postTitle = post.node.title;
             const postExcerpt = post.node.excerpt;
             // const tags = post.node.tags.edges;
