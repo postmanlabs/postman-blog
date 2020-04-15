@@ -49,6 +49,12 @@ console.log('Algolia page')
 const pageQuery = `{
   wpgraphql {
     posts (first: 100) {
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
+        hasPreviousPage
+      }
       edges {
         node {
           id

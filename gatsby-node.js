@@ -7,6 +7,7 @@ const createTags = require('./gatsby/createTags');
 const createCategories = require('./gatsby/createCategories');
 const createAuthors = require('./gatsby/createAuthors');
 
+const fetchAllItems = require('./helpers/fetchAllItems');
 
 /* Create Header and Footer
 /************************************************************************ */
@@ -79,14 +80,13 @@ const apiKey = process.env.ALGOLIA_ADMIN_KEY;
 const identity = obj => obj;
 
 exports.onPostBuild = async function(
-  { graphql, indexName: mainIndexName, chunkSize = 1000 }
+  { graphql },
+  { indexName: mainIndexName, chunkSize = 1000 }
 ) {
   const activity = report.activityTimer(`index to Algolia`);
   activity.start();
-  // appId = process.env.GATSBY_ALGOLIA_APP_ID;
-  // apiKey = process.env.ALGOLIA_ADMIN_KEY;
+
   const client = algoliasearch(appId, apiKey);
-  console.log('gatsby node in exports: appid, api key queries ..............', appId, apiKey, queries)
 
 
   setStatus(activity, `${queries.length} queries to index`);
@@ -123,22 +123,83 @@ exports.onPostBuild = async function(
 
     /*  new code to paginate through algolia call
     ***********************************************************************/
-    let go = true;
-    while (go) {
-      const result = await graphql(query, variables);
-      if (result.errors) {
-        report.panic(`failed to index to Algolia`, result.errors);
-      }
-      const objects = await transformer(result)
+     const result = await graphql(query);
+     if (result.errors) {
+       report.panic(`failed to index to Algolia`, result.errors);
+     }
 
-      allObjects = allObjects.concat(objects.nodes)
+     const algoliaPageInfo = result.data.wpgraphql.posts.pageInfo;
+     const algolias = result.data.wpgraphql.posts.edges;
+     const algoliaArray = await fetchAllItems(graphql, algoliaPageInfo, algolias, 'posts', 'id title excerpt date slug uri author{ name avatar { url } } featuredImage { sourceUrl altText }');
 
-      if (objects.pageInfo && objects.pageInfo.hasNextPage) {
-        variables.after = objects.pageInfo.endCursor
-      } else {
-        go = false
-      }
-    }
+     console.log('algolia Array', algoliaArray.length)
+    //  const objects = await transformer(result);
+     const objects = await transformer(algoliaArray);
+
+    // let go = true;
+    // while (go) {
+    //   const result = await graphql(query);
+    //   if (result.errors) {
+    //     report.panic(`failed to index to Algolia`, result.errors);
+    //   }
+
+    //   const objects = await transformer(result);
+  
+    //   if (objects) {
+    //   let resultsArr = [];
+    //   const recurssiveFetcher = async (pageInfo, edgesArray) => {
+    //     resultsArr = [...resultsArr, ...edgesArray];
+    //     if (result.data.wpgraphql.posts.pageInfo && result.data.wpgraphql.posts.pageInfo.hasNextPage) {
+    //       const nextCall = await graphql(`{
+    //         wpgraphql {
+    //           posts (first: 100 after: "${pageInfo.endCursor}") {
+    //             pageInfo {
+    //               endCursor
+    //               startCursor
+    //               hasNextPage
+    //               hasPreviousPage
+    //             }
+    //             edges {
+    //               node {
+    //                 id
+    //                 title
+    //                 excerpt
+    //                 date
+    //                 slug
+    //                 uri
+    //                 author {
+    //                   name
+    //                   avatar {
+    //                     url
+    //                   }
+    //                 }
+    //                 featuredImage {
+    //                   sourceUrl
+    //                   altText
+    //                 }
+    //               }
+    //             }
+    //           }
+    //         }
+    //       }`);
+    //       const edgeArr = nextCall.data.wpgraphql[itemName].edges;
+    //       const nextPageInfo = nextCall.data.wpgraphql[itemName].pageInfo;
+
+    //       await recurssiveFetcher(nextPageInfo, edgeArr);
+    //     }
+    //   }
+    //   // await recurssiveFetcher(initialCallPageInfo, initialCallData);
+    //   return resultsArr;
+
+          
+    //     } else {
+    //       go = false
+    //     }
+    //   }
+
+    //   console.log(' results array ..........................', resultsArr);
+
+
 
     const chunks = chunk(objects, chunkSize);
     setStatus(activity, `query ${i}: splitting in ${chunks.length} jobs`);
