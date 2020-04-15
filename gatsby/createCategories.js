@@ -43,10 +43,13 @@ module.exports = async ({ actions, graphql }) => {
 
   const CatsIndex = path.resolve('./src/templates/CategoryIndex.jsx');
   const catPostsPerPage = 10;
+  const pageIncrement = catPostsPerPage - 1;
 
   allCategoriesArray.map((cat) => {
     let catsPageNum = 1;
-    const totalCatsPages = Math.ceil((cat.node.posts.edges.length / catPostsPerPage));
+    const catPosts = cat.node.posts;
+    const catPostsLength = catPosts.edges.length;
+    const totalCatsPages = Math.ceil((catPostsLength / catPostsPerPage));
 
     if (cat.node.posts.edges.length !== 0) {
       cat.node.posts.edges[0].cursor = '';
@@ -63,19 +66,36 @@ module.exports = async ({ actions, graphql }) => {
           },
         });
       } else {
-        for (let i = 0; i < cat.node.posts.edges.length; i += catPostsPerPage) {
+        let count = 0;
+        let adjustEdges = 0;
+
+        for (let i = 0; i < catPostsLength; i += pageIncrement) {
+          // First pass (only)
+          if (!i) {
+            // account for (messy) divison rounding
+            adjustEdges = (Math.floor((catPostsLength / catPostsPerPage)) + i) - 1;
+          }
+          // Last pass (only)
+          if (Math.floor((catPostsLength / catPostsPerPage)) === count) {
+            // make edge adjustments
+            for (let j = 0; j < adjustEdges; j += 1) {
+              cat.node.posts.edges.shift();
+            }
+          }
+
           createPage({
             path: `${cat.node.slug}/page/${catsPageNum}`,
             component: CatsIndex,
             context: {
               id: cat.node.id,
-              startCursor: cat.node.posts.edges[i].cursor,
+              startCursor: catPosts.edges[i] && catPosts.edges[i].cursor || '',
               catsPageNum,
               totalCatsPages,
-              totalNumberOfPosts: cat.node.posts.edges.length
+              totalNumberOfPosts: catPostsLength
             },
           });
           catsPageNum += 1;
+          count += 1;
         }
         console.log(`Categories page for ${cat.node.name} has pagination.`);
       }

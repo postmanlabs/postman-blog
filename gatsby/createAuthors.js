@@ -46,13 +46,14 @@ module.exports = async ({ actions, graphql }) => {
 
   const authorIndex = path.resolve('./src/templates/AuthorIndex.jsx');
   const authorPostsPerPage = 10;
+  const pageIncrement = authorPostsPerPage - 1;
 
   allAuthorArray.map((author) => {
     let authorPageNum = 1;
     const totalAuthorPages = Math.ceil((author.node.posts.edges.length / authorPostsPerPage));
 
     const authorPosts = author.node.posts
-    let authorPostsLength = author.node.posts.edges.length;
+    let authorPostsLength = authorPosts.edges.length;
 
     if (authorPostsLength !== 0) {
       authorPosts.edges[0].cursor = '';
@@ -69,19 +70,36 @@ module.exports = async ({ actions, graphql }) => {
           },
         });
       } else {
-        for (let i = 0; i < authorPostsLength; i+= authorPostsPerPage) {
+        let count = 0;
+        let adjustEdges = 0;
+
+        for (let i = 0; i < authorPostsLength; i+= pageIncrement) {
+          // First pass (only)
+          if (!i) {
+            // account for (messy) divison rounding
+            adjustEdges = (Math.floor((authorPostsLength / authorPostsPerPage)) + i) - 1;
+          }
+          // Last pass (only)
+          if (Math.floor((authorPostsLength / authorPostsPerPage)) === count) {
+            // make edge adjustments
+            for (let j = 0; j < adjustEdges; j += 1) {
+              author.node.posts.edges.shift();
+            }
+          }
+
           createPage({
             path: `${author.node.slug}/page/${authorPageNum}`,
             component: authorIndex,
             context: {
               id: author.node.id,
-              startCursor: authorPosts.edges[i].cursor,
+              startCursor: authorPosts.edges[i] && authorPosts.edges[i].cursor || '',
               authorPageNum,
               totalAuthorPages,
               totalNumberOfPosts: authorPostsLength
             },
           });
-          authorPageNum += 1
+          authorPageNum += 1;
+          count += 1;
         }
         console.log(`Author page for ${author.node.name} has pagination.`)
       }
