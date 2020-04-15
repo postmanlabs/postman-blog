@@ -71,7 +71,7 @@ const CatsPostsList = ({ data, pageContext }) => {
       <HeroResults title={title} totalPosts={totalNumberOfPosts} />
       <div className="list-wrapper">
         <div className="container">
-          {posts && posts.map((post) => {
+          {posts.map((post) => {
             const postTitle = post.node.title;
             const postExcerpt = post.node.excerpt;
             // const tags = post.node.tags.edges;
@@ -96,7 +96,7 @@ const CatsPostsList = ({ data, pageContext }) => {
               </div>
             );
           })}
-          {totalCatsPages > 1 && (
+          {totalCatsPages >= 1 && (
             <PageSelectionButtons currentPage={catsPageNum} totalPages={totalCatsPages} prefix={`${category.slug}`} />
           )}
         </div>

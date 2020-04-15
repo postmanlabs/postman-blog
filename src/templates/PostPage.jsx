@@ -10,6 +10,7 @@ import BlogHeader from '../components/Shared/BlogHeader';
 // import PostForm from '../components/Shared/PostForm';
 
 const BlogPostTemplate = ({ data }) => {
+  // console.log('Blog Post Template data ....', data)
   const { post } = data.wpgraphql;
   const {
     title, content, date, featuredImage, slug, excerpt, seo,

@@ -1,6 +1,4 @@
 const uuidv4 = require('uuid/v4');
-// const path = require('path');
-// const slash = require('slash');
 const HeaderJson = require('./src/components/Header/Header.data.json');
 const FooterJson = require('./src/components/Footer/Footer.data.json');
 
@@ -46,6 +44,7 @@ exports.sourceNodes = async ({
 };
 
 
+
 /* Create Pages for Posts, Author, Categories, Tags 
 ******************************************************************************/
 
@@ -69,13 +68,7 @@ const report = require('gatsby-cli/lib/reporter');
 const queries = require('./src/utils/algolia');
 const appId = process.env.GATSBY_ALGOLIA_APP_ID;
 const apiKey = process.env.ALGOLIA_ADMIN_KEY;
-
-
-/* Production build
-********************************************/
-require('dotenv').config({
-  path: `.env.${process.env.GATSBY_ACTIVE_ENV}`,
-});
+// console.log('gatsby node appid, api key queries ..............', appId, apiKey, queries)
 
 /**
  * give back the same thing as this was called with.
@@ -86,14 +79,14 @@ require('dotenv').config({
 const identity = obj => obj;
 
 exports.onPostBuild = async function(
-  { graphql, appId, apiKey, queries, indexName: mainIndexName, chunkSize = 1000 }
+  { graphql, indexName: mainIndexName, chunkSize = 1000 }
 ) {
   const activity = report.activityTimer(`index to Algolia`);
   activity.start();
   // appId = process.env.GATSBY_ALGOLIA_APP_ID;
   // apiKey = process.env.ALGOLIA_ADMIN_KEY;
   const client = algoliasearch(appId, apiKey);
-
+  console.log('gatsby node in exports: appid, api key queries ..............', appId, apiKey, queries)
 
 
   setStatus(activity, `${queries.length} queries to index`);
@@ -118,13 +111,18 @@ exports.onPostBuild = async function(
     }
 
     setStatus(activity, `query ${i}: executing query`);
-    
-    // const result = await graphql(query);
-    // if (result.errors) {
-    //   report.panic(`failed to index to Algolia`, result.errors);
-    // }
-    // const objects = await transformer(result);
 
+    /*  original gatsby-plugin-algolia code
+    ***********************************************************************/
+    /* const result = await graphql(query);
+    /* if (result.errors) {
+    /*   report.panic(`failed to index to Algolia`, result.errors);
+    /* }
+    /* const objects = await transformer(result);
+    ***********************************************************************/
+
+    /*  new code to paginate through algolia call
+    ***********************************************************************/
     let go = true;
     while (go) {
       const result = await graphql(query, variables);
