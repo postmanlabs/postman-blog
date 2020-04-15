@@ -20,7 +20,7 @@ const TagsPostsList = ({ data, pageContext }) => {
       <div className="list-wrapper">
         <div className="container">
           <div className="row">
-            {posts.map((post) => {
+            {Array.isArray(posts) && posts.map((post) => {
               const postTitle = post.node.title;
               const postExcerpt = post.node.excerpt;
               const { slug, date, featuredImage } = post.node;
