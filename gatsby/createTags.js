@@ -43,10 +43,13 @@ module.exports = async ({ actions, graphql }) => {
 
   const TagsIndex = path.resolve('./src/templates/TagsIndex.jsx');
   const tagsPostsPerPage = 10;
+  const pageIncrement = tagsPostsPerPage - 1;
   
   allTagsArray.map((tag) => {
     let tagsPageNum = 1;
-    const totalTagsPages = Math.ceil((tag.node.posts.edges.length / tagsPostsPerPage));
+    const tagPosts = tag.node.posts
+    const tagPostsLength = tagPosts.edges.length;
+    const totalTagsPages = Math.ceil((tagPostsLength / tagsPostsPerPage));
     // Loop through array of tags, check to make sure it actually has posts
     if (tag.node.posts.edges.length !== 0) {
       // if so, set first curosr as empty string to include first post
@@ -65,21 +68,38 @@ module.exports = async ({ actions, graphql }) => {
           },
         });
       } else {
+        let count = 0;
+        let adjustEdges = 0;
+
         // Else, there we will need multiple pagination pages
         // Loop over tags 10 at a time, 1 page for each 10 posts
-        for (let i = 0; i < tag.node.posts.edges.length; i += tagsPostsPerPage) {
+        for (let i = 0; i < tagPostsLength; i += pageIncrement) {
+          // First pass (only)
+          if (!i) {
+            // account for (messy) divison rounding
+            adjustEdges = (Math.floor((tagPostsLength / tagsPostsPerPage)) + i) - 1;
+          }
+          // Last pass (only)
+          if (Math.floor((tag.node.posts.edges.length / tagsPostsPerPage)) === count) {
+            // make edge adjustments
+            for (let j = 0; j < adjustEdges; j += 1) {
+              tag.node.posts.edges.shift();
+            }
+          }
+
           createPage({
             path: `tags/${tag.node.slug}/page/${tagsPageNum}`,
             component: TagsIndex,
             context: {
               id: tag.node.id,
-              startCursor: tag.node.posts.edges[i].cursor,
+              startCursor: tagPosts.edges[i] && tagPosts.edges[i].cursor || '',
               tagsPageNum,
               totalTagsPages,
-              totalNumberOfPosts: tag.node.posts.edges.length
+              totalNumberOfPosts: tagPostsLength
             },
           });
           tagsPageNum += 1;
+          count += 1;
         }
         console.log(`Tag page for ${tag.node.name} has pagination.`)
       }
