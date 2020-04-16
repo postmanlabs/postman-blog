@@ -46,52 +46,88 @@ console.log('Algolia page')
 // transforms it into the array of objects that will become
 // your Algolia index records.
 
-const pageQuery = `{
+
+// const algoliaPostQuery = `query($after:String){
+//   wpgraphql {
+//     posts (first: 100 after: $after) {
+//       pageInfo {
+//         endCursor
+//         hasNextPage
+//       }
+//       edges {
+//         node {
+//           id
+//           title
+//           excerpt
+//           date
+//           slug
+//           uri
+//           author {
+//             name
+//             avatar {
+//               url
+//             }
+//           }
+//           featuredImage {
+//             sourceUrl
+//             altText
+//           }
+//         }
+//       }
+//     }
+//   }
+// }`;
+
+
+
+const postQuery = `query($after:String){
   wpgraphql {
-    posts (first: 100) {
+    posts(first: 100 after: $after) {
       pageInfo {
-        endCursor
-        startCursor
         hasNextPage
-        hasPreviousPage
+        endCursor
       }
-      edges {
-        node {
-          id
-          title
-          excerpt
-          date
-          slug
-          uri
-          author {
-            name
-            avatar {
-              url
-            }
-          }
-          featuredImage {
-            sourceUrl
-            altText
-          }
-        }
+      nodes {
+        title
+        excerpt
+        date
+        slug
       }
     }
   }
-}`;
-
-const flatten = (arr) => arr.map(({ node: { ...rest } }) => ({
-  ...rest,
-}));
-
+}
+`
 const settings = { attributesToSnippet: ['excerpt:20'] };
-
 const queries = [
   {
-    query: pageQuery,
-    transformer: ({ data }) => flatten(data.wpgraphql.posts.edges),
+    query: postQuery,
+    transformer: ({ data }) => {
+      data.wpgraphql.posts.nodes.forEach(el => {
+        el.content = el.content
+      })
+      return data.wpgraphql.posts
+    },
     indexName: 'blog',
-    settings,
-  },
-];
+    settings
+  }
+]
+module.exports = queries
 
-module.exports = queries;
+
+
+// const flatten = (arr) => arr.map(({ node: { ...rest } }) => ({
+//   ...rest,
+// }));
+
+// const settings = { attributesToSnippet: ['excerpt:20'] };
+
+// const queries = [
+//   {
+//     query: algoliaPostQuery,
+//     transformer: ({ data }) => flatten(data.wpgraphql.posts.edges),
+//     indexName: 'blog',
+//     settings,
+//   },
+// ];
+
+// module.exports = queries;

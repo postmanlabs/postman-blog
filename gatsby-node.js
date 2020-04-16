@@ -121,87 +121,48 @@ exports.onPostBuild = async function(
     /* const objects = await transformer(result);
     ***********************************************************************/
 
-    /*  new code to paginate through algolia call
+    /*  new code to paginate through algolia call with fetchAllItems
     ***********************************************************************/
-     const result = await graphql(query);
-     if (result.errors) {
-       report.panic(`failed to index to Algolia`, result.errors);
-     }
+    //  const result = await graphql(query);
+    //  if (result.errors) {
+    //    report.panic(`failed to index to Algolia`, result.errors);
+    //  }
 
-     const algoliaPageInfo = result.data.wpgraphql.posts.pageInfo;
-     const algolias = result.data.wpgraphql.posts.edges;
-     const algoliaArray = await fetchAllItems(graphql, algoliaPageInfo, algolias, 'posts', 'id title excerpt date slug uri author{ name avatar { url } } featuredImage { sourceUrl altText }');
+    //  const algoliaPageInfo = result.data.wpgraphql.posts.pageInfo;
+    //  const algolias = result.data.wpgraphql.posts.edges;
+    //  const algoliaArray = await fetchAllItems(graphql, algoliaPageInfo, algolias, 'posts', 'id title excerpt date slug uri author{ name avatar { url } } featuredImage { sourceUrl altText }');
 
-     console.log('algolia Array', algoliaArray.length)
-    //  const objects = await transformer(result);
-     const objects = await transformer(algoliaArray);
+    //  console.log('algolia Array', algoliaArray.length)
+    // //  const objects = await transformer(result);
+    //  const objects = await transformer(algoliaArray);
 
-    // let go = true;
-    // while (go) {
-    //   const result = await graphql(query);
-    //   if (result.errors) {
-    //     report.panic(`failed to index to Algolia`, result.errors);
-    //   }
+       /*  new code to paginate through algolia call with Paulina
+    ***********************************************************************/
+   
+    let allObjects = []
+    const variables = { after : null }
+    
+    let go = true
+    while (go) {
+      // console.log('allObjects in while loop......................', allObjects)
+      // console.log('variables in while loop......................', variables)
+      // console.log('quert in while loop...............................', query)
+      const result = await graphql(query, variables)
+      if (result.errors) {
+        report.panic(`failed to index to Algolia`, result.errors)
+      }
+      // console.log('result in while loop...............................', result)
+      const objects = await transformer(result)
+      allObjects = allObjects.concat(objects.nodes)
+      if (objects.pageInfo && objects.pageInfo.hasNextPage) {
+        variables.after = objects.pageInfo.endCursor
+      } else {
+        go = false
+      }
+    }
+    console.log('allObjects outside while loop', allObjects)
 
-    //   const objects = await transformer(result);
-  
-    //   if (objects) {
-    //   let resultsArr = [];
-    //   const recurssiveFetcher = async (pageInfo, edgesArray) => {
-    //     resultsArr = [...resultsArr, ...edgesArray];
-    //     if (result.data.wpgraphql.posts.pageInfo && result.data.wpgraphql.posts.pageInfo.hasNextPage) {
-    //       const nextCall = await graphql(`{
-    //         wpgraphql {
-    //           posts (first: 100 after: "${pageInfo.endCursor}") {
-    //             pageInfo {
-    //               endCursor
-    //               startCursor
-    //               hasNextPage
-    //               hasPreviousPage
-    //             }
-    //             edges {
-    //               node {
-    //                 id
-    //                 title
-    //                 excerpt
-    //                 date
-    //                 slug
-    //                 uri
-    //                 author {
-    //                   name
-    //                   avatar {
-    //                     url
-    //                   }
-    //                 }
-    //                 featuredImage {
-    //                   sourceUrl
-    //                   altText
-    //                 }
-    //               }
-    //             }
-    //           }
-    //         }
-    //       }`);
-    //       const edgeArr = nextCall.data.wpgraphql[itemName].edges;
-    //       const nextPageInfo = nextCall.data.wpgraphql[itemName].pageInfo;
-
-    //       await recurssiveFetcher(nextPageInfo, edgeArr);
-    //     }
-    //   }
-    //   // await recurssiveFetcher(initialCallPageInfo, initialCallData);
-    //   return resultsArr;
-
-          
-    //     } else {
-    //       go = false
-    //     }
-    //   }
-
-    //   console.log(' results array ..........................', resultsArr);
-
-
-
-    const chunks = chunk(objects, chunkSize);
+    const chunks = chunk(allObjects, chunkSize);
     setStatus(activity, `query ${i}: splitting in ${chunks.length} jobs`);
 
     const chunkJobs = chunks.map(async function(chunked) {
