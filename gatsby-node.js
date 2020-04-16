@@ -7,7 +7,6 @@ const createTags = require('./gatsby/createTags');
 const createCategories = require('./gatsby/createCategories');
 const createAuthors = require('./gatsby/createAuthors');
 
-const fetchAllItems = require('./helpers/fetchAllItems');
 
 /* Create Header and Footer
 /************************************************************************ */
@@ -69,7 +68,6 @@ const report = require('gatsby-cli/lib/reporter');
 const queries = require('./src/utils/algolia');
 const appId = process.env.GATSBY_ALGOLIA_APP_ID;
 const apiKey = process.env.ALGOLIA_ADMIN_KEY;
-// console.log('gatsby node appid, api key queries ..............', appId, apiKey, queries)
 
 /**
  * give back the same thing as this was called with.
@@ -120,38 +118,16 @@ exports.onPostBuild = async function(
     /* }
     /* const objects = await transformer(result);
     ***********************************************************************/
-
-    /*  new code to paginate through algolia call with fetchAllItems
-    ***********************************************************************/
-    //  const result = await graphql(query);
-    //  if (result.errors) {
-    //    report.panic(`failed to index to Algolia`, result.errors);
-    //  }
-
-    //  const algoliaPageInfo = result.data.wpgraphql.posts.pageInfo;
-    //  const algolias = result.data.wpgraphql.posts.edges;
-    //  const algoliaArray = await fetchAllItems(graphql, algoliaPageInfo, algolias, 'posts', 'id title excerpt date slug uri author{ name avatar { url } } featuredImage { sourceUrl altText }');
-
-    //  console.log('algolia Array', algoliaArray.length)
-    // //  const objects = await transformer(result);
-    //  const objects = await transformer(algoliaArray);
-
-       /*  new code to paginate through algolia call with Paulina
-    ***********************************************************************/
    
     let allObjects = []
     const variables = { after : null }
     
     let go = true
     while (go) {
-      // console.log('allObjects in while loop......................', allObjects)
-      // console.log('variables in while loop......................', variables)
-      // console.log('quert in while loop...............................', query)
       const result = await graphql(query, variables)
       if (result.errors) {
         report.panic(`failed to index to Algolia`, result.errors)
       }
-      // console.log('result in while loop...............................', result)
       const objects = await transformer(result)
       allObjects = allObjects.concat(objects.nodes)
       if (objects.pageInfo && objects.pageInfo.hasNextPage) {
