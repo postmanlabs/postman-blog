@@ -15,7 +15,7 @@ const PostsIndex = ({ data, pageContext }) => {
       <SEO title="Home" />
       <div className="list-wrapper">
         <div className="container">
-          {posts && posts.map((post) => {
+          {posts.map((post) => {
             const postTitle = post.node.title;
             const postExcerpt = post.node.excerpt;
             const tags = post.node.tags.edges;
