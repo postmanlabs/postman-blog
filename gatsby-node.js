@@ -136,7 +136,6 @@ exports.onPostBuild = async function(
         go = false
       }
     }
-    console.log('allObjects outside while loop', allObjects)
 
     const chunks = chunk(allObjects, chunkSize);
     setStatus(activity, `query ${i}: splitting in ${chunks.length} jobs`);

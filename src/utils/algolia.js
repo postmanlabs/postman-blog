@@ -58,9 +58,9 @@
 
 // module.exports = queries;
 
-/******************************************************************************************* */
+/** ***************************************************************************************** */
 /* Lightweight Algolia entries
-**********************************************************************************************/
+********************************************************************************************* */
 
 const postQuery = `query($after:String){
   wpgraphql {
@@ -78,19 +78,19 @@ const postQuery = `query($after:String){
     }
   }
 }
-`
+`;
 const settings = { attributesToSnippet: ['excerpt:20'] };
 const queries = [
   {
     query: postQuery,
     transformer: ({ data }) => {
-      data.wpgraphql.posts.nodes.forEach(el => {
-        el.content = el.content
-      })
-      return data.wpgraphql.posts
+      data.wpgraphql.posts.nodes.forEach((el) => {
+        el.content = el.content;
+      });
+      return data.wpgraphql.posts;
     },
     indexName: 'blog',
-    settings
-  }
-]
-module.exports = queries
+    settings,
+  },
+];
+module.exports = queries;
