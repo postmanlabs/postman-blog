@@ -83,12 +83,13 @@ const settings = { attributesToSnippet: ['excerpt:20'] };
 const queries = [
   {
     query: postQuery,
-    transformer: ({ data }) => {
-      data.wpgraphql.posts.nodes.forEach((el) => {
-        el.content = el.content;
-      });
-      return data.wpgraphql.posts;
-    },
+    transformer: ({ data }) => (data.wpgraphql.posts),
+    // data.wpgraphql.posts.nodes.forEach((el) => {
+    //   // el.content = el.content;
+    //   el.content
+    // });
+    //   return data.wpgraphql.posts;
+    // },
     indexName: 'blog',
     settings,
   },
