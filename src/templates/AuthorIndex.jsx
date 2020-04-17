@@ -43,7 +43,7 @@ const authorPostsList = ({ data, pageContext }) => {
               </div>
             );
           })}
-          {totalAuthorPages >= 1 && (
+          {totalAuthorPages > 1 && (
             <PageSelectionButtons currentPage={authorPageNum} totalPages={totalAuthorPages} prefix={`${user.slug}`} />
           )}
         </div>
