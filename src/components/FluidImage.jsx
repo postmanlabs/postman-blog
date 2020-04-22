@@ -1,18 +1,19 @@
 
 // used in index and blog list view
 import React from 'react';
-import cooper from '../assets/postman-cooper-fallback.jpg';
+// import cooper from '../assets/postman-cooper-fallback.jpg';
 
 const FluidImage = ({ image, ...props }) => {
   // Return fallback Image, if no Image is given.
   if (!image) {
     return (
-      <img
-        loading="lazy"
-        src={cooper}
-        alt="Postman Cooper Fallback"
-        {...props}
-      />
+      <div />
+      // <img
+      //   loading="lazy"
+      //   src={cooper}
+      //   alt="Postman Cooper Fallback"
+      //   {...props}
+      // />
     );
   }
 
