@@ -1,30 +1,28 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-const Breadcrumbs = ({ category, title, slug }) => (
-  <div className="row">
-    <div className="col-12">
-      <div className="entry-meta">
-        <div className="col-11 entry-meta-data">
-          <p>
-            <Link to="/">Home</Link>
-            {category && (
-              <span>
-                {' '}
-                /
-                {' '}
-                <Link to={`/${category.slug}/page/1/`}>{category.name}</Link>
-              </span>
-            )}
+const Breadcrumbs = ({ category, title }) => (
+  <nav className="mb-2 pm-breadcrumb" aria-label="You are here:">
+    <span>
+      <Link to="/">Home</Link>
+      {' '}
+      /
+      <span>
+        {category && (
+        <span>
+          <Link to={`/${category.slug}/page/1/`}>
             {' '}
-            /
-            {' '}
-            <Link to={`${slug}/`}>{title}</Link>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+            {category.name}
+          </Link>
+        </span>
+        )}
+        {' '}
+        /
+        {' '}
+        <span className="breadcrumb_last" aria-current="page">{title}</span>
+      </span>
+    </span>
+  </nav>
 );
 
 export default Breadcrumbs;
