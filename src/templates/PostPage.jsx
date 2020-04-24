@@ -7,12 +7,13 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
 import BlogHeader from '../components/Shared/BlogHeader';
-// import PostForm from '../components/Shared/PostForm';
+import PostForm from '../components/Shared/PostForm';
+import CommentList from '../components/Shared/CommentList';
 
 const BlogPostTemplate = ({ data }) => {
   const { post } = data.wpgraphql;
   const {
-    title, content, date, featuredImage, slug, excerpt, seo,
+    title, content, date, featuredImage, slug, excerpt, seo, comments, postId
   } = data.wpgraphql.post;
   const authorSlug = data.wpgraphql.post.author.slug;
   const authorBio = data.wpgraphql.post.author.description || '';
@@ -21,6 +22,7 @@ const BlogPostTemplate = ({ data }) => {
   const avatar = data.wpgraphql.post.author.avatar.url || '';
   const tags = post.tags.edges;
   const categories = data.wpgraphql.post.categories.edges[0].node;
+  // const comments = post.comments.edges;
 
   const excerptText = excerpt.replace(/<(.|\n)*?>/g, '');
   /*  Below creates a string from the 'sanitized' excerpt string.
@@ -76,7 +78,8 @@ const BlogPostTemplate = ({ data }) => {
             apikey="process.env.JUST_COMMENTS_API"
             hideattribution="true"
           />
-          {/* <PostForm />   */}
+          <PostForm postId={postId} />  
+          <CommentList comments={comments} />
         </div>
       </div>
     </Layout>
@@ -89,6 +92,20 @@ export const postPageQuery = graphql`
   query GET_POST($id: ID!) {
     wpgraphql {
       post(id: $id) {
+        comments(where: {status: "approved"}) {
+          edges {
+            node {
+              approved
+              content
+              author {
+                ... on WPGraphQL_CommentAuthor {
+                  id
+                  name
+                }
+              }
+            }
+          }
+        }
         seo {
           metaDesc
           title
@@ -107,6 +124,7 @@ export const postPageQuery = graphql`
           altText
         }
         id
+        postId
         uri
         title
         slug
