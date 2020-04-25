@@ -1,52 +1,134 @@
-// import React from 'react';
+import React, { Component } from 'react';
 
 
-// // export default class PostForm extends React.Component {
-// //   state = {
-// //     firstName: "",
-// //     email: "",
-// //     message:""
-// //   }
-// const Postform = ({ name, email, message }) =>
-//   // render() {
-//   (<form method="POST" action="https://dev.staticman.net/v2/entry/github/postmanlabs/postman-blog">
-//       <input name="options[redirect]" type="hidden" value="https://my-site.com" />
-//       {/* <input name="options[slug]" type="hidden" value="{{ page.slug }}"></input> */}
-//       <label>
-//         Name
-//         <input name="fields[name]" type="text">{name}</input>
-//       </label>
-//       <label>
-//         Email
-//         <input name="fields[email]" type="text">{email}</input>
-//       </label>
-//       <label>
-//         Message
-//         <input name="fields[message]" type="text">{message}</input>
-//       </label>
+// export default class PostForm extends React.Component {
+//   state = {
+//     firstName: "",
+//     email: "",
+//     message:""
+//   }
+class PostForm extends Component {
+  constructor() {
+    super();
 
-//       <button type="submit">Go!</button>
-//     </form>
-//   )
-// ;
-// // }
+    this.state = {
+      formIsSubmitting: false,
+      formSubmittedSuccessfully: false,
+      formSubmittedFailed: false,
+      formErrorMessage: null,
+      textAreaValue: '',
+    };
+  }
 
-// export default Postform;
 
-// const Postform = ({ name, email, message}) => {
+  render() {
+    const { postId } = this.props;
+    const {
+      formIsSubmitting,
+      formSubmittedSuccessfully,
+      formSubmittedFailed,
+      formErrorMessage,
+      textAreaValue,
+    } = this.state;
 
-//   return (
-//     <form method="POST" action="https://dev.staticman.net/v2/entry/postmanlabs/postman-docs/staticman/comments" />
-//         <input name="options[redirect]" type="hidden" value="https://my-site.com">
+    const successMessageMarkup = formSubmittedSuccessfully ? (
+      <p className="comment-success">
+        Thanks for your comment! It will appear once approved.
+      </p>
+    ) : null;
 
-//         <input name="options[slug]" type="hidden" value="{{ page.slug }}" />
-//         <label><input name="fields[name]" type="text">Name</label>
-//         <label><input name="fields[email]" type="email">E-mail</label>
-//         <label><textarea name="fields[message]"></textarea>Message</label>
+    const errorMessageMarkup = formSubmittedFailed && formSubmittedSuccessfully === false ? (
+      <p className>uups, something went wrong.</p>
+    ) : null;
 
-//         <button type="submit">Go!</button>
-//     {/* </form> */}
-//   );
-// };
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <h3 className="comments">Comments</h3>
+          </div>
+          <div className="col-12">
+            {successMessageMarkup}
+            {errorMessageMarkup}
+          </div>
+          <div className="col-12">
+            <form onSubmit={this.handleSubmit.bind(this)}>
+              <input type="hidden" id="postId" value={postId} />
+              <div className="form-group">
+                <label htmlFor="name">Your name</label>
+                <input className="form-control" id="name" type="text" required disabled={formIsSubmitting} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Your email</label>
+                <input
+                  className="form-control"
+                  id="email"
+                  type="email"
+                  required
+                  disabled={formIsSubmitting}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="comment">Write a public comment</label>
+                <textarea
+                  className="form-control"
+                  id="comment"
+                  rows="7"
+                  required
+                  disabled={formIsSubmitting}
+                  onChange={(evt) => {
+                    this.setState({ textAreaValue: evt.target.value });
+                  }}
+                  value={textAreaValue}
+                />
+              </div>
+              <input className="btn btn__primary" type="submit" value="Post comment!" />
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-// export default Postform;
+  handleSubmit(e) {
+    e.preventDefault();
+    const [postId, name, email, comment] = e.target.elements;
+    const sendData = JSON.stringify({
+      post: postId.value,
+      author_name: name.value,
+      author_email: email.value,
+      content: comment.value,
+    });
+
+    fetch('https://blog.postman.com/wp-json/wp/v2/comments', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: sendData,
+    })
+      .then((response) => {
+        if (response.ok === true) {
+          this.setState({
+            formIsSubmitting: false,
+            formSubmittedSuccessfully: true,
+            textAreaValue: '',
+          });
+        }
+
+        return response.json();
+      })
+      .then((object) => {
+        this.setState({
+          formIsSubmitting: false,
+          formSubmittedFailed: true,
+          formErrorMessage: object.message,
+        });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+}
+
+export default PostForm;

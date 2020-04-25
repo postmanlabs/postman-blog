@@ -30,5 +30,8 @@ module.exports = {
     "react/no-danger": "off",
     "consistent-return": "warn",
     "react/jsx-props-no-spreading": "warn",
+    "jsx-a11y/label-has-associated-control": "warn",
+    "no-unused-vars": "warn",
+    "react/sort-comp": "warn"
   },
 };
