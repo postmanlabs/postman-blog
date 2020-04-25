@@ -150,3 +150,26 @@ p {
   padding: 36px;
   border-radius: 0.25rem;
 }
+
+pre {
+  background-color: $gray_1;
+  border-radius: 2px;
+  padding: 16px;
+  white-space: pre-wrap; 
+  color: $gray-3; 
+  font-family: monospace !important;
+  line-height: 1.2rem;
+  font-size: 100% !important;
+  code {
+    background: none;
+  }
+}
+code {
+  font-size: 87.5%;
+  color: $gray_1;
+  word-break: break-word;
+  background-color: $gray_3;
+  border-radius: 2px;
+  padding: 4px;
+  font-family: monospace;
+}
