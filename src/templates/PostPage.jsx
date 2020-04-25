@@ -13,7 +13,7 @@ import CommentList from '../components/Shared/CommentList';
 const BlogPostTemplate = ({ data }) => {
   const { post } = data.wpgraphql;
   const {
-    title, content, date, featuredImage, slug, excerpt, seo, comments, postId
+    title, content, date, featuredImage, slug, excerpt, seo, comments, postId,
   } = data.wpgraphql.post;
   const authorSlug = data.wpgraphql.post.author.slug;
   const authorBio = data.wpgraphql.post.author.description || '';
@@ -78,7 +78,7 @@ const BlogPostTemplate = ({ data }) => {
             apikey="process.env.JUST_COMMENTS_API"
             hideattribution="true"
           /> */}
-          <PostForm postId={postId} />  
+          <PostForm postId={postId} />
           <CommentList comments={comments} />
         </div>
       </div>

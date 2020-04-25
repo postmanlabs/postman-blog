@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 // import { graphql } from 'gatsby';
 // import { useStaticQuery, graphql } from "gatsby"
 
@@ -15,7 +15,7 @@ const Comment = ({ comments }) => {
   //     }
   //   }
   // }`);
-  console.log('commentlist comment data', comments)
+  console.log('commentlist comment data', comments);
   // const { author } = comments;
   return (
     <div>
@@ -33,8 +33,8 @@ const Comment = ({ comments }) => {
       })}
     </div>
 
-  )
-} 
+  );
+};
 
 export default Comment;
 
@@ -50,7 +50,3 @@ export default Comment;
 //       }
 //   }
 //   }
-
-
-
-  
