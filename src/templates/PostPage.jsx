@@ -2,7 +2,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import parse from 'html-react-parser';
-import JustComments from 'gatsby-plugin-just-comments';
+// import JustComments from 'gatsby-plugin-just-comments';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
@@ -72,12 +72,12 @@ const BlogPostTemplate = ({ data }) => {
             })}
           </div>
           <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
-          <JustComments
+          {/* <JustComments
             className="just-comments myTheme"
             data-recaptcha="true"
             apikey="process.env.JUST_COMMENTS_API"
             hideattribution="true"
-          />
+          /> */}
           <PostForm postId={postId} />  
           <CommentList comments={comments} />
         </div>

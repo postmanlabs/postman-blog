@@ -32,7 +32,7 @@ class PostForm extends Component {
     } = this.state;
 
     const successMessageMarkup = formSubmittedSuccessfully ? (
-      <p>
+      <p className="comment-success">
         Thanks for your comment! It will appear once approved.
       </p>
     ) : null;
@@ -46,29 +46,34 @@ class PostForm extends Component {
     <div className="container">
       <div className="row">
         <div className="col-12">
-          <h3>Comments</h3>
+          <h3 className="comments">Comments</h3>
         </div>
-        
-        {successMessageMarkup}
-        {errorMessageMarkup}
+        <div className="col-12">
+          {successMessageMarkup}
+          {errorMessageMarkup}
+        </div>
+        <div className="col-12">
         <form onSubmit={this.handleSubmit.bind(this)}>
           <input type="hidden" id="postId" value={postId} />
-          <div>
-            <label htmlFor="name">Name*</label>
-            <input id="name" type="text" required disabled={formIsSubmitting}/>
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input class="form-control" id="name" type="text" required disabled={formIsSubmitting}/>
           </div>
-          <div>
-            <label htmlFor="email">Email*</label>
+          <div className="form-group">
+            <label for="email">Your email</label>
             <input
+              className="form-control"
               id="email"
               type="email"
               required
               disabled={formIsSubmitting}
             />
           </div>
-          <div>
-            <label htmlFor="comment">Comment*</label>
+          <div class="form-group">
+            <label for="comment">Write a public comment</label>
             <textarea
+              className="form-control"
+              rows="2"
               id="comment"
               rows="10"
               required
@@ -79,8 +84,9 @@ class PostForm extends Component {
               value={textAreaValue}
             />
           </div>
-          <input type="submit" value="Post comment!" />
+          <input className="btn btn__primary" type="submit" value="Post comment!" />
         </form>
+        </div>
       </div>
     </div>
     );
