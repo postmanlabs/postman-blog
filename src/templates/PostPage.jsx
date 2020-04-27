@@ -25,14 +25,14 @@ const BlogPostTemplate = ({ data }) => {
 
 
   const excerptText = excerpt.replace(/<(.|\n)*?>/g, '');
-  /*  
-  *   Creates a string from the 'sanitized' excerpt string. 
-  *   Grabs everything before the index of '. '(end of sentence) after 100th char. 
-  *   Adds one to include the '. ' 
+  /*
+  *   Creates a string from the 'sanitized' excerpt string.
+  *   Grabs everything before the index of '. '(end of sentence) after 100th char.
+  *   Adds one to include the '. '
   * */
   const excerptTrimmed = excerptText.slice(0, (excerptText.indexOf('. ', 100) + 1));
 
-  /* data from yoast is coming from 'seo' field that is called in the context of createPage. 
+  /* data from yoast is coming from 'seo' field that is called in the context of createPage.
   * Yoast plugin for WPGraphQL */
   const seoTitle = seo.title || title;
   const seoDescription = seo.metaDesc || excerptTrimmed;
