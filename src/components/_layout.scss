@@ -173,3 +173,15 @@ code {
   padding: 4px;
   font-family: monospace;
 }
+
+.comments__approved, .comments__answers {
+  border-bottom: 1px solid #ced4da;
+  margin-bottom: 32px;
+  a, a:hover {
+    color: $postman-orange;
+  }
+}
+
+// .comments__answers {
+//   border-bottom: 1px solid #ced4da;
+// }

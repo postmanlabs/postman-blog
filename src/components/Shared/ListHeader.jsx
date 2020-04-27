@@ -29,6 +29,7 @@ const ListHeader = ({
       <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
     </div>
     <div className="col-xl-4 feature-image">
+      {console.log('featured Image on Blog List view', featuredImage)}
       <FluidImage image={featuredImage} />
     </div>
   </div>

@@ -4,12 +4,20 @@ import ReturnDateString from './ReturnDateString';
 
 const EntryMeta = ({
   name, avatar, authorSlug, date,
-}) => (
+}) => {
+  let imageAvatar;
+  if (avatar && name) {
+    imageAvatar = avatar => <img className="entry-meta-img" src={avatar} alt={name} /> 
+  }
+
+ return (
   <div className="row">
     <div className="col-12">
       <div className="row entry-meta">
         <div className="col-sm-1 entry-meta-col">
+          {/* { imageAvatar } */}
           <img className="entry-meta-img" src={avatar} alt={name} />
+          {console.log(avatar)}
         </div>
         <div className="col-sm-10 entry-meta-data">
           <Link to={`/${authorSlug}/page/1`}>{name}</Link>
@@ -19,6 +27,6 @@ const EntryMeta = ({
       </div>
     </div>
   </div>
-);
+);}
 
 export default EntryMeta;
