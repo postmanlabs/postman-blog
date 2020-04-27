@@ -20,6 +20,7 @@ const FluidImage = ({ image, ...props }) => {
   if (image && image.imageFile) {
     return (
       <img
+        className="img-fluid"
         loading="lazy"
         fluid={image.imageFile.childImageSharp.fluid}
         alt={image.altText}
@@ -28,7 +29,7 @@ const FluidImage = ({ image, ...props }) => {
     );
   }
 
-  return <img src={image.sourceUrl} alt={image.altText} {...props} />;
+  return <img src={image.sourceUrl} className="img-fluid" alt={image.altText} {...props} />;
 };
 
 export default FluidImage;

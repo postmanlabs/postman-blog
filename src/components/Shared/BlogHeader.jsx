@@ -16,11 +16,11 @@ const BlogHeader = ({
         <div className="col-lg-12">
 
           <div className="row blog-header">
-            <div className="col-lg-8 blog-header-title">
+            <div className="col-lg-7 blog-header-title">
               {/* title */}
               <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
             </div>
-            <div className="col-lg-4 text-lg-right">
+            <div className="col-lg-5 text-lg-right">
               <FluidImage image={featuredImage} />
             </div>
           </div>
