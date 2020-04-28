@@ -9,9 +9,8 @@ const Comment = ({ comments }) => (
       const commentContent = comment.node.content;
       const commentDate = comment.node.date;
       const commentAuthorUrl = comment.node.author.url;
-      console.log('commentauthor url', commentAuthorUrl)
-      let answerList;
 
+      let answerList;
       if (comment.node.children && comment.node.children.edges) {
         answerList = comment.node.children.edges.map((answer) => (
           <div className="col-12 comments__answers">
