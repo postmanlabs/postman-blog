@@ -72,6 +72,7 @@ const BlogPostTemplate = ({ data }) => {
           </div>
           <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
           <PostForm postId={postId} />
+          {console.log('postpage comments', comments)}
           <CommentList comments={comments} />
         </div>
       </div>
@@ -109,6 +110,7 @@ export const postPageQuery = graphql`
                 ... on WPGraphQL_CommentAuthor {
                   id
                   name
+                  url
                 }
               }
             }

@@ -13,6 +13,5 @@ const EntryMeta = ({
     </div>
   </div>
 );
-// };
 
 export default EntryMeta;
