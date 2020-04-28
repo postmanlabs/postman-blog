@@ -8,6 +8,7 @@ import Bio from '../components/Shared/Bio';
 import BlogHeader from '../components/Shared/BlogHeader';
 import PostForm from '../components/Shared/PostForm';
 import CommentList from '../components/Shared/CommentList';
+import Tags from '../components/Shared/Tags';
 
 
 const BlogPostTemplate = ({ data }) => {
@@ -22,7 +23,6 @@ const BlogPostTemplate = ({ data }) => {
   const avatar = data.wpgraphql.post.author.avatar.url || '';
   const tags = post.tags.edges;
   const categories = data.wpgraphql.post.categories.edges[0].node;
-
 
   const excerptText = excerpt.replace(/<(.|\n)*?>/g, '');
   /*
@@ -62,7 +62,7 @@ const BlogPostTemplate = ({ data }) => {
                 if (domNode.attribs && domNode.attribs['data-src']) {
                   return (
                     <img
-                      src={`${domNode.attribs['data-src']}?format=pjpg&quality=60&auto=webp`}
+                      src={`${domNode.attribs['data-src']}`}
                       alt={domNode.attribs.alt}
                     />
                   );
@@ -70,6 +70,10 @@ const BlogPostTemplate = ({ data }) => {
               },
             })}
           </div>
+          <div className="pt-5 tags__post">
+            <Tags tags={tags} categories={categories} />
+          </div>
+          
           <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
           <PostForm postId={postId} />
           <CommentList comments={comments} />
