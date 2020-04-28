@@ -9,7 +9,7 @@ const ListHeader = ({
   featuredImage, slug, name, avatar, date, postTitle, authorSlug, postExcerpt, tags, categories,
 }) => (
   <div className="row header-wrapper">
-    <div className="col-xl-8">
+    <div className="col-lg-8">
       {/* entry meta */}
       <EntryMeta
         authorSlug={authorSlug}
@@ -20,7 +20,7 @@ const ListHeader = ({
         categories={categories}
       />
       {/* title */}
-      <a href={`/${slug}`}>
+      <a className="header-linked" href={`/${slug}`}>
         <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
       </a>
       {/* tags */}
@@ -28,7 +28,7 @@ const ListHeader = ({
       {/* excerpt */}
       <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
     </div>
-    <div className="col-xl-4 feature-image">
+    <div className="col-lg-4 feature-image">
       <FluidImage image={featuredImage} />
     </div>
   </div>
