@@ -1,6 +1,6 @@
 import React from 'react';
 import ReturnDateString from './ReturnDateString';
-
+import Pingback from './Pingback';
 
 const Comment = ({ comments }) => (
   <div>
@@ -30,7 +30,15 @@ const Comment = ({ comments }) => (
           <div className="comments__approved">
             <div className="col-12">
               {
-                commentAuthor && commentAuthorUrl ? <a href={commentAuthorUrl} className="comment author with url">{commentAuthorUrl}</a> : <div className="comment author without url">{commentAuthor}</div>
+                commentAuthor && commentAuthorUrl 
+                ? 
+                // <Pingback commentAuthorUrl={commentAuthorUrl} commentAuthor={commentAuthor} />
+                  <div>
+                  <h2>Pingback</h2>
+                  <a href={commentAuthorUrl} className="comment author with url">{commentAuthor}</a>
+                  </div> 
+                : 
+                  <div className="comment author without url">{commentAuthor}</div>
               }
             </div>
             <div className="col-12">

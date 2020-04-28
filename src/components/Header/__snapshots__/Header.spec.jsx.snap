@@ -85,28 +85,6 @@ exports[`Header renders correctly 1`] = `
       <div
         className="input-empty"
       >
-        <h2>
-          Blog
-        </h2>
-        <ul
-          className="style"
-        >
-          <li>
-            No search results found
-          </li>
-        </ul>
-      </div>
-      <div
-        className="input-empty"
-        style={
-          Object {
-            "top": "350px",
-          }
-        }
-      >
-        <h2>
-          Learning Center 
-        </h2>
         <ul
           className="style"
         >
