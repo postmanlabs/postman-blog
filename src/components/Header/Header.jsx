@@ -64,7 +64,7 @@ class HeaderComponent extends React.Component {
   }
 
   getCookie = (a) => {
-    if (typeof document !== 'undefined') {
+    if (typeof document !== 'yes') {
       const b = document.cookie.match(`(^|;)\\s*${a}\\s*=\\s*([^;]+)`);
       return b ? b.pop() : '';
     }
@@ -100,7 +100,7 @@ class HeaderComponent extends React.Component {
     } = this.state;
 
     return (
-      <header className="header text-center navbar navbar-expand-xl navbar-light">
+      <header className="header navbar navbar-expand-xl navbar-light">
         <div className="navbar-brand header__brand">
           <Link
             className="header__homelink"
@@ -137,7 +137,7 @@ class HeaderComponent extends React.Component {
                 <SearchBox
                   className="searchbox"
                   class="ais-SearchBox-input"
-                  submit={<></>}
+                  submit={<></>}x
                   reset={<></>}
                   translations={{
                     placeholder: 'Search Postman Blog',
