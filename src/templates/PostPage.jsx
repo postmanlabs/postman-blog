@@ -2,13 +2,13 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import parse from 'html-react-parser';
-// import JustComments from 'gatsby-plugin-just-comments';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
 import BlogHeader from '../components/Shared/BlogHeader';
 import PostForm from '../components/Shared/PostForm';
 import CommentList from '../components/Shared/CommentList';
+import Tags from '../components/Shared/Tags';
 
 const BlogPostTemplate = ({ data }) => {
   const { post } = data.wpgraphql;
@@ -22,7 +22,6 @@ const BlogPostTemplate = ({ data }) => {
   const avatar = data.wpgraphql.post.author.avatar.url || '';
   const tags = post.tags.edges;
   const categories = data.wpgraphql.post.categories.edges[0].node;
-  // const comments = post.comments.edges;
 
   const excerptText = excerpt.replace(/<(.|\n)*?>/g, '');
   /*  Below creates a string from the 'sanitized' excerpt string.
@@ -59,11 +58,9 @@ const BlogPostTemplate = ({ data }) => {
             {parse(content, {
               replace: (domNode) => {
                 if (domNode.attribs && domNode.attribs['data-src']) {
-                  // '?format=pjpg&quality=60&auto=webp' is
-                  // appended to img src for Fastly image optimization
                   return (
                     <img
-                      src={`${domNode.attribs['data-src']}?format=pjpg&quality=60&auto=webp`}
+                      src={`${domNode.attribs['data-src']}`}
                       alt={domNode.attribs.alt}
                     />
                   );
@@ -71,13 +68,11 @@ const BlogPostTemplate = ({ data }) => {
               },
             })}
           </div>
+          <div className="pt-5 tags__post">
+            <Tags tags={tags} categories={categories} />
+          </div>
+          
           <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
-          {/* <JustComments
-            className="just-comments myTheme"
-            data-recaptcha="true"
-            apikey="process.env.JUST_COMMENTS_API"
-            hideattribution="true"
-          /> */}
           <PostForm postId={postId} />
           <CommentList comments={comments} />
         </div>

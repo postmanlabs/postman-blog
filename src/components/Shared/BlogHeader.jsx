@@ -4,7 +4,7 @@ import EntryMeta from './EntryMeta';
 import FluidImage from '../FluidImage';
 
 import BreadCrumbs from './Breadcrumbs';
-import TagsMetaHeader from './TagsMetaHeader';
+// import TagsMetaHeader from './TagsMetaHeader';
 
 const BlogHeader = ({
   featuredImage, name, avatar, date, postTitle, authorSlug, tags, categories, slug,
@@ -33,10 +33,10 @@ const BlogHeader = ({
             categories={categories}
           />
         </div>
-        <div className="col-sm-12 col-lg-7 blog-tags">
+        {/* <div className="col-sm-12 col-lg-7 blog-tags"> */}
           {/* tags */}
-          <TagsMetaHeader tags={tags} categories={categories} />
-        </div>
+          {/* <TagsMetaHeader tags={tags} categories={categories} /> */}
+        {/* </div> */}
       </div>
     </div>
   </div>
