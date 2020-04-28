@@ -6,27 +6,10 @@
   --primary-color: #FF6C37;
 }
 
-// This .post class is the horizontal 'card' for each post, displayed on index pages
-.post {
-  a {
-    color: #282828;
-  }
-}
-
 .post-body-container {
   // Giving h2's the h3 styling from _layout.scss
   max-width: 740px;
   margin: 0 auto;
-  // h2 {
-  //   font-size:0;
-  //   line-height: 0;
-  //   margin:0;
-    // span {
-    // font-size: 36px!important;
-    // line-height: 1.2222222222; /* 44px */
-    // margin: 0 0 16px 0;
-    // }
-  // }
 }
 
 // adjust link in post content
