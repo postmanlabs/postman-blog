@@ -5,7 +5,7 @@ const ReturnDateString = ({ data }) => {
   const options = { year: 'numeric', month: 'short', day: 'numeric' };
   const dateString = dated.toLocaleDateString('en-US', options);
   return (
-    <span style={{ marginLeft: '16px' }}>{dateString}</span>
+    <span>{dateString}</span>
   );
 };
 export default ReturnDateString;

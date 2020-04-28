@@ -27,12 +27,7 @@
 
 .blog-header-entry {
   justify-content: flex-end!important;
-  .entry-meta-data {
-    @media(min-width:1200px) {
-    padding-left: 15px !important;
-    }
   }
-}
 .blog-tags {
   display: flex;
   justify-content: flex-end;

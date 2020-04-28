@@ -3,7 +3,7 @@
 .header {
   box-shadow: 0 5px 16px 0 rgba(0,0,0,.11);
   z-index: 1;
-  // margin: 0 0 120px 0;
+  
   .header__logo {
     margin: auto;
     height: 50px;
@@ -78,6 +78,7 @@ div.navbar-brand.header__brand {
 //   padding: 0px;
 // }
 
+
 .searchbox {
   width: 100%;
   input {
@@ -85,7 +86,7 @@ div.navbar-brand.header__brand {
     border: 0;
     padding: 13px 24px;
     border-radius: 3px;
-    width: 100%;
+    width: 85%;
   }
   ::placeholder {
     color: #1c272b;

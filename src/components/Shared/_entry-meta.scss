@@ -2,32 +2,28 @@
 
 .entry-meta {
   color: $gray-2;
+  margin-bottom: 8px;
 }
 
-.entry-meta-data {
+.entry-meta-col {
+  & span {
+    margin-right: 8px;
+  }
   a {
-    color: $gray-2;
-    &:hover {
-      color: $postman-orange;
+    &:link,
+    &:visited {
+      color: $gray-2;
+    }
+    &:hover,
+    &:active {
+      color: $postman-orange !important;
     }
   }
-  @media (max-width: 411px){
-    padding-right: 8px !important;
-  }
-}
-
-div.col-sm-1.entry-meta-col {
-  @media (max-width: 411px){
-    // width: auto !important;
-    padding-right: 0px !important;
-  }
-}
-.entry-meta-col {
-  padding-right: 0px;
 }
 
 .entry-meta-img {
   border-radius: 50%;
   max-width: 32px;
   height: auto;
+  margin-bottom: 0;
 }

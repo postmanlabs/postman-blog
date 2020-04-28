@@ -2,14 +2,26 @@
 
 // Footer has font Open Sans
 * {
-  font-family: 'Roboto';
+  font-family: 'Open Sans', 'Segoe UI', Tahoma, sans-serif;
 }
-@media (min-width: 992px) {
-  div.list-wrapper {
-    margin: 40px 160px;
+.list-wrapper {
+  margin: 40px 16px;
+  @media (min-width: 992px) {
+    margin: 80px 16px;
   }
 }
 
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  font-family: 'Roboto', 'Franklin Gothic Medium', Tahoma, sans-serif;
+  font-weight: 500; /* explicit for Roboto's medium */
+}
 
 .h1,
 h1 {
@@ -28,7 +40,7 @@ h2 {
 
 .h3,
 h3 {
-  font-size: 36px!important;
+  font-size: 36px !important;
   line-height: 1.2222222222; /* 44px */
   margin: 0 0 16px 0;
 }
@@ -74,9 +86,6 @@ h4 {
    }
 };
 
-// .screen-reader-text {
-  // display: none;
-// }
 .more-link-wrap {
   a {
     height: 24px; // allows the shadow line to shrink to the designed location   
@@ -122,18 +131,6 @@ h4 {
 
 div.col-sm-7.doc-page {
   padding: 64px 72px;
-}
-
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4 {
-  // font-family: 'Roboto', 'Franklin Gothic Medium', Tahoma, sans-serif;
-  font-weight: 500; /* explicit for Roboto's medium */
 }
 
 p {
@@ -185,3 +182,10 @@ code {
 // .comments__answers {
 //   border-bottom: 1px solid #ced4da;
 // }
+// Bootstrap container width overrides
+@media (max-width: 1199px) {
+  .container {
+      max-width: 100% !important;
+      width: 100% !important;
+  }
+}
