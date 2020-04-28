@@ -1,18 +1,6 @@
 {
   "links": [
     {
-      "name": "Updates",
-      "url": "/updates/page/1/"
-    },{
-      "name": "Tutorials",
-      "url": "/tutorials/page/1/"
-    },{
-      "name": "Case Studies",
-      "url": "/case-studies/page/1/"
-    },{
-      "name": "News",
-      "url": "/news/page/1/"
-    },{
       "name": "Dashboard",
       "url": "https://app.postman.com/",
       "cta": true
