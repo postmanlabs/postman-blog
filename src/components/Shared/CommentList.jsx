@@ -4,7 +4,7 @@ import ReturnDateString from './ReturnDateString';
 
 const Comment = ({ comments }) => (
   <div>
-    {comments.edges && comments.edges.map((comment) => {      
+    {comments.edges && comments.edges.map((comment) => {
       const commentAuthor = comment.node.author.name;
       const commentContent = comment.node.content;
       const commentDate = comment.node.date;
@@ -22,7 +22,7 @@ const Comment = ({ comments }) => (
             </div>
             <div className="col-12" dangerouslySetInnerHTML={{ __html: answer.node.content }} />
           </div>
-        ))
+        ));
       }
 
       return (
