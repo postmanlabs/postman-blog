@@ -10,40 +10,41 @@ const Comment = ({ comments }) => (
       const commentDate = comment.node.date;
       const commentAuthorUrl = comment.node.author.url;
 
+      /* answers to comments
+      ******************************************************************************* */
       let answerList;
       if (comment.node.children && comment.node.children.edges) {
         answerList = comment.node.children.edges.map((answer) => (
-          <div className="col-12 comments__answers">
+          <div className="col-11 comments__answers ml-4">
             <div className="col-12">
               {answer.node.author.name}
             </div>
-            <div className="col-12">
+            <div className="col-12 comments__date">
               <ReturnDateString data={answer.node.date} />
             </div>
-            <div className="col-12" dangerouslySetInnerHTML={{ __html: answer.node.content }} />
+            <div className="col-12 mt-3" dangerouslySetInnerHTML={{ __html: answer.node.content }} />
           </div>
         ));
       }
 
       return (
         <>
-          <div className="comments__approved">
-            <div className="col-12">
-              {
-                commentAuthor && commentAuthorUrl
-                  ? (
-                    <div>
-                      <h2>Pingback</h2>
-                      <a href={commentAuthorUrl} className="comment author with url">{commentAuthorUrl}</a>
+          <div className="col-12">
+            {
+              commentAuthorUrl
+                ? null
+                : (
+                  <div className="comments__approved">
+                    <div className="bio-author col-12">
+                      {commentAuthor}
                     </div>
-                  )
-                  : <div className="comment author without url">{commentAuthor}</div>
-              }
-            </div>
-            <div className="col-12">
-              <ReturnDateString data={commentDate} />
-            </div>
-            <div className="col-12" dangerouslySetInnerHTML={{ __html: commentContent }} />
+                    <div className="col-12 comments__date">
+                      <ReturnDateString data={commentDate} />
+                    </div>
+                    <div className="col-12 mt-3" dangerouslySetInnerHTML={{ __html: commentContent }} />
+                  </div>
+                )
+                }
           </div>
           { answerList }
         </>

@@ -141,7 +141,9 @@ p {
   border-bottom: 1px solid #ced4da;
   margin-bottom: 48px;
 }
-
+.comments__date {
+  color: $gray_2;
+}
 .comment-success {
   border: 1px solid #ced4da;
   padding: 36px;
@@ -179,9 +181,8 @@ code {
   }
 }
 
-// .comments__answers {
-//   border-bottom: 1px solid #ced4da;
-// }
+
+
 // Bootstrap container width overrides
 @media (max-width: 1199px) {
   .container {
