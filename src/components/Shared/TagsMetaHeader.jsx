@@ -3,17 +3,17 @@ import React from 'react';
 import { Link } from 'gatsby';
 
 const TagsMetaHeader = ({
-  tags, categories,
+  tags,
 }) => {
   let tagsList;
-  const category = categories;
+  // const category = categories;
 
   if (tags && tags.length > 0) {
     tagsList = tags.map((tag) => <Link className="tags" key={tag.node.id} to={`/tags/${tag.node.slug}/page/1`}>{tag.node.name}</Link>);
   }
   return (
     <div className="row">
-      <div className="col-sm-8 text-md-left text-lg-right">
+      <div className="col-sm-12 text-sm-left text-lg-right">
         {tagsList && (
         <div className="tags-wrapper">
           Tags:
@@ -22,7 +22,7 @@ const TagsMetaHeader = ({
         )}
       </div>
 
-      <div className="col-sm-4 text-md-left text-lg-right">
+      {/* <div className="col-sm-4 text-md-left text-lg-right">
         {category && (
           <p className="tags-wrapper">
             Category:
@@ -30,7 +30,7 @@ const TagsMetaHeader = ({
             <a className="tags" href={`/${category.slug}/page/1`}>{category.name}</a>
           </p>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

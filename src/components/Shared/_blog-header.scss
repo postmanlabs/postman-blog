@@ -1,17 +1,28 @@
 @import './_variables.scss';
 
 .blog-header-wrapper {
-  padding-top: 40px;
-  border-bottom: 2px solid $gray-1;
-  margin-bottom: 40px;
-  background-color: #F5F8fb;
-  border-bottom: 1px solid rgb(231, 237, 244);
+  // padding-top: 40px;
+  // border-bottom: 2px solid $gray-1;
+  // margin-bottom: 40px;
+  // background-color: #F5F8fb;
+  // border-bottom: 1px solid rgb(231, 237, 244);
+ 
   @media(min-width:769px) {
     padding-top: 80px;
   }
 }
 
+.blog-header-border {
+  border-bottom: 2px solid #F4F4F4;
+  padding: 0 0 20px;
+  margin-bottom: 30px;
+}
+
 .blog-header {
+  img {
+    background-color: #1C262B;
+    padding: 16px;
+  }
   a {
     color: $gray-3;
     &:hover {

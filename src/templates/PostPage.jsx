@@ -6,15 +6,15 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
 import BlogHeader from '../components/Shared/BlogHeader';
-import PostForm from '../components/Shared/PostForm';
+// import PostForm from '../components/Shared/PostForm';
 import CommentList from '../components/Shared/CommentList';
-import Tags from '../components/Shared/Tags';
 
 
 const BlogPostTemplate = ({ data }) => {
   const { post } = data.wpgraphql;
+  //  insert postId, below to call PostForm
   const {
-    title, content, date, featuredImage, slug, excerpt, seo, comments, postId,
+    title, content, date, featuredImage, slug, excerpt, seo, comments,
   } = data.wpgraphql.post;
   const authorSlug = data.wpgraphql.post.author.slug;
   const authorBio = data.wpgraphql.post.author.description || '';
@@ -70,12 +70,8 @@ const BlogPostTemplate = ({ data }) => {
               },
             })}
           </div>
-          <div className="pt-5 tags__post">
-            <Tags tags={tags} categories={categories} />
-          </div>
-
           <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
-          <PostForm postId={postId} />
+          {/* <PostForm postId={postId} /> */}
           <CommentList comments={comments} />
         </div>
       </div>

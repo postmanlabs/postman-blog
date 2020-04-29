@@ -13,21 +13,22 @@ const TagsMeta = ({
   }
   return (
     <div className="row">
-      <div className="col-sm-4">
-        {category && (
-          <p className="tags-wrapper">
-            Category:
-            {' '}
-            <a className="tags" href={`/${category.slug}/page/1`}>{category.name}</a>
-          </p>
-        )}
-      </div>
 
       <div className="col-sm-8">
         {tagsList && (
           <p className="tags-wrapper">
             Tags:
             {tagsList}
+          </p>
+        )}
+      </div>
+
+      <div className="col-sm-4">
+        {category && (
+          <p className="tags-wrapper">
+            Category:
+            {' '}
+            <a className="tags" href={`/${category.slug}/page/1`}>{category.name}</a>
           </p>
         )}
       </div>
