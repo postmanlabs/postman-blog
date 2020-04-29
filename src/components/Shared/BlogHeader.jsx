@@ -18,12 +18,13 @@ const BlogHeader = ({
           <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
         </div>
         <div className="col-md-4 text-lg-right">
-          <div class="img-wrapper-square mb-3">
-            <div class="img-wrapper-alignment">
+          <div className={`${featuredImage ? 'img-wrapper-square mb-3' : 'img-wrapper-square-no-image mb-3'}`}>
+            <div className="img-wrapper-alignment">
               <FluidImage image={featuredImage} className="img-positioning" />
             </div>
           </div>
         </div>
+
       </div>
 
       <div className="row blog-header-border">
@@ -45,5 +46,6 @@ const BlogHeader = ({
     </div>
   </div>
 );
+
 
 export default BlogHeader;
