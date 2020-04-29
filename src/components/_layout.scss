@@ -87,6 +87,9 @@ h4 {
 };
 
 .more-link-wrap {
+  .screen-reader-text {
+    display: none;
+  }
   a {
     height: 24px; // allows the shadow line to shrink to the designed location   
     font-size: 16px;
