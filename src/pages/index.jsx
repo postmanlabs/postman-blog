@@ -32,7 +32,6 @@ const BlogIndex = ({ data }) => {
 
             return (
               <div key={post.node.id} className="post">
-                {console.log('featuredImage blog list index page', featuredImage)}
                 <ListHeader
                   authorSlug={authorSlug}
                   name={name}

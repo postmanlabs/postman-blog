@@ -13,13 +13,18 @@ const BlogHeader = ({
     <div className="container">
       <BreadCrumbs title={postTitle} slug={slug} />
       <div className="row blog-header">
-        <div className="col-lg-7 blog-header-title">
+        <div className={`${featuredImage ? 'col-md-8 blog-header-title' : 'col-md-12 blog-header-title'}`}>
           {/* title */}
           <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
         </div>
-        <div className="col-lg-5 text-lg-right">
-          <FluidImage image={featuredImage} />
+        <div className={`${featuredImage ? 'col-md-4 text-lg-right' : 'img-wrapper-square-no-image'}`}>
+          <div className="img-wrapper-square mb-3">
+            <div className="img-wrapper-alignment">
+              <FluidImage image={featuredImage} className="img-positioning" />
+            </div>
+          </div>
         </div>
+
       </div>
 
       <div className="row blog-header-border">
@@ -41,5 +46,6 @@ const BlogHeader = ({
     </div>
   </div>
 );
+
 
 export default BlogHeader;

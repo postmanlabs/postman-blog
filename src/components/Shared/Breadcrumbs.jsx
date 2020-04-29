@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-const Breadcrumbs = ({ category, title }) => (
+const Breadcrumbs = ({ title }) => (
   <nav className="mb-4 pm-breadcrumb" aria-label="You are here:">
     <span>
       <Link to="/">Home</Link>
