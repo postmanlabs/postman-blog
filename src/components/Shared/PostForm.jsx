@@ -50,7 +50,12 @@
 //               <input type="hidden" id="postId" value={postId} />
 //               <div className="form-group">
 //                 <label htmlFor="name">Your name</label>
-//                 <input className="form-control" id="name" type="text" required disabled={formIsSubmitting} />
+//                 <input
+//   className="form-control"
+//   id="name"
+//   type="text"
+//   required disabled={formIsSubmitting}
+// />
 //               </div>
 //               <div className="form-group">
 //                 <label htmlFor="email">Your email</label>
