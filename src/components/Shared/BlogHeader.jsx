@@ -34,8 +34,8 @@ const BlogHeader = ({
           />
         </div>
         {/* <div className="col-sm-12 col-lg-7 blog-tags"> */}
-          {/* tags */}
-          {/* <TagsMetaHeader tags={tags} categories={categories} /> */}
+        {/* tags */}
+        {/* <TagsMetaHeader tags={tags} categories={categories} /> */}
         {/* </div> */}
       </div>
     </div>

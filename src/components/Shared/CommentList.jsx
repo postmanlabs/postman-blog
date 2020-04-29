@@ -1,52 +1,56 @@
 import React from 'react';
-// import { graphql } from 'gatsby';
-// import { useStaticQuery, graphql } from "gatsby"
+import ReturnDateString from './ReturnDateString';
 
-const Comment = ({ comments }) => {
-  // const data = useStaticQuery(graphql`
-  // query($postID: ID!) {
-  //   comments(where: { contentId: $postId, contentStatus: PUBLISH }) {
-  //     nodes {
-  //       content
-  //       author {
-  //         name
-  //         url
-  //       }
-  //     }
-  //   }
-  // }`);
-  console.log('commentlist comment data', comments);
-  // const { author } = comments;
-  return (
-    <div>
-      {comments.edges && comments.edges.map((comment) => {
-        const commentAuthor = comment.node.author.name || 'Till';
-        const commentContent = comment.node.content;
-        return (
-          <div className="list-wrapper">
-            <div className="container">
-              <div>{commentAuthor}</div>
-              <div dangerouslySetInnerHTML={{ __html: commentContent }} />
+
+const Comment = ({ comments }) => (
+  <div>
+    {comments.edges && comments.edges.map((comment) => {
+      const commentAuthor = comment.node.author.name;
+      const commentContent = comment.node.content;
+      const commentDate = comment.node.date;
+      const commentAuthorUrl = comment.node.author.url;
+
+      /* answers to comments
+      ******************************************************************************* */
+      let answerList;
+      if (comment.node.children && comment.node.children.edges) {
+        answerList = comment.node.children.edges.map((answer) => (
+          <div className="col-11 comments__answers ml-4">
+            <div className="col-12">
+              {answer.node.author.name}
             </div>
+            <div className="col-12 comments__date">
+              <ReturnDateString data={answer.node.date} />
+            </div>
+            <div className="col-12 mt-3" dangerouslySetInnerHTML={{ __html: answer.node.content }} />
           </div>
-        );
-      })}
-    </div>
+        ));
+      }
 
-  );
-};
+      return (
+        <>
+          <div className="col-12">
+            {
+              commentAuthorUrl
+                ? null
+                : (
+                  <div className="comments__approved">
+                    <div className="bio-author col-12">
+                      {commentAuthor}
+                    </div>
+                    <div className="col-12 comments__date">
+                      <ReturnDateString data={commentDate} />
+                    </div>
+                    <div className="col-12 mt-3" dangerouslySetInnerHTML={{ __html: commentContent }} />
+                  </div>
+                )
+                }
+          </div>
+          { answerList }
+        </>
+      );
+    })}
+  </div>
+);
 
 export default Comment;
-
-// graphql
-//   query($postID: ID!) {
-//     comments(where: { contentId: $postId, contentStatus: PUBLISH }) {
-//       nodes {
-//         content
-//         author {
-//           name
-//           url
-//         }
-//       }
-//   }
-//   }
