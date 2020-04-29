@@ -8,7 +8,7 @@ const Breadcrumbs = ({ category, title }) => (
       {' '}
       /
       <span>
-        {category && (
+        {/* {category && (
         <span>
           <Link to={`/${category.slug}/page/1/`}>
             {' '}
@@ -18,7 +18,7 @@ const Breadcrumbs = ({ category, title }) => (
         )}
         {' '}
         /
-        {' '}
+        {' '} */}
         <span className="breadcrumb_last" aria-current="page">{title}</span>
       </span>
     </span>
