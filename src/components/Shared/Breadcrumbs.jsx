@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 
 const Breadcrumbs = ({ category, title }) => (
-  <nav className="mb-2 pm-breadcrumb" aria-label="You are here:">
+  <nav className="mb-4 pm-breadcrumb" aria-label="You are here:">
     <span>
       <Link to="/">Home</Link>
       {' '}

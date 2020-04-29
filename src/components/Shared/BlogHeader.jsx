@@ -11,7 +11,7 @@ const BlogHeader = ({
 }) => (
   <div className="blog-header-wrapper">
     <div className="container">
-      <BreadCrumbs category={categories} title={postTitle} slug={slug} />
+      <BreadCrumbs title={postTitle} slug={slug} />
       <div className="row blog-header">
         <div className="col-lg-7 blog-header-title">
           {/* title */}
