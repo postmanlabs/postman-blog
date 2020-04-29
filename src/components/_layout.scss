@@ -141,7 +141,9 @@ p {
   border-bottom: 1px solid #ced4da;
   margin-bottom: 48px;
 }
-
+.comments__date {
+  color: $gray_2;
+}
 .comment-success {
   border: 1px solid #ced4da;
   padding: 36px;
@@ -170,6 +172,17 @@ code {
   padding: 4px;
   font-family: monospace;
 }
+
+.comments__approved, .comments__answers {
+  border-bottom: 1px solid #ced4da;
+  margin-bottom: 32px;
+  a, a:hover {
+    color: $postman-orange;
+  }
+}
+
+
+
 // Bootstrap container width overrides
 @media (max-width: 1199px) {
   .container {

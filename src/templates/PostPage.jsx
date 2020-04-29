@@ -10,6 +10,7 @@ import PostForm from '../components/Shared/PostForm';
 import CommentList from '../components/Shared/CommentList';
 import Tags from '../components/Shared/Tags';
 
+
 const BlogPostTemplate = ({ data }) => {
   const { post } = data.wpgraphql;
   const {
@@ -24,14 +25,15 @@ const BlogPostTemplate = ({ data }) => {
   const categories = data.wpgraphql.post.categories.edges[0].node;
 
   const excerptText = excerpt.replace(/<(.|\n)*?>/g, '');
-  /*  Below creates a string from the 'sanitized' excerpt string.
-    Grabs everything before the index of '. '
-    (end of sentence) after 100th char.
-    Adds one to include the '. ' */
+  /*
+  *   Creates a string from the 'sanitized' excerpt string.
+  *   Grabs everything before the index of '. '(end of sentence) after 100th char.
+  *   Adds one to include the '. '
+  * */
   const excerptTrimmed = excerptText.slice(0, (excerptText.indexOf('. ', 100) + 1));
 
-  /* data from yoast is coming from 'seo' field that is called
-     in the context of createPage. Yoast plugin for WPGraphQL */
+  /* data from yoast is coming from 'seo' field that is called in the context of createPage.
+  * Yoast plugin for WPGraphQL */
   const seoTitle = seo.title || title;
   const seoDescription = seo.metaDesc || excerptTrimmed;
   const seoImage = (seo.opengraphImage && seo.opengraphImage.mediaItemUrl)
@@ -71,7 +73,7 @@ const BlogPostTemplate = ({ data }) => {
           <div className="pt-5 tags__post">
             <Tags tags={tags} categories={categories} />
           </div>
-          
+
           <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
           <PostForm postId={postId} />
           <CommentList comments={comments} />
@@ -92,10 +94,26 @@ export const postPageQuery = graphql`
             node {
               approved
               content
+              date
+              children {
+                edges {
+                  node {
+                    content
+                    date
+                    author {
+                      ... on WPGraphQL_CommentAuthor {
+                        id
+                        name
+                      }
+                    }
+                  }
+                }
+              }
               author {
                 ... on WPGraphQL_CommentAuthor {
                   id
                   name
+                  url
                 }
               }
             }
