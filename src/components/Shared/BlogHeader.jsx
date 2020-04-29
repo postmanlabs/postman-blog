@@ -13,12 +13,12 @@ const BlogHeader = ({
     <div className="container">
       <BreadCrumbs title={postTitle} slug={slug} />
       <div className="row blog-header">
-        <div className="col-md-8 blog-header-title">
+        <div className={`${featuredImage ? 'col-md-8 blog-header-title' : 'col-md-12 blog-header-title'}`}>
           {/* title */}
           <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
         </div>
-        <div className="col-md-4 text-lg-right">
-          <div className={`${featuredImage ? 'img-wrapper-square mb-3' : 'img-wrapper-square-no-image mb-3'}`}>
+        <div className={`${featuredImage ? 'col-md-4 text-lg-right' : 'img-wrapper-square-no-image'}`}>
+          <div className="img-wrapper-square mb-3">
             <div className="img-wrapper-alignment">
               <FluidImage image={featuredImage} className="img-positioning" />
             </div>

@@ -28,8 +28,13 @@ const ListHeader = ({
       {/* excerpt */}
       <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
     </div>
+
     <div className="col-lg-4 feature-image">
-      <FluidImage image={featuredImage} />
+      <div className={`${featuredImage ? 'img-wrapper-square mb-3' : 'img-wrapper-square-no-image'}`}>
+        <div className="img-wrapper-alignment">
+          <FluidImage image={featuredImage} className="img-positioning" />
+        </div>
+      </div>
     </div>
   </div>
 );
