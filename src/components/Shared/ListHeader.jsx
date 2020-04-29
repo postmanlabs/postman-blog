@@ -24,7 +24,7 @@ const ListHeader = ({
         <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
       </a>
       {/* tags */}
-      <TagsMeta tags={tags} categories={categories} />
+      <TagsMeta tags={tags} />
       {/* excerpt */}
       <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
     </div>

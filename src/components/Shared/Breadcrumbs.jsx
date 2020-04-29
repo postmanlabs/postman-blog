@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'gatsby';
 
 const Breadcrumbs = ({ category, title }) => (
-  <nav className="mb-2 pm-breadcrumb" aria-label="You are here:">
+  <nav className="mb-4 pm-breadcrumb" aria-label="You are here:">
     <span>
       <Link to="/">Home</Link>
       {' '}
       /
       <span>
-        {category && (
+        {/* {category && (
         <span>
           <Link to={`/${category.slug}/page/1/`}>
             {' '}
@@ -18,7 +18,7 @@ const Breadcrumbs = ({ category, title }) => (
         )}
         {' '}
         /
-        {' '}
+        {' '} */}
         <span className="breadcrumb_last" aria-current="page">{title}</span>
       </span>
     </span>
