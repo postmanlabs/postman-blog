@@ -7,31 +7,33 @@ import TagsMeta from './Tags';
 
 const ListHeader = ({
   featuredImage, slug, name, avatar, date, postTitle, authorSlug, postExcerpt, tags, categories,
-}) => (
-  <div className="row header-wrapper">
-    <div className="col-lg-8">
-      {/* entry meta */}
-      <EntryMeta
-        authorSlug={authorSlug}
-        name={name}
-        avatar={avatar}
-        date={date}
-        tags={tags}
-        categories={categories}
-      />
-      {/* title */}
-      <a className="header-linked" href={`/${slug}`}>
-        <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
-      </a>
-      {/* tags */}
-      <TagsMeta tags={tags} categories={categories} />
-      {/* excerpt */}
-      <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+}) => {
+    return (
+    <div className="row header-wrapper">
+      <div className="col-lg-8">
+        {/* entry meta */}
+        <EntryMeta
+          authorSlug={authorSlug}
+          name={name}
+          avatar={avatar}
+          date={date}
+          tags={tags}
+          categories={categories}
+        />
+        {/* title */}
+        <a className="header-linked" href={`/${slug}`}>
+          <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
+        </a>
+        {/* tags */}
+        <TagsMeta tags={tags} categories={categories} />
+        {/* excerpt */}
+        <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
+      </div>
+      <div className="col-lg-4 feature-image">
+        <FluidImage image={featuredImage} />
+      </div>
     </div>
-    <div className="col-lg-4 feature-image">
-      <FluidImage image={featuredImage} />
-    </div>
-  </div>
-);
+  );
+}
 
 export default ListHeader;

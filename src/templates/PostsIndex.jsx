@@ -29,6 +29,7 @@ const PostsIndex = ({ data, pageContext }) => {
 
             return (
               <div key={post.node.id} className="post">
+                {console.log('featuredImage on post index p2-n', featuredImage)}
                 <ListHeader
                   authorSlug={authorSlug}
                   name={name}
