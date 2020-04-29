@@ -71,7 +71,7 @@ const BlogPostTemplate = ({ data }) => {
           <div className="pt-5 tags__post">
             <Tags tags={tags} categories={categories} />
           </div>
-          
+
           <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
           <PostForm postId={postId} />
           <CommentList comments={comments} />
