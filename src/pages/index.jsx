@@ -32,13 +32,14 @@ const BlogIndex = ({ data }) => {
 
             return (
               <div key={post.node.id} className="post">
+                {console.log('featuredImage blog list index page', featuredImage)}
                 <ListHeader
                   authorSlug={authorSlug}
                   name={name}
                   avatar={avatar}
                   date={date}
                   slug={slug}
-                  featureImage={featuredImage}
+                  featuredImage={featuredImage}
                   postTitle={postTitle}
                   postExcerpt={postExcerpt}
                   tags={tags}
