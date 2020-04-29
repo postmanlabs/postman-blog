@@ -43,7 +43,6 @@ const BlogPostTemplate = ({ data }) => {
   return (
     <Layout>
       <SEO title={seoTitle} description={seoDescription} image={seoImage} />
-      {console.log('PostPage.jsx featuredImage', featuredImage)}
       <BlogHeader
         name={name}
         authorSlug={authorSlug}
