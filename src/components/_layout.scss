@@ -162,12 +162,12 @@ pre {
   }
 }
 code {
-  font-size: 87.5%;
-  color: $gray_1;
+  font-size: 87.5% !important;
+  color: $gray_3 !important;
   word-break: break-word;
-  background-color: $gray_3;
-  border-radius: 2px;
-  padding: 4px;
+  background-color: $gray_1 !important;
+  border-radius: 2px !important;
+  padding: 4px !important;
   font-family: monospace;
 }
 // Bootstrap container width overrides
