@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
 import SEO from '../components/seo';
-import HeroResults from '../components/Shared/HeroResults';
+import HeroResultsAuthor from '../components/Shared/HeroResultsAuthor';
 import ListHeader from '../components/Shared/ListHeader';
 
 
@@ -18,7 +18,7 @@ const authorPostsList = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title={fullName} />
-      <HeroResults title={title} totalPosts={totalNumberOfPosts} />
+      <HeroResultsAuthor title={title} totalPosts={totalNumberOfPosts} />
       <div className="list-wrapper">
         <div className="container">
           {Array.isArray(posts) && posts.map((post) => {
