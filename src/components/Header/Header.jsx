@@ -112,8 +112,8 @@ class HeaderComponent extends React.Component {
         </div>
 
         {/* hamburger toggle */}
-        <button className="navbar-toggler" type="button" onClick={this.toggleMenu}>
-          <span className="navbar-toggler-icon" />
+        <button className="navbar-toggler" aria-label="Menu" type="button" onClick={this.toggleMenu}>
+          <span className="navbar-toggler-icon" aria-hidden="true" />
         </button>
 
         <div
