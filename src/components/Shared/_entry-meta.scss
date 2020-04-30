@@ -2,26 +2,28 @@
 
 .entry-meta {
   color: $gray-2;
+  margin-bottom: 8px;
 }
 
-.entry-meta-data {
-  margin-left: -24px;
+.entry-meta-col {
+  & span {
+    margin-right: 8px;
+  }
   a {
-    color: $gray-2;
-    &:hover {
-      color: $postman-orange;
+    &:link,
+    &:visited {
+      color: $gray-2;
+    }
+    &:hover,
+    &:active {
+      color: $postman-orange !important;
     }
   }
 }
 
-
-.entry-meta-col {
-  padding-right: 0px;
-}
-
 .entry-meta-img {
   border-radius: 50%;
-  width: 32px;
+  max-width: 32px;
   height: auto;
-  // padding-left: 5px
+  margin-bottom: 0;
 }

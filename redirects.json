@@ -1,0 +1,59 @@
+[
+  {
+    "from": "/updates/",
+    "to": "/"
+  },
+  {
+    "from": "/tutorials/",
+    "to": "/"
+  },
+  {
+    "from": "/case-studies/",
+    "to": "/"
+  },
+  {
+    "from": "/news/",
+    "to": "/"
+  },
+  {
+    "from": "/2018/03/19/how-to-make-money-using-postman-chaining-requests/",
+    "to": "/how-to-make-money-using-postman-chaining-requests/"
+  },
+  {
+    "from": "/apple-touch-icon-precomposed.png",
+    "to": "/wp-content/themes/Postal-v1.1.6/apple-touch-icon.png"
+  },
+  {
+    "from": "/apple-touch-icon.png",
+    "to": "/wp-content/themes/Postal-v1.1.6/apple-touch-icon.png"
+  },
+  {
+    "from": "/2014/01/16/ridiculously-easy-api-testing-introducing-jetpacks-for-postman/github.com/a85/POSTMan-Chrome-Extension/",
+    "to": "/ridiculously-easy-api-testing-introducing-jetpacks-for-postman/"
+  },
+  {
+    "from": "/2014/01/28/using-self-signed-certificates-with-postman/",
+    "to": "/self-signed-ssl-certificate-troubleshooting/"
+  },
+  {
+    "from": "/2019/07/23/managing-large-development-teams-in-postman-tips-for-streamlining-collaboration/",
+    "to": "/postman-team-workspaces-and-permissions/"
+  },
+  {
+    "from": "/2019/10/31/visualizing-apis-of-the-world/",
+    "to": "/visualizing-apis-of-the-world/"
+  },
+  {
+    "from": "/2019/11/14/protecting-your-postman-api-keys-with-github/",
+    "to": "/how-were-protecting-your-postman-api-keys-in-github/"
+  },
+  {
+    "from": "/2020/03/25/how-postman-increases-the-visibility-of-invalid-whitespaces-and-newlines-in-your-api-requests/",
+    "to": "/how-postman-increases-the-visibility-of-invalid-whitespaces-and-newlines-in-your-api-requests/"
+  },
+  {
+    "from": "/postman-a-beacon-of-hope-in-a-world-of-api-darkness-💡/",
+    "to": "//postman-a-beacon-of-hope-in-a-world-of-api-darkness/"
+  }
+]
+    

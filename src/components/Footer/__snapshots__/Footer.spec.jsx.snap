@@ -374,7 +374,6 @@ exports[`renders correctly 1`] = `
           id="footer__social"
         >
           <ul
-            aria-labelledby="social-list"
             className="column__links list-inline"
           >
             <li
@@ -483,7 +482,6 @@ exports[`renders correctly 1`] = `
           id="footer__copyright"
         >
           <ul
-            aria-labelledby="company-list"
             className="column__links list-inline"
           >
             <li

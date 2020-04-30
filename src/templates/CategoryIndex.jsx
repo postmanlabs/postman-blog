@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import EntryMeta from '../components/Shared/EntryMeta';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
 import SEO from '../components/seo';
-import FluidImage from '../components/FluidImage';
 import HeroResults from '../components/Shared/HeroResults';
-
+import ListHeader from '../components/Shared/ListHeader';
 
 export const catsPostsQuery = graphql`
   query GET_PAGE_POSTS_OF_CATEGORY($id: ID!, $startCursor: String!) {
@@ -71,31 +69,37 @@ const CatsPostsList = ({ data, pageContext }) => {
     <Layout>
       <SEO title={title} />
       <HeroResults title={title} totalPosts={totalNumberOfPosts} />
-      <div className="container">
-        {posts.map((post) => {
-          const postTitle = post.node.title;
-          const postExcerpt = post.node.excerpt;
-          // const tags = post.node.tags.edges;
-          // const category = post.node.categories;
-          const { slug, date, featuredImage } = post.node;
-          const authorSlug = post.node.author.slug || 'thepostmanteam';
-          const name = post.node.author.name || 'The Postman Team';
-          const avatar = post.node.author.avatar.url || '';
+      <div className="list-wrapper">
+        <div className="container">
+          {Array.isArray(posts) && posts.map((post) => {
+            const postTitle = post.node.title;
+            const postExcerpt = post.node.excerpt;
+            // const tags = post.node.tags.edges;
+            // const category = post.node.categories;
+            const { slug, date, featuredImage } = post.node;
+            const authorSlug = post.node.author.slug || 'thepostmanteam';
+            const name = post.node.author.name || 'The Postman Team';
+            const avatar = post.node.author.avatar.url || '';
 
-          return (
-            <div key={post.node.id} className="post">
-              <FluidImage image={featuredImage} />
-              <Link to={slug}>
-                <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
-              </Link>
-              <EntryMeta name={name} avatar={avatar} date={date} authorSlug={authorSlug} />
-              <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
-            </div>
-          );
-        })}
-        {totalCatsPages > 1 && (
-          <PageSelectionButtons currentPage={catsPageNum} totalPages={totalCatsPages} prefix={`${category.slug}`} />
-        )}
+            return (
+              <div key={post.node.id} className="post">
+                <ListHeader
+                  authorSlug={authorSlug}
+                  name={name}
+                  avatar={avatar}
+                  date={date}
+                  slug={slug}
+                  featureImage={featuredImage}
+                  postTitle={postTitle}
+                  postExcerpt={postExcerpt}
+                />
+              </div>
+            );
+          })}
+          {totalCatsPages > 1 && (
+            <PageSelectionButtons currentPage={catsPageNum} totalPages={totalCatsPages} prefix={`${category.slug}`} />
+          )}
+        </div>
       </div>
     </Layout>
   );

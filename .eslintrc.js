@@ -26,5 +26,13 @@ module.exports = {
     "react/prop-types": "off",
     "jsx-a11y/media-has-caption": "off",
     "no-underscore-dangle": "off",
+    "no-plusplus": "off",
+    "react/no-danger": "off",
+    "consistent-return": "warn",
+    "react/jsx-props-no-spreading": "warn",
+    "jsx-a11y/label-has-associated-control": "warn",
+    "no-unused-vars": "warn",
+    "react/sort-comp": "warn",
+    "max-len": "warn",
   },
 };

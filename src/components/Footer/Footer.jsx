@@ -45,7 +45,6 @@ const Footer = () => (
           <section id="footer__social" className="column__horizontal">
             <ul
               className="column__links list-inline"
-              aria-labelledby="social-list"
             >
               <li className="list-inline-item">
                 <a
@@ -53,6 +52,7 @@ const Footer = () => (
                   href="https://www.facebook.com/getpostman/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visit our Facebook page"
                 >
                   <svg
                     width="24"
@@ -76,6 +76,7 @@ const Footer = () => (
                   href="https://twitter.com/getpostman"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visit our Twitter page"
                 >
                   <svg
                     width="30"
@@ -96,6 +97,7 @@ const Footer = () => (
                   href="https://www.linkedin.com/company/postman-api-tools"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visit our Linked in page"
                 >
                   <svg
                     width="25"
@@ -117,6 +119,7 @@ const Footer = () => (
                   target="_blank"
                   rel="noopener noreferrer"
                   title="View our Postman repos on GitHub"
+                  aria-label="View our Postman repos on GitHub"
                 >
                   <svg
                     height="25"
@@ -146,7 +149,6 @@ const Footer = () => (
           >
             <ul
               className="column__links list-inline"
-              aria-labelledby="company-list"
             >
               <li className="copyright-notice list-inline-item">
                 &copy;

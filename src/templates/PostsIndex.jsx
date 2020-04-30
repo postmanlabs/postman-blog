@@ -1,11 +1,10 @@
+// this is the blog list view page 2 - n
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import FluidImage from '../components/FluidImage';
-import EntryMeta from '../components/Shared/EntryMeta';
 import PageSelectionButtons from '../components/Shared/PageSelectionButtons';
-
+import ListHeader from '../components/Shared/ListHeader';
 
 const PostsIndex = ({ data, pageContext }) => {
   const currentPage = pageContext.pageNum;
@@ -14,38 +13,41 @@ const PostsIndex = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <div className="container" style={{ marginTop: '120px' }}>
-        {posts.map((post) => {
-          const postTitle = post.node.title;
-          const postExcerpt = post.node.excerpt;
-          const tags = post.node.tags.edges;
-          const categories = post.node.categories.edges[0].node;
-          const { slug, date, featuredImage } = post.node;
+      <div className="list-wrapper">
+        <div className="container">
+          {posts && posts.map((post) => {
+            const postTitle = post.node.title;
+            const postExcerpt = post.node.excerpt;
+            const tags = post.node.tags.edges;
+            const categories = post.node.categories.edges[0].node;
+            const { slug, date, featuredImage } = post.node;
 
-          const name = post.node.author.name || 'The Postman Team';
-          const avatar = post.node.author.avatar.url || '';
 
-          return (
-            <div key={post.node.id} className="post">
-              <FluidImage image={featuredImage} />
-              <a href={`/${slug}`}>
-                <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
-              </a>
-              <EntryMeta
-                name={name}
-                avatar={avatar}
-                date={date}
-                tags={tags}
-                categories={categories}
-              />
-              <div dangerouslySetInnerHTML={{ __html: postExcerpt }} />
-            </div>
-          );
-        })}
-        <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
+            const name = post.node.author.name || 'The Postman Team';
+            const avatar = post.node.author.avatar.url || '';
+            const authorSlug = post.node.author.slug;
+
+            return (
+              <div key={post.node.id} className="post">
+                <ListHeader
+                  authorSlug={authorSlug}
+                  name={name}
+                  avatar={avatar}
+                  date={date}
+                  slug={slug}
+                  featuredImage={featuredImage}
+                  postTitle={postTitle}
+                  postExcerpt={postExcerpt}
+                  tags={tags}
+                  categories={categories}
+                />
+              </div>
+            );
+          })}
+          <PageSelectionButtons currentPage={currentPage} totalPages={totalPages} />
+        </div>
       </div>
     </Layout>
-
   );
 };
 
@@ -66,6 +68,7 @@ export const getNextPosts = graphql`
             uri
             author {
               name
+              slug
               avatar {
                 url
               }

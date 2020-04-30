@@ -1,0 +1,30 @@
+@import './_variables.scss';
+
+blockquote {
+  margin: 3rem 0;
+  font-size: 1.5rem;
+  border-left: 3px solid $postman-orange;
+  padding-left: 1.5rem;
+}
+.wp-caption {
+  margin-bottom: 1.75rem;
+  max-width: 100%;
+}
+.wp-caption {
+  & .wp-caption-text {
+    color: $gray-2;
+    font-size: 0.875rem;
+    font-style: italic;
+    line-height: 1.6;
+  }
+}
+figure {
+  margin: 0 0 1rem;
+  width: 100% !important;
+  height: auto;
+}
+.post-content {
+  & img {
+    margin: 20px 0;
+  }
+} 

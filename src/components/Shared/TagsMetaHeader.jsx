@@ -1,28 +1,28 @@
 import React from 'react';
+// import './_tags.scss';
 import { Link } from 'gatsby';
 
-const TagsMeta = ({
-  tags, categories,
+const TagsMetaHeader = ({
+  tags,
 }) => {
   let tagsList;
-  const category = categories;
+  // const category = categories;
 
   if (tags && tags.length > 0) {
     tagsList = tags.map((tag) => <Link className="tags" key={tag.node.id} to={`/tags/${tag.node.slug}/page/1`}>{tag.node.name}</Link>);
   }
   return (
     <div className="row">
-
-      <div className="col-sm-8">
+      <div className="col-sm-12 text-sm-left text-lg-right">
         {tagsList && (
-          <p className="tags-wrapper">
-            Tags:
+        <div className="tags-wrapper">
+          Tags:
             {tagsList}
-          </p>
+        </div>
         )}
       </div>
 
-      <div className="col-sm-4">
+      {/* <div className="col-sm-4 text-md-left text-lg-right">
         {category && (
           <p className="tags-wrapper">
             Category:
@@ -30,9 +30,9 @@ const TagsMeta = ({
             <a className="tags" href={`/${category.slug}/page/1`}>{category.name}</a>
           </p>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
 
-export default TagsMeta;
+export default TagsMetaHeader;

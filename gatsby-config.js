@@ -1,17 +1,23 @@
-const queries = require('./src/utils/algolia');
+// const queries = require('./src/utils/algolia');
 
+/* Production build
+*********************************************************************************/
 require('dotenv').config({
   path: `.env.${process.env.GATSBY_ACTIVE_ENV}`,
 });
 
+
+/* Local Build
+*********************************************************************************/
 // require('dotenv').config({
 //   path: `.env.${process.env.NODE_ENV}`,
 // });
 
+
 module.exports = {
   siteMetadata: {
     title: 'Postman Blog',
-    description: '',
+    description: 'The official Postman blog',
     author: 'Postman',
     siteUrl: 'https://blog.postman.com/',
   },
@@ -22,9 +28,9 @@ module.exports = {
         typeName: 'WPGraphQL',
         fieldName: 'wpgraphql',
         url: 'https://blog.postman.com/graphql',
-        refetchInterval: 240,
       },
     },
+    'gatsby-plugin-meta-redirect',
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-robots-txt',
@@ -40,6 +46,30 @@ module.exports = {
             policy: [{ userAgent: '*', allow: '/' }],
           },
         },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-preconnect',
+      options: {
+        domains: ['https://fonts.googleapis.com', 'https://stackpath.bootstrapcdn.com', 'https://fonts.gstatic.com'],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            "family": "Roboto",
+            "variants": [
+              "400",
+              "500"
+            ],
+          },
+          {
+            family: `Open Sans`,
+            variants: ["400", "700"]
+          },
+        ],
       },
     },
     'gatsby-plugin-react-helmet',
@@ -83,20 +113,27 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/favicon.png', // This path is relative to the root of the site.
+        //icon: 'src/images/favicon.png', // This path is relative to the root of the site.
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-algolia`,
+    //   options: {
+    //     appId: process.env.GATSBY_ALGOLIA_APP_ID,
+    //     apiKey: process.env.ALGOLIA_ADMIN_KEY,
+    //     queries,
+    //     chunkSize: 10000, // default: 1000
+    //   }
+    // },
     {
-      resolve: `gatsby-plugin-algolia`,
+      resolve: 'gatsby-plugin-sri',
       options: {
-        appId: process.env.GATSBY_ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_ADMIN_KEY,
-        queries,
-        chunkSize: 10000, // default: 1000
+        hash: 'sha512', // 'sha256', 'sha384' or 'sha512' ('sha512' = default)
+        crossorigin: false // Optional
       }
-    }
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 };

@@ -86,28 +86,6 @@ Array [
         <div
           className="input-empty"
         >
-          <h2>
-            Blog
-          </h2>
-          <ul
-            className="style"
-          >
-            <li>
-              No search results found
-            </li>
-          </ul>
-        </div>
-        <div
-          className="input-empty"
-          style={
-            Object {
-              "top": "350px",
-            }
-          }
-        >
-          <h2>
-            Learning Center 
-          </h2>
           <ul
             className="style"
           >
@@ -169,148 +147,182 @@ Array [
       </div>
     </div>
   </header>,
-  <div
-    style={
-      Object {
-        "margin": "0 auto",
-        "maxWidth": 960,
-        "padding": "0px 1.0875rem 1.45rem",
-        "paddingTop": 0,
-      }
-    }
-  >
-    <main>
+  <main>
+    <div
+      className="list-wrapper"
+    >
       <div
-        className="post"
+        className="container"
       >
-        <a
-          style={
-            Object {
-              "color": "#282828",
-            }
-          }
+        <div
+          className="post"
         >
-          <h1
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "Syncing Your OpenAPI, RAML, and GraphQL Schema to GitHub with Postman",
-              }
-            }
-          />
-        </a>
+          <div
+            className="row header-wrapper"
+          >
+            <div
+              className="col-lg-8"
+            >
+              <div
+                className="entry-meta"
+              >
+                <div
+                  className="entry-meta-col"
+                >
+                  <span>
+                    <img
+                      alt="The Postman Team"
+                      className="entry-meta-img"
+                      src="https://secure.gravatar.com/avatar/ed54d92bd77d089c151d051263140274?s=96&d=mm&r=g"
+                    />
+                  </span>
+                  <span>
+                    <a
+                      href="/undefined/page/1"
+                    >
+                      The Postman Team
+                    </a>
+                  </span>
+                  <span>
+                    <span>
+                      Invalid Date
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <a
+                className="header-linked"
+                href="/undefined"
+              >
+                <h2
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Syncing Your OpenAPI, RAML, and GraphQL Schema to GitHub with Postman",
+                    }
+                  }
+                />
+              </a>
+              <div
+                className="row"
+              >
+                <div
+                  className="col-sm-4"
+                >
+                  <p
+                    className="tags-wrapper"
+                  >
+                    Category:
+                     
+                    <a
+                      className="tags"
+                      href="/undefined/page/1"
+                    />
+                  </p>
+                </div>
+                <div
+                  className="col-sm-8"
+                >
+                  <p
+                    className="tags-wrapper"
+                  >
+                    Tags:
+                    <a
+                      className="tags"
+                      href="/tags/undefined/page/1"
+                    />
+                  </p>
+                </div>
+              </div>
+              <div
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": undefined,
+                  }
+                }
+              />
+            </div>
+            <div
+              className="col-lg-4 feature-image"
+            >
+              <div />
+            </div>
+          </div>
+        </div>
         <div
           className="row"
         >
-          <img
-            className="entry-meta-img"
-            src="https://secure.gravatar.com/avatar/ed54d92bd77d089c151d051263140274?s=96&d=mm&r=g"
-          />
-          <p
-            className="entry-meta-data"
+          <nav
+            aria-label="Page navigation example"
           >
-            <span
-              className="author"
+            <ul
+              className="pagination"
             >
-              Author: 
-            </span>
-             
-            on
-             
-          </p>
-          <p>
-            category:
-             
-            <a
-              href="categories/undefined/page/1"
-            />
-             
-          </p>
-          <p>
-            #
-             
-            <a
-              src="tags/undefined/page/1"
-            />
-          </p>
+              <li
+                className="page-item"
+              >
+                <a
+                  className="page-link"
+                  href="/page/1"
+                >
+                  1
+                </a>
+              </li>
+              <li
+                className="page-item"
+              >
+                <a
+                  className="page-link"
+                  href="/page/2"
+                >
+                  2
+                </a>
+              </li>
+              <li
+                className="page-item"
+              >
+                <a
+                  className="page-link"
+                  href="/page/3"
+                >
+                  3
+                </a>
+              </li>
+              <li
+                className="page-item"
+              >
+                <a
+                  className="page-link"
+                  href="/page/4"
+                >
+                  4
+                </a>
+              </li>
+              <li
+                className="page-item"
+              >
+                <a
+                  className="page-link"
+                  href="/page/5"
+                >
+                  5
+                </a>
+              </li>
+              <li
+                className="page-item-next"
+              >
+                <a
+                  className="page-link"
+                  href="/page/2"
+                >
+                  Next
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
-        <p
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": undefined,
-            }
-          }
-        />
       </div>
-      <nav
-        aria-label="Page navigation example"
-      >
-        <ul
-          className="pagination"
-        >
-          <li
-            className="page-item"
-          >
-            <a
-              className="page-link"
-              href="/page/1"
-            >
-              1
-            </a>
-          </li>
-          <li
-            className="page-item"
-          >
-            <a
-              className="page-link"
-              href="/page/2"
-            >
-              2
-            </a>
-          </li>
-          <li
-            className="page-item"
-          >
-            <a
-              className="page-link"
-              href="/page/3"
-            >
-              3
-            </a>
-          </li>
-          <li
-            className="page-item"
-          >
-            <a
-              className="page-link"
-              href="/page/4"
-            >
-              4
-            </a>
-          </li>
-          <li
-            className="page-item"
-          >
-            <a
-              className="page-link"
-              href="/page/5"
-            >
-              5
-            </a>
-          </li>
-          <li
-            className="page-item"
-          >
-            <a
-              className="page-link"
-              href="/page/2"
-            >
-              Next
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </main>
-  </div>,
+    </div>
+  </main>,
   <footer
     className="footer"
   >
@@ -684,7 +696,6 @@ Array [
             id="footer__social"
           >
             <ul
-              aria-labelledby="social-list"
               className="column__links list-inline"
             >
               <li
@@ -793,7 +804,6 @@ Array [
             id="footer__copyright"
           >
             <ul
-              aria-labelledby="company-list"
               className="column__links list-inline"
             >
               <li
