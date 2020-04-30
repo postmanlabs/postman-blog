@@ -64,6 +64,10 @@ const BlogPostTemplate = ({ data }) => {
                     <img
                       src={`${domNode.attribs['data-src']}`}
                       alt={domNode.attribs.alt}
+                      sizes={domNode.attribs.sizes}
+                      data-srcset={`${domNode.attribs['data-srcset']}`}
+                      height={domNode.attribs.height}
+                      width={domNode.attribs.width}
                     />
                   );
                 }
