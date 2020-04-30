@@ -1,5 +1,4 @@
 import React from 'react';
-// import './_tags.scss';
 import { Link } from 'gatsby';
 
 const TagsMeta = ({

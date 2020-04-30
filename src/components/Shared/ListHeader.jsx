@@ -1,5 +1,6 @@
 // Header used for Blog list view in index and page 2
 import React from 'react';
+import { Link } from 'gatsby';
 import EntryMeta from './EntryMeta';
 import FluidImage from '../FluidImage';
 import TagsMeta from './Tags';
@@ -31,9 +32,9 @@ const ListHeader = ({
 
     <div className="col-lg-4 feature-image">
       <div className={`${featuredImage ? 'img-wrapper-square mb-3' : 'img-wrapper-square-no-image'}`}>
-        <div className="img-wrapper-alignment">
+        <Link to={`/${slug}`} className="img-wrapper-alignment">
           <FluidImage image={featuredImage} className="img-positioning" />
-        </div>
+        </Link>
       </div>
     </div>
   </div>
