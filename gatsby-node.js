@@ -7,6 +7,8 @@ const createTags = require('./gatsby/createTags');
 const createCategories = require('./gatsby/createCategories');
 const createAuthors = require('./gatsby/createAuthors');
 
+const redirects = require('./redirects');
+
 
 /* Create Header and Footer
 /************************************************************************ */
@@ -49,7 +51,16 @@ exports.sourceNodes = async ({
 ******************************************************************************/
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createRedirect } = actions;
+  
+  redirects.forEach(({ from, to }) => {
+    createRedirect({
+      fromPath: from,
+      isPermanent: true,
+      redirectInBrowser: true,
+      toPath: to,
+    });
+  });
 
   await createPosts({actions, graphql});
   await createTags({actions, graphql});
