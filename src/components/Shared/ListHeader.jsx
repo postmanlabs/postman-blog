@@ -1,9 +1,9 @@
 // Header used for Blog list view in index and page 2
 import React from 'react';
+import { Link } from 'gatsby';
 import EntryMeta from './EntryMeta';
 import FluidImage from '../FluidImage';
 import TagsMeta from './Tags';
-import { Link } from 'gatsby';
 
 
 const ListHeader = ({
