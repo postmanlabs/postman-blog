@@ -30,7 +30,7 @@ function SEO({
 
   const metaDescription = description || site.siteMetadata.description;
   const siteName = 'Postman Blog';
-  const previewImage = image ? image.sourceUrl : 'https://blog.postman.com/postman-cooper-fallback.jpg';
+  const previewImage = image ? image.sourceUrl : 'https://blog.postman.com/postman-blog-social-image.jpg';
 
   return (
     <Helmet
