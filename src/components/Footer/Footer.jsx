@@ -52,7 +52,7 @@ const Footer = () => (
                   href="https://www.facebook.com/getpostman/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visiti our Facebook page"
+                  aria-label="Visit our Facebook page"
                 >
                   <svg
                     width="24"
@@ -76,7 +76,7 @@ const Footer = () => (
                   href="https://twitter.com/getpostman"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visiti our Twitter page"
+                  aria-label="Visit our Twitter page"
                 >
                   <svg
                     width="30"
@@ -97,7 +97,7 @@ const Footer = () => (
                   href="https://www.linkedin.com/company/postman-api-tools"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visiti our Linked in page"
+                  aria-label="Visit our Linked in page"
                 >
                   <svg
                     width="25"
