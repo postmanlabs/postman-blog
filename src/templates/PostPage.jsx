@@ -7,7 +7,7 @@ import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
 import BlogHeader from '../components/Shared/BlogHeader';
 // import PostForm from '../components/Shared/PostForm';
-import CommentList from '../components/Shared/CommentList';
+// import CommentList from '../components/Shared/CommentList';
 
 
 const BlogPostTemplate = ({ data }) => {
@@ -72,7 +72,7 @@ const BlogPostTemplate = ({ data }) => {
           </div>
           <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
           {/* <PostForm postId={postId} /> */}
-          <CommentList comments={comments} />
+          {/* <CommentList comments={comments} /> */}
         </div>
       </div>
     </Layout>
