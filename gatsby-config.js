@@ -30,6 +30,7 @@ module.exports = {
         url: 'https://blog.postman.com/graphql',
       },
     },
+    'gatsby-plugin-meta-redirect',
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-robots-txt',
