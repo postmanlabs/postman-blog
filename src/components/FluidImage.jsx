@@ -30,7 +30,7 @@ const FluidImage = ({ image, ...props }) => {
   //   );
   // }
 
-  return <img src={image.sourceUrl} className="img-fluid" alt={image.altText} {...props} />;
+  return <img src={image.sourceUrl} className="img-fluid" alt={image.altText} {...props} loading="lazy" />;
 };
 
 export default FluidImage;
