@@ -3,6 +3,7 @@ import React from 'react';
 import EntryMeta from './EntryMeta';
 import FluidImage from '../FluidImage';
 import TagsMeta from './Tags';
+import { Link } from 'gatsby';
 
 
 const ListHeader = ({
@@ -31,9 +32,9 @@ const ListHeader = ({
 
     <div className="col-lg-4 feature-image">
       <div className={`${featuredImage ? 'img-wrapper-square mb-3' : 'img-wrapper-square-no-image'}`}>
-        <div className="img-wrapper-alignment">
+        <Link to={`/${slug}`} className="img-wrapper-alignment">
           <FluidImage image={featuredImage} className="img-positioning" />
-        </div>
+        </Link>
       </div>
     </div>
   </div>
