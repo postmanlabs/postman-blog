@@ -68,6 +68,8 @@ const BlogPostTemplate = ({ data }) => {
                       data-srcset={`${domNode.attribs['data-srcset']}`}
                       height={domNode.attribs.height}
                       width={domNode.attribs.width}
+                      class={domNode.attribs.class}
+                      
                     />
                   );
                 }
