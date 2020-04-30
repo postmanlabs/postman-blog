@@ -60,15 +60,28 @@ const BlogPostTemplate = ({ data }) => {
             {parse(content, {
               replace: (domNode) => {
                 if (domNode.attribs && domNode.attribs['data-src']) {
+                  if (domNode.attribs['data-srcset']) {
+                    return (
+                      <img
+                        src={`${domNode.attribs['data-src']}`}
+                        alt={domNode.attribs.alt}
+                        sizes={domNode.attribs.sizes}
+                        data-srcset={`${domNode.attribs['data-srcset']}`}
+                        // height={domNode.attribs.height}
+                        // width={domNode.attribs.width}
+                        class={domNode.attribs.className}
+                      />
+                    )
+                  }
                   return (
                     <img
                       src={`${domNode.attribs['data-src']}`}
                       alt={domNode.attribs.alt}
                       sizes={domNode.attribs.sizes}
-                      data-srcset={`${domNode.attribs['data-srcset']}`}
-                      height={domNode.attribs.height}
-                      width={domNode.attribs.width}
-                      class={domNode.attribs.class}
+                      // data-srcset={`${domNode.attribs['data-srcset']}`}
+                      // height={domNode.attribs.height}
+                      // width={domNode.attribs.width}
+                      className={domNode.attribs.className}
                       
                     />
                   );
