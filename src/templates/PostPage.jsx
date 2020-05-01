@@ -61,14 +61,13 @@ const BlogPostTemplate = ({ data }) => {
             {parse(content, {
               replace: (domNode) => {
                 // console.log(domNode.attribs && domNode.attribs.class)
-                // if (domNode.attribs && domNode.attribs.class === 'wp-block-embed__wrapper') {
-                //   if (domNode.attribs && domNode.attribs.src) {
-                //     console.log('found youtube video')
-                //   }
-                  // return (
-                  //   <iframe width="560" height="315" src="https://www.youtube.com/embed/BnDfggH_Wi8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                  // )
-                // }
+                if (domNode.attribs && domNode.attribs.class === 'wp-block-embed__wrapper' && <img />) {
+                  if (domNode.children[1].name === "iframe") {
+                    return (
+                      <iframe width="560" height="315" src={`${domNode.attribs && domNode.children[1].attribs['data-src']}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    )
+                  }
+                }
                 
                 // returns all img data from wordpress
                 if (domNode.attribs && domNode.attribs['data-src']) {
