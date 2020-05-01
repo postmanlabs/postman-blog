@@ -25,11 +25,13 @@ Array [
       </a>
     </div>
     <button
+      aria-label="Menu"
       className="navbar-toggler"
       onClick={[Function]}
       type="button"
     >
       <span
+        aria-hidden="true"
         className="navbar-toggler-icon"
       />
     </button>
@@ -206,20 +208,6 @@ Array [
                 className="row"
               >
                 <div
-                  className="col-sm-4"
-                >
-                  <p
-                    className="tags-wrapper"
-                  >
-                    Category:
-                     
-                    <a
-                      className="tags"
-                      href="/undefined/page/1"
-                    />
-                  </p>
-                </div>
-                <div
                   className="col-sm-8"
                 >
                   <p
@@ -232,6 +220,9 @@ Array [
                     />
                   </p>
                 </div>
+                <div
+                  className="col-sm-4"
+                />
               </div>
               <div
                 dangerouslySetInnerHTML={
@@ -244,7 +235,16 @@ Array [
             <div
               className="col-lg-4 feature-image"
             >
-              <div />
+              <div
+                className="img-wrapper-square-no-image"
+              >
+                <a
+                  className="img-wrapper-alignment"
+                  href="/undefined"
+                >
+                  <div />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -702,6 +702,7 @@ Array [
                 className="list-inline-item"
               >
                 <a
+                  aria-label="Visit our Facebook page"
                   href="https://www.facebook.com/getpostman/"
                   id="facebook_icon"
                   rel="noopener noreferrer"
@@ -727,6 +728,7 @@ Array [
                 className="list-inline-item"
               >
                 <a
+                  aria-label="Visit our Twitter page"
                   href="https://twitter.com/getpostman"
                   id="twitter_icon"
                   rel="noopener noreferrer"
@@ -749,6 +751,7 @@ Array [
                 className="list-inline-item"
               >
                 <a
+                  aria-label="Visit our Linked in page"
                   href="https://www.linkedin.com/company/postman-api-tools"
                   id="linkedin_icon"
                   rel="noopener noreferrer"
@@ -771,6 +774,7 @@ Array [
                 className="list-inline-item"
               >
                 <a
+                  aria-label="View our Postman repos on GitHub"
                   href="https://github.com/postmanlabs"
                   id="github_icon"
                   rel="noopener noreferrer"
