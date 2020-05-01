@@ -24,11 +24,13 @@ exports[`Header renders correctly 1`] = `
     </a>
   </div>
   <button
+    aria-label="Menu"
     className="navbar-toggler"
     onClick={[Function]}
     type="button"
   >
     <span
+      aria-hidden="true"
       className="navbar-toggler-icon"
     />
   </button>

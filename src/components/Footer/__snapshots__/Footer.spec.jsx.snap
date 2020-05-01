@@ -380,6 +380,7 @@ exports[`renders correctly 1`] = `
               className="list-inline-item"
             >
               <a
+                aria-label="Visit our Facebook page"
                 href="https://www.facebook.com/getpostman/"
                 id="facebook_icon"
                 rel="noopener noreferrer"
@@ -405,6 +406,7 @@ exports[`renders correctly 1`] = `
               className="list-inline-item"
             >
               <a
+                aria-label="Visit our Twitter page"
                 href="https://twitter.com/getpostman"
                 id="twitter_icon"
                 rel="noopener noreferrer"
@@ -427,6 +429,7 @@ exports[`renders correctly 1`] = `
               className="list-inline-item"
             >
               <a
+                aria-label="Visit our Linked in page"
                 href="https://www.linkedin.com/company/postman-api-tools"
                 id="linkedin_icon"
                 rel="noopener noreferrer"
@@ -449,6 +452,7 @@ exports[`renders correctly 1`] = `
               className="list-inline-item"
             >
               <a
+                aria-label="View our Postman repos on GitHub"
                 href="https://github.com/postmanlabs"
                 id="github_icon"
                 rel="noopener noreferrer"

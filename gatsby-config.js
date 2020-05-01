@@ -27,7 +27,7 @@ module.exports = {
       options: {
         typeName: 'WPGraphQL',
         fieldName: 'wpgraphql',
-        url: 'https://blog.postman.com/graphql',
+        url: 'https://edit.blog.postman.com/graphql',
       },
     },
     'gatsby-plugin-meta-redirect',
