@@ -61,6 +61,10 @@ const BlogPostTemplate = ({ data }) => {
             {parse(content, {
               replace: (domNode) => {
                 // console.log(domNode.attribs && domNode.attribs.class)
+                // console.log(domNode)
+
+                /* show youtube videos
+                ***************************************************************************************************************/
                 if (domNode.attribs && domNode.attribs.class === 'wp-block-embed__wrapper' && <img />) {
                   if (domNode.children[1].name === "iframe") {
                     return (
@@ -68,8 +72,17 @@ const BlogPostTemplate = ({ data }) => {
                     )
                   }
                 }
+
+                // console.log('found another youtube vid',  domNode && domNode.name)
+                if (domNode && domNode.name === "iframe") {
+                  console.log('youtube vid', domNode)
+                  return (
+                    <iframe width="560" height="315" src={`${domNode.attribs && domNode.attribs['data-src']}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  )
+                }
                 
-                // returns all img data from wordpress
+                 /* show image data from wordpress
+                ***************************************************************************************************************/
                 if (domNode.attribs && domNode.attribs['data-src']) {
                   if (domNode.attribs['data-srcset']) {
                     return (
@@ -84,7 +97,8 @@ const BlogPostTemplate = ({ data }) => {
                       />
                     )
                   }
-                  // returns all gif data from wordpress
+                   /* show gifs data from wordpress
+                ***************************************************************************************************************/
                   return (
                     <img
                       src={`${domNode.attribs['data-src'].replace('blog.postman.com', 'edit.blog.postman.com')}`}
