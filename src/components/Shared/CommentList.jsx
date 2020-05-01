@@ -9,8 +9,7 @@ const Comment = ({ comments }) => (
       const commentDate = comment.node.date;
       const commentAuthorUrl = comment.node.author.url;
       let cleanComment = DOMPurify.sanitize(comment.node.content);
-      console.log('cleanComment', cleanComment)
-      
+    
 
       /* answers to comments
       ******************************************************************************* */
