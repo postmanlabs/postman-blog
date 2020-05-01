@@ -7,7 +7,7 @@ import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
 import BlogHeader from '../components/Shared/BlogHeader';
 // import PostForm from '../components/Shared/PostForm';
-import CommentList from '../components/Shared/CommentList';
+// import CommentList from '../components/Shared/CommentList';
 
 
 const BlogPostTemplate = ({ data }) => {
@@ -37,8 +37,9 @@ const BlogPostTemplate = ({ data }) => {
   const seoTitle = seo.title || title;
   const seoDescription = seo.metaDesc || excerptTrimmed;
   const seoImage = (seo.opengraphImage && seo.opengraphImage.mediaItemUrl)
-    ? seo.opengraphImage.mediaItemUrl
+    ? seo.opengraphImage.mediaItemUrl.replace('blog.postman.com', 'edit.blog.postman.com')
     : featuredImage;
+
 
   return (
     <Layout>
@@ -87,7 +88,7 @@ const BlogPostTemplate = ({ data }) => {
                   // returns all gif data from wordpress
                   return (
                     <img
-                      src={`${domNode.attribs['data-src']}`}
+                      src={`${domNode.attribs['data-src'].replace('blog.postman.com', 'edit.blog.postman.com')}`}
                       alt={domNode.attribs.alt}
                       sizes={domNode.attribs.sizes}
                       className={domNode.attribs.className}
@@ -100,7 +101,7 @@ const BlogPostTemplate = ({ data }) => {
           </div>
           <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
           {/* <PostForm postId={postId} /> */}
-          <CommentList comments={comments} />
+          {/* <CommentList comments={comments} /> */}
         </div>
       </div>
     </Layout>

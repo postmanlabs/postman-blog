@@ -5,7 +5,7 @@ import React from 'react';
 
 const FluidImage = ({ image, ...props }) => {
   // Return fallback Image, if no Image is given.
-
+  // const editImage = image.sourceUrl.replace("blog.postman.com", "edit.blog.postman.com")
   if (!image) {
     return (
       <div />
@@ -30,7 +30,7 @@ const FluidImage = ({ image, ...props }) => {
   //   );
   // }
 
-  return <img src={image.sourceUrl} className="img-fluid" alt={image.altText} {...props} loading="lazy" />;
+  return <img src={image.sourceUrl} className="img-fluid" alt={image.altText} {...props} />;
 };
 
 export default FluidImage;
