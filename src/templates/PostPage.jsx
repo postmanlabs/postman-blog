@@ -60,29 +60,39 @@ const BlogPostTemplate = ({ data }) => {
           <div className="post-content">
             {parse(content, {
               replace: (domNode) => {
-                // console.log(domNode.attribs && domNode.attribs.class)
-                // console.log(domNode)
-
                 /* show youtube videos
-                ***************************************************************************************************************/
-                if (domNode.attribs && domNode.attribs.class === 'wp-block-embed__wrapper' && <img />) {
-                  if (domNode.children[1].name === "iframe") {
+                ****************************************************************** */
+                if (domNode.attribs && domNode.attribs.class === 'wp-block-embed__wrapper') {
+                  if (domNode.children[1].name === 'iframe') {
                     return (
-                      <iframe width="560" height="315" src={`${domNode.attribs && domNode.children[1].attribs['data-src']}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    )
+                      <iframe
+                        title={`${(domNode.attribs && domNode.children[1].attribs.title) || 'Postman Youtube Channel'}`}
+                        width="560"
+                        height="315"
+                        src={`${domNode.attribs && domNode.children[1].attribs['data-src']}`}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    );
                   }
                 }
-
-                // console.log('found another youtube vid',  domNode && domNode.name)
-                if (domNode && domNode.name === "iframe") {
-                  console.log('youtube vid', domNode)
+                if (domNode && domNode.name === 'iframe') {
                   return (
-                    <iframe width="560" height="315" src={`${domNode.attribs && domNode.attribs['data-src']}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                  )
+                    <iframe
+                      title={`${(domNode.attribs && domNode.attribs.title) || 'Postman Youtube Channel'}`}
+                      width="560"
+                      height="315"
+                      src={`${domNode.attribs && domNode.attribs['data-src']}`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  );
                 }
-                
-                 /* show image data from wordpress
-                ***************************************************************************************************************/
+
+                /* show image data from wordpress
+                ************************************************************************* */
                 if (domNode.attribs && domNode.attribs['data-src']) {
                   if (domNode.attribs['data-srcset']) {
                     return (
@@ -93,19 +103,18 @@ const BlogPostTemplate = ({ data }) => {
                         data-srcset={`${domNode.attribs['data-srcset']}`}
                         // height={domNode.attribs.height}
                         // width={domNode.attribs.width}
-                        class={domNode.attribs.className}
+                        className={domNode.attribs.className}
                       />
-                    )
+                    );
                   }
-                   /* show gifs data from wordpress
-                ***************************************************************************************************************/
+                  /* show gifs data from wordpress
+                *************************************************************************** */
                   return (
                     <img
                       src={`${domNode.attribs['data-src'].replace('blog.postman.com', 'edit.blog.postman.com')}`}
                       alt={domNode.attribs.alt}
                       sizes={domNode.attribs.sizes}
                       className={domNode.attribs.className}
-                      
                     />
                   );
                 }
