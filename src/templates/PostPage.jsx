@@ -108,7 +108,7 @@ const BlogPostTemplate = ({ data }) => {
                 //   );
                 // }
 
-                
+
                 /* show image data from wordpress
                 ************************************************************************* */
                 if (domNode.attribs && domNode.attribs['data-src']) {
