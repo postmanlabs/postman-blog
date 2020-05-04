@@ -90,14 +90,32 @@ const BlogPostTemplate = ({ data }) => {
                     />
                   );
                 }
+                /* Youtube video does not display image. iframe causes CORS error in this case
+                ************************************************************************************
+                // if (domNode.attribs && domNode.attribs.class === 'wp-video-shortcode') {
+                //   // console.log('kyles video', domNode.children[2].children[1].attribs.href)
+                //   console.log('kyles video', domNode.children[0].attribs.src)
+                //   return (
+                //     <iframe
+                //       // title={`${(domNode.attribs && domNode.attribs.title) || 'Postman Youtube Channel'}`}
+                //       width="560"
+                //       height="315"
+                //       src={`${domNode.children[0].attribs.src}`}
+                //       frameBorder="0"
+                //       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                //       allowFullScreen
+                //     />
+                //   );
+                // }
 
+                
                 /* show image data from wordpress
                 ************************************************************************* */
                 if (domNode.attribs && domNode.attribs['data-src']) {
                   if (domNode.attribs['data-srcset']) {
                     return (
                       <img
-                        src={`${domNode.attribs['data-src']}`}
+                        src={`${domNode.attribs['data-src'].replace('blog.postman.com', 'edit.blog.postman.com')}`}
                         alt={domNode.attribs.alt}
                         sizes={domNode.attribs.sizes}
                         data-srcset={`${domNode.attribs['data-srcset']}`}
