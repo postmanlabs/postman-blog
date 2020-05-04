@@ -48,12 +48,12 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: 'gatsby-plugin-preconnect',
-      options: {
-        domains: ['https://fonts.googleapis.com', 'https://fonts.gstatic.com'],
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-preconnect',
+    //   options: {
+    //     domains: ['https://fonts.googleapis.com', 'https://fonts.gstatic.com'],
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
