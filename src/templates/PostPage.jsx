@@ -60,11 +60,79 @@ const BlogPostTemplate = ({ data }) => {
           <div className="post-content">
             {parse(content, {
               replace: (domNode) => {
+                /* show youtube videos
+                ****************************************************************** */
+                if (domNode.attribs && domNode.attribs.class === 'wp-block-embed__wrapper') {
+                  if (domNode.children[1].name === 'iframe') {
+                    return (
+                      <iframe
+                        title={`${(domNode.attribs && domNode.children[1].attribs.title) || 'Postman Youtube Channel'}`}
+                        width="560"
+                        height="315"
+                        src={`${domNode.attribs && domNode.children[1].attribs['data-src']}`}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    );
+                  }
+                }
+                if (domNode && domNode.name === 'iframe') {
+                  return (
+                    <iframe
+                      title={`${(domNode.attribs && domNode.attribs.title) || 'Postman Youtube Channel'}`}
+                      width="560"
+                      height="315"
+                      src={`${domNode.attribs && domNode.attribs['data-src']}`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  );
+                }
+                /* Youtube video does not display image. iframe causes CORS error in this case
+                ************************************************************************************
+                // if (domNode.attribs && domNode.attribs.class === 'wp-video-shortcode') {
+                //   // console.log('kyles video', domNode.children[2].children[1].attribs.href)
+                //   console.log('kyles video', domNode.children[0].attribs.src)
+                //   return (
+                //     <iframe
+                //       // title={`${(domNode.attribs && domNode.attribs.title) || 'Postman Youtube Channel'}`}
+                //       width="560"
+                //       height="315"
+                //       src={`${domNode.children[0].attribs.src}`}
+                //       frameBorder="0"
+                //       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                //       allowFullScreen
+                //     />
+                //   );
+                // }
+
+
+                /* show image data from wordpress
+                ************************************************************************* */
                 if (domNode.attribs && domNode.attribs['data-src']) {
+                  if (domNode.attribs['data-srcset']) {
+                    return (
+                      <img
+                        src={`${domNode.attribs['data-src'].replace('blog.postman.com', 'edit.blog.postman.com')}`}
+                        alt={domNode.attribs.alt}
+                        sizes={domNode.attribs.sizes}
+                        data-srcset={`${domNode.attribs['data-srcset']}`}
+                        // height={domNode.attribs.height}
+                        // width={domNode.attribs.width}
+                        className={domNode.attribs.className}
+                      />
+                    );
+                  }
+                  /* show gifs data from wordpress
+                *************************************************************************** */
                   return (
                     <img
                       src={`${domNode.attribs['data-src'].replace('blog.postman.com', 'edit.blog.postman.com')}`}
                       alt={domNode.attribs.alt}
+                      sizes={domNode.attribs.sizes}
+                      className={domNode.attribs.className}
                     />
                   );
                 }
