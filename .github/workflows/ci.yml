@@ -17,7 +17,7 @@ jobs:
         npm install
         npm run test:update
         npm run test
-    - name: running unit tests
+    - name: running linter
       run: |
         npm install
         npm run test:lint
