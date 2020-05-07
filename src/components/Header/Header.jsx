@@ -163,27 +163,23 @@ class HeaderComponent extends React.Component {
 
 
                 {/* Comment in for federated search */}
-                <Index indexName="blog">
-                  <div className={!hasInput ? 'input-empty' : 'input-value'}>
-                    <h2>Blog</h2>
-                    <CustomHits hitComponent={Hits} />
-                    <Configure hitsPerPage={2} />
-                  </div>
-                </Index>
+                <div className={!hasInput ? 'input-empty' : 'row wrapper-search-results input-value'}>
+                  <Index indexName="blog">
+                    <div className="col-sm-12 results-blog">
+                      <p className="font-weight-bold mb-0">On the Blog</p>
+                      <CustomHits hitComponent={Hits} />
+                      <Configure hitsPerPage={4} />
+                    </div>
+                  </Index>
 
-                <Index indexName="docs">
-                  <div
-                    className={!hasInput
-                      ? 'input-empty'
-                      : 'input-value'}
-                    style={{ top: '350px' }}
-                  >
-                    <h2>Learning Center</h2>
-                    <NextHits hitComponent={Hits} />
-                    <Configure hitsPerPage={2} />
-                  </div>
-                </Index>
-
+                  <Index indexName="docs">
+                    <div className="col-sm-12 results-lc">
+                      <p className="font-weight-bold mb-0">On Learning Center</p>
+                      <NextHits hitComponent={Hits} />
+                      <Configure hitsPerPage={2} />
+                    </div>
+                  </Index>
+                </div>
               </InstantSearch>
             </ClickOutHandler>
           </div>
