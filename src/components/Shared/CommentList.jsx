@@ -23,7 +23,8 @@ const Comment = ({ comments }) => (
               <ReturnDateString data={answer.node.date} />
             </div>
             {/* <div className="col-12 mt-3" dangerouslySetInnerHTML={{ __html: answer.node.content }} /> */}
-            <div className="col-12 mt-3" innerHTML={{ __html: answer.node.content }} />
+            <div>{ answer.node.content }</div>
+            {console.log(answer.node.content)}
           </div>
         ));
       }
@@ -42,7 +43,9 @@ const Comment = ({ comments }) => (
                     <div className="col-12 comments__date">
                       <ReturnDateString data={commentDate} />
                     </div>
-                    <div className="col-12 mt-3" dangerouslySetInnerHTML={{ __html: commentContent }} />
+                    {/* <div className="col-12 mt-3" dangerouslySetInnerHTML={{ __html: commentContent }} /> */}
+                    <div>{commentContent}</div>
+                    
                   </div>
                 )
                 }

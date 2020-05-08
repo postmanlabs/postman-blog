@@ -14,7 +14,7 @@ const BlogPostTemplate = ({ data }) => {
   const { post } = data.wpgraphql;
   //  insert postId, below to call PostForm
   const {
-    title, content, date, featuredImage, slug, excerpt, seo, comments, postId
+    title, content, date, featuredImage, slug, excerpt, seo, comments, postId,
   } = data.wpgraphql.post;
   const authorSlug = data.wpgraphql.post.author.slug;
   const authorBio = data.wpgraphql.post.author.description || '';
