@@ -14,17 +14,24 @@ const FooterColumn = () => {
   return (
     JSON.parse(data.footerLinks.value).columns.map((col) => {
       const title = <h5 className="footer-column__title">{col.name}</h5>;
-      const links = col.children.map((link) => (
+      const links = col.children.map((link) => {
+        console.log('link', link.span)
+        return (
+        
         <li key={link.name}>
           <DynamicLink className="footer-column__link" url={link.url} name={link.name} />
+          <span>{link.span}</span>
         </li>
-      ));
+      )});
 
       return (
         <div className="footer-column col-6 col-sm-4 col-md-2" key={col.name}>
           {title}
           <ul className="footer-column__list">
             {links}
+            {/* {console.log('links', links[1])} */}
+            <span>{links.span}</span>
+            {/* {console.log('links span', links)} */}
           </ul>
           <div className="clearfix d-block" />
         </div>

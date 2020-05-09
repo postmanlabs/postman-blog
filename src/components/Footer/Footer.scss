@@ -25,6 +25,10 @@
       margin-left: 0;
       font-size: 14px;
 
+      span {
+        color: $footer-color;
+      }
+
       .footer-column__link {
         color: white;
         font-family: 'Open Sans', 'Segoe UI', Tahoma, sans-serif;
