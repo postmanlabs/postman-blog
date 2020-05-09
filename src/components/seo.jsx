@@ -9,7 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
-// import { render } from 'react-dom';
+import sanitizeHTML from 'sanitize-html';
 
 function SEO({
   description, lang, meta, title, image,
@@ -42,7 +42,7 @@ function SEO({
       meta={[
         {
           name: 'description',
-          content: metaDescription,
+          content: sanitizeHTML(metaDescription),
         },
         {
           property: 'og:title',
@@ -50,7 +50,7 @@ function SEO({
         },
         {
           property: 'og:description',
-          content: metaDescription,
+          content: sanitizeHTML(metaDescription),
         },
         {
           property: 'og:type',
@@ -78,7 +78,7 @@ function SEO({
         },
         {
           name: 'twitter:description',
-          content: metaDescription,
+          content: sanitizeHTML(metaDescription),
         },
         {
           name: 'twitter:image',
