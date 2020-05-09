@@ -87,13 +87,38 @@ exports[`Header renders correctly 1`] = `
       <div
         className="input-empty"
       >
-        <ul
-          className="style"
+        <div
+          className="col-sm-12 results-blog"
         >
-          <li>
-            No search results found
-          </li>
-        </ul>
+          <p
+            className="font-weight-bold mb-0"
+          >
+            On the Blog
+          </p>
+          <ul
+            className="style"
+          >
+            <li>
+              No search results found
+            </li>
+          </ul>
+        </div>
+        <div
+          className="col-sm-12 results-lc"
+        >
+          <p
+            className="font-weight-bold mb-0"
+          >
+            On Learning Center
+          </p>
+          <ul
+            className="style"
+          >
+            <li>
+              No search results found
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <div

@@ -14,14 +14,13 @@ const FooterColumn = () => {
   return (
     JSON.parse(data.footerLinks.value).columns.map((col) => {
       const title = <h5 className="footer-column__title">{col.name}</h5>;
-      const links = col.children.map((link) => {
-        return (
-        
+      const links = col.children.map((link) => (
+
         <li key={link.name}>
           <DynamicLink className="footer-column__link" url={link.url} name={link.name} />
           <span><a href="https://www.postman.com/jobs/">{link.span}</a></span>
         </li>
-      )});
+      ));
 
       return (
         <div className="footer-column col-6 col-sm-4 col-md-2" key={col.name}>
