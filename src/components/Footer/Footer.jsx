@@ -19,7 +19,7 @@ const FooterColumn = () => {
         
         <li key={link.name}>
           <DynamicLink className="footer-column__link" url={link.url} name={link.name} />
-          <span>{link.span}</span>
+          <span><a href="https://www.postman.com/jobs/">{link.span}</a></span>
         </li>
       )});
 
