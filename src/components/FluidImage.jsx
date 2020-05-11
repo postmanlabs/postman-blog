@@ -3,7 +3,7 @@
 import React from 'react';
 // import cooper from '../assets/postman-cooper-fallback.jpg';
 
-const FluidImage = ({ image, ...props }) => {
+const FluidImage = ({ image }) => {
   // Return fallback Image, if no Image is given.
   // const editImage = image.sourceUrl.replace("blog.postman.com", "edit.blog.postman.com")
   if (!image) {
@@ -30,7 +30,7 @@ const FluidImage = ({ image, ...props }) => {
   //   );
   // }
 
-  return <img src={image.sourceUrl} className="img-fluid" alt={image.altText} {...props} />;
+  return <img src={image.sourceUrl} className="img-fluid" alt={image.altText} />;
 };
 
 export default FluidImage;
