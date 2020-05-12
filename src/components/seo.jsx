@@ -12,7 +12,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import sanitizeHTML from 'sanitize-html';
 
 function SEO({
-  description, lang, meta, title, image,
+  description, lang, meta, title, image, canonical
 }) {
   const { site } = useStaticQuery(
     graphql`
@@ -86,6 +86,8 @@ function SEO({
         },
       ].concat(meta)}
     >
+      {/* canonical url */}
+      <link rel="canonical" href={canonical} />
       {/* fonts */}
       <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet" />
       {/* Bootstrap */}
