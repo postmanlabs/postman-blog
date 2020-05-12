@@ -42,6 +42,7 @@
     "react-onclickout": "^2.0.8",
     "react-typography": "^0.16.19",
     "s3-deploy": "^1.4.0",
+    "sanitize-html": "^1.23.0",
     "slash": "^3.0.0",
     "typography": "^0.16.19",
     "uuid": "^3.4.0"

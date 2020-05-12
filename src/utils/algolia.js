@@ -74,6 +74,26 @@ const postQuery = `query($after:String){
         excerpt
         date
         slug
+        seo {
+          focuskw
+          metaDesc
+          metaKeywords
+          metaRobotsNofollow
+          metaRobotsNoindex
+          opengraphDescription
+          opengraphTitle
+          title
+          twitterDescription
+          twitterTitle
+        }
+        author {
+          name
+        }
+        tags {
+          nodes {
+            name
+          }
+        }
       }
     }
   }
