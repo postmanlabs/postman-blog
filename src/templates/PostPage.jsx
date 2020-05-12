@@ -14,7 +14,7 @@ const BlogPostTemplate = ({ data }) => {
   const { post } = data.wpgraphql;
   //  insert postId, below to call PostForm
   const {
-    title, content, date, featuredImage, slug, excerpt, seo, comments,
+    title, content, date, featuredImage, slug, excerpt, seo, /* comments, */
   } = data.wpgraphql.post;
   const authorSlug = data.wpgraphql.post.author.slug;
   const authorBio = data.wpgraphql.post.author.description || '';
@@ -97,12 +97,17 @@ const BlogPostTemplate = ({ data }) => {
                 //   console.log('kyles video', domNode.children[0].attribs.src)
                 //   return (
                 //     <iframe
-                //       // title={`${(domNode.attribs && domNode.attribs.title) || 'Postman Youtube Channel'}`}
+                //       // title={`
+                //        ${
+                //          (domNode.attribs && domNode.attribs.title) || 'Postman Youtube Channel'
+                //        }`
+                //       }
                 //       width="560"
                 //       height="315"
                 //       src={`${domNode.children[0].attribs.src}`}
                 //       frameBorder="0"
-                //       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                //       allow=
+                          "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 //       allowFullScreen
                 //     />
                 //   );
@@ -136,6 +141,8 @@ const BlogPostTemplate = ({ data }) => {
                     />
                   );
                 }
+
+                return null;
               },
             })}
           </div>
