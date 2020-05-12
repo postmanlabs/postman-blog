@@ -12,7 +12,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import sanitizeHTML from 'sanitize-html';
 
 function SEO({
-  description, lang, meta, title, image, canonical
+  description, lang, meta, title, image, canonical,
 }) {
   const { site } = useStaticQuery(
     graphql`
