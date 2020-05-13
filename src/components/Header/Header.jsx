@@ -133,16 +133,16 @@ class HeaderComponent extends React.Component {
           id="navbarSupportedContent"
         >
           {/* Aloglia Widgets */}
-          <div className="form-inline header__search">
+          {/* <div className="form-inline header__search">
             <ClickOutHandler onClickOut={this.onClickOut}>
               <InstantSearch
                 searchClient={searchClient}
                 indexName="blog"
                 refresh={refresh}
               >
-                <Configure hitsPerPage={5} />
+                <Configure hitsPerPage={5} /> */}
                 {/* forcefeed className because component does not accept natively as prop */}
-                <SearchBox
+                {/* <SearchBox
                   className="searchbox"
                   class="ais-SearchBox-input"
                   submit={<></>}
@@ -155,7 +155,7 @@ class HeaderComponent extends React.Component {
                       hasInput: event.currentTarget.value.length > 2,
                     });
                   }}
-                />
+                /> */}
                 {/* Comment in only if you want Blog post hits */}
                 {/* <div className={!hasInput ? 'input-empty' : 'input-value'}>
                   <CustomHits hitComponent={Hits} />
@@ -163,7 +163,7 @@ class HeaderComponent extends React.Component {
 
 
                 {/* Comment in for federated search */}
-                <div className={!hasInput ? 'input-empty' : 'row wrapper-search-results input-value'}>
+                {/* <div className={!hasInput ? 'input-empty' : 'row wrapper-search-results input-value'}>
                   <Index indexName="blog">
                     <div className="col-sm-12 results-blog">
                       <p className="font-weight-bold mb-0">On the Blog</p>
@@ -179,13 +179,14 @@ class HeaderComponent extends React.Component {
                       <Configure hitsPerPage={2} />
                     </div>
                   </Index>
-                </div>
-              </InstantSearch>
+                </div> */}
+              {/* </InstantSearch>
             </ClickOutHandler>
-          </div>
+          </div> */}
+         
           {data.links.map((link) => (
             <div className="nav-item" key={link.name}>
-              {link.cta ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}
+              {link.cta.login ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}
             </div>
           ))}
         </div>
