@@ -1,4 +1,4 @@
-
+/* eslint-disable react/jsx-props-no-spreading */
 // used in index and blog list view
 import React from 'react';
 // import cooper from '../assets/postman-cooper-fallback.jpg';
@@ -34,3 +34,4 @@ const FluidImage = ({ image, ...props }) => {
 };
 
 export default FluidImage;
+/* eslint-enaable */
