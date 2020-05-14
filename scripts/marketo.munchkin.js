@@ -1,11 +1,13 @@
 const marketo = () => {
-  if (typeof document === 'object') {
+  const munchkinId = process.env.MUNCHKIN_ID || '';
+
+  if (typeof document === 'object' && munchkinId) {
     /* eslint-disable */
     var didInit = false;
     function initMunchkin() {
       if (didInit === false) {
         didInit = true;
-        Munchkin.init('067-UMD-991');
+        Munchkin.init(munchkinId);
       }
     }
     var s = document.createElement('script');
