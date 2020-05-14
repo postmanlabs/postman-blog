@@ -25,5 +25,5 @@ jobs:
         NEWSLETTER_FORM_ID: ${{secrets.NEWSLETTER_FORM_ID}}
       run: |
         npm install
+        npm run clean
         npm run build:dev && node_modules/s3-deploy/bin/s3-deploy './public/**' --cwd './public/' --bucket postman-blog-beta --deleteRemoved --private --distId $DIST_ID --invalidate '/*'
-        
