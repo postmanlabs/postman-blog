@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
 import BlogHeader from '../components/Shared/BlogHeader';
+import NewsLetterForm from '../components/Shared/NewsLetterForm';
 // import PostForm from '../components/Shared/PostForm';
 // import CommentList from '../components/Shared/CommentList';
 
@@ -150,6 +151,7 @@ const BlogPostTemplate = ({ data }) => {
           {/* <PostForm postId={postId} /> */}
           {/* <CommentList comments={comments} /> */}
         </div>
+        <NewsLetterForm data={data} />
       </div>
     </Layout>
   );
