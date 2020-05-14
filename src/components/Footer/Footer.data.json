@@ -6,7 +6,7 @@
         { "url": "https://www.postman.com/product/api-client", "name": "API Client"},
         { "url": "https://www.postman.com/automated-testing", "name": "Automated Testing"},
         { "url": "https://www.postman.com/features/mock-api", "name": "Design & Mock"},
-        { "url": "https://www.postman.com/api-documentation-generator", "name": "Documentation"},
+        { "url": "https://www.postman.com/api-documentation-tool/", "name": "Documentation"},
         { "url": "https://www.postman.com/api-monitor", "name": "Monitors"},
         { "url": "https://www.postman.com/product/api-versioning", "name": "Version Control"},
         { "url": "https://www.postman.com/product/workspaces", "name": "Workspaces"},
