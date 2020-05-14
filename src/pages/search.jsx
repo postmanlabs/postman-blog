@@ -40,51 +40,61 @@ const searchClient = {
   },
 };
 
-const updateAfter = 700;
+const updateAfter = 1000;
 const searchStateToUrl = (searchState) => (searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : '');
+
 
 class SearchPage extends Component {
   constructor() {
     super();
-
     this.state = {
-      searchState: qs.parse(window.location.search.slice(1)),
+      searchState: {},
     };
+    console.log('this.state searchState', this.state)
+  }
+    
+  onSearchStateChange = (searchState) => {
+    console.log('onSearchStateChange Function searchState', searchState)
 
+    // update the URL when there is a new search state.
+    clearTimeout(this.debouncedSetState);
+    this.debouncedSetState = setTimeout(() => {
+      window.history.pushState(
+        this.searchState,
+        null,
+        searchStateToUrl(this.searchState),
+      );
+    }, updateAfter);
+
+    this.setState((previousState, searchState) => {
+      const hasQueryChanged = previousState.searchState.query !== searchState.query;
+      return {
+        ...previousState,
+        searchState: {
+          ...searchState,
+          boundingBox: !hasQueryChanged ? searchState.boundingBox : null,
+        },
+      };
+    });
+  };
+
+  componentDidMount() {
     window.addEventListener('popstate', ({ state: searchState }) => {
       this.setState({ searchState });
     });
+    
+    this.setState({
+      searchState: qs.parse(window.location.search.slice(1))
+    });
+    const { searchState } = this.state;
+    console.log('componentDidMount searchState', searchState)
+    this.onSearchStateChange(searchState);
   }
-
-    onSearchStateChange = (searchState) => {
-      // update the URL when there is a new search state.
-      clearTimeout(this.debouncedSetState);
-      this.debouncedSetState = setTimeout(() => {
-        window.history.pushState(
-          searchState,
-          null,
-          searchStateToUrl(searchState),
-        );
-      }, updateAfter);
-
-      this.setState((previousState) => {
-        const hasQueryChanged = previousState.searchState.query !== searchState.query;
-
-        return {
-          ...previousState,
-          searchState: {
-            ...searchState,
-            boundingBox: !hasQueryChanged ? searchState.boundingBox : null,
-          },
-        };
-      });
-    };
-
 
     render() {
       const { searchState } = this.state;
-
-      const parameters = {};
+      console.log('render() searchState', searchState)
+      const parameters = {}; 
 
       return (
         <Layout>
@@ -100,6 +110,7 @@ class SearchPage extends Component {
               {/* eslint-disable react/jsx-props-no-spreading */}
               <Configure hitsPerPage={5} {...parameters} />
               {/* eslint-enaable */}
+              
               {/* forcefeed className because component does not accept natively as prop */}
               <SearchBox
                 className="searchbox"
@@ -117,7 +128,7 @@ class SearchPage extends Component {
 
 
               {/* Comment in for federated search */}
-              {/* <div className={!hasInput
+              {/* <div className={!hasInput 
                 ? 'input-empty' : 'row wrapper-search-results input-value'}> */}
               <div>
                 <Index indexName="blog">
