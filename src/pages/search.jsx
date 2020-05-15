@@ -119,8 +119,6 @@ class SearchPage extends Component {
 
 
               {/* Comment in for federated search */}
-              {/* <div className={!hasInput
-                ? 'input-empty' : 'row wrapper-search-results input-value'}> */}
               <div>
                 <Index indexName="blog">
                   <div className="col-sm-12 results-blog">
