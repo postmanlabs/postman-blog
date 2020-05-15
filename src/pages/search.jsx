@@ -47,13 +47,15 @@ class SearchPage extends Component {
   constructor() {
     super();
 
-    this.state = {
-      searchState: qs.parse(window.location.search.slice(1)),
-    };
+    if (typeof window === 'object') {
+      this.state = {
+        searchState: qs.parse(window.location.search.slice(1)),
+      };
 
-    window.addEventListener('popstate', ({ state: searchState }) => {
-      this.setState({ searchState });
-    });
+      window.addEventListener('popstate', ({ state: searchState }) => {
+        this.setState({ searchState });
+      });
+    }
   }
 
     onSearchStateChange = (searchState) => {
@@ -82,7 +84,7 @@ class SearchPage extends Component {
 
 
     render() {
-      const { searchState } = this.state;
+      const { searchState } = this.state || {};
 
       const parameters = {};
 
