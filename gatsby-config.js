@@ -2,16 +2,16 @@
 
 /* Production build
 *********************************************************************************/
-require('dotenv').config({
-  path: `.env.${process.env.GATSBY_ACTIVE_ENV}`,
-});
+// require('dotenv').config({
+//   path: `.env.${process.env.GATSBY_ACTIVE_ENV}`,
+// });
 
 
 /* Local Build
 *********************************************************************************/
-// require('dotenv').config({
-//   path: `.env.${process.env.NODE_ENV}`,
-// });
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 
 
 module.exports = {

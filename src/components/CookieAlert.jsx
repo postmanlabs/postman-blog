@@ -1,6 +1,5 @@
 
 import React from 'react';
-// import styled from 'styled-components';
 import CookieConsent from 'react-cookie-consent';
 
 const CookieAlert = () => (
