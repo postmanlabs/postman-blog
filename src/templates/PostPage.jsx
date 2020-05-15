@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
 import BlogHeader from '../components/Shared/BlogHeader';
+import NewsLetterForm from '../components/Shared/NewsLetterForm';
 // import PostForm from '../components/Shared/PostForm';
 // import CommentList from '../components/Shared/CommentList';
 
@@ -35,15 +36,15 @@ const BlogPostTemplate = ({ data }) => {
   /* data from yoast is coming from 'seo' field that is called in the context of createPage.
   * Yoast plugin for WPGraphQL */
   const seoTitle = seo.title || title;
+  const canonical = seo.canonical || slug;
   const seoDescription = seo.metaDesc || excerptTrimmed;
   const seoImage = (seo.opengraphImage && seo.opengraphImage.mediaItemUrl)
     ? seo.opengraphImage.mediaItemUrl.replace('blog.postman.com', 'edit.blog.postman.com')
     : featuredImage;
 
-
   return (
     <Layout>
-      <SEO title={seoTitle} description={seoDescription} image={seoImage} />
+      <SEO title={seoTitle} description={seoDescription} image={seoImage} canonical={canonical} />
       <BlogHeader
         name={name}
         authorSlug={authorSlug}
@@ -150,6 +151,7 @@ const BlogPostTemplate = ({ data }) => {
           {/* <PostForm postId={postId} /> */}
           {/* <CommentList comments={comments} /> */}
         </div>
+        <NewsLetterForm data={data} />
       </div>
     </Layout>
   );
@@ -194,6 +196,11 @@ export const postPageQuery = graphql`
         seo {
           metaDesc
           title
+          canonical
+          breadcrumbs {
+            url
+            text
+          }
           opengraphImage {
             mediaItemUrl
           }

@@ -14,6 +14,7 @@
     "gatsby-link": "^2.4.0",
     "gatsby-plugin-algolia": "^0.5.0",
     "gatsby-plugin-gdpr-cookies": "^1.0.7",
+    "gatsby-plugin-env-variables": "^1.0.2",
     "gatsby-plugin-google-analytics": "^2.3.0",
     "gatsby-plugin-just-comments": "^0.2.4",
     "gatsby-plugin-manifest": "^2.4.1",

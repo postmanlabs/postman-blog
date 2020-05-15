@@ -158,6 +158,12 @@ module.exports = {
           anonymize: true
         },
         environments: ['production', 'development']
+      }
+    },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        whitelist: ['MUNCHKIN_ID', 'NEWSLETTER_FORM_ID']
       },
     },
   ],
