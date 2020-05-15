@@ -11,12 +11,11 @@ const TagsPostsList = ({ data, pageContext }) => {
   const { tag } = data.wpgraphql;
   const title = tag.name;
   const posts = tag.posts.edges;
-  const canonical = tag.slug;
   const { totalTagsPages, tagsPageNum, totalNumberOfPosts } = pageContext;
 
   return (
     <Layout>
-      <SEO title={title} canonical={canonical} />
+      <SEO title={title} />
       <HeroResults title={title} totalPosts={totalNumberOfPosts} />
       <div className="list-wrapper">
         <div className="container">
