@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import algoliasearch from 'algoliasearch/lite';
-import qs from 'qs';
+import qs from 'qs'; // A querystring parsing and stringifying library with some added security.
 
 
 /* import 'Index' for federated search in 'react-instantsearch-dom'
@@ -41,39 +41,38 @@ const searchClient = {
 };
 
 const updateAfter = 1000;
-let searchStateToUrl = (searchState) => (searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : '');
+// let searchStateToUrl = (searchState) => (searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : '');
 
 
 class SearchPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       searchState: {},
     };
-    console.log('this.state searchState', this.state)
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('popstate', ({ state: searchState }) => {
-        this.setState({ searchState });
-      });
-    }
+    // if (typeof window !== 'undefined') {
+    //   window.addEventListener('popstate', ({ state: searchState }) => {
+    //     this.setState({ searchState });
+    //   });
+    // }
   }
     
-  onSearchStateChange = (searchState) => {
-    console.log('Function searchState', searchState)
-  //   // console.log('Function searchStateToUrl', searchStateToUrl(searchState))
-  //   var text = searchState.toString();
-    // update the URL when there is a new search state.
-    clearTimeout(this.debouncedSetState);
-    this.debouncedSetState = setTimeout(() => {
-      console.log('window.history searchState', searchState)
-      window.history.pushState(
-        searchState,
-        null,
-        searchStateToUrl(searchState),
-      );
-    }, updateAfter);
+  // onSearchStateChange = (searchState) => {
+  //   console.log('Function searchState', searchState)
+  // //   // console.log('Function searchStateToUrl', searchStateToUrl(searchState))
+  // //   var text = searchState.toString();
+  //   // update the URL when there is a new search state.
+  //   clearTimeout(this.debouncedSetState);
+  //   this.debouncedSetState = setTimeout((searchState) => {
+  //     console.log('window.history searchState', searchState)
+  //     window.history.pushState(
+  //       searchState,
+  //       null,
+  //       searchStateToUrl(searchState),
+  //     );
+  //   }, updateAfter);
 
   //   this.setState((previousState, searchState) => {
   //     return {
@@ -83,25 +82,44 @@ class SearchPage extends Component {
   //       },
   //     };
   //   });
-  };
+  // };
 
-  componentDidMount() {
-   console.log('mount 1', window.location.search)
+    componentDidMount() {
+      this.setState({
+        searchState: qs.parse(window.location.search.slice(1)),
+      });
 
-    this.setState({
-      searchState: qs.parse(window.location.search.slice(1)),
-    });
+      window.addEventListener('popstate', ({ state: searchState }) => {
+        this.setState({ searchState });
+      });
 
-    // window.addEventListener('popstate', ({ state: searchState }) => {
-    //   this.setState({ searchState });
-    // });
-    console.log('mount 2', window.location.search)
-    console.log('mount 3', this.state.searchState)
+      const { searchState } = this.state;
+      // let searchStateToUrl = (searchState ) => (searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : '');
 
-    const { searchState } = this.state;
-    // console.log('componentDidMount searchState', searchState)
-    this.onSearchStateChange(searchState);
-  }
+      this.onSearchStateChange = () => {
+        // update the URL when there is a new search state.
+        clearTimeout(this.debouncedSetState);
+
+      // const searchStateToUrl = (searchState ) => {searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : ''};
+
+        this.debouncedSetState = setTimeout(() => {
+          window.history.pushState(
+            searchState,
+            null,
+            function searchStateToUrl(searchState => {searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : ''}),
+          );
+        }, updateAfter);
+    
+        this.setState((previousState, searchState) => {
+          return {
+            ...previousState,
+            searchState: {
+              ...searchState
+            },
+          };
+        });
+      };   
+    }
 
     render() {
       const { searchState } = this.state;
@@ -116,8 +134,8 @@ class SearchPage extends Component {
             <InstantSearch
               searchClient={searchClient}
               indexName="blog"
-              // searchState={searchState}
-              // onSearchStateChange={this.onSearchStateChange}
+              searchState={searchState}
+              onSearchStateChange={this.onSearchStateChange}
             >
               {/* eslint-disable react/jsx-props-no-spreading */}
               <Configure hitsPerPage={5} {...parameters} />
