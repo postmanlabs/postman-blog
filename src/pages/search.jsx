@@ -40,34 +40,40 @@ const searchClient = {
   },
 };
 
-// const updateAfter = 1000;
-// let searchStateToUrl = (searchState) => (searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : '');
+const updateAfter = 1000;
+let searchStateToUrl = (searchState) => (searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : '');
 
 
 class SearchPage extends Component {
-  // constructor() {
-  //   // super(props);
+  constructor() {
+    super();
 
-  //   // this.state = {
-  //   //   // searchState: {},
-  //   //   data: JSON.parse(data)
-  //   // };
-  //   // console.log('this.state searchState', this.state)
-  // }
+    this.state = {
+      searchState: {},
+    };
+    console.log('this.state searchState', this.state)
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', ({ state: searchState }) => {
+        this.setState({ searchState });
+      });
+    }
+  }
     
-  // onSearchStateChange = (searchState) => {
-  //   console.log('onSearchStateChange Function searchState', searchState)
+  onSearchStateChange = (searchState) => {
+    console.log('Function searchState', searchState)
   //   // console.log('Function searchStateToUrl', searchStateToUrl(searchState))
   //   var text = searchState.toString();
-  //   // update the URL when there is a new search state.
-  //   clearTimeout(this.debouncedSetState);
-  //   this.debouncedSetState = setTimeout(() => {
-  //     window.history.pushState(
-  //       text,
-  //       null,
-  //       searchStateToUrl(searchState),
-  //     );
-  //   }, updateAfter);
+    // update the URL when there is a new search state.
+    clearTimeout(this.debouncedSetState);
+    this.debouncedSetState = setTimeout(() => {
+      console.log('window.history searchState', searchState)
+      window.history.pushState(
+        searchState,
+        null,
+        searchStateToUrl(searchState),
+      );
+    }, updateAfter);
 
   //   this.setState((previousState, searchState) => {
   //     return {
@@ -77,30 +83,30 @@ class SearchPage extends Component {
   //       },
   //     };
   //   });
-  // };
+  };
 
-  // componentDidMount() {
-  //   window.addEventListener('popstate', ({ state: searchState }) => {
-  //     this.setState({ searchState });
-  //   });
+  componentDidMount() {
+   console.log('mount 1', window.location.search)
 
-  //   this.setState({
-  //     searchState: qs.parse(window.location.search.slice(1))
-  //   });
+    this.setState({
+      searchState: qs.parse(window.location.search.slice(1)),
+    });
 
-  //   // window.addEventListener('popstate', ({ state: searchState }) => {
-  //   //   this.setState({ searchState });
-  //   // });
+    // window.addEventListener('popstate', ({ state: searchState }) => {
+    //   this.setState({ searchState });
+    // });
+    console.log('mount 2', window.location.search)
+    console.log('mount 3', this.state.searchState)
 
-  //   const { searchState } = this.state;
-  //   // console.log('componentDidMount searchState', searchState)
-  //   this.onSearchStateChange(searchState);
-  // }
+    const { searchState } = this.state;
+    // console.log('componentDidMount searchState', searchState)
+    this.onSearchStateChange(searchState);
+  }
 
     render() {
-      // const { searchState } = this.state;
-      // console.log('render() searchState', searchState)
-      // const parameters = {}; 
+      const { searchState } = this.state;
+      console.log('render() searchState', searchState)
+      const parameters = {}; 
 
       return (
         <Layout>
@@ -114,8 +120,8 @@ class SearchPage extends Component {
               // onSearchStateChange={this.onSearchStateChange}
             >
               {/* eslint-disable react/jsx-props-no-spreading */}
-              {/* <Configure hitsPerPage={5} {...parameters} /> */}
-              <Configure hitsPerPage={5}  />
+              <Configure hitsPerPage={5} {...parameters} />
+              {/* <Configure hitsPerPage={5}  /> */}
               {/* eslint-enaable */}
               
               {/* forcefeed className because component does not accept natively as prop */}
