@@ -40,61 +40,67 @@ const searchClient = {
   },
 };
 
-const updateAfter = 1000;
-const searchStateToUrl = (searchState) => (searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : '');
+// const updateAfter = 1000;
+// let searchStateToUrl = (searchState) => (searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : '');
 
 
 class SearchPage extends Component {
-  constructor() {
-    super();
-    this.state = {
-      searchState: {},
-    };
-    console.log('this.state searchState', this.state)
-  }
+  // constructor() {
+  //   // super(props);
+
+  //   // this.state = {
+  //   //   // searchState: {},
+  //   //   data: JSON.parse(data)
+  //   // };
+  //   // console.log('this.state searchState', this.state)
+  // }
     
-  onSearchStateChange = (searchState) => {
-    console.log('onSearchStateChange Function searchState', searchState)
+  // onSearchStateChange = (searchState) => {
+  //   console.log('onSearchStateChange Function searchState', searchState)
+  //   // console.log('Function searchStateToUrl', searchStateToUrl(searchState))
+  //   var text = searchState.toString();
+  //   // update the URL when there is a new search state.
+  //   clearTimeout(this.debouncedSetState);
+  //   this.debouncedSetState = setTimeout(() => {
+  //     window.history.pushState(
+  //       text,
+  //       null,
+  //       searchStateToUrl(searchState),
+  //     );
+  //   }, updateAfter);
 
-    // update the URL when there is a new search state.
-    clearTimeout(this.debouncedSetState);
-    this.debouncedSetState = setTimeout(() => {
-      window.history.pushState(
-        this.searchState,
-        null,
-        searchStateToUrl(this.searchState),
-      );
-    }, updateAfter);
+  //   this.setState((previousState, searchState) => {
+  //     return {
+  //       ...previousState,
+  //       searchState: {
+  //         ...searchState
+  //       },
+  //     };
+  //   });
+  // };
 
-    this.setState((previousState, searchState) => {
-      const hasQueryChanged = previousState.searchState.query !== searchState.query;
-      return {
-        ...previousState,
-        searchState: {
-          ...searchState,
-          boundingBox: !hasQueryChanged ? searchState.boundingBox : null,
-        },
-      };
-    });
-  };
+  // componentDidMount() {
+  //   window.addEventListener('popstate', ({ state: searchState }) => {
+  //     this.setState({ searchState });
+  //   });
 
-  componentDidMount() {
-    window.addEventListener('popstate', ({ state: searchState }) => {
-      this.setState({ searchState });
-    });
-    
-    this.setState({
-      searchState: qs.parse(window.location.search.slice(1))
-    });
-    const { searchState } = this.state;
-    console.log('componentDidMount searchState', searchState)
-    this.onSearchStateChange(searchState);
-  }
+  //   this.setState({
+  //     searchState: qs.parse(window.location.search.slice(1))
+  //   });
+
+  //   // window.addEventListener('popstate', ({ state: searchState }) => {
+  //   //   this.setState({ searchState });
+  //   // });
+
+  //   const { searchState } = this.state;
+  //   // console.log('componentDidMount searchState', searchState)
+  //   this.onSearchStateChange(searchState);
+  // }
 
     render() {
-      const { searchState } = this.state;
-      console.log('render() searchState', searchState)
-      const parameters = {}; 
+      // const { searchState } = this.state;
+      // console.log('render() searchState', searchState)
+      // const parameters = {}; 
 
       return (
         <Layout>
@@ -104,11 +110,12 @@ class SearchPage extends Component {
             <InstantSearch
               searchClient={searchClient}
               indexName="blog"
-              searchState={searchState}
-              onSearchStateChange={this.onSearchStateChange}
+              // searchState={searchState}
+              // onSearchStateChange={this.onSearchStateChange}
             >
               {/* eslint-disable react/jsx-props-no-spreading */}
-              <Configure hitsPerPage={5} {...parameters} />
+              {/* <Configure hitsPerPage={5} {...parameters} /> */}
+              <Configure hitsPerPage={5}  />
               {/* eslint-enaable */}
               
               {/* forcefeed className because component does not accept natively as prop */}
