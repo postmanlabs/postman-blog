@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
+import CookieAlert from './CookieAlert';
 // import './_layout.scss';
 import './_all.scss';
 import '../utils/typography';
@@ -28,6 +29,7 @@ const Layout = ({ children }) => (
   <>
     <Header />
     <main>{children}</main>
+    <CookieAlert />
     <Footer />
   </>
 );
