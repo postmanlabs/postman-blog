@@ -11,7 +11,7 @@ const TagsPostsList = ({ data, pageContext }) => {
   const { tag } = data.wpgraphql;
   const title = tag.name;
   const posts = tag.posts.edges;
-  const link = tag.link;
+  const { link } = tag;
   const { totalTagsPages, tagsPageNum, totalNumberOfPosts } = pageContext;
 
   return (
