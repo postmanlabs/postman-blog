@@ -16,7 +16,7 @@ const BlogIndex = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Home" canonical="https://blog.postman.com/" />
       <div className="list-wrapper">
         <div className="container">
           {posts.map((post) => {

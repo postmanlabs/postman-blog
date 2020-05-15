@@ -6,7 +6,7 @@ import SEO from '../components/seo';
 
 const NotFoundPage = () => (
   <Layout>
-    <SEO title="404: Not found" slug="/404/" />
+    <SEO title="404: Not found" slug="/404/" canonical="https://blog.postman.com/404" />
     <div className="container">
       <div className="row error-row">
         <div className="col">
