@@ -1,9 +1,18 @@
 {
   "links": [
     {
+      "name": "Search",
+      "url": "/search",
+      "cta": {
+        "login": false
+      }
+    },
+    {
       "name": "Dashboard",
       "url": "https://app.postman.com/",
-      "cta": true
+      "cta": {
+        "login": true
+      }
     }],
     "title": "Blog"
 }

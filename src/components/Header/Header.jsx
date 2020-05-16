@@ -1,22 +1,12 @@
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
-import algoliasearch from 'algoliasearch/lite';
-
-/* import 'Index' for federated search in 'react-instantsearch-dom'
-********************************************************************* */
-import {
-  InstantSearch, SearchBox, Hits, Configure, Index,
-} from 'react-instantsearch-dom';
+// import algoliasearch from 'algoliasearch/lite';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 import '../../utils/typography';
 
-/* needed for federated search: import 'NextHits' in '../Search/searchPreview'
-******************************************************************************* */
-import { CustomHits, NextHits } from '../Search/searchPreview';
 
-
-const ClickOutHandler = require('react-onclickout');
+// const ClickOutHandler = require('react-onclickout');
 
 
 /* these keys are to access only blog index in Algolia
@@ -25,23 +15,23 @@ const ClickOutHandler = require('react-onclickout');
 
 /* add in API Keys from Learning Center to activate multiple index search
 *************************************************************************** */
-const algoliaClient = algoliasearch('4A5N71XYH0', 'bf5cf4783437b12c2dca33724c9c04b0');
+// const algoliaClient = algoliasearch('4A5N71XYH0', 'bf5cf4783437b12c2dca33724c9c04b0');
 
 
 /* removes empty query searches from Algolia analytics
 ********************************************************************* */
-const searchClient = {
-  search(requests) {
-    const newRequests = requests.map((request) => {
-      // test for empty string and change request parameter: analytics
-      if (!request.params.query || request.params.query.length === 0) {
-        request.params.analytics = false;
-      }
-      return request;
-    });
-    return algoliaClient.search(newRequests);
-  },
-};
+// const searchClient = {
+//   search(requests) {
+//     const newRequests = requests.map((request) => {
+//       // test for empty string and change request parameter: analytics
+//       if (!request.params.query || request.params.query.length === 0) {
+//         request.params.analytics = false;
+//       }
+//       return request;
+//     });
+//     return algoliaClient.search(newRequests);
+//   },
+// };
 
 /* changes button in navbar based on cookie presence
 ********************************************************************* */
@@ -67,7 +57,7 @@ class HeaderComponent extends React.Component {
     this.state = {
       data: JSON.parse(data),
       isToggledOn: 'unset',
-      refresh: false,
+      // refresh: false,
     };
   }
 
@@ -94,17 +84,17 @@ class HeaderComponent extends React.Component {
   }
 
   // click out search results box
-  onClickOut = () => {
-    document.getElementsByClassName('ais-SearchBox-input')[0].value = '';
-    this.setState(() => ({
-      hasInput: false,
-    }));
-  }
+  // onClickOut = () => {
+  //   document.getElementsByClassName('ais-SearchBox-input')[0].value = '';
+  //   this.setState(() => ({
+  //     hasInput: false,
+  //   }));
+  // }
 
   render() {
     const {
-      isToggledOn, refresh, hasInput, data,
-      // isToggledOn, data,
+      isToggledOn, data,
+      // isToggledOn, data, refresh, hasInput,
     } = this.state;
 
     return (
@@ -133,16 +123,16 @@ class HeaderComponent extends React.Component {
           id="navbarSupportedContent"
         >
           {/* Aloglia Widgets */}
-          <div className="form-inline header__search">
+          {/* <div className="form-inline header__search">
             <ClickOutHandler onClickOut={this.onClickOut}>
               <InstantSearch
                 searchClient={searchClient}
                 indexName="blog"
                 refresh={refresh}
               >
-                <Configure hitsPerPage={5} />
-                {/* forcefeed className because component does not accept natively as prop */}
-                <SearchBox
+                <Configure hitsPerPage={5} /> */}
+          {/* forcefeed className because component does not accept natively as prop */}
+          {/* <SearchBox
                   className="searchbox"
                   class="ais-SearchBox-input"
                   submit={<></>}
@@ -155,15 +145,15 @@ class HeaderComponent extends React.Component {
                       hasInput: event.currentTarget.value.length > 2,
                     });
                   }}
-                />
-                {/* Comment in only if you want Blog post hits */}
-                {/* <div className={!hasInput ? 'input-empty' : 'input-value'}>
+                /> */}
+          {/* Comment in only if you want Blog post hits */}
+          {/* <div className={!hasInput ? 'input-empty' : 'input-value'}>
                   <CustomHits hitComponent={Hits} />
                 </div> */}
 
 
-                {/* Comment in for federated search */}
-                <div className={!hasInput ? 'input-empty' : 'row wrapper-search-results input-value'}>
+          {/* Comment in for federated search */}
+          {/* <div className={!hasInput ? 'input-empty' : 'row wrapper-search-results input-value'}>
                   <Index indexName="blog">
                     <div className="col-sm-12 results-blog">
                       <p className="font-weight-bold mb-0">On the Blog</p>
@@ -179,13 +169,14 @@ class HeaderComponent extends React.Component {
                       <Configure hitsPerPage={2} />
                     </div>
                   </Index>
-                </div>
-              </InstantSearch>
+                </div> */}
+          {/* </InstantSearch>
             </ClickOutHandler>
-          </div>
+          </div> */}
+
           {data.links.map((link) => (
             <div className="nav-item" key={link.name}>
-              {link.cta ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}
+              {link.cta.login ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}
             </div>
           ))}
         </div>
