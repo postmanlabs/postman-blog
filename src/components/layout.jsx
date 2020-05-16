@@ -14,6 +14,7 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import CookieAlert from './CookieAlert';
 // import './_layout.scss';
+import CookieAlert from './CookieAlert';
 import './_all.scss';
 import '../utils/typography';
 
@@ -32,6 +33,7 @@ const Layout = ({ children }) => (
     <main>{children}</main>
     <CookieAlert />
     <Footer />
+    <CookieAlert />
     {marketo()}
   </>
 );

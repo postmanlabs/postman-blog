@@ -1,6 +1,7 @@
-
 import React from 'react';
 import CookieConsent from 'react-cookie-consent';
+import './_CookieAlert.scss';
+
 
 const CookieAlert = () => (
   <div className="CookieWrapper">
