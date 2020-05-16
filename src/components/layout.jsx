@@ -14,7 +14,6 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import CookieAlert from './CookieAlert';
 // import './_layout.scss';
-import CookieAlert from './CookieAlert';
 import './_all.scss';
 import '../utils/typography';
 
