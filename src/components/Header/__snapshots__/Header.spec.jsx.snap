@@ -43,132 +43,23 @@ exports[`Header renders correctly 1`] = `
     id="navbarSupportedContent"
   >
     <div
-      className="form-inline header__search"
-    >
-      <div
-        className="ais-SearchBox searchbox"
-      >
-        <form
-          action=""
-          className="ais-SearchBox-form"
-          noValidate={true}
-          onReset={[Function]}
-          onSubmit={[Function]}
-          role="search"
-        >
-          <input
-            autoCapitalize="off"
-            autoComplete="off"
-            autoCorrect="off"
-            autoFocus={false}
-            className="ais-SearchBox-input"
-            maxLength="512"
-            onChange={[Function]}
-            onKeyUp={[Function]}
-            placeholder="Search Postman Blog"
-            required={true}
-            spellCheck="false"
-            type="search"
-            value=""
-          />
-          <button
-            className="ais-SearchBox-submit"
-            title="Submit your search query."
-            type="submit"
-          />
-          <button
-            className="ais-SearchBox-reset"
-            hidden={true}
-            title="Clear the search query."
-            type="reset"
-          />
-        </form>
-      </div>
-      <div
-        className="input-empty"
-      >
-        <div
-          className="col-sm-12 results-blog"
-        >
-          <p
-            className="font-weight-bold mb-0"
-          >
-            On the Blog
-          </p>
-          <ul
-            className="style"
-          >
-            <li>
-              No search results found
-            </li>
-          </ul>
-        </div>
-        <div
-          className="col-sm-12 results-lc"
-        >
-          <p
-            className="font-weight-bold mb-0"
-          >
-            On Learning Center
-          </p>
-          <ul
-            className="style"
-          >
-            <li>
-              No search results found
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div
       className="nav-item"
     >
       <a
         className="dynamic-link__internal nav-link"
-        href="/getting-started/"
+        href="/search"
       >
-        Getting Started
+        Search
       </a>
     </div>
     <div
       className="nav-item"
     >
       <a
-        className="dynamic-link__internal nav-link"
-        href="/concepts/"
+        className="dynamic-link__external nav-link"
+        href="https://app.getpostman.com/"
       >
-        Concepts
-      </a>
-    </div>
-    <div
-      className="nav-item"
-    >
-      <a
-        className="dynamic-link__internal nav-link"
-        href="/reference/"
-      >
-        Reference
-      </a>
-    </div>
-    <div
-      className="nav-item"
-    >
-      <a
-        className="dynamic-link__internal nav-link"
-        href="/docs/"
-      >
-        Docs
-      </a>
-    </div>
-    <div
-      className="nav-item"
-    >
-      <a
-        className="btn btn__primary"
-        href="https://identity.getpostman.com/login"
-      >
-        Sign In
+        Dashboard
       </a>
     </div>
   </div>

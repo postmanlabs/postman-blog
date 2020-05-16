@@ -20,7 +20,9 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
         AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
         DIST_ID: ${{secrets.DIST_ID}}
+        MUNCHKIN_ID: ${{ secrets.MUNCHKIN_ID}}
+        NEWSLETTER_FORM_ID: ${{secrets.NEWSLETTER_FORM_ID}}
       run: |
         npm install
+        npm run clean
         npm run build:dev && node_modules/s3-deploy/bin/s3-deploy './public/**' --cwd './public/' --bucket postman-blog-beta --deleteRemoved --private --distId $DIST_ID --invalidate '/*'
-        
