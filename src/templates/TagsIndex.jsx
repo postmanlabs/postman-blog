@@ -11,11 +11,12 @@ const TagsPostsList = ({ data, pageContext }) => {
   const { tag } = data.wpgraphql;
   const title = tag.name;
   const posts = tag.posts.edges;
+  const { link } = tag;
   const { totalTagsPages, tagsPageNum, totalNumberOfPosts } = pageContext;
 
   return (
     <Layout>
-      <SEO title={title} />
+      <SEO title={title} canonical={link} />
       <HeroResults title={title} totalPosts={totalNumberOfPosts} />
       <div className="list-wrapper">
         <div className="container">
@@ -62,6 +63,7 @@ export const tagsPostsQuery = graphql`
       tag(id: $id) {
         name
         slug
+        link
         posts(first: 10, after: $startCursor) {
           edges {
             node {

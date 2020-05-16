@@ -13,6 +13,8 @@ module.exports = async ({ actions, graphql }) => {
             slug
             date
             seo {
+              canonical
+              title
               focuskw
               metaDesc
               metaKeywords
@@ -28,6 +30,10 @@ module.exports = async ({ actions, graphql }) => {
               }
               twitterImage {
                 mediaItemUrl
+              }
+              breadcrumbs {
+                url
+                text
               }
             }
           }
