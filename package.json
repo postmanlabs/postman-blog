@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "algoliasearch": "^3.35.1",
+    "axios": "^0.19.2",
     "babel-jest": "^25.5.1",
     "dotenv": "^8.2.0",
     "eslint-plugin-jest": "^23.7.0",
@@ -69,10 +70,11 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "GATSBY_ACTIVE_ENV=development gatsby build",
+    "bff": "node bff.js",
+    "build": "npm run bff && GATSBY_ACTIVE_ENV=development gatsby build",
     "build:dev": "npm run build",
     "build:prod": "GATSBY_ACTIVE_ENV=production gatsby build",
-    "dev": "gatsby develop",
+    "dev": "npm run bff && gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
