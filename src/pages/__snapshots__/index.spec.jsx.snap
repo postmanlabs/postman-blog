@@ -954,5 +954,87 @@ Array [
       </div>
     </div>
   </footer>,
+  <div
+    className="CookieWrapper"
+  >
+    <div
+      className="CookieConsent"
+      style={
+        Object {
+          "alignItems": "baseline",
+          "background": "white",
+          "bottom": "0",
+          "boxShadow": "0px 4px 26.91px rgba(0, 0, 0, 0.15)",
+          "color": "#282828",
+          "display": "block",
+          "flexWrap": "wrap",
+          "fontSize": "16px",
+          "justifyContent": "space-between",
+          "left": "0",
+          "lineHeight": "24px",
+          "padding": "20px 50px",
+          "position": "static",
+          "textAlign": "center",
+          "width": "100%",
+          "zIndex": "999",
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "flex": "1 0 300px",
+            "margin": "15px",
+          }
+        }
+      >
+        This website uses cookies to ensure you get the best experience on our website.
+         
+        <strong>
+          <a
+            href="https://www.postman.com/licenses/privacy/#Automatic"
+            rel="noopener noreferrer"
+            style={
+              Object {
+                "color": "black",
+                "textDecoration": "underline",
+              }
+            }
+            target="_blank"
+          >
+            Learn more
+          </a>
+        </strong>
+      </div>
+      <div
+        className=""
+      >
+        <button
+          className=""
+          id="rcc-confirm-button"
+          onClick={[Function]}
+          style={
+            Object {
+              "background": "#1C272B",
+              "border": "0",
+              "borderRadius": "3px",
+              "boxShadow": "0px 4px 4px rgba(0, 0, 0, 0.15)",
+              "color": "#fff",
+              "cursor": "pointer",
+              "display": "block",
+              "flex": "0 0 auto",
+              "fontWeight": "500",
+              "margin": "0 auto",
+              "padding": "13px 24px",
+              "textAlign": "center",
+            }
+          }
+        >
+          Accept and Close
+        </button>
+      </div>
+    </div>
+  </div>,
 ]
 `;
