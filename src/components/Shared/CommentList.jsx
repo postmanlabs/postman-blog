@@ -36,27 +36,27 @@ class Comment extends Component {
           if (comment.node.children && comment.node.children.edges) {
             answerList = comment.node.children.edges.map((answer) => (
               <div className="comments__answers ml-4" key={Math.random()}>
-                <div data-sanatize={`${answer.node.author.name}`} className="bio-author" key={Math.random()} />
-                <div className="comments__date" key={Math.random()}>
+                <div data-sanatize={`${answer.node.author.name}`} className="bio-author" />
+                <div className="comments__date">
                   <ReturnDateString data={answer.node.date} />
                 </div>
-                <div data-sanatize={`${answer.node.content}`} key={Math.random()} />
+                <div data-sanatize={`${answer.node.content}`} />
               </div>
             ));
           }
           return (
             <div key={Math.random()}>
-              <div className="col-12" key={Math.random()}>
+              <div className="col-12" >
                 {
                   commentAuthorUrl
                     ? null
                     : (
-                      <div className="comments__approved" key={Math.random()}>
-                        <div data-sanatize={`${commentAuthor}`} className="bio-author" key={Math.random()} />
-                        <div className="comments__date" key={Math.random()}>
+                      <div className="comments__approved">
+                        <div data-sanatize={`${commentAuthor}`} className="bio-author" />
+                        <div className="comments__date">
                           <ReturnDateString data={commentDate} />
                         </div>
-                        <div data-sanatize={`${commentContent}`} key={Math.random()} />
+                        <div data-sanatize={`${commentContent}`} />
                       </div>
                     )
                   }
