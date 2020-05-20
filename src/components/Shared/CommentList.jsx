@@ -46,7 +46,7 @@ class Comment extends Component {
           }
           return (
             <div key={Math.random()}>
-              <div className="col-12" >
+              <div className="col-12">
                 {
                   commentAuthorUrl
                     ? null
