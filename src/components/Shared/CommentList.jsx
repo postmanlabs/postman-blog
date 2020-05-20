@@ -7,7 +7,7 @@ class Comment extends Component {
     const list = document.querySelector('.list-wrapper');
 
     newItem.innerHtml = `
-      <div data-sanatize="a<script>alert(123)</script>b">
+      <div key={Math.random()} data-sanatize="a<script>alert(123)</script>b">
        loading...
        </div>
       `;
@@ -23,7 +23,7 @@ class Comment extends Component {
     const { comments } = this.props;
 
     return (
-      <div className="list-wrapper">
+      <div className="list-wrapper" key={Math.random()}>
         {comments.edges && comments.edges.map((comment) => {
           const commentAuthor = comment.node.author.name;
           const commentContent = comment.node.content;
@@ -35,38 +35,36 @@ class Comment extends Component {
           let answerList;
           if (comment.node.children && comment.node.children.edges) {
             answerList = comment.node.children.edges.map((answer) => (
-              <div className="comments__answers ml-4">
-                {/* {console.log('answer', answer.node.author)} */}
-                <div data-sanatize={`${answer.node.author.name}`} className="bio-author" />
-                <div className="comments__date">
+              <div className="comments__answers ml-4" key={Math.random()}>
+                <div data-sanatize={`${answer.node.author.name}`} className="bio-author" key={Math.random()} />
+                <div className="comments__date" key={Math.random()}>
                   <ReturnDateString data={answer.node.date} />
                 </div>
-                <div data-sanatize={`${answer.node.content}`} />
+                <div data-sanatize={`${answer.node.content}`} key={Math.random()} />
               </div>
             ));
           }
           return (
-            <>
-              <div className="col-12">
+            <div key={Math.random()}>
+              <div className="col-12" key={Math.random()}>
                 {
-                    commentAuthorUrl
-                      ? null
-                      : (
-                        <div className="comments__approved">
-                          <div data-sanatize={`${commentAuthor}`} className="bio-author" />
-                          <div className="comments__date">
-                            <ReturnDateString data={commentDate} />
-                          </div>
-                          <div data-sanatize={`${commentContent}`} />
+                  commentAuthorUrl
+                    ? null
+                    : (
+                      <div className="comments__approved" key={Math.random()}>
+                        <div data-sanatize={`${commentAuthor}`} className="bio-author" key={Math.random()} />
+                        <div className="comments__date" key={Math.random()}>
+                          <ReturnDateString data={commentDate} />
                         </div>
-                      )
+                        <div data-sanatize={`${commentContent}`} key={Math.random()} />
+                      </div>
+                    )
                   }
               </div>
               { answerList }
-            </>
+            </div>
           );
         })}
-
       </div>
     );
   }
