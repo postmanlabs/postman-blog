@@ -8,6 +8,7 @@ import Bio from '../components/Shared/Bio';
 import BlogHeader from '../components/Shared/BlogHeader';
 import PostForm from '../components/Shared/PostForm';
 import CommentList from '../components/Shared/CommentList';
+import NewsLetterForm from '../components/Shared/NewsLetterForm';
 
 
 const BlogPostTemplate = ({ data }) => {
@@ -15,6 +16,7 @@ const BlogPostTemplate = ({ data }) => {
   //  insert postId, below to call PostForm
   const {
     title, content, date, featuredImage, slug, excerpt, seo, comments, postId,
+    // title, content, date, featuredImage, slug, excerpt, seo, /* comments, */
   } = data.wpgraphql.post;
   const authorSlug = data.wpgraphql.post.author.slug;
   const authorBio = data.wpgraphql.post.author.description || '';
@@ -35,15 +37,15 @@ const BlogPostTemplate = ({ data }) => {
   /* data from yoast is coming from 'seo' field that is called in the context of createPage.
   * Yoast plugin for WPGraphQL */
   const seoTitle = seo.title || title;
+  const canonical = seo.canonical || slug;
   const seoDescription = seo.metaDesc || excerptTrimmed;
   const seoImage = (seo.opengraphImage && seo.opengraphImage.mediaItemUrl)
     ? seo.opengraphImage.mediaItemUrl.replace('blog.postman.com', 'edit.blog.postman.com')
     : featuredImage;
 
-
   return (
     <Layout>
-      <SEO title={seoTitle} description={seoDescription} image={seoImage} />
+      <SEO title={seoTitle} description={seoDescription} image={seoImage} canonical={canonical} />
       <BlogHeader
         name={name}
         authorSlug={authorSlug}
@@ -97,12 +99,17 @@ const BlogPostTemplate = ({ data }) => {
                 //   console.log('kyles video', domNode.children[0].attribs.src)
                 //   return (
                 //     <iframe
-                //       // title={`${(domNode.attribs && domNode.attribs.title) || 'Postman Youtube Channel'}`}
+                //       // title={`
+                //        ${
+                //          (domNode.attribs && domNode.attribs.title) || 'Postman Youtube Channel'
+                //        }`
+                //       }
                 //       width="560"
                 //       height="315"
                 //       src={`${domNode.children[0].attribs.src}`}
                 //       frameBorder="0"
-                //       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                //       allow=
+                          "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 //       allowFullScreen
                 //     />
                 //   );
@@ -136,6 +143,8 @@ const BlogPostTemplate = ({ data }) => {
                     />
                   );
                 }
+
+                return null;
               },
             })}
           </div>
@@ -143,6 +152,7 @@ const BlogPostTemplate = ({ data }) => {
           <PostForm postId={postId} />
           <CommentList comments={comments} />
         </div>
+        <NewsLetterForm data={data} />
       </div>
     </Layout>
   );
@@ -187,6 +197,11 @@ export const postPageQuery = graphql`
         seo {
           metaDesc
           title
+          canonical
+          breadcrumbs {
+            url
+            text
+          }
           opengraphImage {
             mediaItemUrl
           }

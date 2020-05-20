@@ -7,11 +7,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import marketo from '../../scripts/marketo.munchkin';
 // import { useStaticQuery, graphql } from "gatsby"
 
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 // import './_layout.scss';
+import CookieAlert from './CookieAlert';
 import './_all.scss';
 import '../utils/typography';
 
@@ -29,6 +31,8 @@ const Layout = ({ children }) => (
     <Header />
     <main>{children}</main>
     <Footer />
+    <CookieAlert />
+    {marketo()}
   </>
 );
 

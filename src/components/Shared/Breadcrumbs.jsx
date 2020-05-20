@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import sanitizeHTML from 'sanitize-html';
 
 const Breadcrumbs = ({ title }) => (
   <nav className="mb-4 pm-breadcrumb" aria-label="You are here:">
@@ -19,7 +20,7 @@ const Breadcrumbs = ({ title }) => (
         {' '}
         /
         {' '} */}
-        <span className="breadcrumb_last" aria-current="page">{title}</span>
+        <span className="breadcrumb_last" aria-current="page">{sanitizeHTML(title)}</span>
       </span>
     </span>
   </nav>

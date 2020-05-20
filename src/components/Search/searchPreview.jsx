@@ -1,8 +1,8 @@
 import React from 'react';
 import { connectSearchBox, connectHits } from 'react-instantsearch-dom';
 
-// import './_search.scss';
-
+/* Custom Searchbox
+************************************************************************************ */
 const SearchBox = ({ currentRefinement, refine }) => (
   <div className="ais-SearchBox">
     <form noValidate action="" role="search" className="ais-SearchBox-form">
@@ -18,9 +18,10 @@ const SearchBox = ({ currentRefinement, refine }) => (
 
 export const CustomSearchBox = connectSearchBox(SearchBox);
 
-// on page load do not display
+/* Blog Search Results
+************************************************************************************ */
+
 const Hits = ({ hits }) => (
-  // if parent component set is type, render, otherwise hide
   <ul className="style">
     {hits.length < 1 ? <li>No search results found</li> : ''}
     {hits.map((hit) => (
@@ -36,7 +37,26 @@ const Hits = ({ hits }) => (
 
 export const CustomHits = connectHits(Hits);
 
-// on page load do not display
+/* Website Search Results
+************************************************************************************ */
+const Hitswww = ({ hits }) => (
+  <ul className="style">
+    {hits.length < 1 ? <li>No search results found</li> : ''}
+    {hits.map((hit) => (
+      <li key={hit.title}>
+        <a href={`https://www.postman.com${hit.url}`}>
+          <span className="search-title" dangerouslySetInnerHTML={{ __html: hit._highlightResult.title.value }} />
+          <div dangerouslySetInnerHTML={{ __html: hit.description }} />
+        </a>
+      </li>
+    ))}
+  </ul>
+);
+
+export const HitsWww = connectHits(Hitswww);
+
+/* Learning Center Search Results
+************************************************************************************ */
 const Hits2 = ({ hits }) => (
   // if parent component set is type, render, otherwise hide
   <ul className="style">

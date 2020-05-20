@@ -1,42 +1,40 @@
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
-import algoliasearch from 'algoliasearch/lite';
-
-// import 'Index' for federated search in 'react-instantsearch-dom'
-import {
-  InstantSearch, SearchBox, Hits, Configure,
-} from 'react-instantsearch-dom';
+// import algoliasearch from 'algoliasearch/lite';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 import '../../utils/typography';
 
-// needed for federated search: import 'NextHits' in '../Search/searchPreview'
-import { CustomHits } from '../Search/searchPreview';
+
+// const ClickOutHandler = require('react-onclickout');
 
 
-const ClickOutHandler = require('react-onclickout');
+/* these keys are to access only blog index in Algolia
+********************************************************************* */
+// const algoliaClient = algoliasearch('4A5N71XYH0', 'f2417f2277d49686d11c909fe9e7a896');
 
-
-const algoliaClient = algoliasearch('4A5N71XYH0', 'f2417f2277d49686d11c909fe9e7a896');
-
-// add in API Keys from Learning Center to activate multiple index search
+/* add in API Keys from Learning Center to activate multiple index search
+*************************************************************************** */
 // const algoliaClient = algoliasearch('4A5N71XYH0', 'bf5cf4783437b12c2dca33724c9c04b0');
 
-// removes empty query searches from analytics
-const searchClient = {
-  search(requests) {
-    const newRequests = requests.map((request) => {
-      // test for empty string and change request parameter: analytics
-      if (!request.params.query || request.params.query.length === 0) {
-        request.params.analytics = false;
-      }
-      return request;
-    });
-    return algoliaClient.search(newRequests);
-  },
-};
 
-// changes button in navbar based on cookie presence
+/* removes empty query searches from Algolia analytics
+********************************************************************* */
+// const searchClient = {
+//   search(requests) {
+//     const newRequests = requests.map((request) => {
+//       // test for empty string and change request parameter: analytics
+//       if (!request.params.query || request.params.query.length === 0) {
+//         request.params.analytics = false;
+//       }
+//       return request;
+//     });
+//     return algoliaClient.search(newRequests);
+//   },
+// };
+
+/* changes button in navbar based on cookie presence
+********************************************************************* */
 const LoginCheck = (props) => {
   const { cookie } = props;
   if (cookie !== 'yes') {
@@ -59,7 +57,7 @@ class HeaderComponent extends React.Component {
     this.state = {
       data: JSON.parse(data),
       isToggledOn: 'unset',
-      refresh: false,
+      // refresh: false,
     };
   }
 
@@ -86,17 +84,17 @@ class HeaderComponent extends React.Component {
   }
 
   // click out search results box
-  onClickOut = () => {
-    document.getElementsByClassName('ais-SearchBox-input')[0].value = '';
-    this.setState(() => ({
-      hasInput: false,
-    }));
-  }
+  // onClickOut = () => {
+  //   document.getElementsByClassName('ais-SearchBox-input')[0].value = '';
+  //   this.setState(() => ({
+  //     hasInput: false,
+  //   }));
+  // }
 
   render() {
     const {
-      isToggledOn, refresh, hasInput, data,
-      // isToggledOn, data,
+      isToggledOn, data,
+      // isToggledOn, data, refresh, hasInput,
     } = this.state;
 
     return (
@@ -125,16 +123,16 @@ class HeaderComponent extends React.Component {
           id="navbarSupportedContent"
         >
           {/* Aloglia Widgets */}
-          <div className="form-inline header__search">
+          {/* <div className="form-inline header__search">
             <ClickOutHandler onClickOut={this.onClickOut}>
               <InstantSearch
                 searchClient={searchClient}
                 indexName="blog"
                 refresh={refresh}
               >
-                <Configure hitsPerPage={5} />
-                {/* forcefeed className because component does not accept natively as prop */}
-                <SearchBox
+                <Configure hitsPerPage={5} /> */}
+          {/* forcefeed className because component does not accept natively as prop */}
+          {/* <SearchBox
                   className="searchbox"
                   class="ais-SearchBox-input"
                   submit={<></>}
@@ -147,36 +145,38 @@ class HeaderComponent extends React.Component {
                       hasInput: event.currentTarget.value.length > 2,
                     });
                   }}
-                />
-                <div className={!hasInput ? 'input-empty' : 'input-value'}>
+                /> */}
+          {/* Comment in only if you want Blog post hits */}
+          {/* <div className={!hasInput ? 'input-empty' : 'input-value'}>
                   <CustomHits hitComponent={Hits} />
-                </div>
+                </div> */}
 
-                {/* <Index indexName="blog">
-                  <div className={!hasInput ? 'input-empty' : 'input-value'}>
-                    <h2>Blog</h2>
-                    <CustomHits hitComponent={Hits} />
-                    <Configure hitsPerPage={2} />
-                  </div>
-                </Index> */}
 
-                {/* <Index indexName="docs">
-                  <div className={!hasInput
-                    ? 'input-empty'
-                    : 'input-value'}
-                    style={{ top: '350px' }}>
-                    <h2>Learning Center</h2>
-                    <NextHits hitComponent={Hits} />
-                    <Configure hitsPerPage={2} />
-                  </div>
-                </Index> */}
+          {/* Comment in for federated search */}
+          {/* <div className={!hasInput ? 'input-empty' : 'row wrapper-search-results input-value'}>
+                  <Index indexName="blog">
+                    <div className="col-sm-12 results-blog">
+                      <p className="font-weight-bold mb-0">On the Blog</p>
+                      <CustomHits hitComponent={Hits} />
+                      <Configure hitsPerPage={4} />
+                    </div>
+                  </Index>
 
-              </InstantSearch>
+                  <Index indexName="docs">
+                    <div className="col-sm-12 results-lc">
+                      <p className="font-weight-bold mb-0">On Learning Center</p>
+                      <NextHits hitComponent={Hits} />
+                      <Configure hitsPerPage={2} />
+                    </div>
+                  </Index>
+                </div> */}
+          {/* </InstantSearch>
             </ClickOutHandler>
-          </div>
+          </div> */}
+
           {data.links.map((link) => (
             <div className="nav-item" key={link.name}>
-              {link.cta ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}
+              {link.cta.login ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}
             </div>
           ))}
         </div>

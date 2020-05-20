@@ -25,6 +25,14 @@
       margin-left: 0;
       font-size: 14px;
 
+      span, a {
+        color: $footer-color;
+        &:hover {
+          color: $bright-orange;
+          text-decoration: none !important;
+        }
+      }
+
       .footer-column__link {
         color: white;
         font-family: 'Open Sans', 'Segoe UI', Tahoma, sans-serif;

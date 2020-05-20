@@ -15,7 +15,7 @@ const BlogHeader = ({
       <div className="row blog-header">
         <div className={`${featuredImage ? 'col-md-8 blog-header-title' : 'col-md-12 blog-header-title'}`}>
           {/* title */}
-          <h2 dangerouslySetInnerHTML={{ __html: postTitle }} />
+          <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
         </div>
         <div className={`${featuredImage ? 'col-md-4 text-lg-right' : 'img-wrapper-square-no-image'}`}>
           <div className="img-wrapper-square mb-3">

@@ -9,10 +9,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
-// import { render } from 'react-dom';
+import sanitizeHTML from 'sanitize-html';
 
 function SEO({
-  description, lang, meta, title, image,
+  description, lang, meta, title, image, canonical,
 }) {
   const { site } = useStaticQuery(
     graphql`
@@ -42,7 +42,7 @@ function SEO({
       meta={[
         {
           name: 'description',
-          content: metaDescription,
+          content: sanitizeHTML(metaDescription),
         },
         {
           property: 'og:title',
@@ -50,7 +50,7 @@ function SEO({
         },
         {
           property: 'og:description',
-          content: metaDescription,
+          content: sanitizeHTML(metaDescription),
         },
         {
           property: 'og:type',
@@ -78,7 +78,7 @@ function SEO({
         },
         {
           name: 'twitter:description',
-          content: metaDescription,
+          content: sanitizeHTML(metaDescription),
         },
         {
           name: 'twitter:image',
@@ -86,6 +86,8 @@ function SEO({
         },
       ].concat(meta)}
     >
+      {/* canonical url */}
+      <link rel="canonical" href={canonical} />
       {/* fonts */}
       <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet" />
       {/* Bootstrap */}

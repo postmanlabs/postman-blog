@@ -15,8 +15,10 @@ const FooterColumn = () => {
     JSON.parse(data.footerLinks.value).columns.map((col) => {
       const title = <h5 className="footer-column__title">{col.name}</h5>;
       const links = col.children.map((link) => (
+
         <li key={link.name}>
           <DynamicLink className="footer-column__link" url={link.url} name={link.name} />
+          <span><a href="https://www.postman.com/jobs/">{link.span}</a></span>
         </li>
       ));
 
@@ -25,6 +27,7 @@ const FooterColumn = () => {
           {title}
           <ul className="footer-column__list">
             {links}
+            <span>{links.span}</span>
           </ul>
           <div className="clearfix d-block" />
         </div>
