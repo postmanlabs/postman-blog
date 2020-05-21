@@ -1,5 +1,6 @@
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
+import ReactModal from 'react-modal'
 // import algoliasearch from 'algoliasearch/lite';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
@@ -47,6 +48,8 @@ const LoginCheck = (props) => {
   );
 };
 
+
+
 class HeaderComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -58,7 +61,18 @@ class HeaderComponent extends React.Component {
       data: JSON.parse(data),
       isToggledOn: 'unset',
       // refresh: false,
+      isModalOpen: false,
     };
+  }
+
+  handleModalOpen = (e) => {
+    // console.log('handleModalOpen: ', event);
+    this.setState({ isModalOpen: true })
+  }
+
+  handleModalClose = (e) => {
+    // console.log('handleModalOpen: ', event);
+    this.setState({ isModalOpen: false })
   }
 
   getCookie = (a) => {
@@ -91,6 +105,10 @@ class HeaderComponent extends React.Component {
   //   }));
   // }
 
+
+  componentDidMount() {
+    ReactModal.setAppElement('#main');
+  }
   render() {
     const {
       isToggledOn, data,
@@ -173,6 +191,21 @@ class HeaderComponent extends React.Component {
           {/* </InstantSearch>
             </ClickOutHandler>
           </div> */}
+
+          <div id="main">
+            <Link to="#" onClick={this.handleModalOpen}>
+             Browse
+            </Link>
+          </div>
+          <ReactModal
+            isOpen={this.state.isModalOpen}
+            onRequestClose={this.handleModalClose}
+            contentLabel="Example Modal"
+          >
+            <h2>Browse</h2>
+            <input></input>
+            <button onClick={this.handleModalClose}>Close Modal</button>
+          </ReactModal>
 
           {data.links.map((link) => (
             <div className="nav-item" key={link.name}>
