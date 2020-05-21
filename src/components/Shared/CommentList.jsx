@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import sanitizeHtml from 'sanitize-html';
 import ReturnDateString from './ReturnDateString';
+
 
 class Comment extends Component {
   componentDidMount() {
@@ -14,7 +16,14 @@ class Comment extends Component {
     list.insertBefore(newItem, list.childNodes[0]);
 
     setTimeout(() => {
-      window.pm.sanatizeContent();
+      window.pm.sanatizeContent({
+        allowedAttributes: {
+          a: ['target', 'rel', 'href'],
+        },
+        transformTags: {
+          a: sanitizeHtml.simpleTransform('a', { target: '_blank', rel: 'noopener noreferrer' }),
+        },
+      });
     }, 2000);
   }
 
