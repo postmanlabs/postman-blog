@@ -1,7 +1,92 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+const axios = require('axios').default;
+const React = require('react');
+const fs = require('fs');
+const path = require('path');
+const bff = require('./bff.json');
 
-// You can delete this file if you're not using it
+const bffUrl = `${bff.host}/${bff.path}`;
+const cacheDir = path.join('public', 'cache');
+const cachePmDir = path.join(cacheDir, 'pm');
+const pmUtilities = ['sanatizeContent'];
+
+function cacheCdn(url, name) {
+  if (!fs.existsSync(cacheDir)) {
+    fs.mkdirSync(cacheDir);
+  }
+
+  axios.get(url)
+    .then((response) => {
+      fs.writeFile(path.join(cacheDir, `${name}.js`), response.data, (err) => {
+        if (err) {
+          throw err;
+        }
+      });
+    });
+}
+
+function getPm(name) {
+  axios.get(`${bffUrl}/pm/${name}.js?${new Date().getTime()}`)
+    .then((response) => {
+      fs.writeFile(path.join(cachePmDir, `${name}.js`), response.data, (err) => {
+        if (err) {
+          throw err;
+        }
+      });
+    });
+}
+
+function getPms(names) {
+  names.forEach((name) => {
+    getPm(name);
+  });
+}
+
+function cachePm() {
+  cacheCdn('https://cdn.jsdelivr.net/npm/sanitize-html@1.23.0/dist/sanitize-html.min.js', 'sh');
+
+  if (!fs.existsSync(cachePmDir)) {
+    fs.mkdirSync(cachePmDir);
+  }
+
+  getPms(pmUtilities);
+}
+
+cachePm();
+
+exports.onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
+  const headComponents = getHeadComponents();
+  const modifiedComponents = [...headComponents];
+  const script = `
+    load('/cache/sh.js');
+    loadPms(${JSON.stringify(pmUtilities)});
+    
+    function load(src) {
+      var e = document.createElement('script');
+      e.src = src;
+      document.head.appendChild(e);
+    }
+    function loadPm(name) {
+      load('/cache/pm/' + name + '.js');
+    }
+    function loadPms(names) {
+      var i, max = names.length;
+      for (i = 0; i < max; i++) {
+        loadPm(names[i]);
+      }
+    }
+  `;
+
+  modifiedComponents.push(
+    React.createElement(
+      'script',
+      {
+        key: 'pm',
+        dangerouslySetInnerHTML: {
+          __html: script,
+        },
+      },
+    ),
+  );
+
+  replaceHeadComponents(modifiedComponents);
+};

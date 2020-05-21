@@ -6,16 +6,17 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Bio from '../components/Shared/Bio';
 import BlogHeader from '../components/Shared/BlogHeader';
+import PostForm from '../components/Shared/PostForm';
+import CommentList from '../components/Shared/CommentList';
 import NewsLetterForm from '../components/Shared/NewsLetterForm';
-// import PostForm from '../components/Shared/PostForm';
-// import CommentList from '../components/Shared/CommentList';
 
 
 const BlogPostTemplate = ({ data }) => {
   const { post } = data.wpgraphql;
   //  insert postId, below to call PostForm
   const {
-    title, content, date, featuredImage, slug, excerpt, seo, /* comments, */
+    title, content, date, featuredImage, slug, excerpt, seo, comments, postId,
+    // title, content, date, featuredImage, slug, excerpt, seo, /* comments, */
   } = data.wpgraphql.post;
   const authorSlug = data.wpgraphql.post.author.slug;
   const authorBio = data.wpgraphql.post.author.description || '';
@@ -148,8 +149,8 @@ const BlogPostTemplate = ({ data }) => {
             })}
           </div>
           <Bio authorBio={authorBio} name={name} avatar={avatar} authorSlug={authorSlug} />
-          {/* <PostForm postId={postId} /> */}
-          {/* <CommentList comments={comments} /> */}
+          <PostForm postId={postId} />
+          <CommentList comments={comments} />
         </div>
         <NewsLetterForm data={data} />
       </div>
