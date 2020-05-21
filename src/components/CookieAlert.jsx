@@ -3,10 +3,10 @@ import CookieConsent from 'react-cookie-consent';
 import './_CookieAlert.scss';
 
 const CookieAlert = () => (
-  <div className="CookieWrapper">
+  <div id="CookieDiv" className="CookieWrapper">
     <CookieConsent
       location="bottom"
-      buttonText="Accept and Close"
+      buttonText="Close"
       cookieName="gatsby-gdpr-google-analytics"
       style={{
         display: 'block',
@@ -32,6 +32,9 @@ const CookieAlert = () => (
         color: '#fff',
         padding: '13px 24px',
         fontWeight: '500',
+      }}
+      onAccept={() => {
+        document.getElementById('CookieDiv').remove();
       }}
     >
       This website uses cookies to ensure you get the best experience on our website.
