@@ -211,7 +211,6 @@ class HeaderComponent extends React.Component {
             >
               <div className="col-12">
                 <form action="/search?query=">
-                {/* <span class="blink_me">|</span> */}
                   <input 
                     type="text" 
                     name="query" 
@@ -220,9 +219,8 @@ class HeaderComponent extends React.Component {
                     onChange={(event) => this.handleModalChange(event)}
                     >
                     </input>
-                    <button onClick={this.handleModalClose}>close</button>
                 </form>
-               
+                <button onClick={this.handleModalClose}>Close Modal</button>
               </div>
               
             </ReactModal>
