@@ -25,31 +25,51 @@ h4,
 
 .h1,
 h1 {
-  font-size: 48px;
-  line-height: 1.1666666667; /* 56 px */
-  margin: 0 0 32px 0;
+  font-size: 30px !important;
+  line-height: 1.2222222222; /* 44px */
+  margin: 0 0 24px 0;
   color: $gray-3;
+  @media (min-width: 769px) {
+    font-size: 48px !important;
+    line-height: 1.1666666667; /* 56 px */
+    margin: 0 0 32px 0;
+  }
 }
 
 .h2, 
 h2 {
-  font-size: 36px;
-  line-height: 1.2222222222; /* 44px */
-  margin: 0 0 24px 0;
+  font-size: 24px !important;
+  line-height: 1.1666666667; /* 28px */
+  margin: 0 0 8px 0;
+  @media (min-width: 769px) {
+    font-size: 36px !important;
+    line-height: 1.2222222222; /* 44px */
+    margin: 0 0 24px 0;
+  }
 }
 
 .h3,
 h3 {
-  font-size: 36px !important;
-  line-height: 1.2222222222; /* 44px */
-  margin: 0 0 16px 0;
+  font-size: 24px !important;
+  line-height: 1.1666666667; /* 28px */
+  margin: 0 0 8px 0;
+  @media (min-width: 769px) {
+    font-size: 36px !important;
+    line-height: 1.2222222222; /* 44px */
+    margin: 0 0 24px 0;
+  }
 }
 
 .h4,
 h4 {
-  font-size: 24px;
+  font-size: 20px !important;
   line-height: 1.1666666667; /* 28px */
   margin: 0 0 8px 0;
+  @media (min-width: 769px) {
+    font-size: 24px !important;
+    line-height: 1.1666666667; /* 28px */
+    margin: 0 0 8px 0;
+  }
 }
 
 .v5-link {
