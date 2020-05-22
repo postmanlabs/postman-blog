@@ -9,7 +9,6 @@ import '../../utils/typography';
 
 // const ClickOutHandler = require('react-onclickout');
 
-
 /* these keys are to access only blog index in Algolia
 ********************************************************************* */
 // const algoliaClient = algoliasearch('4A5N71XYH0', 'f2417f2277d49686d11c909fe9e7a896');
@@ -49,7 +48,6 @@ const LoginCheck = (props) => {
 };
 
 
-
 class HeaderComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -62,17 +60,23 @@ class HeaderComponent extends React.Component {
       isToggledOn: 'unset',
       // refresh: false,
       isModalOpen: false,
+      searchTerm: '',
     };
+
   }
 
   handleModalOpen = (e) => {
-    // console.log('handleModalOpen: ', event);
     this.setState({ isModalOpen: true })
   }
 
   handleModalClose = (e) => {
-    // console.log('handleModalOpen: ', event);
     this.setState({ isModalOpen: false })
+  }
+
+  handleModalChange = (e) => {
+    const updateSearch = e.target.value;
+    console.log('updateSearch', updateSearch);
+    this.setState({searchTerm: updateSearch})
   }
 
   getCookie = (a) => {
@@ -107,8 +111,9 @@ class HeaderComponent extends React.Component {
 
 
   componentDidMount() {
-    ReactModal.setAppElement('#main');
+    ReactModal.setAppElement('#main'); 
   }
+
   render() {
     const {
       isToggledOn, data,
@@ -193,19 +198,35 @@ class HeaderComponent extends React.Component {
           </div> */}
 
           <div id="main">
-            <Link to="#" onClick={this.handleModalOpen}>
+            <a href="#" onClick={this.handleModalOpen}>
              Browse
-            </Link>
+            </a>
           </div>
-          <ReactModal
-            isOpen={this.state.isModalOpen}
-            onRequestClose={this.handleModalClose}
-            contentLabel="Example Modal"
-          >
-            <h2>Browse</h2>
-            <input></input>
-            <button onClick={this.handleModalClose}>Close Modal</button>
-          </ReactModal>
+
+          <div className="modal">
+            <ReactModal
+              isOpen={this.state.isModalOpen}
+              onRequestClose={this.handleModalClose}
+              contentLabel="Search Modal"
+            >
+              <div className="col-12">
+                <form action="/search?query=">
+                {/* <span class="blink_me">|</span> */}
+                  <input 
+                    type="text" 
+                    name="query" 
+                    placeholder="Search Postman"
+                    value={this.state.searchTerm} 
+                    onChange={(event) => this.handleModalChange(event)}
+                    >
+                    </input>
+                    <button onClick={this.handleModalClose}>close</button>
+                </form>
+               
+              </div>
+              
+            </ReactModal>
+           </div>
 
           {data.links.map((link) => (
             <div className="nav-item" key={link.name}>
