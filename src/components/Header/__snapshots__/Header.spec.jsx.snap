@@ -43,6 +43,20 @@ exports[`Header renders correctly 1`] = `
     id="navbarSupportedContent"
   >
     <div
+      id="main"
+    >
+      <button
+        className="nav-link"
+        onClick={[Function]}
+        type="button"
+      >
+        Browse
+      </button>
+    </div>
+    <div
+      className="modal"
+    />
+    <div
       className="nav-item"
     >
       <a

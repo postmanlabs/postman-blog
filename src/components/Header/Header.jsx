@@ -65,7 +65,8 @@ class HeaderComponent extends React.Component {
   }
 
   componentDidMount() {
-    ReactModal.setAppElement('#main');
+    // ReactModal.setAppElement('#main');
+    if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#main');
   }
 
   /* Helper functions
@@ -209,6 +210,7 @@ class HeaderComponent extends React.Component {
               isOpen={this.state.isModalOpen}
               onRequestClose={this.handleModalClose}
               contentLabel="Search Modal"
+              ariaHideApp={false}
             >
               <div className="row">
                 <div className="col-sm-9">
