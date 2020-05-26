@@ -1,6 +1,6 @@
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
-import ReactModal from 'react-modal'
+import ReactModal from 'react-modal';
 // import algoliasearch from 'algoliasearch/lite';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
@@ -62,21 +62,26 @@ class HeaderComponent extends React.Component {
       isModalOpen: false,
       searchTerm: '',
     };
-
   }
 
-  handleModalOpen = (e) => {
-    this.setState({ isModalOpen: true })
+  componentDidMount() {
+    ReactModal.setAppElement('#main');
   }
 
-  handleModalClose = (e) => {
-    this.setState({ isModalOpen: false })
+  /* Helper functions
+  /******************************************************** */
+
+  handleModalOpen = () => {
+    this.setState({ isModalOpen: true });
+  }
+
+  handleModalClose = () => {
+    this.setState({ isModalOpen: false });
   }
 
   handleModalChange = (e) => {
     const updateSearch = e.target.value;
-    console.log('updateSearch', updateSearch);
-    this.setState({searchTerm: updateSearch})
+    this.setState({ searchTerm: updateSearch });
   }
 
   getCookie = (a) => {
@@ -108,11 +113,6 @@ class HeaderComponent extends React.Component {
   //     hasInput: false,
   //   }));
   // }
-
-
-  componentDidMount() {
-    ReactModal.setAppElement('#main'); 
-  }
 
   render() {
     const {
@@ -198,33 +198,39 @@ class HeaderComponent extends React.Component {
           </div> */}
 
           <div id="main">
-            <a href="#" onClick={this.handleModalOpen}>
-             Browse
-            </a>
+            <button type="button" className="nav-link" onClick={this.handleModalOpen}>
+              Browse
+            </button>
           </div>
 
           <div className="modal">
             <ReactModal
+              /* eslint-disable */
               isOpen={this.state.isModalOpen}
               onRequestClose={this.handleModalClose}
               contentLabel="Search Modal"
             >
-              <div className="col-12">
-                <form action="/search?query=">
-                  <input 
-                    type="text" 
-                    name="query" 
-                    placeholder="Search Postman"
-                    value={this.state.searchTerm} 
-                    onChange={(event) => this.handleModalChange(event)}
-                    >
-                    </input>
-                </form>
-                <button onClick={this.handleModalClose}>Close Modal</button>
+              <div className="row">
+                <div className="col-sm-9">
+                  <form action="/search?query=">
+                    <input
+                      ref={(input) => input && input.focus()}
+                      type="text"
+                      name="query"
+                      placeholder="Search Postman"
+                      value={this.state.searchTerm}
+                      onChange={(event) => this.handleModalChange(event)}
+                      /* eslint-ensable */
+                    />
+                  </form>
+                </div>
+                <div className="col-sm-3">
+                  <button type="button" onClick={this.handleModalClose}>Close</button>
+                </div>
               </div>
-              
+
             </ReactModal>
-           </div>
+          </div>
 
           {data.links.map((link) => (
             <div className="nav-item" key={link.name}>
