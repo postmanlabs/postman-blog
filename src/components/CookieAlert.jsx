@@ -21,7 +21,7 @@ class CookieAlert extends React.Component {
   render() {
     const { displayCookieAlert } = this.state;
     const cookieMarkup = (
-      <div class="CookieWrapper">
+      <div className="CookieWrapper">
         <CookieConsent
           location="bottom"
           buttonText="Close"
