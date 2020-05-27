@@ -52,8 +52,8 @@ class SearchPage extends Component {
         searchState: qs.parse(window.location.search.slice(1)),
       };
 
-      window.addEventListener('popstate', () => { 
-        this.setState({state: "api"});
+      window.addEventListener('popstate', () => {
+        this.setState({ state: 'api' });
       });
     }
   }
