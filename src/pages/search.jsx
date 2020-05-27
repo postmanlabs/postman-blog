@@ -52,8 +52,8 @@ class SearchPage extends Component {
         searchState: qs.parse(window.location.search.slice(1)),
       };
 
-      window.addEventListener('popstate', () => {
-        this.setState({ state: 'api' });
+      window.addEventListener('popstate', () => { 
+        this.setState({state: "api"});
       });
     }
   }
@@ -101,7 +101,7 @@ class SearchPage extends Component {
             >
               {/* eslint-disable react/jsx-props-no-spreading */}
               <Configure hitsPerPage={5} {...parameters} />
-              {/* eslint-enable */}
+              {/* eslint-enpoable */}
               {/* forcefeed className because component does not accept natively as prop */}
               <SearchBox
                 className="searchbox"
