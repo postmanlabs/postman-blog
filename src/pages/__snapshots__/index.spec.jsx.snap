@@ -44,14 +44,15 @@ Array [
       id="navbarSupportedContent"
     >
       <div
+        className="col-sm-12 "
         id="main"
       >
         <button
-          className="nav-link"
+          className="browse text-sm-left"
           onClick={[Function]}
           type="button"
         >
-          Browse
+          What are you looking for?
         </button>
       </div>
       <div
