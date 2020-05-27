@@ -2,6 +2,7 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
 import ReactModal from 'react-modal';
 // import algoliasearch from 'algoliasearch/lite';
+import axios from 'axios';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 import '../../utils/typography';
@@ -61,12 +62,32 @@ class HeaderComponent extends React.Component {
       // refresh: false,
       isModalOpen: false,
       searchTerm: '',
+      trending: [],
     };
   }
 
   componentDidMount() {
-    // ReactModal.setAppElement('#main');
+    // Unit test will complain if process is not checked
     if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#main');
+
+    // Algolia API Auth
+    const headers = {
+      'Content-Type': 'application/json',
+      'X-Algolia-API-Key': `${process.env.ALGOLIA_ADMIN_KEY}`,
+      'X-Algolia-Application-Id': `${process.env.GATSBY_ALGOLIA_APP_ID}`,
+    };
+
+    axios.get('https://analytics.algolia.com/2/searches?index=blog', { headers }).then((res) => {
+      const trending = [];
+      res.data.searches.forEach((topSearch) => {
+        trending.push(topSearch.search);
+        this.setState({ trending });
+      });
+    }).catch((error) => {
+      /* eslint-disable */
+      console.log('something went wrong', error);
+      /* eslint-enable */
+    });
   }
 
   /* Helper functions
@@ -117,7 +138,7 @@ class HeaderComponent extends React.Component {
 
   render() {
     const {
-      isToggledOn, data,
+      isToggledOn, data, trending,
       // isToggledOn, data, refresh, hasInput,
     } = this.state;
 
@@ -198,9 +219,9 @@ class HeaderComponent extends React.Component {
             </ClickOutHandler>
           </div> */}
 
-          <div id="main">
-            <button type="button" className="nav-link" onClick={this.handleModalOpen}>
-              Browse
+          <div id="main" className="col-sm-12 ">
+            <button type="button" className="browse text-sm-left" onClick={this.handleModalOpen}>
+              What are you looking for?
             </button>
           </div>
 
@@ -225,6 +246,17 @@ class HeaderComponent extends React.Component {
                       /* eslint-ensable */
                     />
                   </form>
+                  <div className="trending">
+                    <p>Trending searches</p>
+                    <ul>
+                      {
+                        trending.map((trend) =>  (
+                          <li key={trend}>
+                            <a href={`/search?query=${trend}`}>{trend}</a></li>
+                        ))
+                      }
+                    </ul>
+                  </div>
                 </div>
                 <div className="col-sm-3">
                   <button type="button" onClick={this.handleModalClose}>Close</button>

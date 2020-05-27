@@ -101,7 +101,7 @@ class SearchPage extends Component {
             >
               {/* eslint-disable react/jsx-props-no-spreading */}
               <Configure hitsPerPage={5} {...parameters} />
-              {/* eslint-enaable */}
+              {/* eslint-enable */}
               {/* forcefeed className because component does not accept natively as prop */}
               <SearchBox
                 className="searchbox"

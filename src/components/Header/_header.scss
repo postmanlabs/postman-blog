@@ -74,6 +74,15 @@ div.navbar-brand.header__brand {
   margin-right: 0px;
 }
 
+.browse {
+  background-color: $gray-1;
+  border: none;
+  margin: 8px 16px;
+  padding: 12px;
+  width: 80%;
+  font-size: 16px;
+  color: $gray-2;
+}
 
 .ReactModal__Content.ReactModal__Content--after-open {
   top: 0px !important;
@@ -85,6 +94,33 @@ div.navbar-brand.header__brand {
   border: none;
   animation: fadein 2s !important;
 
+  .trending {
+   margin-top: 56px;
+    p {
+      font-weight: 700;
+      font-size: 16px;
+      color: $gray-2;
+    }
+    ul {
+      margin-left: 0;
+    }
+    li {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: .3px; 
+      font-weight: 400;
+      line-height: 1.7;
+      a {
+        text-decoration: none;
+        color: $gray-2;
+        &:hover {
+          color: $postman-orange
+        }
+      }
+    }
+  }
   input {
     border: none;
     border-bottom: 1px solid $gray-1;  
@@ -108,3 +144,4 @@ div.navbar-brand.header__brand {
     color: $gray-2;  
   }
 }
+
