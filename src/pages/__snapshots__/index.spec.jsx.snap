@@ -879,6 +879,60 @@ Array [
                   </svg>
                 </a>
               </li>
+              <li
+                className="list-inline-item"
+              >
+                <a
+                  className="social-icon"
+                  href="https://www.twitch.tv/getpostman"
+                  id="twitch_icon"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <svg
+                    height="25"
+                    id="Layer_1"
+                    space="preserve"
+                    style={
+                      Object {
+                        "enableBackground": "new 0 0 2400 2800",
+                      }
+                    }
+                    version="1.1"
+                    viewBox="0 0 2400 2800"
+                    width="25"
+                    x="0px"
+                    xlink="http://www.w3.org/1999/xlink"
+                    xmlns="http://www.w3.org/2000/svg"
+                    y="0px"
+                  >
+                    <g>
+                      <g
+                        id="Layer_1-2"
+                      >
+                        <path
+                          className="st0"
+                          d="M500,0L0,500v1800h600v500l500-500h400l900-900V0H500z M2200,1300l-400,400h-400l-350,350v-350H600V200h1600V1300z"
+                        />
+                        <rect
+                          className="st0"
+                          height="600"
+                          width="200"
+                          x="1700"
+                          y="550"
+                        />
+                        <rect
+                          className="st0"
+                          height="600"
+                          width="200"
+                          x="1150"
+                          y="550"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </a>
+              </li>
             </ul>
           </section>
         </div>
@@ -955,84 +1009,86 @@ Array [
     </div>
   </footer>,
   <div
-    className="CookieWrapper"
+    id="CookieDiv"
   >
     <div
-      className="CookieConsent"
-      style={
-        Object {
-          "alignItems": "baseline",
-          "background": "white",
-          "bottom": "0",
-          "boxShadow": "0px 4px 26.91px rgba(0, 0, 0, 0.15)",
-          "color": "#282828",
-          "display": "block",
-          "flexWrap": "wrap",
-          "fontSize": "16px",
-          "justifyContent": "space-between",
-          "left": "0",
-          "lineHeight": "24px",
-          "padding": "20px 50px",
-          "position": "static",
-          "textAlign": "center",
-          "width": "100%",
-          "zIndex": "999",
-        }
-      }
+      className="CookieWrapper"
     >
       <div
-        className=""
+        className="CookieConsent"
         style={
           Object {
-            "flex": "1 0 300px",
-            "margin": "15px",
+            "alignItems": "baseline",
+            "background": "white",
+            "bottom": "0",
+            "boxShadow": "0px 4px 26.91px rgba(0, 0, 0, 0.15)",
+            "color": "#282828",
+            "display": "block",
+            "flexWrap": "wrap",
+            "fontSize": "16px",
+            "justifyContent": "space-between",
+            "left": "0",
+            "lineHeight": "24px",
+            "padding": "20px 50px",
+            "position": "static",
+            "textAlign": "center",
+            "width": "100%",
+            "zIndex": "999",
           }
         }
       >
-        This website uses cookies to ensure you get the best experience on our website.
-         
-        <strong>
-          <a
-            href="https://www.postman.com/licenses/privacy/#Automatic"
-            rel="noopener noreferrer"
-            style={
-              Object {
-                "color": "black",
-                "textDecoration": "underline",
-              }
-            }
-            target="_blank"
-          >
-            Learn more
-          </a>
-        </strong>
-      </div>
-      <div
-        className=""
-      >
-        <button
+        <div
           className=""
-          id="rcc-confirm-button"
-          onClick={[Function]}
           style={
             Object {
-              "background": "#1C272B",
-              "border": "0",
-              "borderRadius": "3px",
-              "boxShadow": "0px 4px 4px rgba(0, 0, 0, 0.15)",
-              "color": "#fff",
-              "cursor": "pointer",
-              "display": "block",
-              "flex": "0 0 auto",
-              "fontWeight": "500",
-              "margin": "0 auto",
-              "padding": "13px 24px",
-              "textAlign": "center",
+              "flex": "1 0 300px",
+              "margin": "15px",
             }
           }
         >
-          Accept and Close
-        </button>
+          This website uses cookies to ensure you get the best experience on our website.
+           
+          <strong>
+            <a
+              href="/licenses/privacy/#Automatic"
+              style={
+                Object {
+                  "color": "black",
+                  "textDecoration": "underline",
+                }
+              }
+            >
+              Learn more
+            </a>
+          </strong>
+        </div>
+        <div
+          className=""
+        >
+          <button
+            className=""
+            id="rcc-confirm-button"
+            onClick={[Function]}
+            style={
+              Object {
+                "background": "#1C272B",
+                "border": "0",
+                "borderRadius": "3px",
+                "boxShadow": "0px 4px 4px rgba(0, 0, 0, 0.15)",
+                "color": "#fff",
+                "cursor": "pointer",
+                "display": "block",
+                "flex": "0 0 auto",
+                "fontWeight": "500",
+                "margin": "0 auto",
+                "padding": "13px 24px",
+                "textAlign": "center",
+              }
+            }
+          >
+            Close
+          </button>
+        </div>
       </div>
     </div>
   </div>,
