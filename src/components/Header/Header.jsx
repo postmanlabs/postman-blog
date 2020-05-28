@@ -233,33 +233,35 @@ class HeaderComponent extends React.Component {
               contentLabel="Search Modal"
               ariaHideApp={false}
             >
-              <div className="row">
-                <div className="col-sm-9">
-                  <form action="/search?query=">
-                    <input
-                      ref={(input) => input && input.focus()}
-                      type="text"
-                      name="query"
-                      placeholder="Search Postman"
-                      value={this.state.searchTerm}
-                      onChange={(event) => this.handleModalChange(event)}
-                      /* eslint-ensable */
-                    />
-                  </form>
-                  <div className="trending">
-                    <p>Trending searches</p>
-                    <ul>
-                      {
-                        trending.map((trend) =>  (
-                          <li key={trend}>
-                            <a href={`/search?query=${trend}`}>{trend}</a></li>
-                        ))
-                      }
-                    </ul>
+              <div className="container">
+                <div className="row">
+                  <div className="col-sm-10">
+                    <form action="/search?query=">
+                      <input
+                        ref={(input) => input && input.focus()}
+                        type="text"
+                        name="query"
+                        placeholder="Search Postman"
+                        value={this.state.searchTerm}
+                        onChange={(event) => this.handleModalChange(event)}
+                        /* eslint-ensable */
+                      />
+                    </form>
+                    <div className="trending">
+                      <p>Trending Searches on Postman Blog</p>
+                      <ul>
+                        {
+                          trending.map((trend) =>  (
+                            <li key={trend}>
+                              <a href={`/search?query=${trend}`}>{trend}</a></li>
+                          ))
+                        }
+                      </ul>
+                    </div>
                   </div>
-                </div>
-                <div className="col-sm-3">
-                  <button type="button" onClick={this.handleModalClose}>Close</button>
+                  <div className="col-sm-2 text-right">
+                    <button type="button" onClick={this.handleModalClose}>Close</button>
+                  </div>
                 </div>
               </div>
 
