@@ -1,11 +1,7 @@
 @import './_variables.scss';
 
 .blog-header-wrapper {
-  // padding-top: 40px;
-  // border-bottom: 2px solid $gray-1;
-  // margin-bottom: 40px;
-  // background-color: #F5F8fb;
-  // border-bottom: 1px solid rgb(231, 237, 244);
+  padding-top: 40px;
  
   @media(min-width:769px) {
     padding-top: 80px;
@@ -31,11 +27,6 @@
   }
 }
 
-.blog-header-title {
-  padding-right: 104px !important;
-  // padding-left: 42px !important;
-}
-
 .blog-header-entry {
   justify-content: flex-end!important;
   }
@@ -43,10 +34,6 @@
   display: flex;
   justify-content: flex-end;
   
-}
-
-div.col-sm-4.text-right, div.col-lg-4.text-right, div.col-lg-7 {
-  padding-right: 0px !important;
 }
 
 .pm-breadcrumb {

@@ -2,7 +2,6 @@
 import React from 'react';
 import EntryMeta from './EntryMeta';
 import FluidImage from '../FluidImage';
-
 import BreadCrumbs from './Breadcrumbs';
 import TagsMetaHeader from './TagsMetaHeader';
 
@@ -13,9 +12,9 @@ const BlogHeader = ({
     <div className="container">
       <BreadCrumbs title={postTitle} slug={slug} />
       <div className="row blog-header">
-        <div className={`${featuredImage ? 'col-md-8 blog-header-title' : 'col-md-12 blog-header-title'}`}>
+        <div className={`${featuredImage ? 'col-sm-12 col-md-8 blog-header-title' : 'col-sm-12 blog-header-title'}`}>
           {/* title */}
-          <h1 dangerouslySetInnerHTML={{ __html: postTitle }} />
+          <h1 className="mb-3" dangerouslySetInnerHTML={{ __html: postTitle }} />
         </div>
         <div className={`${featuredImage ? 'col-md-4 text-lg-right' : 'img-wrapper-square-no-image'}`}>
           <div className="img-wrapper-square mb-3">
@@ -24,7 +23,6 @@ const BlogHeader = ({
             </div>
           </div>
         </div>
-
       </div>
 
       <div className="row blog-header-border">
@@ -46,6 +44,5 @@ const BlogHeader = ({
     </div>
   </div>
 );
-
 
 export default BlogHeader;
