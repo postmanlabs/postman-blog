@@ -44,6 +44,21 @@ Array [
       id="navbarSupportedContent"
     >
       <div
+        className="col-sm-12 "
+        id="main"
+      >
+        <button
+          className="browse text-sm-left"
+          onClick={[Function]}
+          type="button"
+        >
+          What are you looking for?
+        </button>
+      </div>
+      <div
+        className="modal"
+      />
+      <div
         className="nav-item"
       >
         <a
