@@ -2,7 +2,6 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
 import ReactModal from 'react-modal';
 // import algoliasearch from 'algoliasearch/lite';
-import axios from 'axios';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 import '../../utils/typography';
@@ -62,32 +61,12 @@ class HeaderComponent extends React.Component {
       // refresh: false,
       isModalOpen: false,
       searchTerm: '',
-      trending: [],
     };
   }
 
   componentDidMount() {
     // Unit test will complain if process is not checked
     if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#main');
-
-    // Algolia API Auth
-    const headers = {
-      'Content-Type': 'application/json',
-      'X-Algolia-API-Key': `${process.env.ALGOLIA_ADMIN_KEY}`,
-      'X-Algolia-Application-Id': `${process.env.GATSBY_ALGOLIA_APP_ID}`,
-    };
-
-    axios.get('https://analytics.algolia.com/2/searches?index=blog', { headers }).then((res) => {
-      const trending = [];
-      res.data.searches.forEach((topSearch) => {
-        trending.push(topSearch.search);
-        this.setState({ trending });
-      });
-    }).catch((error) => {
-      /* eslint-disable */
-      console.log('something went wrong', error);
-      /* eslint-enable */
-    });
   }
 
   /* Helper functions
@@ -138,9 +117,12 @@ class HeaderComponent extends React.Component {
 
   render() {
     const {
-      isToggledOn, data, trending,
+      isToggledOn, data,
       // isToggledOn, data, refresh, hasInput,
     } = this.state;
+
+    const { trend } = this.props;
+
 
     return (
       <header className="header text-center navbar navbar-expand-xl navbar-light">
@@ -251,12 +233,13 @@ class HeaderComponent extends React.Component {
                       <p>Trending Searches on Postman Blog</p>
                       <ul>
                         {
-                          trending.map((trend) =>  (
-                            <li key={trend}>
-                              <a href={`/search?query=${trend}`}>{trend}</a></li>
+                          trend.edges.map((trend) =>  (
+                            <li key={Math.random()}>
+                              { JSON.parse(trend.node.value).search }
+                            </li>
                           ))
                         }
-                      </ul>
+                       </ul>
                     </div>
                   </div>
                   <div className="col-sm-2 text-right">
@@ -282,12 +265,19 @@ class HeaderComponent extends React.Component {
 const Header = () => {
   const data = useStaticQuery(graphql`
     query {
+      allTrendingSearches {
+        edges {
+          node {
+            value
+          }
+        }
+      }
       headerLinks {
         value
       }
     }`);
   return (
-    <HeaderComponent data={data.headerLinks.value} />
+    <HeaderComponent data={data.headerLinks.value} trend={data.allTrendingSearches} />
   );
 };
 
