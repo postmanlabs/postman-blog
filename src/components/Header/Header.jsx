@@ -73,8 +73,8 @@ class HeaderComponent extends React.Component {
     // Algolia API Auth
     const headers = {
       'Content-Type': 'application/json',
-      'X-Algolia-API-Key': `${secrets.ALGOLIA_ADMIN_KEY}`,
-      'X-Algolia-Application-Id': `${secrets.GATSBY_ALGOLIA_APP_ID}`,
+      'X-Algolia-API-Key': `${process.env.ALGOLIA_ADMIN_KEY}`,
+      'X-Algolia-Application-Id': `${process.env.GATSBY_ALGOLIA_APP_ID}`,
     };
 
     axios.get('https://analytics.algolia.com/2/searches?index=blog', { headers }).then((res) => {
