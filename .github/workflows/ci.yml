@@ -16,6 +16,8 @@ jobs:
       env:
         MUNCHKIN_ID: ${{ secrets.MUNCHKIN_ID}}
         NEWSLETTER_FORM_ID: ${{secrets.NEWSLETTER_FORM_ID}}
+      run:
+        npm install
       # run: |
       #   npm install
       #   npm run test:update
