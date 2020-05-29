@@ -18,7 +18,7 @@ const FooterColumn = () => {
 
         <li key={link.name}>
           <DynamicLink className="footer-column__link" url={link.url} name={link.name} />
-          <span><a href="https://www.postman.com/jobs/">{link.span}</a></span>
+          {link.span ? <span className="ml-1"><a href="https://www.postman.com/careers/">{link.span}</a></span> : ''}
         </li>
       ));
 
@@ -27,7 +27,6 @@ const FooterColumn = () => {
           {title}
           <ul className="footer-column__list">
             {links}
-            <span>{links.span}</span>
           </ul>
           <div className="clearfix d-block" />
         </div>
