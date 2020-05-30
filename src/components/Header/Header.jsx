@@ -235,7 +235,7 @@ class HeaderComponent extends React.Component {
                         {
                           trend.edges.map((trend) =>  (
                             <li key={Math.random()}>
-                              { JSON.parse(trend.node.value).search }
+                              <a href={`/search?query=${JSON.parse(trend.node.value).search}`}>{ JSON.parse(trend.node.value).search }</a>
                             </li>
                           ))
                         }
