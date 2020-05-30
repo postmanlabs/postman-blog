@@ -1,5 +1,6 @@
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
+import ReactModal from 'react-modal';
 // import algoliasearch from 'algoliasearch/lite';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
@@ -7,7 +8,6 @@ import '../../utils/typography';
 
 
 // const ClickOutHandler = require('react-onclickout');
-
 
 /* these keys are to access only blog index in Algolia
 ********************************************************************* */
@@ -47,6 +47,7 @@ const LoginCheck = (props) => {
   );
 };
 
+
 class HeaderComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -58,7 +59,30 @@ class HeaderComponent extends React.Component {
       data: JSON.parse(data),
       isToggledOn: 'unset',
       // refresh: false,
+      isModalOpen: false,
+      searchTerm: '',
     };
+  }
+
+  componentDidMount() {
+    // Unit test will complain if process is not checked
+    if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#main');
+  }
+
+  /* Helper functions
+  /******************************************************** */
+
+  handleModalOpen = () => {
+    this.setState({ isModalOpen: true });
+  }
+
+  handleModalClose = () => {
+    this.setState({ isModalOpen: false });
+  }
+
+  handleModalChange = (e) => {
+    const updateSearch = e.target.value;
+    this.setState({ searchTerm: updateSearch });
   }
 
   getCookie = (a) => {
@@ -96,6 +120,9 @@ class HeaderComponent extends React.Component {
       isToggledOn, data,
       // isToggledOn, data, refresh, hasInput,
     } = this.state;
+
+    const { trend } = this.props;
+
 
     return (
       <header className="header text-center navbar navbar-expand-xl navbar-light">
@@ -174,6 +201,56 @@ class HeaderComponent extends React.Component {
             </ClickOutHandler>
           </div> */}
 
+          <div id="main" className="col-sm-12 ">
+            <button type="button" className="browse text-sm-left" onClick={this.handleModalOpen}>
+              What are you looking for?
+            </button>
+          </div>
+
+          <div className="modal">
+            <ReactModal
+              /* eslint-disable */
+              isOpen={this.state.isModalOpen}
+              onRequestClose={this.handleModalClose}
+              contentLabel="Search Modal"
+              ariaHideApp={false}
+            >
+              <div className="container">
+                <div className="row">
+                  <div className="col-sm-10">
+                    <form action="/search?query=">
+                      <input
+                        ref={(input) => input && input.focus()}
+                        type="text"
+                        name="query"
+                        placeholder="Search Postman"
+                        value={this.state.searchTerm}
+                        onChange={(event) => this.handleModalChange(event)}
+                        /* eslint-ensable */
+                      />
+                    </form>
+                    <div className="trending">
+                      <p>Trending Searches on Postman Blog</p>
+                      <ul>
+                        {
+                          trend.edges.map((trend) =>  (
+                            <li key={Math.random()}>
+                              { JSON.parse(trend.node.value).search }
+                            </li>
+                          ))
+                        }
+                       </ul>
+                    </div>
+                  </div>
+                  <div className="col-sm-2 text-right">
+                    <button type="button" onClick={this.handleModalClose}>Close</button>
+                  </div>
+                </div>
+              </div>
+
+            </ReactModal>
+          </div>
+
           {data.links.map((link) => (
             <div className="nav-item" key={link.name}>
               {link.cta.login ? <LoginCheck cookie={this.getCookie('getpostmanlogin')} /> : <DynamicLink className="nav-link" url={link.url} name={link.name} />}
@@ -188,12 +265,19 @@ class HeaderComponent extends React.Component {
 const Header = () => {
   const data = useStaticQuery(graphql`
     query {
+      allTrendingSearches {
+        edges {
+          node {
+            value
+          }
+        }
+      }
       headerLinks {
         value
       }
     }`);
   return (
-    <HeaderComponent data={data.headerLinks.value} />
+    <HeaderComponent data={data.headerLinks.value} trend={data.allTrendingSearches} />
   );
 };
 

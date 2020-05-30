@@ -1,4 +1,5 @@
 const uuidv4 = require('uuid/v4');
+const axios = require('axios');
 const HeaderJson = require('./src/components/Header/Header.data.json');
 const FooterJson = require('./src/components/Footer/Footer.data.json');
 
@@ -8,6 +9,19 @@ const createCategories = require('./gatsby/createCategories');
 const createAuthors = require('./gatsby/createAuthors');
 
 const redirects = require('./redirects');
+
+
+/* Algolia Trending Searches in Search Modal
+/************************************************************************ */
+// const get = endpoint => axios.get(`https://analytics.algolia.com/2/searches?index=blog`);
+
+// const trendingSearches = trends => 
+//   Promise.all(
+//     trends.map(async trend => {
+//       c
+//     })
+//   )
+
 
 
 /* Create Header and Footer
@@ -40,6 +54,19 @@ exports.sourceNodes = async ({
   };
 
   const { createNode } = actions;
+
+  // Algolia Analytics API Call for Trending Searches
+  const headers = {
+    'Content-Type': 'application/json',
+    'X-Algolia-API-Key': `${process.env.ALGOLIA_ADMIN_KEY}`,
+    'X-Algolia-Application-Id': `${process.env.GATSBY_ALGOLIA_APP_ID}`,
+  };
+
+  const fetchTrendingSearches = () => axios.get(`https://analytics.algolia.com/2/searches?index=blog`, { headers });
+  const res = await fetchTrendingSearches();
+  res.data.searches.map((topSearch) => {
+    createNode(prepareNode(topSearch, 'trendingSearches'));
+  })
 
   createNode(prepareNode(HeaderJson, 'headerLinks'));
   createNode(prepareNode(FooterJson, 'FooterLinks'));

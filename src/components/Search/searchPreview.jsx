@@ -23,7 +23,7 @@ export const CustomSearchBox = connectSearchBox(SearchBox);
 
 const Hits = ({ hits }) => (
   <ul className="style">
-    {hits.length < 1 ? <li>No search results found</li> : ''}
+    {hits.length < 1 ? <li className="font-italic">No search results found</li> : ''}
     {hits.map((hit) => (
       <li key={hit.title}>
         <a href={`/${hit.slug}`}>
@@ -41,7 +41,7 @@ export const CustomHits = connectHits(Hits);
 ************************************************************************************ */
 const Hitswww = ({ hits }) => (
   <ul className="style">
-    {hits.length < 1 ? <li>No search results found</li> : ''}
+    {hits.length < 1 ? <li className="font-italic">No search results found</li> : ''}
     {hits.map((hit) => (
       <li key={hit.title}>
         <a href={`https://www.postman.com${hit.url}`}>
@@ -60,7 +60,7 @@ export const HitsWww = connectHits(Hitswww);
 const Hits2 = ({ hits }) => (
   // if parent component set is type, render, otherwise hide
   <ul className="style">
-    {hits.length < 1 ? <li>No search results found</li> : ''}
+    {hits.length < 1 ? <li className="font-italic">No search results found</li> : ''}
     {hits.map((hit) => (
       <li key={hit.title}>
         <a href={`https://learning.postman.com${hit.fields.slug}`}>

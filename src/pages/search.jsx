@@ -52,8 +52,8 @@ class SearchPage extends Component {
         searchState: qs.parse(window.location.search.slice(1)),
       };
 
-      window.addEventListener('popstate', ({ state: searchState }) => {
-        this.setState({ searchState });
+      window.addEventListener('popstate', () => {
+        this.setState({ state: 'api' });
       });
     }
   }
@@ -101,7 +101,7 @@ class SearchPage extends Component {
             >
               {/* eslint-disable react/jsx-props-no-spreading */}
               <Configure hitsPerPage={5} {...parameters} />
-              {/* eslint-enaable */}
+              {/* eslint-enpoable */}
               {/* forcefeed className because component does not accept natively as prop */}
               <SearchBox
                 className="searchbox"
@@ -119,37 +119,36 @@ class SearchPage extends Component {
 
 
               {/* Comment in for federated search */}
-              <div>
+              <>
                 <Index indexName="blog">
                   <div className="row">
                     <div className="col-sm-12 results-blog">
                       <p className="font-weight-bold mb-0">On the Blog</p>
                       <CustomHits hitComponent={Hits} />
-                      <Configure hitsPerPage={4} />
+                      <Configure hitsPerPage={6} />
                     </div>
                   </div>
                 </Index>
+                <div className="row">
+                  <Index indexName="www">
 
-                <Index indexName="www">
-                  <div className="row">
-                    <div className="col-sm-12 results-blog">
+                    <div className="col-sm-12 col-md-6 results-www">
                       <p className="font-weight-bold mb-0">On the Website</p>
                       <HitsWww hitComponent={Hits} />
                       <Configure hitsPerPage={4} />
                     </div>
-                  </div>
-                </Index>
+                  </Index>
 
-                <Index indexName="docs">
-                  <div className="row">
-                    <div className="col-sm-12 results-lc">
+                  <Index indexName="docs">
+                    <div className="col-sm-12 col-md-6 results-lc">
                       <p className="font-weight-bold mb-0">On Learning Center</p>
                       <NextHits hitComponent={Hits} />
                       <Configure hitsPerPage={4} />
                     </div>
-                  </div>
-                </Index>
-              </div>
+
+                  </Index>
+                </div>
+              </>
             </InstantSearch>
           </div>
         </Layout>
