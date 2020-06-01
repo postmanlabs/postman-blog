@@ -51,6 +51,13 @@ module.exports = {
       },
       ], // posts
     }, // wpgraphql
+    allTrendingSearches: {
+      edges: [
+        {
+          value: '{"search":"variables","count":41,"nbHits":16}, {"search":"variables","count":41,"nbHits":16"}',
+        }
+      ]
+    },
     headerLinks: {
       value: '{"links":[{"name":"Search","url":"/search","cta":{"login":false}},{"name":"Dashboard","url":"https://app.getpostman.com/","cta":true}],"title":"Learning Center"}',
     },
