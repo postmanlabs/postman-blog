@@ -58,6 +58,11 @@ module.exports = {
         }
       ]
     },
+    trend: {
+      node: {
+        value: '{"search": "variables", "count": 43, "nbHits": 16}'
+      }
+    },
     headerLinks: {
       value: '{"links":[{"name":"Search","url":"/search","cta":{"login":false}},{"name":"Dashboard","url":"https://app.getpostman.com/","cta":true}],"title":"Learning Center"}',
     },
