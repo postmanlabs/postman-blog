@@ -28,11 +28,7 @@ exports[`renders correctly 1`] = `
             >
               API Client
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -41,11 +37,7 @@ exports[`renders correctly 1`] = `
             >
               Automated Testing
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -54,11 +46,7 @@ exports[`renders correctly 1`] = `
             >
               Design & Mock
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -67,11 +55,7 @@ exports[`renders correctly 1`] = `
             >
               Documentation
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -80,11 +64,7 @@ exports[`renders correctly 1`] = `
             >
               Monitors
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -93,11 +73,7 @@ exports[`renders correctly 1`] = `
             >
               Version Control
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -106,13 +82,8 @@ exports[`renders correctly 1`] = `
             >
               Workspaces
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
-          <span />
         </ul>
         <div
           className="clearfix d-block"
@@ -136,11 +107,7 @@ exports[`renders correctly 1`] = `
             >
               Download the App
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -149,11 +116,7 @@ exports[`renders correctly 1`] = `
             >
               Release Notes
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -162,11 +125,7 @@ exports[`renders correctly 1`] = `
             >
               Integrations
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -175,11 +134,7 @@ exports[`renders correctly 1`] = `
             >
               Postman API
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -188,11 +143,7 @@ exports[`renders correctly 1`] = `
             >
               Open-Source
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -201,13 +152,8 @@ exports[`renders correctly 1`] = `
             >
               System Status
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
-          <span />
         </ul>
         <div
           className="clearfix d-block"
@@ -231,11 +177,7 @@ exports[`renders correctly 1`] = `
             >
               Overview
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -244,11 +186,7 @@ exports[`renders correctly 1`] = `
             >
               Development
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -257,11 +195,7 @@ exports[`renders correctly 1`] = `
             >
               Testing
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -270,13 +204,8 @@ exports[`renders correctly 1`] = `
             >
               Product Management
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
-          <span />
         </ul>
         <div
           className="clearfix d-block"
@@ -300,11 +229,7 @@ exports[`renders correctly 1`] = `
             >
               Overview
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -313,13 +238,8 @@ exports[`renders correctly 1`] = `
             >
               Postman Enterprise
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
-          <span />
         </ul>
         <div
           className="clearfix d-block"
@@ -343,11 +263,7 @@ exports[`renders correctly 1`] = `
             >
               Support
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -356,11 +272,7 @@ exports[`renders correctly 1`] = `
             >
               Resellers Support
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -369,11 +281,7 @@ exports[`renders correctly 1`] = `
             >
               Learning Center
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -382,11 +290,7 @@ exports[`renders correctly 1`] = `
             >
               Videos & Tutorials
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -395,11 +299,7 @@ exports[`renders correctly 1`] = `
             >
               Community Content
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -408,13 +308,8 @@ exports[`renders correctly 1`] = `
             >
               Postman Community
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
-          <span />
         </ul>
         <div
           className="clearfix d-block"
@@ -438,11 +333,7 @@ exports[`renders correctly 1`] = `
             >
               About
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -451,11 +342,7 @@ exports[`renders correctly 1`] = `
             >
               Jobs
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -464,11 +351,7 @@ exports[`renders correctly 1`] = `
             >
               Contact
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -477,11 +360,7 @@ exports[`renders correctly 1`] = `
             >
               Blog
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -490,11 +369,7 @@ exports[`renders correctly 1`] = `
             >
               Resources
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -503,11 +378,7 @@ exports[`renders correctly 1`] = `
             >
               Swag Shop
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
           <li>
             <a
@@ -516,13 +387,8 @@ exports[`renders correctly 1`] = `
             >
               POST/CON 2019
             </a>
-            <span>
-              <a
-                href="https://www.postman.com/jobs/"
-              />
-            </span>
+            
           </li>
-          <span />
         </ul>
         <div
           className="clearfix d-block"
