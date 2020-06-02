@@ -4,8 +4,12 @@
   box-shadow: 0 5px 16px 0 rgba(0,0,0,.11);
   z-index: 0.5;
 
-  @media (max-width: 414px) {
+  @media (max-width: 430px) {
     padding: 8px !important;
+  }
+
+  @media (max-width: 320px) {
+    padding:4px !important;
   }
   
   .header__logo {
