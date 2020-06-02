@@ -54,7 +54,9 @@ module.exports = {
     allTrendingSearches: {
       edges: [
         {
-          value: '{"search":"variables","count":41,"nbHits":16}, {"search":"variables","count":41,"nbHits":16"}',
+          node: {
+            value: '{"search":"variables","count":41,"nbHits":16}',
+          }
         }
       ]
     },
