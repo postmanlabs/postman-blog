@@ -281,11 +281,7 @@ Array [
               >
                 API Client
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -294,11 +290,7 @@ Array [
               >
                 Automated Testing
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -307,11 +299,7 @@ Array [
               >
                 Design & Mock
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -320,11 +308,7 @@ Array [
               >
                 Documentation
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -333,11 +317,7 @@ Array [
               >
                 Monitors
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -346,11 +326,7 @@ Array [
               >
                 Version Control
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -359,13 +335,8 @@ Array [
               >
                 Workspaces
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
-            <span />
           </ul>
           <div
             className="clearfix d-block"
@@ -389,11 +360,7 @@ Array [
               >
                 Download the App
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -402,11 +369,7 @@ Array [
               >
                 Release Notes
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -415,11 +378,7 @@ Array [
               >
                 Integrations
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -428,11 +387,7 @@ Array [
               >
                 Postman API
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -441,11 +396,7 @@ Array [
               >
                 Open-Source
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -454,13 +405,8 @@ Array [
               >
                 System Status
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
-            <span />
           </ul>
           <div
             className="clearfix d-block"
@@ -484,11 +430,7 @@ Array [
               >
                 Overview
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -497,11 +439,7 @@ Array [
               >
                 Development
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -510,11 +448,7 @@ Array [
               >
                 Testing
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -523,13 +457,8 @@ Array [
               >
                 Product Management
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
-            <span />
           </ul>
           <div
             className="clearfix d-block"
@@ -553,11 +482,7 @@ Array [
               >
                 Overview
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -566,13 +491,8 @@ Array [
               >
                 Postman Enterprise
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
-            <span />
           </ul>
           <div
             className="clearfix d-block"
@@ -596,11 +516,7 @@ Array [
               >
                 Support
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -609,11 +525,7 @@ Array [
               >
                 Resellers Support
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -622,11 +534,7 @@ Array [
               >
                 Learning Center
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -635,11 +543,7 @@ Array [
               >
                 Videos & Tutorials
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -648,11 +552,7 @@ Array [
               >
                 Community Content
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -661,13 +561,8 @@ Array [
               >
                 Postman Community
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
-            <span />
           </ul>
           <div
             className="clearfix d-block"
@@ -691,11 +586,7 @@ Array [
               >
                 About
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -704,11 +595,7 @@ Array [
               >
                 Jobs
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -717,11 +604,7 @@ Array [
               >
                 Contact
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -730,11 +613,7 @@ Array [
               >
                 Blog
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -743,11 +622,7 @@ Array [
               >
                 Resources
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -756,11 +631,7 @@ Array [
               >
                 Swag Shop
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
             <li>
               <a
@@ -769,13 +640,8 @@ Array [
               >
                 POST/CON 2019
               </a>
-              <span>
-                <a
-                  href="https://www.postman.com/jobs/"
-                />
-              </span>
+              
             </li>
-            <span />
           </ul>
           <div
             className="clearfix d-block"

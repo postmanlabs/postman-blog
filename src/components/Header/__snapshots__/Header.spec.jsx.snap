@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly 1`] = `
+<header
+  className="header text-center navbar navbar-expand-xl navbar-light"
+>
+  <div
+    className="navbar-brand header__brand"
+  >
+    <a
+      className="header__homelink"
+      href="/"
+    >
+      <img
+        alt="postman logo"
+        className="header__logo"
+        src="test-file-stub"
+      />
+      <span
+        className="header__title"
+      >
+        Learning Center
+      </span>
+    </a>
+  </div>
+  <button
+    aria-label="Menu"
+    className="navbar-toggler"
+    onClick={[Function]}
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      className="navbar-toggler-icon"
+    />
+  </button>
+  <div
+    className="header__right-links justify-content-end navbar-nav mr-auto navbar-collapse collapse show
+            
+            
+            closed
+            "
+    id="navbarSupportedContent"
+  >
+    <div
+      className="col-sm-12 "
+      id="main"
+    >
+      <button
+        className="browse text-sm-left"
+        onClick={[Function]}
+        type="button"
+      >
+        What are you looking for?
+      </button>
+    </div>
+    <div
+      className="modal"
+    />
+    <div
+      className="nav-item"
+    >
+      <a
+        className="dynamic-link__internal nav-link"
+        href="/search"
+      >
+        Search
+      </a>
+    </div>
+    <div
+      className="nav-item"
+    >
+      <a
+        className="dynamic-link__external nav-link"
+        href="https://app.getpostman.com/"
+      >
+        Dashboard
+      </a>
+    </div>
+  </div>
+</header>
+`;

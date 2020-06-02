@@ -232,11 +232,12 @@ class HeaderComponent extends React.Component {
                     <div className="trending">
                       <p>Trending Searches on Postman Blog</p>
                       <ul>
-                        {
+                        {  
                           trend.edges.map((trend) =>  (
                             <li key={Math.random()}>
-                             {console.log(JSON.parse(trend.node.value))}
-                              <a href={`/search?query=${JSON.parse(trend.node.value).search}`}>{ JSON.parse(trend.node.value).search }</a>
+                              <a href={`/search?query=${JSON.parse(trend.node.value).search}`}>
+                                { JSON.parse(trend.node.value).search }
+                              </a>
                             </li>
                           ))
                         }

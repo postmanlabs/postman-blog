@@ -54,14 +54,11 @@ module.exports = {
     allTrendingSearches: {
       edges: [
         {
-          value: '{"search":"variables","count":41,"nbHits":16}, {"search":"variables","count":41,"nbHits":16"}',
+          node: {
+            value: '{"search":"variables","count":41,"nbHits":16}',
+          }
         }
       ]
-    },
-    trend: {
-      node: {
-        value: '{"search": "variables", "count": 43, "nbHits": 16}'
-      }
     },
     headerLinks: {
       value: '{"links":[{"name":"Search","url":"/search","cta":{"login":false}},{"name":"Dashboard","url":"https://app.getpostman.com/","cta":true}],"title":"Learning Center"}',
