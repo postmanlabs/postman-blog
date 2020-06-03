@@ -42,6 +42,10 @@ module.exports = {
         mergeDefaultDirectives: true,
         directives: {
           "script-src": "'self' www.google-analytics.com",
+          "script-src": "'self' http://www.google-analytics.com",
+          "script-src": "'self' https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap",
+          "script-src": "'self' https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
+          "script-src": "'self' https://polyfill.io/v3/polyfill.min.js?features=default,Array.prototype.find,Array.prototype.includes",
           "style-src": "'self' 'unsafe-inline'",
           "img-src": "'self' data: www.google-analytics.com"
           // you can add your directives or override defaults
