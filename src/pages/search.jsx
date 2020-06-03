@@ -87,7 +87,7 @@ class SearchPage extends Component {
       const { searchState } = this.state || {};
 
       const parameters = {};
-      
+
 
       return (
         <Layout>
@@ -95,68 +95,68 @@ class SearchPage extends Component {
           <div className="row">
             <div className="col-sm-12">
               <h2 className="results-for text-center mt-4">Search Results for...</h2>
-          {/* Aloglia Widgets */}
+              {/* Aloglia Widgets */}
 
 
-          <div className="container form-inline header__search mb-4">
-            <InstantSearch
-              searchClient={searchClient}
-              indexName="blog"
-              searchState={searchState}
-              onSearchStateChange={this.onSearchStateChange}
-            >
-              {/* eslint-disable react/jsx-props-no-spreading */}
-              <Configure hitsPerPage={5} {...parameters} />
-              {/* eslint-enpoable */}
-              {/* forcefeed className because component does not accept natively as prop */}
-              <SearchBox
-                className="searchbox"
-                class="ais-SearchBox-input"
-                submit={<></>}
-                reset={<></>}
-                autoFocus={true}
-                translations={{
-                  placeholder: 'Search Postman',
-                }}
-              />
-              {/* Comment in only if you want Blog post hits */}
-              {/* <div className={!hasInput ? 'input-empty' : 'input-value'}> */}
-              {/* <CustomHits hitComponent={Hits} />
+              <div className="container form-inline header__search mb-4">
+                <InstantSearch
+                  searchClient={searchClient}
+                  indexName="blog"
+                  searchState={searchState}
+                  onSearchStateChange={this.onSearchStateChange}
+                >
+                  {/* eslint-disable react/jsx-props-no-spreading */}
+                  <Configure hitsPerPage={5} {...parameters} />
+                  {/* eslint-enpoable */}
+                  {/* forcefeed className because component does not accept natively as prop */}
+                  <SearchBox
+                    className="searchbox"
+                    class="ais-SearchBox-input"
+                    submit={<></>}
+                    reset={<></>}
+                    autoFocus
+                    translations={{
+                      placeholder: 'Search Postman',
+                    }}
+                  />
+                  {/* Comment in only if you want Blog post hits */}
+                  {/* <div className={!hasInput ? 'input-empty' : 'input-value'}> */}
+                  {/* <CustomHits hitComponent={Hits} />
           </div> */}
-              {/* Comment in for federated search */}
-              <>
-                <Index indexName="blog">
-                  <div className="row">
-                    <div className="col-sm-12 results-blog">
-                      <p className="font-weight-bold mb-0">On the Blog</p>
-                      <CustomHits hitComponent={Hits} />
-                      <Configure hitsPerPage={6} />
-                    </div>
-                  </div>
-                </Index>
-                <div className="row">
-                  <Index indexName="www">
+                  {/* Comment in for federated search */}
+                  <>
+                    <Index indexName="blog">
+                      <div className="row">
+                        <div className="col-sm-12 results-blog">
+                          <p className="font-weight-bold mb-0">On the Blog</p>
+                          <CustomHits hitComponent={Hits} />
+                          <Configure hitsPerPage={6} />
+                        </div>
+                      </div>
+                    </Index>
+                    <div className="row">
+                      <Index indexName="www">
 
-                    <div className="col-sm-12 col-md-6 results-www">
-                      <p className="font-weight-bold mb-0">On the Website</p>
-                      <HitsWww hitComponent={Hits} />
-                      <Configure hitsPerPage={4} />
-                    </div>
-                  </Index>
+                        <div className="col-sm-12 col-md-6 results-www">
+                          <p className="font-weight-bold mb-0">On the Website</p>
+                          <HitsWww hitComponent={Hits} />
+                          <Configure hitsPerPage={4} />
+                        </div>
+                      </Index>
 
-                  <Index indexName="docs">
-                    <div className="col-sm-12 col-md-6 results-lc">
-                      <p className="font-weight-bold mb-0">On Learning Center</p>
-                      <NextHits hitComponent={Hits} />
-                      <Configure hitsPerPage={4} />
-                    </div>
+                      <Index indexName="docs">
+                        <div className="col-sm-12 col-md-6 results-lc">
+                          <p className="font-weight-bold mb-0">On Learning Center</p>
+                          <NextHits hitComponent={Hits} />
+                          <Configure hitsPerPage={4} />
+                        </div>
 
-                  </Index>
-                </div>
-              </>
-            </InstantSearch>
-          </div>
-          </div>
+                      </Index>
+                    </div>
+                  </>
+                </InstantSearch>
+              </div>
+            </div>
           </div>
         </Layout>
       );
