@@ -87,11 +87,17 @@ class SearchPage extends Component {
       const { searchState } = this.state || {};
 
       const parameters = {};
+      
 
       return (
         <Layout>
           <SEO title="Search" />
+          <div className="row">
+            <div className="col-sm-12">
+              <h2 className="results-for text-center mt-4">Search Results for...</h2>
           {/* Aloglia Widgets */}
+
+
           <div className="container form-inline header__search mb-4">
             <InstantSearch
               searchClient={searchClient}
@@ -108,6 +114,7 @@ class SearchPage extends Component {
                 class="ais-SearchBox-input"
                 submit={<></>}
                 reset={<></>}
+                autoFocus={true}
                 translations={{
                   placeholder: 'Search Postman',
                 }}
@@ -116,8 +123,6 @@ class SearchPage extends Component {
               {/* <div className={!hasInput ? 'input-empty' : 'input-value'}> */}
               {/* <CustomHits hitComponent={Hits} />
           </div> */}
-
-
               {/* Comment in for federated search */}
               <>
                 <Index indexName="blog">
@@ -150,6 +155,8 @@ class SearchPage extends Component {
                 </div>
               </>
             </InstantSearch>
+          </div>
+          </div>
           </div>
         </Layout>
       );
