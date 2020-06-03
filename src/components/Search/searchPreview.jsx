@@ -18,6 +18,46 @@ const SearchBox = ({ currentRefinement, refine }) => (
 
 export const CustomSearchBox = connectSearchBox(SearchBox);
 
+/* debounce Searchbox
+************************************************************************************ */
+
+const CustomDebouncedSearchBox = ({delay}) => {
+   let timerId = null;
+    // const { delay } = this.props;
+    // const value = event.currentTarget.value;
+
+
+// console.log('algolia delay', delay)
+// console.log('timerId before clear', timerId)
+//  onChangeDebounced = event => {
+//     clearTimeout(timerId);
+// console.log('timerId after clear', timerId)
+//     timerId = setTimeout(() => delay);
+// console.log('timerId after delay', timerId)
+
+// }
+    return (
+      <input
+        className="searchbox"
+        className="ais-SearchBox-input"
+        // value={value}
+        onChange={event => {
+          event.preventDefault();
+          clearTimeout(timerId);
+          timerId = setTimeout(() => delay);
+        }}
+        submit={<></>}
+        reset={<></>}
+        translations={{
+          placeholder: 'Search Postman',
+        }}
+      />
+    );
+  }
+
+
+export const DebouncedSearchBox = connectSearchBox(CustomDebouncedSearchBox);
+
 /* Blog Search Results
 ************************************************************************************ */
 

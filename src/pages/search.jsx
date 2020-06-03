@@ -6,14 +6,14 @@ import qs from 'qs';
 /* import 'Index' for federated search in 'react-instantsearch-dom'
 ********************************************************************* */
 import {
-  InstantSearch, SearchBox, Hits, Configure, Index,
+  InstantSearch, /* SearchBox, */ Hits, Configure, Index,
 } from 'react-instantsearch-dom';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
 
 /* needed for federated search: import 'NextHits' and 'Hits_www' in '../Search/searchPreview'
 ******************************************************************************************* */
-import { CustomHits, NextHits, HitsWww } from '../components/Search/searchPreview';
+import { DebouncedSearchBox, CustomHits, NextHits, HitsWww } from '../components/Search/searchPreview';
 
 
 /* these keys are to access only blog index in Algolia
@@ -103,7 +103,7 @@ class SearchPage extends Component {
               <Configure hitsPerPage={5} {...parameters} />
               {/* eslint-enpoable */}
               {/* forcefeed className because component does not accept natively as prop */}
-              <SearchBox
+              {/* <SearchBox
                 className="searchbox"
                 class="ais-SearchBox-input"
                 submit={<></>}
@@ -111,7 +111,8 @@ class SearchPage extends Component {
                 translations={{
                   placeholder: 'Search Postman',
                 }}
-              />
+              /> */}
+              <DebouncedSearchBox delay={150} />
               {/* Comment in only if you want Blog post hits */}
               {/* <div className={!hasInput ? 'input-empty' : 'input-value'}> */}
               {/* <CustomHits hitComponent={Hits} />
