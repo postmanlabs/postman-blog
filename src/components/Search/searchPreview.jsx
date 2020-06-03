@@ -18,6 +18,33 @@ const SearchBox = ({ currentRefinement, refine }) => (
 
 export const CustomSearchBox = connectSearchBox(SearchBox);
 
+/* debounce Searchbox
+************************************************************************************ */
+
+const DebouncedSearchBox = ({delay}) => {
+    timerId = null;
+    const { delay } = this.props;
+    // const value = event.currentTarget.value;
+
+    clearTimeout(this.timerId);
+    this.timerId = setTimeout(() => refine(value), delay);
+
+    return (
+      <input
+        className="searchbox"
+        class="ais-SearchBox-input"
+        submit={<></>}
+        reset={<></>}
+        translations={{
+          placeholder: 'Search Postman',
+        }}
+      />
+    );
+  }
+
+
+export const DebouncedSearchBox = connectSearchBox(DebouncedSearchBox);
+
 /* Blog Search Results
 ************************************************************************************ */
 
