@@ -32,22 +32,26 @@ module.exports = {
     },
     'gatsby-plugin-meta-redirect',
     'gatsby-plugin-sitemap',
-    {
-      resolve: `gatsby-plugin-csp`,
-      options: {
-        disableOnDev: true,
-        reportOnly: false, // Changes header to Content-Security-Policy-Report-Only for csp testing purposes
-        mergeScriptHashes: true, // you can disable scripts sha256 hashes
-        mergeStyleHashes: true, // you can disable styles sha256 hashes
-        mergeDefaultDirectives: true,
-        directives: {
-          "script-src": "'self' www.google-analytics.com",
-          "style-src": "'self' 'unsafe-inline'",
-          "img-src": "'self' data: www.google-analytics.com"
-          // you can add your directives or override defaults
-        }
-      }
-    },
+    // {
+    //   resolve: `gatsby-plugin-csp`,
+    //   options: {
+    //     disableOnDev: true,
+    //     reportOnly: false, // Changes header to Content-Security-Policy-Report-Only for csp testing purposes
+    //     mergeScriptHashes: true, // you can disable scripts sha256 hashes
+    //     mergeStyleHashes: true, // you can disable styles sha256 hashes
+    //     mergeDefaultDirectives: true,
+    //     directives: {
+    //       "script-src": "'self' www.google-analytics.com",
+    //       "script-src": "'self' http://www.google-analytics.com",
+    //       "script-src": "'self' https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap",
+    //       "script-src": "'self' https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
+    //       "script-src": "'self' https://polyfill.io/v3/polyfill.min.js?features=default,Array.prototype.find,Array.prototype.includes",
+    //       "style-src": "'self' 'unsafe-inline'",
+    //       "img-src": "'self' data: www.google-analytics.com"
+    //       // you can add your directives or override defaults
+    //     }
+    //   }
+    // },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
