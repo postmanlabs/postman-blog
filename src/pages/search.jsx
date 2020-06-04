@@ -94,7 +94,7 @@ class SearchPage extends Component {
           <SEO title="Search" />
           <div className="row">
             <div className="col-sm-12">
-              <h2 className="results-for text-center mt-4">Search Results for...</h2>
+              <h2 className="text-center mt-4">Search Results for...</h2>
               {/* Aloglia Widgets */}
 
 
