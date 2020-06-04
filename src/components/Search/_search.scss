@@ -1,15 +1,22 @@
 @import '../Shared/_variables.scss';
 
-
 .searchbox {
   width: 100%;
-  margin: 24px 0;
+  margin-bottom: 24px;
   input {
-    background-color:#f5f5f5;
+    // background-color:#f5f5f5;
+    background-color: transparent;
     border: 0;
-    padding: 13px 24px;
+    border-bottom: 1px solid rgba(102, 102, 102, .5);  
+    padding: 13px 24px 13px 0;
     border-radius: 3px;
     width: 100%;
+    font-size: 36px;
+    color: #02739D;
+    &:hover {
+      background-color: rgb(219, 233, 242);
+      cursor: text;
+    }
   }
   ::placeholder {
     color: #1c272b;
@@ -59,10 +66,6 @@ ais-highlight-0000000000 {
   display: flex;
   text-align: left;
   max-width: 600px;
-  // min-width: 600px;
-  // @media (max-width: 599px) {
-  //   min-width: 100%;
-  // }
   top: 90px;
   @media (max-width: 1200px) {
     top:136px;
