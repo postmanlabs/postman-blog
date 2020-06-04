@@ -114,7 +114,7 @@ class SearchPage extends Component {
                     class="ais-SearchBox-input"
                     submit={<></>}
                     reset={<></>}
-                    autoFocus
+                    // autoFocus
                     translations={{
                       placeholder: 'Search Postman',
                     }}
