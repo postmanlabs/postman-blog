@@ -5,7 +5,8 @@ const path = require('path');
 const bff = require('./bff.json');
 
 const bffUrl = `${bff.host}/${bff.path}`;
-const cacheDir = path.join('public', 'cache');
+const cacheDirName = `cache-${bff.path.replace(/(api|bff)\//, '').replace('/', '_')}`;
+const cacheDir = path.join('public', cacheDirName);
 const cachePmDir = path.join(cacheDir, 'pm');
 const pmUtilities = ['sanatizeContent'];
 
@@ -57,16 +58,25 @@ exports.onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
   const headComponents = getHeadComponents();
   const modifiedComponents = [...headComponents];
   const script = `
-    load('/cache/sh.js');
+    var d = 1000, t, z;
+    load('/${cacheDirName}/sh.js');
     loadPms(${JSON.stringify(pmUtilities)});
-    
+    if (!z) {
+      clearTimeout(t);
+      t = setTimeout(function(){
+        if (window.pm && window.pm.sanatizeContent) {
+          window.pm.cache = '${cacheDirName}';
+          clearTimeout(t);
+        }
+      }, d);
+    }
     function load(src) {
       var e = document.createElement('script');
       e.src = src;
       document.head.appendChild(e);
     }
     function loadPm(name) {
-      load('/cache/pm/' + name + '.js');
+      load('/${cacheDirName}/pm/' + name + '.js');
     }
     function loadPms(names) {
       var i, max = names.length;
