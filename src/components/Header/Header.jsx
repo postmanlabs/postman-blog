@@ -2,7 +2,7 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
 import ReactModal from 'react-modal';
 // import algoliasearch from 'algoliasearch/lite';
-// import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 import '../../utils/typography';
@@ -241,15 +241,15 @@ class HeaderComponent extends React.Component {
                                 onClick={ () => {
                                   console.log('onclick');
                                   // e.preventDefault()
-                                  window.ga('send', 'event', 'Trending Searches', 'Click', 'Algolia-trending-searches');
-                                  // trackCustomEvent({
-                                  //   // string - required - The object that was interacted with
-                                  //   category: "Trending Search",
-                                  //   // string - required - Type of interaction
-                                  //   action: "Click",
-                                  //   // string - optional - Useful for categorizing events
-                                  //   label: "Blog Trending Searches",
-                                // })
+                                  // window.ga('send', 'event', 'Trending Searches', 'Click', 'Algolia-trending-searches');
+                                  trackCustomEvent({
+                                    // string - required - The object that was interacted with
+                                    category: "Trending Search",
+                                    // string - required - Type of interaction
+                                    action: "Click",
+                                    // string - optional - Useful for categorizing events
+                                    label: "Blog Trending Searches",
+                                })
                               }}
                               >
                                 { JSON.parse(trend.node.value).search }
