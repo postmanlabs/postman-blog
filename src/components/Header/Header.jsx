@@ -5,6 +5,7 @@ import ReactModal from 'react-modal';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 import '../../utils/typography';
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
 
 // const ClickOutHandler = require('react-onclickout');
@@ -235,7 +236,22 @@ class HeaderComponent extends React.Component {
                         {  
                           trend.edges.map((trend) =>  (
                             <li key={Math.random()}>
-                              <a href={`/search?query=${JSON.parse(trend.node.value).search}`}>
+                              <a 
+                                href={`/search?query=${JSON.parse(trend.node.value).search}`}
+                                onClick={ () => {
+                                  console.log('onclick');
+                                  // e.preventDefault()
+                                  window.ga('send', 'event', 'Trending Searches', 'Click', 'Algolia-trending-searches');
+                                  // trackCustomEvent({
+                                  //   // string - required - The object that was interacted with
+                                  //   category: "Trending Search",
+                                  //   // string - required - Type of interaction
+                                  //   action: "Click",
+                                  //   // string - optional - Useful for categorizing events
+                                  //   label: "Blog Trending Searches",
+                                // })
+                              }}
+                              >
                                 { JSON.parse(trend.node.value).search }
                               </a>
                             </li>
