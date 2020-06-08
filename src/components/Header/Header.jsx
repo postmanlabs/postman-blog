@@ -2,10 +2,10 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
 import ReactModal from 'react-modal';
 // import algoliasearch from 'algoliasearch/lite';
+// import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 import '../../utils/typography';
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
 
 // const ClickOutHandler = require('react-onclickout');
