@@ -40,7 +40,7 @@ const BlogPostTemplate = ({ data }) => {
   const canonical = seo.canonical || slug;
   const seoDescription = seo.metaDesc || excerptTrimmed;
   const seoImage = (seo.opengraphImage && seo.opengraphImage.mediaItemUrl)
-    ? seo.opengraphImage.mediaItemUrl.replace('blog.postman.com', 'edit.blog.postman.com')
+    ? seo.opengraphImage.mediaItemUrl
     : featuredImage;
 
   return (
@@ -122,7 +122,7 @@ const BlogPostTemplate = ({ data }) => {
                   if (domNode.attribs['data-srcset']) {
                     return (
                       <img
-                        src={`${domNode.attribs['data-src'].replace('blog.postman.com', 'edit.blog.postman.com')}`}
+                        src={`${domNode.attribs['data-src']}`}
                         alt={domNode.attribs.alt}
                         sizes={domNode.attribs.sizes}
                         data-srcset={`${domNode.attribs['data-srcset']}`}
@@ -136,7 +136,7 @@ const BlogPostTemplate = ({ data }) => {
                 *************************************************************************** */
                   return (
                     <img
-                      src={`${domNode.attribs['data-src'].replace('blog.postman.com', 'edit.blog.postman.com')}`}
+                      src={`${domNode.attribs['data-src']}`}
                       alt={domNode.attribs.alt}
                       sizes={domNode.attribs.sizes}
                       className={domNode.attribs.className}
