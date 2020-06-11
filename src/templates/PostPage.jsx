@@ -118,11 +118,12 @@ const BlogPostTemplate = ({ data }) => {
 
                 /* show image data from wordpress
                 ************************************************************************* */
+
                 if (domNode.attribs && domNode.attribs['data-src']) {
                   if (domNode.attribs['data-srcset']) {
                     return (
                       <img
-                        src={`${domNode.attribs['data-src']}`}
+                        src={`${domNode.attribs['data-src'].startsWith('edit.')}` ? `${domNode.attribs['data-src']}` : `${domNode.attribs['data-src'].replace('blog.postman.com', 'edit.blog.postman.com')}`}
                         alt={domNode.attribs.alt}
                         sizes={domNode.attribs.sizes}
                         data-srcset={`${domNode.attribs['data-srcset']}`}
@@ -136,11 +137,12 @@ const BlogPostTemplate = ({ data }) => {
                 *************************************************************************** */
                   return (
                     <img
-                      src={`${domNode.attribs['data-src']}`}
+                      src={`${!domNode.attribs['data-src'].startsWith('edit.')}` ? `${domNode.attribs['data-src'].replace('blog.postman.com', 'edit.blog.postman.com')}` : `${domNode.attribs['data-src']}`}
                       alt={domNode.attribs.alt}
                       sizes={domNode.attribs.sizes}
                       className={domNode.attribs.className}
                     />
+
                   );
                 }
 
