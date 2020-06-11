@@ -121,7 +121,6 @@ const BlogPostTemplate = ({ data }) => {
 
                 if (domNode.attribs && domNode.attribs['data-src']) {
                   if (domNode.attribs['data-srcset']) {
-               
                     const imageSrc = `${domNode.attribs['data-src'].replace('https://blog.postman.com', 'https://edit.blog.postman.com')}`;
 
                     return (
@@ -134,8 +133,8 @@ const BlogPostTemplate = ({ data }) => {
                         className={domNode.attribs.className}
                       />
                     );
-                  } else if (domNode.attribs && domNode.attribs['src']) {
-                    const imageSrc = `${domNode.attribs['src'].replace('https://blog.postman.com', 'https://edit.blog.postman.com')}`;
+                  } if (domNode.attribs && domNode.attribs.src) {
+                    const imageSrc = `${domNode.attribs.src.replace('https://blog.postman.com', 'https://edit.blog.postman.com')}`;
                     return (
                       <img
                         src={imageSrc}
