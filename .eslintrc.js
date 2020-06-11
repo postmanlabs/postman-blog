@@ -34,5 +34,6 @@ module.exports = {
     "no-unused-vars": "warn",
     "react/sort-comp": "warn",
     "max-len": "warn",
+    "jsx-a11y/alt-text": "warn"
   },
 };
