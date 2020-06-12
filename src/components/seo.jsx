@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import sanitizeHTML from 'sanitize-html';
+import socialDefault from '../../static/social-default.jpg';
 
 function SEO({
   description, lang, meta, title, image, canonical,
@@ -28,9 +29,10 @@ function SEO({
     `,
   );
 
+
   const metaDescription = description || site.siteMetadata.description;
   const siteName = 'Postman Blog';
-  const previewImage = image ? image.sourceUrl : 'https://blog.postman.com/postman-blog-social-image.jpg';
+  const previewImage = image || socialDefault;
 
   return (
     <Helmet
