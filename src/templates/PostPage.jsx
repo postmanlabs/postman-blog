@@ -133,8 +133,8 @@ const BlogPostTemplate = ({ data }) => {
                         className={domNode.attribs.className}
                       />
                     );
-                  } if (domNode.attribs && domNode.attribs.src) {
-                    const imageSrc = `${domNode.attribs.src.replace('https://blog.postman.com', 'https://edit.blog.postman.com')}`;
+                  } else if (domNode.attribs && domNode.attribs.src) {
+                    const imageSrc = `${domNode.attribs['data-src'].replace('https://blog.postman.com', 'https://edit.blog.postman.com')}`;
                     return (
                       <img
                         src={imageSrc}
