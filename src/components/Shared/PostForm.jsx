@@ -101,7 +101,7 @@ class PostForm extends Component {
       content: comment.value,
     });
 
-    fetch('', {
+    fetch('https://edit.blog.postman.com/wp-json/wp/v2/comments', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -133,4 +133,3 @@ class PostForm extends Component {
 }
 
 export default PostForm;
- /* eslint-enable */
