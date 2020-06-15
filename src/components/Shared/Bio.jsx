@@ -18,7 +18,7 @@ const Bio = ({
             {authorBio}
             <Link to={`/${authorSlug}/page/1`}>
               {' '}
-              See more posts of
+              See more posts by
               {' '}
               {name}
             </Link>
