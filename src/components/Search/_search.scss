@@ -141,7 +141,8 @@ ais-highlight-0000000000 {
 }
 
 .header__brand {
-  min-width: 330px;
+  // min-width: 330px;
+  margin-left: 1px;
 
   @media (max-width: 411px) {
     min-width: 0px;
