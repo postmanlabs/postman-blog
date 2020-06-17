@@ -85,9 +85,10 @@ div.navbar-brand.header__brand {
 .browse {
   background-color: $gray-1;
   border: none;
-  margin: 8px 16px;
+  // margin: 8px 16px;
+  margin-right: 48px;
   padding: 12px;
-  width: 70%;
+  width: 90%;
   font-size: 16px;
   color: $gray-2;
 }
