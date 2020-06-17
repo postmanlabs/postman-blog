@@ -201,7 +201,7 @@ class HeaderComponent extends React.Component {
             </ClickOutHandler>
           </div> */}
 
-          <div id="main" className="col-sm-12 ">
+          <div id="main" className="col-sm-10">
             <button type="button" className="browse text-sm-left" onClick={this.handleModalOpen}>
               What are you looking for?
             </button>
