@@ -6,39 +6,59 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import marketo from '../../scripts/marketo.munchkin';
-// import { useStaticQuery, graphql } from "gatsby"
-
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-// import './_layout.scss';
 import CookieAlert from './CookieAlert';
 import './_all.scss';
 import '../utils/typography';
 
-const Layout = ({ children }) => (
-  // const data = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `)
-  <>
-    <Header />
-    <main>{children}</main>
-    <Footer />
-    <CookieAlert />
-    {marketo()}
-  </>
-);
 
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) { return parts.pop().split(';').shift(); }
+  return undefined;
 };
+
+
+const setReferrerCookie = () => {
+  const referrerUrl = document.referrer !== '' ? document.referrer : 'null';
+  const now = new Date();
+  const timeStamp = now.setDate(now.getDate() + 30);
+  const expiration = new Date(timeStamp).toUTCString();
+  const currentCookie = getCookie('referrer_url');
+  if (!referrerUrl.split('?')[0].includes('postman.com')) {
+    if (referrerUrl !== '' || currentCookie === 'null' || currentCookie === undefined) {
+      document.cookie = 'referrer_url=; expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;secure';
+      document.cookie = `referrer_url=${referrerUrl};expires=${expiration};path=/;secure;`;
+    }
+  }
+};
+
+class Layout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { ...props };
+  }
+
+  componentDidMount() {
+    setReferrerCookie();
+  }
+
+  render() {
+    const { children } = this.state;
+    return (
+      <>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <CookieAlert />
+        {marketo()}
+      </>
+    );
+  }
+}
+
 
 export default Layout;
