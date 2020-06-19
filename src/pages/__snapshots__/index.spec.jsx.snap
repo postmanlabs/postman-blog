@@ -44,7 +44,7 @@ Array [
       id="navbarSupportedContent"
     >
       <div
-        className="col-sm-12 "
+        className="col-sm-10"
         id="main"
       >
         <button
