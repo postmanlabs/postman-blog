@@ -12,6 +12,7 @@ import marketo from '../../scripts/marketo.munchkin';
 
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
+import ReferrerCookie from './ReferrerCookie';
 // import './_layout.scss';
 import CookieAlert from './CookieAlert';
 import './_all.scss';
@@ -32,6 +33,7 @@ const Layout = ({ children }) => (
     <main>{children}</main>
     <Footer />
     <CookieAlert />
+    <ReferrerCookie />
     {marketo()}
   </>
 );
