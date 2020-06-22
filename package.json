@@ -9,7 +9,7 @@
     "axios": "^0.19.2",
     "babel-jest": "^25.5.1",
     "dotenv": "^8.2.0",
-    "eslint-plugin-jest": "^23.7.0",
+    "eslint-plugin-jest": "^23.16.0",
     "gatsby": "^2.21.33",
     "gatsby-cli": "^2.12.21",
     "gatsby-link": "^2.4.0",
