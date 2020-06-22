@@ -1,15 +1,15 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "postman-blog",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "description": "The official Postman blog",
+  "version": "1.0.0",
+  "author": "Postman",
   "dependencies": {
     "algoliasearch": "^3.35.1",
     "axios": "^0.19.2",
     "babel-jest": "^25.5.1",
     "dotenv": "^8.2.0",
-    "eslint-plugin-jest": "^23.7.0",
+    "eslint-plugin-jest": "^23.16.0",
     "gatsby": "^2.21.33",
     "gatsby-cli": "^2.12.21",
     "gatsby-link": "^2.4.0",
@@ -86,10 +86,6 @@
     "test:lint-fix": "node_modules/eslint/bin/eslint.js -c .eslintrc.js --ext .jsx --ext .js src/ --fix"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "type": "git"
   }
 }
