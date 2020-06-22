@@ -7,7 +7,6 @@ import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 import '../../utils/typography';
 
-
 // const ClickOutHandler = require('react-onclickout');
 
 /* these keys are to access only blog index in Algolia

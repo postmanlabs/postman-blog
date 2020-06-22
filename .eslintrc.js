@@ -36,5 +36,6 @@ module.exports = {
     "max-len": "warn",
     "jsx-a11y/alt-text": "warn",
     "no-else-return": "warn",
+    "no-multiple-empty-lines": "off",
   },
 };
