@@ -110,6 +110,10 @@ h4 {
   .screen-reader-text {
     display: none;
   }
+  @media (max-width: 990px) {
+    padding-bottom: 24px;
+    
+  }
   a {
     height: 24px; // allows the shadow line to shrink to the designed location   
     font-size: 16px;
@@ -140,6 +144,7 @@ h4 {
     &.alternative:hover {
       color: $white;
     }
+    
   }
 }
 
