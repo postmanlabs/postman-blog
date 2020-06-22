@@ -67,7 +67,7 @@ const BlogPostTemplate = ({ data }) => {
                 if (domNode.attribs && domNode.attribs.class === 'wp-block-embed__wrapper') {
                   if (domNode.children[1].name === 'iframe') {
                     return (
-                      <div class="embed-responsive embed-responsive-16by9">
+                      <div className="embed-responsive embed-responsive-16by9">
                         <iframe
                           title={`${(domNode.attribs && domNode.children[1].attribs.title) || 'Postman Youtube Channel'}`}
                           width="560"
@@ -83,7 +83,7 @@ const BlogPostTemplate = ({ data }) => {
                 }
                 if (domNode && domNode.name === 'iframe') {
                   return (
-                    <div class="embed-responsive embed-responsive-16by9">
+                    <div className="embed-responsive embed-responsive-16by9">
                       <iframe
                         title={`${(domNode.attribs && domNode.attribs.title) || 'Postman Youtube Channel'}`}
                         width="560"
