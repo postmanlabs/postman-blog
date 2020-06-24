@@ -67,29 +67,33 @@ const BlogPostTemplate = ({ data }) => {
                 if (domNode.attribs && domNode.attribs.class === 'wp-block-embed__wrapper') {
                   if (domNode.children[1].name === 'iframe') {
                     return (
-                      <iframe
-                        title={`${(domNode.attribs && domNode.children[1].attribs.title) || 'Postman Youtube Channel'}`}
-                        width="560"
-                        height="315"
-                        src={`${domNode.attribs && domNode.children[1].attribs['data-src']}`}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
+                      <div className="embed-responsive embed-responsive-16by9">
+                        <iframe
+                          title={`${(domNode.attribs && domNode.children[1].attribs.title) || 'Postman Youtube Channel'}`}
+                          width="560"
+                          height="315"
+                          src={`${domNode.attribs && domNode.children[1].attribs['data-src']}`}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      </div>
                     );
                   }
                 }
                 if (domNode && domNode.name === 'iframe') {
                   return (
-                    <iframe
-                      title={`${(domNode.attribs && domNode.attribs.title) || 'Postman Youtube Channel'}`}
-                      width="560"
-                      height="315"
-                      src={`${domNode.attribs && domNode.attribs['data-src']}`}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
+                    <div className="embed-responsive embed-responsive-16by9">
+                      <iframe
+                        title={`${(domNode.attribs && domNode.attribs.title) || 'Postman Youtube Channel'}`}
+                        width="560"
+                        height="315"
+                        src={`${domNode.attribs && domNode.attribs['data-src']}`}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
                   );
                 }
                 /* Youtube video does not display image. iframe causes CORS error in this case

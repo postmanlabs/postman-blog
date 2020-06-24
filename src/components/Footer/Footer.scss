@@ -102,7 +102,8 @@
       color: #ffffff;
       display: block;
       line-height: 1.6;
-      padding: 8px 8px 8px 0;
+      padding: 8px 0px;
+      margin-right: 8px;
       text-decoration: none;
 
       &:hover {
@@ -168,6 +169,14 @@
       
       &.column-item--add-bottom-spacer {
         margin-bottom: 15px;
+      }
+    }
+  }
+  .list-inline-item {
+    a {
+      &:hover {
+        padding-bottom: 2px;
+        border-bottom: 1px solid;
       }
     }
   }
