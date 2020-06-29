@@ -19,6 +19,7 @@
     "gatsby-plugin-gdpr-cookies": "^1.0.7",
     "gatsby-plugin-google-analytics": "^2.3.0",
     "gatsby-plugin-just-comments": "^0.2.4",
+    "gatsby-plugin-manifest": "^2.4.14",
     "gatsby-plugin-meta-redirect": "^1.1.1",
     "gatsby-plugin-offline": "^3.2.0",
     "gatsby-plugin-preconnect": "^1.1.20",

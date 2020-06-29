@@ -141,6 +141,18 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Postman Blog',
+        short_name: 'Postman Blog',
+        start_url: '/',
+        background_color: '#FF6C37',
+        theme_color: '#FF6C37',
+        display: 'minimal-ui',
+        icon: 'src/images/favicon.png', // This path is relative to the root of the site.
+      },
+    },
     // this plugin has been deconstructed to be used in gatsby-node.js. Keep for future reference
     // {
     //   resolve: `gatsby-plugin-algolia`,
