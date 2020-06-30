@@ -12,7 +12,7 @@ const pmUtilities = ['sanatizeContent'];
 
 function cacheCdn(url, name) {
   if (!fs.existsSync(cacheDir)) {
-    fs.mkdirSync(cacheDir);
+    fs.mkdirSync(cacheDir, true);
   }
 
   axios.get(url)
@@ -46,7 +46,7 @@ function cachePm() {
   cacheCdn('https://cdn.jsdelivr.net/npm/sanitize-html@1.23.0/dist/sanitize-html.min.js', 'sh');
 
   if (!fs.existsSync(cachePmDir)) {
-    fs.mkdirSync(cachePmDir);
+    fs.mkdirSync(cachePmDir, true);
   }
 
   getPms(pmUtilities);
@@ -61,7 +61,6 @@ exports.onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
     var d = 1000, t, z;
     load('/${cacheDirName}/sh.js');
     loadPms(${JSON.stringify(pmUtilities)});
-    loadPms(['getEnv', 'enablePostmanAnalytics']);
     if (!z) {
       clearTimeout(t);
       t = setTimeout(function(){
@@ -69,18 +68,8 @@ exports.onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
           window.pm.cache = '${cacheDirName}';
           clearTimeout(t);
         }
-        if (window.pm && window.pm.enablePostmanAnalytics) {
-          var config = {
-            env: window.pm.getEnv(),
-            type: 'events-blog'
-          };
-          window.ga = pm.enablePostmanAnalytics(window.ga, config);
-          z = true;
-          clearTimeout(t);
-        }
       }, d);
     }
-
     function load(src) {
       var e = document.createElement('script');
       e.src = src;

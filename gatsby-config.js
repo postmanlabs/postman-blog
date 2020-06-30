@@ -153,7 +153,6 @@ module.exports = {
         icon: 'src/images/favicon.png', // This path is relative to the root of the site.
       },
     },
-    
     // this plugin has been deconstructed to be used in gatsby-node.js. Keep for future reference
     // {
     //   resolve: `gatsby-plugin-algolia`,
