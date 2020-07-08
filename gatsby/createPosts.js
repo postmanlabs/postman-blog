@@ -1,5 +1,6 @@
+const path = require('path');
 const fetchAllItems = require('../helpers/fetchAllItems');
-const path = require('path')
+
 
 module.exports = async ({ actions, graphql }) => {
   //  Initial GraphQL query.  Returns first 100 posts.
@@ -52,22 +53,23 @@ module.exports = async ({ actions, graphql }) => {
   `);
 
   if (allPostsResults.errors) {
-    console.error(postsResults.errors);
+    console.error(allPostsResults.errors);
   }
   const posts = allPostsResults.data.wpgraphql.posts.edges;
   const postsPageInfo = allPostsResults.data.wpgraphql.posts.pageInfo;
   // Puts initial call into array, makes as many additional GraphQL calls as needed to get the rest
   const allPostsArray = await fetchAllItems(graphql, postsPageInfo, posts, 'posts', 'id slug date');
   // Grab createPage function from Gatsby's actions object.
-  const {createPage, createRedirect} = actions;
+  const { createPage, createRedirect } = actions;
 
-   /* Create a Blog Post Page
+  /* Create a Blog Post Page
   ****************************************************************************************************************** */
 
-  const postTemplate = path.resolve('./src/templates/PostPage.jsx');  
+  const postTemplate = path.resolve('./src/templates/PostPage.jsx');
 
+  // eslint-disable-next-line array-callback-return
   allPostsArray.map((edge) => {
-    const splitDate = edge.node.date.split('-')
+    const splitDate = edge.node.date.split('-');
     const datedSlug = `/${splitDate[0]}/${splitDate[1]}/${splitDate[2].split('T')[0]}/${edge.node.slug}/`;
     createRedirect({
       fromPath: datedSlug,
@@ -80,15 +82,15 @@ module.exports = async ({ actions, graphql }) => {
       component: postTemplate,
       context: {
         id: edge.node.id,
-        seo: edge.node.seo
+        seo: edge.node.seo,
       },
     });
   });
-  console.log(`Created ${allPostsArray.length} pages for each blog post`);
-  
+  // console.log(`Created ${allPostsArray.length} pages for each blog post`);
 
 
-  /* Create Post list and pagination 
+
+  /* Create Post list and pagination
   ************************************************************************************************* */
 
   const postsPerPage = 10;
@@ -110,5 +112,5 @@ module.exports = async ({ actions, graphql }) => {
     });
     pageNum += 1;
   }
-  console.log(`Created ${pageNum - 1} number of pages for post pagination`);
-}
+  // console.log(`Created ${pageNum - 1} number of pages for post pagination`);
+};

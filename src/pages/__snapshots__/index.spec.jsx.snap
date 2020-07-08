@@ -910,7 +910,7 @@ Array [
             "justifyContent": "space-between",
             "left": "0",
             "lineHeight": "24px",
-            "padding": "20px 50px",
+            "padding": "20px",
             "position": "static",
             "textAlign": "center",
             "width": "100%",
@@ -927,19 +927,21 @@ Array [
             }
           }
         >
-          This website uses cookies to ensure you get the best experience on our website.
+          We use cookies to analyze traffic, track and improve your experience, and assist in our marketing efforts. Our Cookie Notice provides more information and explains how to amend your cookie settings.
            
           <strong>
             <a
-              href="/licenses/privacy/#Automatic"
+              href="https://www.postman.com/legal/cookies/"
+              rel="noopener"
               style={
                 Object {
                   "color": "black",
                   "textDecoration": "underline",
                 }
               }
+              target="_blank"
             >
-              Learn more
+              Cookie Notice
             </a>
           </strong>
         </div>
@@ -967,7 +969,7 @@ Array [
               }
             }
           >
-            Close
+            Accept Cookies
           </button>
         </div>
       </div>
