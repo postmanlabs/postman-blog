@@ -1,10 +1,5 @@
 const uuidv4 = require('uuid/v4');
 const axios = require('axios');
-// Algolia
-const algoliasearch = require('algoliasearch');
-const chunk = require('lodash.chunk');
-const report = require('gatsby-cli/lib/reporter');
-
 const HeaderJson = require('./src/components/Header/Header.data.json');
 const FooterJson = require('./src/components/Footer/Footer.data.json');
 
@@ -20,7 +15,7 @@ const redirects = require('./redirects');
 /************************************************************************ */
 // const get = endpoint => axios.get(`https://analytics.algolia.com/2/searches?index=blog`);
 
-// const trendingSearches = trends =>
+// const trendingSearches = trends => 
 //   Promise.all(
 //     trends.map(async trend => {
 //       c
@@ -68,12 +63,11 @@ exports.sourceNodes = async ({
       'X-Algolia-Application-Id': `${process.env.GATSBY_ALGOLIA_APP_ID}`,
     };
 
-    const fetchTrendingSearches = () => axios.get('https://analytics.algolia.com/2/searches?index=blog', { headers });
+    const fetchTrendingSearches = () => axios.get(`https://analytics.algolia.com/2/searches?index=blog`, { headers });
     const res = await fetchTrendingSearches();
-    // eslint-disable-next-line array-callback-return
     res.data.searches.map((topSearch) => {
       createNode(prepareNode(topSearch, 'trendingSearches'));
-    });
+    })
   } else {
     createNode(prepareNode('', 'trendingSearches'));
   }
@@ -84,12 +78,12 @@ exports.sourceNodes = async ({
 
 
 
-/* Create Pages for Posts, Author, Categories, Tags
-***************************************************************************** */
+/* Create Pages for Posts, Author, Categories, Tags 
+******************************************************************************/
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createRedirect } = actions;
-
+  
   redirects.forEach(({ from, to }) => {
     createRedirect({
       fromPath: from,
@@ -99,17 +93,21 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  await createPosts({ actions, graphql });
-  await createTags({ actions, graphql });
-  await createCategories({ actions, graphql });
-  await createAuthors({ actions, graphql });
+  await createPosts({actions, graphql});
+  await createTags({actions, graphql});
+  await createCategories({actions, graphql});
+  await createAuthors({actions, graphql});
 };
 
 
-/* Create Algolia index
-******************************************************************************** */
-const queries = require('./src/utils/algolia');
+/* Create Algolia index 
+*********************************************************************************/
 
+const algoliasearch = require('algoliasearch');
+const chunk = require('lodash.chunk');
+const report = require('gatsby-cli/lib/reporter');
+
+const queries = require('./src/utils/algolia');
 const appId = process.env.GATSBY_ALGOLIA_APP_ID;
 const apiKey = process.env.ALGOLIA_ADMIN_KEY;
 
@@ -119,31 +117,17 @@ const apiKey = process.env.ALGOLIA_ADMIN_KEY;
  * @param {any} obj what to keep the same
  */
 
-const identity = (obj) => obj;
+const identity = obj => obj;
 
-exports.onPostBuild = async function (
+exports.onPostBuild = async function(
   { graphql },
-  { indexName: mainIndexName, chunkSize = 1000 },
+  { indexName: mainIndexName, chunkSize = 1000 }
 ) {
-  const activity = report.activityTimer('index to Algolia');
+  const activity = report.activityTimer(`index to Algolia`);
   activity.start();
 
   const client = algoliasearch(appId, apiKey);
 
-  /**
- * Hotfix the Gatsby reporter to allow setting status (not supported everywhere)
- *
- * @param {Object} activity reporter
- * @param {String} status status to report
- */
-  // eslint-disable-next-line no-shadow
-  function setStatus(activity, status) {
-    if (activity && activity.setStatus) {
-      activity.setStatus(status);
-    } else {
-      console.log('Algolia:', status);
-    }
-  }
 
   setStatus(activity, `${queries.length} queries to index`);
 
@@ -167,9 +151,9 @@ exports.onPostBuild = async function (
     }
 
     setStatus(activity, `query ${i}: executing query`);
-    
-    /* original gatsby-plugin-algolia code
-    ********************************************************************** */
+
+    /*  original gatsby-plugin-algolia code
+    ***********************************************************************/
     /* const result = await graphql(query);
     /* if (result.errors) {
     /*   report.panic(`failed to index to Algolia`, result.errors);
@@ -219,7 +203,7 @@ exports.onPostBuild = async function (
   try {
     await Promise.all(jobs);
   } catch (err) {
-    report.panic('failed to index to Algolia', err);
+    report.panic(`failed to index to Algolia`, err);
   }
   activity.end();
 }; // end of function
@@ -235,7 +219,7 @@ async function scopedCopyIndex(client, sourceIndex, targetIndex) {
   const { taskID } = await client.copyIndex(
     sourceIndex.indexName,
     targetIndex.indexName,
-    ['settings', 'synonyms', 'rules'],
+    ['settings', 'synonyms', 'rules']
   );
   return targetIndex.waitTask(taskID);
 }
@@ -250,7 +234,7 @@ async function scopedCopyIndex(client, sourceIndex, targetIndex) {
 async function moveIndex(client, sourceIndex, targetIndex) {
   const { taskID } = await client.moveIndex(
     sourceIndex.indexName,
-    targetIndex.indexName,
+    targetIndex.indexName
   );
   return targetIndex.waitTask(taskID);
 }
@@ -266,5 +250,19 @@ async function indexExists(index) {
     return nbHits > 0;
   } catch (e) {
     return false;
+  }
+}
+
+/**
+ * Hotfix the Gatsby reporter to allow setting status (not supported everywhere)
+ *
+ * @param {Object} activity reporter
+ * @param {String} status status to report
+ */
+function setStatus(activity, status) {
+  if (activity && activity.setStatus) {
+    activity.setStatus(status);
+  } else {
+    console.log('Algolia:', status);
   }
 }
