@@ -37,5 +37,6 @@ module.exports = {
     "jsx-a11y/alt-text": "warn",
     "no-else-return": "warn",
     "no-multiple-empty-lines": "off",
+    "react/jsx-no-duplicate-props": "warn",
   },
 };
