@@ -1,6 +1,5 @@
-const path = require('path');
 const fetchAllItems = require('../helpers/fetchAllItems');
-
+const path = require('path')
 
 module.exports = async ({ actions, graphql }) => {
   const allAuthorResults = await graphql(`
@@ -41,21 +40,20 @@ module.exports = async ({ actions, graphql }) => {
 
   const authors = allAuthorResults.data.wpgraphql.users.edges;
   const authorPageInfo = allAuthorResults.data.wpgraphql.users.pageInfo;
-
+  
   const allAuthorArray = await fetchAllItems(graphql, authorPageInfo, authors, 'users', 'id name slug posts(first: 100) { edges { node { title id } cursor } }');
-  const { createPage } = actions;
+  const {createPage} = actions;
 
   const authorIndex = path.resolve('./src/templates/AuthorIndex.jsx');
   const authorPostsPerPage = 10;
   const pageIncrement = authorPostsPerPage - 1;
 
-  // eslint-disable-next-line array-callback-return
   allAuthorArray.map((author) => {
     let authorPageNum = 1;
     const totalAuthorPages = Math.ceil((author.node.posts.edges.length / authorPostsPerPage));
 
-    const authorPosts = author.node.posts;
-    const authorPostsLength = authorPosts.edges.length;
+    const authorPosts = author.node.posts
+    let authorPostsLength = authorPosts.edges.length;
 
     if (authorPostsLength !== 0) {
       authorPosts.edges[0].cursor = '';
@@ -68,14 +66,14 @@ module.exports = async ({ actions, graphql }) => {
             startCursor: authorPosts.edges[0].cursor,
             authorPageNum,
             totalAuthorPages,
-            totalNumberOfPosts: authorPostsLength,
+            totalNumberOfPosts: authorPostsLength
           },
         });
       } else {
         let count = 0;
         let adjustEdges = 0;
 
-        for (let i = 0; i < authorPostsLength; i += pageIncrement) {
+        for (let i = 0; i < authorPostsLength; i+= pageIncrement) {
           // First pass (only)
           if (!i) {
             // account for (messy) divison rounding
@@ -94,19 +92,18 @@ module.exports = async ({ actions, graphql }) => {
             component: authorIndex,
             context: {
               id: author.node.id,
-              // eslint-disable-next-line no-mixed-operators
               startCursor: authorPosts.edges[i] && authorPosts.edges[i].cursor || '',
               authorPageNum,
               totalAuthorPages,
-              totalNumberOfPosts: authorPostsLength,
+              totalNumberOfPosts: authorPostsLength
             },
           });
           authorPageNum += 1;
           count += 1;
         }
-        console.log(`Author page for ${author.node.name} has pagination.`);
+        console.log(`Author page for ${author.node.name} has pagination.`)
       }
     }
   });
   console.log(`Created ${allAuthorArray.length} author pages`);
-};
+}

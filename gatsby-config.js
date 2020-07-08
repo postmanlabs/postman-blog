@@ -1,14 +1,14 @@
 // const queries = require('./src/utils/algolia');
 
 /* Production build
-******************************************************************************** */
+*********************************************************************************/
 // require('dotenv').config({
 //   path: `.env.${process.env.GATSBY_ACTIVE_ENV}`,
 // });
 
 
 /* Local Build
-******************************************************************************** */
+*********************************************************************************/
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
@@ -23,10 +23,10 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: `gatsby-plugin-google-analytics`,
       options: {
         // The property ID; the tracking code won't be generated without it
-        trackingId: 'UA-43979731-4',
+        trackingId: "UA-43979731-4",
         // Defines where to place the tracking script - `true` in the head and `false` in the body
         head: true,
         // Setting this parameter is optional
@@ -92,19 +92,19 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-prefetch-google-fonts',
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
         fonts: [
           {
-            family: 'Roboto',
-            variants: [
-              '400',
-              '500',
+            "family": "Roboto",
+            "variants": [
+              "400",
+              "500"
             ],
           },
           {
-            family: 'Open Sans',
-            variants: ['400', '700'],
+            family: `Open Sans`,
+            variants: ["400", "700"]
           },
         ],
       },
@@ -167,24 +167,24 @@ module.exports = {
       resolve: 'gatsby-plugin-sri',
       options: {
         hash: 'sha512', // 'sha256', 'sha384' or 'sha512' ('sha512' = default)
-        crossorigin: false, // Optional
-      },
+        crossorigin: false // Optional
+      }
     },
     {
-      resolve: 'gatsby-plugin-env-variables',
+      resolve: `gatsby-plugin-env-variables`,
       options: {
-        whitelist: ['MUNCHKIN_ID', 'NEWSLETTER_FORM_ID'],
+        whitelist: ['MUNCHKIN_ID', 'NEWSLETTER_FORM_ID']
       },
     },
     {
-      resolve: 'gatsby-plugin-gdpr-cookies',
+      resolve: `gatsby-plugin-gdpr-cookies`,
       options: {
         googleAnalytics: {
           trackingId: 'UA-43979731-4',
-          anonymize: true,
+          anonymize: true
         },
-        environments: ['production', 'development'],
-      },
+        environments: ['production', 'development']
+      }
     },
   ],
 };

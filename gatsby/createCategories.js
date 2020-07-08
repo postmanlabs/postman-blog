@@ -1,6 +1,5 @@
-const path = require('path');
 const fetchAllItems = require('../helpers/fetchAllItems');
-
+const path = require('path')
 
 module.exports = async ({ actions, graphql }) => {
   const allCategoriesResults = await graphql(`
@@ -40,13 +39,12 @@ module.exports = async ({ actions, graphql }) => {
   const categoriesPageInfo = allCategoriesResults.data.wpgraphql.categories.pageInfo;
 
   const allCategoriesArray = await fetchAllItems(graphql, categoriesPageInfo, categories, 'categories', 'id name slug posts(first: 100) { edges { node { title id } cursor } }');
-  const { createPage } = actions;
+  const {createPage} = actions;
 
   const CatsIndex = path.resolve('./src/templates/CategoryIndex.jsx');
   const catPostsPerPage = 10;
   const pageIncrement = catPostsPerPage - 1;
 
-  // eslint-disable-next-line array-callback-return
   allCategoriesArray.map((cat) => {
     let catsPageNum = 1;
     const catPosts = cat.node.posts;
@@ -54,7 +52,6 @@ module.exports = async ({ actions, graphql }) => {
     const totalCatsPages = Math.ceil((catPostsLength / catPostsPerPage));
 
     if (cat.node.posts.edges.length !== 0) {
-      // eslint-disable-next-line no-param-reassign
       cat.node.posts.edges[0].cursor = '';
       if (cat.node.posts.edges.length <= catPostsPerPage) {
         createPage({
@@ -65,7 +62,7 @@ module.exports = async ({ actions, graphql }) => {
             startCursor: cat.node.posts.edges[0].cursor,
             catsPageNum,
             totalCatsPages,
-            totalNumberOfPosts: cat.node.posts.edges.length,
+            totalNumberOfPosts: cat.node.posts.edges.length
           },
         });
       } else {
@@ -91,19 +88,18 @@ module.exports = async ({ actions, graphql }) => {
             component: CatsIndex,
             context: {
               id: cat.node.id,
-              // eslint-disable-next-line no-mixed-operators
               startCursor: catPosts.edges[i] && catPosts.edges[i].cursor || '',
               catsPageNum,
               totalCatsPages,
-              totalNumberOfPosts: catPostsLength,
+              totalNumberOfPosts: catPostsLength
             },
           });
           catsPageNum += 1;
           count += 1;
         }
-        // console.log(`Categories page for ${cat.node.name} has pagination.`);
+        console.log(`Categories page for ${cat.node.name} has pagination.`);
       }
     }
   });
-  // console.log(`Created ${allCategoriesArray.length} category pages`);
-};
+  console.log(`Created ${allCategoriesArray.length} category pages`);
+}
