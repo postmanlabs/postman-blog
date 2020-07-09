@@ -1,5 +1,6 @@
+const path = require('path');
 const fetchAllItems = require('../helpers/fetchAllItems');
-const path = require('path')
+
 
 module.exports = async ({ actions, graphql }) => {
   const allAuthorResults = await graphql(`
@@ -40,9 +41,10 @@ module.exports = async ({ actions, graphql }) => {
 
   const authors = allAuthorResults.data.wpgraphql.users.edges;
   const authorPageInfo = allAuthorResults.data.wpgraphql.users.pageInfo;
-  
+
   const allAuthorArray = await fetchAllItems(graphql, authorPageInfo, authors, 'users', 'id name slug posts(first: 100) { edges { node { title id } cursor } }');
-  const {createPage} = actions;
+
+  const { createPage } = actions;
 
   const authorIndex = path.resolve('./src/templates/AuthorIndex.jsx');
   const authorPostsPerPage = 10;
@@ -52,21 +54,21 @@ module.exports = async ({ actions, graphql }) => {
     let authorPageNum = 1;
     const totalAuthorPages = Math.ceil((author.node.posts.edges.length / authorPostsPerPage));
 
-    const authorPosts = author.node.posts
-    let authorPostsLength = authorPosts.edges.length;
+    const authorPosts = author.node.posts;
+    const authorPostsLength = authorPosts.edges.length;
 
     if (authorPostsLength !== 0) {
       authorPosts.edges[0].cursor = '';
       if (authorPostsLength <= authorPostsPerPage) {
         createPage({
-          path: `/${author.node.slug}/page/${authorPageNum}`,
+          path: `author/${author.node.slug}/page/${authorPageNum}`,
           component: authorIndex,
           context: {
             id: author.node.id,
             startCursor: authorPosts.edges[0].cursor,
             authorPageNum,
             totalAuthorPages,
-            totalNumberOfPosts: authorPostsLength
+            totalNumberOfPosts: authorPostsLength,
           },
         });
       } else {
@@ -86,24 +88,26 @@ module.exports = async ({ actions, graphql }) => {
               author.node.posts.edges.shift();
             }
           }
+          const startCursorPage = authorPosts.edges[i] && authorPosts.edges[i].cursor;
 
+          const cursorPage = startCursorPage || '';
           createPage({
-            path: `${author.node.slug}/page/${authorPageNum}`,
+            path: `author/${author.node.slug}/page/${authorPageNum}`,
             component: authorIndex,
             context: {
               id: author.node.id,
-              startCursor: authorPosts.edges[i] && authorPosts.edges[i].cursor || '',
+              startCursor: cursorPage,
               authorPageNum,
               totalAuthorPages,
-              totalNumberOfPosts: authorPostsLength
+              totalNumberOfPosts: authorPostsLength,
             },
           });
           authorPageNum += 1;
           count += 1;
         }
-        console.log(`Author page for ${author.node.name} has pagination.`)
+        // console.log(`Author page for ${author.node.name} has pagination.`);
       }
     }
   });
-  console.log(`Created ${allAuthorArray.length} author pages`);
-}
+  // console.log(`Created ${allAuthorArray.length} author pages`);
+};
