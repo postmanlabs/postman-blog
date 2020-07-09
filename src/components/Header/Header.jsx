@@ -238,7 +238,6 @@ class HeaderComponent extends React.Component {
                               <a 
                                 href={`/search?query=${JSON.parse(trend.node.value).search}`}
                                 onClick={ () => {
-                                  console.log('onclick');
                                   // e.preventDefault()
                                   // window.ga('send', 'event', 'Trending Searches', 'Click', 'Algolia-trending-searches');
                                   trackCustomEvent({

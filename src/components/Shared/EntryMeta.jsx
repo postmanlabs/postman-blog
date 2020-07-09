@@ -8,7 +8,7 @@ const EntryMeta = ({
   <div className="entry-meta">
     <div className="entry-meta-col">
       <span><img className="entry-meta-img" src={avatar} alt={name} /></span>
-      <span><Link to={`/${authorSlug}/page/1`}>{name}</Link></span>
+      <span><Link to={`/author/${authorSlug}/page/1`}>{name}</Link></span>
       <span><ReturnDateString data={date} /></span>
     </div>
   </div>
