@@ -1,5 +1,6 @@
+const path = require('path');
 const fetchAllItems = require('../helpers/fetchAllItems');
-const path = require('path')
+
 
 module.exports = async ({ actions, graphql }) => {
   const allTagsResults = await graphql(`
@@ -44,7 +45,7 @@ module.exports = async ({ actions, graphql }) => {
   const TagsIndex = path.resolve('./src/templates/TagsIndex.jsx');
   const tagsPostsPerPage = 10;
   const pageIncrement = tagsPostsPerPage - 1;
-  
+
   allTagsArray.map((tag) => {
     let tagsPageNum = 1;
     const tagPosts = tag.node.posts
@@ -95,7 +96,7 @@ module.exports = async ({ actions, graphql }) => {
               startCursor: tagPosts.edges[i] && tagPosts.edges[i].cursor || '',
               tagsPageNum,
               totalTagsPages,
-              totalNumberOfPosts: tagPostsLength
+              totalNumberOfPosts: tagPostsLength,
             },
           });
           tagsPageNum += 1;
