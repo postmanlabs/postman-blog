@@ -66,7 +66,7 @@ module.exports = async ({ actions, graphql }) => {
             startCursor: authorPosts.edges[0].cursor,
             authorPageNum,
             totalAuthorPages,
-            totalNumberOfPosts: authorPostsLength
+            totalNumberOfPosts: authorPostsLength,
           },
         });
       } else {
