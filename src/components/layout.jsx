@@ -9,7 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import marketo from '../../scripts/marketo.munchkin';
 // import { useStaticQuery, graphql } from "gatsby"
-
+import HelloBar from './HelloBar';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import ReferrerCookie from './ReferrerCookie';
@@ -18,7 +18,16 @@ import CookieAlert from './CookieAlert';
 import './_all.scss';
 import '../utils/typography';
 
-const Layout = ({ children }) => (
+class Layout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { ...props };
+  }
+
+  render() {
+    const { children } = this.state;
+    return (
+
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     site {
@@ -29,6 +38,7 @@ const Layout = ({ children }) => (
   //   }
   // `)
   <>
+    <HelloBar />
     <Header />
     <main>{children}</main>
     <Footer />
@@ -36,8 +46,9 @@ const Layout = ({ children }) => (
     <ReferrerCookie />
     {marketo()}
   </>
-);
-
+    );
+  }
+} 
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

@@ -51,6 +51,7 @@
     "s3-deploy": "^1.4.0",
     "sanitize-html": "^1.24.0",
     "slash": "^3.0.0",
+    "styled-components": "^5.1.1",
     "typography": "^0.16.19",
     "uuid": "^3.4.0"
   },
