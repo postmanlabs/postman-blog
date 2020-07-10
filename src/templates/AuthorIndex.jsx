@@ -28,9 +28,11 @@ const authorPostsList = ({ data, pageContext }) => {
             const authorSlug = post.node.author.slug || 'thepostmanteam';
             const name = post.node.author.name || 'The Postman Team';
             const avatar = post.node.author.avatar.url || '';
+            const key = post.node.id;
             return (
               <div key={post.node.id} className="post">
                 <ListHeader
+                  key={key}
                   authorSlug={authorSlug}
                   name={name}
                   avatar={avatar}
