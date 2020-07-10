@@ -34,6 +34,7 @@ const BlogIndex = ({ data }) => {
             return (
               <div key={key} className="post">
                 <ListHeader
+                  key={key}
                   authorSlug={authorSlug}
                   name={name}
                   avatar={avatar}
