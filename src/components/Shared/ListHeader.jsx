@@ -7,9 +7,19 @@ import TagsMeta from './Tags';
 
 
 const ListHeader = ({
-  featuredImage, slug, name, avatar, date, postTitle, authorSlug, postExcerpt, tags, categories,
+  featuredImage,
+  slug,
+  name,
+  avatar,
+  date,
+  postTitle,
+  authorSlug,
+  postExcerpt,
+  tags,
+  categories,
+  key,
 }) => (
-  <div className="row header-wrapper">
+  <div className="row header-wrapper" key={key}>
     <div className="col-lg-8">
       {/* entry meta */}
       <EntryMeta
