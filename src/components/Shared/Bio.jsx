@@ -16,7 +16,7 @@ const Bio = ({
         <div className="col-12 more-link-wrap">
           <p>
             {authorBio}
-            <Link to={`/${authorSlug}/page/1`}>
+            <Link to={`/author/${authorSlug}/page/1`}>
               {' '}
               See more posts by
               {' '}
