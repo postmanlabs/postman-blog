@@ -39,6 +39,7 @@ module.exports = {
         defer: true,
       },
     },
+    'gatsby-plugin-polyfill-io',
     {
       resolve: 'gatsby-source-graphql',
       options: {
