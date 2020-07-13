@@ -61,12 +61,18 @@ class HeaderComponent extends React.Component {
       // refresh: false,
       isModalOpen: false,
       searchTerm: '',
+      visibleHelloBar: 0,
     };
   }
 
   componentDidMount() {
     // Unit test will complain if process is not checked
     if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#main');
+    // HelloBar implementation
+    const helloBarCountValue = Number(localStorage.getItem('hellobarcount'));
+    this.setState({
+      visibleHelloBar: helloBarCountValue,
+    });
   }
 
   /* Helper functions
@@ -117,7 +123,7 @@ class HeaderComponent extends React.Component {
 
   render() {
     const {
-      isToggledOn, data,
+      isToggledOn, data, visibleHelloBar,
       // isToggledOn, data, refresh, hasInput,
     } = this.state;
 
@@ -146,6 +152,7 @@ class HeaderComponent extends React.Component {
             ${(isToggledOn === true) ? 'animate-open' : ''}
             ${(isToggledOn === false) ? 'animate-close' : ''}
             ${isToggledOn === 'unset' ? 'closed' : ''}
+            overlay ${!visibleHelloBar ? ' noBar' : ''}
             `}
           id="navbarSupportedContent"
         >

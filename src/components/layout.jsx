@@ -9,7 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import marketo from '../../scripts/marketo.munchkin';
 // import { useStaticQuery, graphql } from "gatsby"
-import HelloBar from './HelloBar';
+import HelloBar from './Shared/HelloBar';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import ReferrerCookie from './ReferrerCookie';
@@ -28,29 +28,30 @@ class Layout extends React.Component {
     const { children } = this.state;
     return (
 
-  // const data = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `)
-  <>
-    <HelloBar />
-    <Header />
-    <main>{children}</main>
-    <Footer />
-    <CookieAlert />
-    <ReferrerCookie />
-    {marketo()}
-  </>
+    // const data = useStaticQuery(graphql`
+    //   query SiteTitleQuery {
+    //     site {
+    //       siteMetadata {
+    //         title
+    //       }
+    //     }
+    //   }
+    // `)
+      <>
+        <HelloBar />
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <CookieAlert />
+        <ReferrerCookie />
+        {marketo()}
+      </>
     );
   }
-} 
+}
 
 Layout.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
   children: PropTypes.node.isRequired,
 };
 
