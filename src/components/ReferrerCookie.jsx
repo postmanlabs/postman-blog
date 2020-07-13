@@ -1,5 +1,27 @@
 import React from 'react';
 
+const parseQuery = (query) => {
+  const pairs = query.slice(1).split('&');
+  const result = {};
+  pairs.forEach((pair) => {
+    const items = pair.split('=');
+    result[items[0]] = decodeURIComponent(items[1] || '');
+  });
+  return result;
+};
+
+const setGclidCookie = () => {
+  const { search } = window.location;
+  const queries = parseQuery(search);
+  if (queries.gclid) {
+    const now = new Date();
+    const timeStamp = now.setDate(now.getDate() + 30);
+    const expiration = new Date(timeStamp).toUTCString();
+    document.cookie = 'gclid=; expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;secure';
+    document.cookie = `gclid=${queries.gclid};expires=${expiration};path=/;secure;`;
+  }
+};
+
 const getCookie = (name) => {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
@@ -30,6 +52,7 @@ class ReferrerCookie extends React.Component {
 
   componentDidMount() {
     setReferrerCookie();
+    setGclidCookie();
   }
 
   render() {
