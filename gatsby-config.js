@@ -23,6 +23,7 @@ module.exports = {
   },
   plugins: [
     {
+      'gatsby-plugin-polyfill-io',
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         // The property ID; the tracking code won't be generated without it
