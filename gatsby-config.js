@@ -23,7 +23,6 @@ module.exports = {
   },
   plugins: [
     {
-      'gatsby-plugin-polyfill-io',
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         // The property ID; the tracking code won't be generated without it
@@ -40,6 +39,7 @@ module.exports = {
         defer: true,
       },
     },
+    'gatsby-plugin-polyfill-io',
     {
       resolve: 'gatsby-source-graphql',
       options: {
