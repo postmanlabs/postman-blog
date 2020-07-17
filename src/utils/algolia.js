@@ -64,7 +64,7 @@
 
 const postQuery = `query($after:String){
   wpgraphql {
-    posts(first: 100 after: $after) {
+    posts(first: 50 after: $after) {
       pageInfo {
         hasNextPage
         endCursor
@@ -86,6 +86,7 @@ const postQuery = `query($after:String){
           twitterDescription
           twitterTitle
         }
+        termNames
         author {
           name
         }
