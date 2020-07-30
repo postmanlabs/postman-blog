@@ -83,7 +83,7 @@ class PostForm extends Component {
                   value={textAreaValue}
                 />
               </div>
-              <input className="btn btn__primary" type="submit" value="Post comment!" />
+              <input className="btn btn__primary" type="submit" value="Post Comment" />
             </form>
           </div>
         </div>
