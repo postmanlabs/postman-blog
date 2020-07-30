@@ -845,7 +845,7 @@ Array [
               >
                 <a
                   className="social-icon"
-                  href="https://www.youtube.com/channel/UCocudCGVb3MmhWQ1aoIgUQw"
+                  href="https://www.youtube.com/postmanapidevelopment"
                   id="youtube_icon"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -892,7 +892,7 @@ Array [
                 className="list-inline-item"
               >
                 <a
-                  href="https://www.getpostman.com/security"
+                  href="https://www.postman.com/security"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -907,7 +907,7 @@ Array [
                 className="list-inline-item"
               >
                 <a
-                  href="https://www.getpostman.com/licenses/privacy"
+                  href="https://www.postman.com/legal/privacy-policy/"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -922,14 +922,14 @@ Array [
                 className="list-inline-item"
               >
                 <a
-                  href="https://www.getpostman.com/licenses/postman_eula"
+                  href="https://www.postman.com/legal/eula/"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <span
                     className="footer-column__link"
                   >
-                    EULA
+                    Terms
                   </span>
                 </a>
               </li>
