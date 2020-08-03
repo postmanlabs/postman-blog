@@ -29,7 +29,6 @@ const PostsIndex = ({ data, pageContext }) => {
             const keyPostId = post.node.id;
             return (
               <div key={keyPostId} className="post">
-               
                 <ListHeader
                   authorSlug={authorSlug}
                   name={name}
