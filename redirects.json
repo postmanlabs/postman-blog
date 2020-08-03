@@ -53,7 +53,11 @@
   },
   {
     "from": "/postman-a-beacon-of-hope-in-a-world-of-api-darkness-💡/",
-    "to": "//postman-a-beacon-of-hope-in-a-world-of-api-darkness/"
+    "to": "/postman-a-beacon-of-hope-in-a-world-of-api-darkness/"
+  },
+  {
+    "from": "/index.php/2014/01/28/using-self-signed-certificates-with-postman/",
+    "to": "/using-self-signed-certificates-with-postman/"
   }
 ]
     
