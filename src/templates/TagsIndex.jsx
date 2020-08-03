@@ -28,11 +28,10 @@ const TagsPostsList = ({ data, pageContext }) => {
               const name = post.node.author.name || 'The Postman Team';
               const avatar = post.node.author.avatar.url || '';
               const authorSlug = post.node.author.slug;
-              const key = post.node.id;
+              const keyPostId = post.node.id;
               return (
-                <div key={post.node.id} className="post">
+                <div key={keyPostId} className="post">
                   <ListHeader
-                    key={key}
                     authorSlug={authorSlug}
                     name={name}
                     avatar={avatar}
