@@ -19,7 +19,7 @@ const ListHeader = ({
   categories,
   key,
 }) => (
-  <div className="row header-wrapper" key={key}>
+  <div className="row header-wrapper" key={Math.random()}>
     <div className="col-lg-8">
       {/* entry meta */}
       <EntryMeta
