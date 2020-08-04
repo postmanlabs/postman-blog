@@ -1,6 +1,7 @@
 // Header used for Blog list view in index and page 2
 import React from 'react';
 import { Link } from 'gatsby';
+import uuidv4 from 'uuid/v4';
 import EntryMeta from './EntryMeta';
 import FluidImage from '../FluidImage';
 import TagsMeta from './Tags';
@@ -19,7 +20,7 @@ const ListHeader = ({
   categories,
   key,
 }) => (
-  <div className="row header-wrapper" key={key}>
+  <div className="row header-wrapper" key={uuidv4()}>
     <div className="col-lg-8">
       {/* entry meta */}
       <EntryMeta

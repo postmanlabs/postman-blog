@@ -29,12 +29,11 @@ const BlogIndex = ({ data }) => {
             const name = post.node.author.name || 'The Postman Team';
             const avatar = post.node.author.avatar.url || '';
             const authorSlug = post.node.author.slug;
-            const key = `${post.node.id}-${postTitle}`;
+            const keyIndex = `${post.node.id}-${postTitle}`;
 
             return (
-              <div key={key} className="post">
+              <div key={keyIndex} className="post">
                 <ListHeader
-                  key={key}
                   authorSlug={authorSlug}
                   name={name}
                   avatar={avatar}

@@ -3,9 +3,11 @@ import React from 'react';
 import ReactModal from 'react-modal';
 // import algoliasearch from 'algoliasearch/lite';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
+import uuidv4 from 'uuid/v4';
 import DynamicLink from '../Shared/DynamicLink';
 import postmanLogo from '../../images/postman-logo-horizontal-orange.svg';
 import '../../utils/typography';
+
 
 // const ClickOutHandler = require('react-onclickout');
 
@@ -241,7 +243,7 @@ class HeaderComponent extends React.Component {
                       <ul>
                         {  
                           trend.edges.map((trend) =>  (
-                            <li key={Math.random()}>
+                            <li key={uuidv4()}>
                               <a 
                                 href={`/search?query=${JSON.parse(trend.node.value).search}`}
                                 onClick={ () => {
