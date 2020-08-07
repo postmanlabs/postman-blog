@@ -34,6 +34,9 @@ function SEO({
   const siteName = 'Postman Blog';
   const previewImage = image || socialDefault;
 
+  {console.log('seo IMAGE', image);}
+  {console.log('seo IMAGE DEFAULT', socialDefault);}
+
   return (
     <Helmet
       htmlAttributes={{
@@ -48,7 +51,7 @@ function SEO({
         },
         {
           property: 'og:title',
-          content: title,
+          content: sanitizeHTML(title),
         },
         {
           property: 'og:description',
