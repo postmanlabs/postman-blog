@@ -48,7 +48,7 @@ function SEO({
         },
         {
           property: 'og:title',
-          content: title,
+          content: sanitizeHTML(title),
         },
         {
           property: 'og:description',
