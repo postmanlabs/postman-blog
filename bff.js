@@ -48,6 +48,7 @@ function getPms(names) {
 
 function cachePm() {
   cacheCdn('https://cdn.jsdelivr.net/npm/sanitize-html@1.23.0/dist/sanitize-html.min.js', 'sh');
+  cacheCdn('https://pages.getpostman.com/js/forms2/js/forms2.min.js', 'forms2');
 
   if (!fs.existsSync(cachePmDir)) {
     fs.mkdirSync(cachePmDir, true);
