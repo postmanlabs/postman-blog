@@ -1,4 +1,5 @@
 import React from 'react';
+import proxyForm from '../../utils/proxyForm';
 
 const munchkinId = process.env.MUNCHKIN_ID || '';
 const formid = process.env.NEWSLETTER_FORM_ID || 0;
@@ -24,48 +25,6 @@ const handleSubmit = (e) => {
   formSubmit.innerHTML = 'Thank you';
 
   form.className += 'submitted';
-};
-
-const proxyForm = ({
-  track, id, className, description, form,
-}) => {
-  if (typeof document === 'object' && munchkinId && formid) {
-    let e;
-    let initializedForm;
-
-    const delay = 1000;
-    const loadForm = () => {
-      if (!initializedForm) {
-        initializedForm = true;
-        window.MktoForms2.loadForm('//pages.getpostman.com', munchkinId, formid);
-      }
-    };
-
-    setTimeout(() => {
-      const hasDependencies = window && window.pm && window.pm.cache;
-      if (hasDependencies) {
-        e = document.createElement('script');
-        e.src = `/${window.pm.cache}/forms2.js`;
-        e.onload = () => loadForm();
-        document.head.appendChild(e);
-      }
-    }, delay);
-  }
-
-  return track && id && (
-    <div className={className}>
-      {description}
-      {form}
-      <form id={id} />
-      <style>
-        {`
-        #${id} {
-          display: none !important;
-        }
-      `}
-      </style>
-    </div>
-  );
 };
 
 class Form extends React.Component {
