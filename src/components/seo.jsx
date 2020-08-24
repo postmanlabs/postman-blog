@@ -89,7 +89,7 @@ function SEO({
       ].concat(meta)}
     >
       {/* canonical url */}
-      <link rel="canonical" href={canonical} />
+      <link rel="canonical" href={`https://blog.postman.com/${canonical}`} />
       {/* fonts */}
       <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet" />
       {/* Algolia IE11 support */}
