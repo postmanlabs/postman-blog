@@ -19,23 +19,14 @@ import './_all.scss';
 import '../utils/typography';
 
 const Layout = ({ children }) => (
-  // const data = useStaticQuery(graphql`	  constructor(props) {
-  //   query SiteTitleQuery {	    super(props);
-  //     site {	    this.state = { ...props };
-  //       siteMetadata {	  }
-  //         title	
-  //       }	  render() {
-  //     }	    const { children } = this.state;
-  //   }	    return (
-  // `)	
-  <>	
-    <Header />	
-    <main>{children}</main>	
-    <Footer />	
-    <CookieAlert />	
-    <ReferrerCookie />	
-    {marketo()}	
-  </>	
+  <>
+    <Header />
+    <main>{children}</main>
+    <Footer />
+    <CookieAlert />
+    <ReferrerCookie />
+    {marketo()}
+  </>
 );
 
 // class Layout extends React.Component {

@@ -149,7 +149,7 @@ class HeaderComponent extends React.Component {
           <span className="navbar-toggler-icon" aria-hidden="true" />
         </button>
 
-        {/* overlay ${!visibleHelloBar ? ' noBar' : ''} */} 
+        {/* overlay ${!visibleHelloBar ? ' noBar' : ''} */}
         <div
           className={`header__right-links justify-content-end navbar-nav mr-auto navbar-collapse collapse show
             ${(isToggledOn === true) ? 'animate-open' : ''}
