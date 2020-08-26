@@ -18,37 +18,47 @@ import CookieAlert from './CookieAlert';
 import './_all.scss';
 import '../utils/typography';
 
-class Layout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { ...props };
-  }
+const Layout = ({ children }) => (
+  // const data = useStaticQuery(graphql`	  constructor(props) {
+  //   query SiteTitleQuery {	    super(props);
+  //     site {	    this.state = { ...props };
+  //       siteMetadata {	  }
+  //         title	
+  //       }	  render() {
+  //     }	    const { children } = this.state;
+  //   }	    return (
+  // `)	
+  <>	
+    <Header />	
+    <main>{children}</main>	
+    <Footer />	
+    <CookieAlert />	
+    <ReferrerCookie />	
+    {marketo()}	
+  </>	
+);
 
-  render() {
-    const { children } = this.state;
-    return (
+// class Layout extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { ...props };
+//   }
 
-    // const data = useStaticQuery(graphql`
-    //   query SiteTitleQuery {
-    //     site {
-    //       siteMetadata {
-    //         title
-    //       }
-    //     }
-    //   }
-    // `)
-      <>
-        {/* <HelloBar /> */}
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <CookieAlert />
-        <ReferrerCookie />
-        {marketo()}
-      </>
-    );
-  }
-}
+//   render() {
+//     const { children } = this.state;
+//     return (
+//       <>
+//         {/* <HelloBar /> */}
+//         <Header />
+//         <main>{children}</main>
+//         <Footer />
+//         <CookieAlert />
+//         <ReferrerCookie />
+//         {marketo()}
+//       </>
+//     );
+//   }
+// }
 
 Layout.propTypes = {
   // eslint-disable-next-line react/no-unused-prop-types

@@ -63,7 +63,7 @@ class HeaderComponent extends React.Component {
       // refresh: false,
       isModalOpen: false,
       searchTerm: '',
-      visibleHelloBar: 0,
+      // visibleHelloBar: 0,
     };
   }
 
@@ -71,10 +71,10 @@ class HeaderComponent extends React.Component {
     // Unit test will complain if process is not checked
     if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#main');
     // HelloBar implementation
-    const helloBarCountValue = Number(localStorage.getItem('hellobarcount'));
-    this.setState({
-      visibleHelloBar: helloBarCountValue,
-    });
+    // const helloBarCountValue = Number(localStorage.getItem('hellobarcount'));
+    // this.setState({
+    //   visibleHelloBar: helloBarCountValue,
+    // });
   }
 
   /* Helper functions
@@ -125,8 +125,8 @@ class HeaderComponent extends React.Component {
 
   render() {
     const {
-      isToggledOn, data, visibleHelloBar,
-      // isToggledOn, data, refresh, hasInput,
+      isToggledOn, data,
+      // isToggledOn, data, refresh, hasInput, visibleHelloBar
     } = this.state;
 
     const { trend } = this.props;
@@ -149,12 +149,12 @@ class HeaderComponent extends React.Component {
           <span className="navbar-toggler-icon" aria-hidden="true" />
         </button>
 
+        {/* overlay ${!visibleHelloBar ? ' noBar' : ''} */} 
         <div
           className={`header__right-links justify-content-end navbar-nav mr-auto navbar-collapse collapse show
             ${(isToggledOn === true) ? 'animate-open' : ''}
             ${(isToggledOn === false) ? 'animate-close' : ''}
-            ${isToggledOn === 'unset' ? 'closed' : ''}
-            overlay ${!visibleHelloBar ? ' noBar' : ''}
+            ${isToggledOn === 'unset' ? 'closed' : ''} 
             `}
           id="navbarSupportedContent"
         >
