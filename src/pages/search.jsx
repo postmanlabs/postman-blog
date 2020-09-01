@@ -97,7 +97,6 @@ class SearchPage extends Component {
             <h2 className="text-center mt-4">Search Results for '{searchState.query}'</h2>
               {/* Aloglia Widgets */}
 
-
               <div className="container form-inline header__search mb-4">
                 <InstantSearch
                   searchClient={searchClient}

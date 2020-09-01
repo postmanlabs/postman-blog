@@ -2,31 +2,6 @@
 
 exports[`BlogIndex renders correctly 1`] = `
 Array [
-  <div
-    className="hellobar__container"
-  >
-    <div
-      className="align-middle hellobar__text"
-    >
-      What do you see for the future of APIs? Take the 15-minute 
-      <a
-        className="hellobar__postman-link"
-        href="https://www.surveymonkey.com/r/2020-API-Survey"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        State of the API survey
-      </a>
-    </div>
-    <div
-      aria-label="HelloBar"
-      className="hellobar__close-button"
-      onClick={[Function]}
-      type="button"
-    >
-      X
-    </div>
-  </div>,
   <header
     className="header text-center navbar navbar-expand-xl navbar-light"
   >
@@ -65,7 +40,7 @@ Array [
             
             
             closed
-            overlay 
+            overlay  noBar
             "
       id="navbarSupportedContent"
     >
