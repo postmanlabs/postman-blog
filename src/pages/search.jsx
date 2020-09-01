@@ -94,7 +94,7 @@ class SearchPage extends Component {
           <SEO title="Search" />
           <div className="row">
             <div className="col-sm-12">
-              <h2 className="text-center mt-4">Search Results for...</h2>
+            <h2 className="text-center mt-4">Search Results for '{searchState.query}'</h2>
               {/* Aloglia Widgets */}
 
 
@@ -109,7 +109,7 @@ class SearchPage extends Component {
                   <Configure hitsPerPage={5} {...parameters} />
                   {/* eslint-enpoable */}
                   {/* forcefeed className because component does not accept natively as prop */}
-                  <SearchBox
+                  {/* <SearchBox
                     className="searchbox"
                     class="ais-SearchBox-input"
                     submit={<></>}
@@ -118,7 +118,7 @@ class SearchPage extends Component {
                     translations={{
                       placeholder: 'Search Postman',
                     }}
-                  />
+                  /> */}
                   {/* Comment in only if you want Blog post hits */}
                   {/* <div className={!hasInput ? 'input-empty' : 'input-value'}> */}
                   {/* <CustomHits hitComponent={Hits} />
