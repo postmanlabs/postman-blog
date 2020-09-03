@@ -6,7 +6,7 @@ import qs from 'qs';
 /* import 'Index' for federated search in 'react-instantsearch-dom'
 ********************************************************************* */
 import {
-  InstantSearch, SearchBox, Hits, Configure, Index,
+  InstantSearch, Hits, Configure, Index, /* SearchBox, */
 } from 'react-instantsearch-dom';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
@@ -42,6 +42,8 @@ const searchClient = {
 
 const updateAfter = 700;
 const searchStateToUrl = (searchState) => (searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : '');
+
+
 
 class SearchPage extends Component {
   constructor() {
@@ -88,15 +90,21 @@ class SearchPage extends Component {
 
       const parameters = {};
 
+      const searchTerm = searchState ? (<>{searchState.query}</>) : (<>...</>);
 
       return (
         <Layout>
           <SEO title="Search" />
           <div className="row">
             <div className="col-sm-12">
-              <h2 className="text-center mt-4">Search Results for...</h2>
+              <h2 className="text-center mt-4">
+                Search Results for
+                {' '}
+                &apos;
+                {searchTerm}
+                &apos;
+              </h2>
               {/* Aloglia Widgets */}
-
 
               <div className="container form-inline header__search mb-4">
                 <InstantSearch
@@ -109,7 +117,7 @@ class SearchPage extends Component {
                   <Configure hitsPerPage={5} {...parameters} />
                   {/* eslint-enpoable */}
                   {/* forcefeed className because component does not accept natively as prop */}
-                  <SearchBox
+                  {/* <SearchBox
                     className="searchbox"
                     class="ais-SearchBox-input"
                     submit={<></>}
@@ -118,7 +126,7 @@ class SearchPage extends Component {
                     translations={{
                       placeholder: 'Search Postman',
                     }}
-                  />
+                  /> */}
                   {/* Comment in only if you want Blog post hits */}
                   {/* <div className={!hasInput ? 'input-empty' : 'input-value'}> */}
                   {/* <CustomHits hitComponent={Hits} />
