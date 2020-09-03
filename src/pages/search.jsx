@@ -43,6 +43,8 @@ const searchClient = {
 const updateAfter = 700;
 const searchStateToUrl = (searchState) => (searchState ? `${window.location.pathname}?${qs.stringify(searchState)}` : '');
 
+
+
 class SearchPage extends Component {
   constructor() {
     super();
@@ -88,6 +90,7 @@ class SearchPage extends Component {
 
       const parameters = {};
 
+      const searchTerm = searchState ? (<>{searchState.query}</>) : (<>...</>);
 
       return (
         <Layout>
@@ -95,8 +98,10 @@ class SearchPage extends Component {
           <div className="row">
             <div className="col-sm-12">
               <h2 className="text-center mt-4">
-                Search Results for &apos;
-                {searchState.query}
+                Search Results for
+                {' '}
+                &apos;
+                {searchTerm}
                 &apos;
               </h2>
               {/* Aloglia Widgets */}
