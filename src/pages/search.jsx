@@ -98,7 +98,11 @@ class SearchPage extends Component {
           <div className="row">
             <div className="col-sm-12">
               <h2 className="text-center mt-4">
-                Search Results for &apos;{searchTerm}&apos;
+                Search Results for
+                {' '}
+                &apos;
+                {searchTerm}
+                &apos;
               </h2>
               {/* Aloglia Widgets */}
 
