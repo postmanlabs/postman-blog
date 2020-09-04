@@ -126,7 +126,9 @@ exports.onPostBuild = async function(
   const activity = report.activityTimer(`index to Algolia`);
   activity.start();
 
-  const client = algoliasearch(appId, apiKey);
+  
+  // const client = algoliasearch(appId, apiKey);
+  const client = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID, process.env.ALGOLIA_ADMIN_KEY);
 
 
   setStatus(activity, `${queries.length} queries to index`);

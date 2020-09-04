@@ -6,7 +6,7 @@ import qs from 'qs';
 /* import 'Index' for federated search in 'react-instantsearch-dom'
 ********************************************************************* */
 import {
-  InstantSearch, Hits, Configure, Index, /* SearchBox, */
+  InstantSearch, Hits, Configure, Index, SearchBox
 } from 'react-instantsearch-dom';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
@@ -117,7 +117,7 @@ class SearchPage extends Component {
                   <Configure hitsPerPage={5} {...parameters} />
                   {/* eslint-enpoable */}
                   {/* forcefeed className because component does not accept natively as prop */}
-                  {/* <SearchBox
+                  <SearchBox
                     className="searchbox"
                     class="ais-SearchBox-input"
                     submit={<></>}
@@ -126,7 +126,7 @@ class SearchPage extends Component {
                     translations={{
                       placeholder: 'Search Postman',
                     }}
-                  /> */}
+                  />
                   {/* Comment in only if you want Blog post hits */}
                   {/* <div className={!hasInput ? 'input-empty' : 'input-value'}> */}
                   {/* <CustomHits hitComponent={Hits} />
