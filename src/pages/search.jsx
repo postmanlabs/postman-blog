@@ -6,7 +6,7 @@ import qs from 'qs';
 /* import 'Index' for federated search in 'react-instantsearch-dom'
 ********************************************************************* */
 import {
-  InstantSearch, Hits, Configure, Index, SearchBox
+  InstantSearch, Hits, Configure, Index, SearchBox,
 } from 'react-instantsearch-dom';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
