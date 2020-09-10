@@ -37,7 +37,7 @@ const TagsPostsList = ({ data, pageContext }) => {
                     avatar={avatar}
                     date={date}
                     slug={slug}
-                    featureImage={featuredImage}
+                    featuredImage={featuredImage}
                     postTitle={postTitle}
                     postExcerpt={postExcerpt}
                   />
