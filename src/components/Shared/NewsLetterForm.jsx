@@ -84,7 +84,10 @@ class Form extends React.Component {
           })}
         </div>
         <div className="col-lg-8 offset-lg-2 text-center mt-3 mb-3">
-          <p className="small legal">By signing up, you agree to the processing of your personal data as described in our <a href='https://www.postman.com/legal/privacy-policy/' target='_blank' rel='noopener'>Privacy Policy</a>.</p>
+          <p className="small legal">By signing up, you agree to the processing of your personal data as described in our 
+            <a href="https://www.postman.com/legal/privacy-policy/" target="_blank" rel="nooreferrer">Privacy Policy</a>
+          .
+          </p>
         </div>
       </div>
     );
