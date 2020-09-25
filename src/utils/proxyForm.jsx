@@ -16,10 +16,10 @@ const proxyForm = ({
       <div className={className}>
         {description}
         {form}
-        <form id={id} />
+        <form id={`mktoForm_${id}`} />
         <style>
           {`
-          #${id} {
+          #mktoForm_${id} {
             display: none !important;
           }
         `}
