@@ -3,7 +3,8 @@ import React from 'react';
 const proxyForm = ({
   track, id, className, description, form,
 }) => {
-  if (typeof document === 'object' && track && id) {
+  const mktoId = `mktoForm_${id}`;
+  if (typeof document === 'object' && track && id && document.getElementById(mktoId) === null) {
     window.lazyLoadPmUtility('proxyForm', () => {
       window.pm.proxyForm({
         host: '//pages.getpostman.com',
@@ -16,10 +17,10 @@ const proxyForm = ({
       <div className={className}>
         {description}
         {form}
-        <form id={`mktoForm_${id}`} />
+        <form id={mktoId} />
         <style>
           {`
-          #mktoForm_${id} {
+          #${mktoId} {
             display: none !important;
           }
         `}
