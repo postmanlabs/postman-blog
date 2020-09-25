@@ -6,7 +6,6 @@ const proxyForm = ({
   const mktoId = `mktoForm_${id}`;
   if (typeof document === 'object' && track && id) {
     if (document.getElementById(mktoId) === null) {
-      console.log('calling');
       window.lazyLoadPmUtility('proxyForm', () => {
         window.pm.proxyForm({
           host: '//pages.getpostman.com',
