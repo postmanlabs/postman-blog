@@ -51,7 +51,7 @@ class Form extends React.Component {
         <div className="col-lg-8 offset-lg-2">
           {proxyForm({
             track: munchkinId,
-            id: mktoFormId,
+            id: formid,
             className: 'form-container',
             description: (
               <div className="col-sm-12 col-md-10 offset-md-1 text-center">
@@ -76,9 +76,15 @@ class Form extends React.Component {
                     />
                   </li>
                   <li className="button-wrap">
-                    <button className="form-submit-button" type="submit">Submit</button>
+                    <button className="form-submit-button" type="submit">Sign Up</button>
                   </li>
                 </ul>
+                <p className="small legal">
+                  By signing up, you agree to the processing of your personal data as described in our
+                  {' '}
+                  <a href="https://www.postman.com/legal/privacy-policy/" target="_blank" rel="noreferrer">Privacy Policy</a>
+                  .
+                </p>
               </form>
             ),
           })}
