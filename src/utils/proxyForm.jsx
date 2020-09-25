@@ -4,15 +4,17 @@ const proxyForm = ({
   track, id, className, description, form,
 }) => {
   const mktoId = `mktoForm_${id}`;
-  if (typeof document === 'object' && track && id && document.getElementById(mktoId) === null) {
-    window.lazyLoadPmUtility('proxyForm', () => {
-      window.pm.proxyForm({
-        host: '//pages.getpostman.com',
-        track,
-        id,
+  if (typeof document === 'object' && track && id) {
+    if (document.getElementById(mktoId) === null) {
+      console.log('calling');
+      window.lazyLoadPmUtility('proxyForm', () => {
+        window.pm.proxyForm({
+          host: '//pages.getpostman.com',
+          track,
+          id,
+        });
       });
-    });
-
+    }
     return (
       <div className={className}>
         {description}
