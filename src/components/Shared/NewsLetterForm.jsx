@@ -76,12 +76,19 @@ class Form extends React.Component {
                     />
                   </li>
                   <li className="button-wrap">
-                    <button className="form-submit-button" type="submit">Submit</button>
+                    <button className="form-submit-button" type="submit">SignUp</button>
                   </li>
                 </ul>
               </form>
             ),
           })}
+        </div>
+        <div className="col-lg-8 offset-lg-2 text-center mt-3 mb-3">
+          <p className="small legal">
+            By signing up, you agree to the processing of your personal data as described in our
+            <a href="https://www.postman.com/legal/privacy-policy/" target="_blank" rel="noreferrer">Privacy Policy</a>
+            .
+          </p>
         </div>
       </div>
     );
