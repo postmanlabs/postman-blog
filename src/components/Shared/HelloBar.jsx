@@ -4,10 +4,10 @@
 import React from 'react';
 
 const bardata = {
-  title: 'What do you see for the future of APIs? Take the 15-minute ',
+  title: 'Call for papers is now open for the Postman Galaxy 2020 conference.  ',
   cta: {
-    text: 'State of the API survey',
-    url: 'https://www.surveymonkey.com/r/2020-API-Survey',
+    text: 'Submit your proposal',
+    url: 'https://docs.google.com/forms/d/e/1FAIpQLScidttKEkbC4O1lQEksx76SB4bnDB_qNV06H8n_GlXgaLvAmw/viewform',
   },
 };
 
