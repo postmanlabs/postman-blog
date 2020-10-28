@@ -9,7 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import marketo from '../../scripts/marketo.munchkin';
 // import { useStaticQuery, graphql } from "gatsby"
-import HelloBar from './Shared/HelloBar';
+// import HelloBar from './Shared/HelloBar';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import ReferrerCookie from './ReferrerCookie';
@@ -38,7 +38,7 @@ class Layout extends React.Component {
     //   }
     // `)
       <>
-        <HelloBar />
+        {/* <HelloBar /> */}
         <Header />
         <main>{children}</main>
         <Footer />
