@@ -14,7 +14,7 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import ReferrerCookie from './ReferrerCookie';
 // import './_layout.scss';
-import CookieAlert from './CookieAlert';
+// import CookieAlert from './CookieAlert';
 import './_all.scss';
 import '../utils/typography';
 
@@ -42,7 +42,7 @@ class Layout extends React.Component {
         <Header />
         <main>{children}</main>
         <Footer />
-        <CookieAlert />
+        {/* <CookieAlert /> */}
         <ReferrerCookie />
         {marketo()}
       </>
