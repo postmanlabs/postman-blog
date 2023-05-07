@@ -40,7 +40,7 @@
     "lodash.chunk": "^4.2.0",
     "node-sass": "^4.14.0",
     "prop-types": "^15.7.2",
-    "qs": "^6.9.4",
+    "qs": "^6.9.7",
     "react": "^16.12.0",
     "react-cookie-consent": "^4.1.0",
     "react-dom": "^16.12.0",
